@@ -1,22 +1,23 @@
 import Link from "next/link";
+import { Button } from "@/components/ui";
 
 export default function NotFound() {
   return (
-    <div className="bg-parchment-50">
+    <div className="bg-paper-50">
       <div className="container-narrow py-20 text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ocean-700">
-          404
-        </p>
-        <h1 className="mt-2 font-serif text-5xl text-parchment-900">
+        <p className="eyebrow text-coral-700">404</p>
+        <h1 className="mt-2 font-display text-display-lg text-ink-900 text-balance">
           Page not found
         </h1>
-        <p className="mt-4 text-lg leading-relaxed text-parchment-700">
-          That page isn&apos;t here. The site is under construction.
+        <p className="mt-4 lead text-pretty">
+          That page isn’t here. The site is under construction — Sprint 1.3 will fill
+          these in with real content.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Link href="/" className="btn btn-primary">
-            Back to home
-          </Link>
+          <Button href="/">Back to home</Button>
+          <Button href="/styleguide" variant="outline">
+            Style guide
+          </Button>
         </div>
       </div>
     </div>

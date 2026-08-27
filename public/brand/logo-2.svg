@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="MyNoosaHeads — The Headland">
+  <title>The Headland — single-line Noosa Headland silhouette (CONFIRMED primary per Albert)</title>
+  <!--
+    Composition:
+      - Left mass = Noosa Heads granite headland (tall, sloping)
+      - Right mass = far headland / North Coast (lower, broader)
+      - Tiny notch = Noosa lighthouse at the apex
+      - Sand line at the base
+      - Single Sunset Coral dot at bottom-right (lockup accent)
+    Confirmed as the primary candidate in Albert's design brief §1.
+  -->
+  <g>
+    <!-- Far headland (background, lighter eucalyptus) -->
+    <path
+      d="M10 46 C18 38 22 32 26 30 C30 28 32 32 34 34 C36 35 38 32 42 32 C46 32 50 36 54 42 L54 46 Z"
+      fill="#A6C2AF"
+    />
+    <!-- Foreground headland (main mass, eucalyptus green) -->
+    <path
+      d="M6 50 C10 40 14 30 20 22 C22 19 25 17 28 18 C30 18.5 31 20 32 22 C33 21 34.5 20.5 36 21 C37.5 21.5 38 23 39 24 C40 22.5 41.5 22 43 23 C46 24.5 48 28 50 32 C53 38 55 44 56 50 Z"
+      fill="#2C4A3E"
+    />
+    <!-- Lighthouse nub -->
+    <rect x="29" y="14" width="2" height="6" fill="#2C4A3E" />
+    <circle cx="30" cy="13" r="0.9" fill="#2C4A3E" />
+    <!-- Single-line overlay stroke (single-line silhouette per brief) -->
+    <path
+      d="M6 50 C10 40 14 30 20 22 C22 19 25 17 28 18 C30 18.5 31 20 32 22 C33 21 34.5 20.5 36 21 C37.5 21.5 38 23 39 24 C40 22.5 41.5 22 43 23 C46 24.5 48 28 50 32 C53 38 55 44 56 50"
+      fill="none"
+      stroke="#FBF6E9"
+      stroke-width="0.8"
+      stroke-linecap="round"
+    />
+    <!-- Sand baseline -->
+    <path d="M4 51 H60" stroke="#6B5943" stroke-width="1.2" stroke-linecap="round" />
+    <!-- Single coral dot accent (lockup) -->
+    <circle cx="52" cy="56" r="3" fill="#D77A61" />
+  </g>
+</svg>

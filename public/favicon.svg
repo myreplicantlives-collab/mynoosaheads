@@ -1,6 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <rect width="32" height="32" rx="6" fill="#FBF7F0" />
-  <path d="M5 22 Q10 17 16 22 T27 22" stroke="#28748C" stroke-width="2.5" fill="none" stroke-linecap="round" />
-  <circle cx="22" cy="9" r="3" fill="#D26A4C" />
-  <path d="M5 27 L27 27" stroke="#6E6048" stroke-width="1.5" stroke-linecap="round" />
+  <!-- Sprint 1.2 — favicon aligned to the Headland mark (Logo 2). -->
+  <rect width="32" height="32" rx="6" fill="#FBF6E9" />
+  <path d="M3 23 C5 18 7 13 10 10 C11 9 12 9 13 10 C14 10 14.5 11 15 11.5 C15.5 11 16 10.5 17 11 C18 11.5 18.5 13 19.5 14 C21 16 22.5 19 23 23 Z" fill="#2C4A3E" />
+  <path d="M14 7 V10" stroke="#2C4A3E" stroke-width="1" stroke-linecap="round" />
+  <circle cx="14" cy="6.5" r="0.7" fill="#2C4A3E" />
+  <path d="M2 24 H30" stroke="#6B5943" stroke-width="0.8" stroke-linecap="round" />
+  <circle cx="25" cy="26.5" r="1.6" fill="#D77A61" />
 </svg>

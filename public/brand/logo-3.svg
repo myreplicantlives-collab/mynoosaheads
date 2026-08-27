@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="MyNoosaHeads — Surf Wave">
+  <title>Surf Wave — three-line wave silhouette (rose as a fallback per Albert)</title>
+  <!--
+    Composition:
+      - Three stacked wave lines, graduated in Eucalyptus Green tones.
+      - Sun arc in upper-right.
+      - Sand baseline.
+      - Single Sunset Coral dot at bottom-right.
+    Per the brief, the wave-mark candidate was deprioritised because the
+    AU coastal set is saturated with wave-led marks — this is the
+    fallback if Albert prefers a more wave-led identity.
+  -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Sun arc (Ocean blue) -->
+    <path
+      d="M40 22 A8 8 0 0 1 56 22"
+      stroke="#1D5A6F"
+      stroke-width="2.2"
+      fill="none"
+    />
+    <!-- Wave 1 (lightest) -->
+    <path
+      d="M6 32 C12 27 18 27 24 32 C30 37 36 37 42 32 C48 27 54 27 60 32"
+      stroke="#79A387"
+      stroke-width="2.2"
+      fill="none"
+    />
+    <!-- Wave 2 (mid) -->
+    <path
+      d="M4 42 C11 36 19 36 26 42 C33 48 41 48 48 42 C53 38 57 38 60 42"
+      stroke="#568868"
+      stroke-width="2.4"
+      fill="none"
+    />
+    <!-- Wave 3 (deepest) -->
+    <path
+      d="M2 52 C10 46 19 46 27 52 C35 58 44 58 52 52 C56 49 58 49 62 52"
+      stroke="#2C4A3E"
+      stroke-width="2.6"
+      fill="none"
+    />
+    <!-- Sand baseline -->
+    <path d="M2 56 H62" stroke="#6B5943" stroke-width="1.2" stroke-linecap="round" />
+    <!-- Single coral dot accent (lockup) -->
+    <circle cx="54" cy="58" r="3" fill="#D77A61" />
+  </g>
+</svg>
