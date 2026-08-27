@@ -280,7 +280,15 @@
   .btn-xl { @apply btn-base px-8 py-3.5 text-lg; }
 
   .btn-primary {
-    @apply bg-eucalyptus-500 text-paper-50 shadow-sm
+    /* MSN-2959 / TSK-2959-POLISH-C (extended): text recoloured from
+     * text-paper-50 (#FFFFFF, contrast 2.79:1 on bg-eucalyptus-500
+     * — fails WCAG AA for normal text) to text-ink-900 (#0A1F1B,
+     * contrast 6.44:1 — passes AA comfortably). Brand surface
+     * (eucalyptus-500 #5BA89B) is unchanged; only the text style
+     * shifted. The r2 sea-glass palette refactor (#2C4A3E → #5BA89B
+     * for eucalyptus-500) changed the underlying contrast without
+     * updating the primary-CTA text colour. */
+    @apply bg-eucalyptus-500 text-ink-900 shadow-sm
            hover:bg-eucalyptus-600 active:bg-eucalyptus-700
            focus-visible:ring-eucalyptus-500;
   }

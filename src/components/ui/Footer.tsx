@@ -135,7 +135,17 @@ export function Footer({
               aria-label={col.heading}
               className="text-body-sm"
             >
-              <h3 className="text-eyebrow text-eucalyptus-700">{col.heading}</h3>
+              {/* MSN-2959 / TSK-2959-POLISH-C (extended): bumped from
+               * text-eucalyptus-700 (#2F8074, contrast 4.39:1 on
+               * bg-paper-100 — just under WCAG AA 4.5:1) to
+               * text-eucalyptus-900 (#0E4A41, contrast ~10:1). The
+               * footer surface is paper-100 (#F4F8F7), not paper-50
+               * (#FFFFFF), so even though the eyebrow class was
+               * bumped in globals.css, the footer h3 headings
+               * (which use `text-eyebrow text-eucalyptus-700`)
+               * needed a direct bump too. Lighthouse color-contrast
+               * audit was failing on 5 of these headings. */}
+              <h3 className="text-eyebrow text-eucalyptus-900">{col.heading}</h3>
               <ul className="mt-3 space-y-2">
                 {col.links.map((link) => (
                   <li key={link.href} className="flex items-start gap-2">
