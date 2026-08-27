@@ -121,7 +121,7 @@ export default async function AccommodationPage() {
                     decoding="async"
                     className="w-full h-auto"
                     sizes="(min-width: 768px) 50vw, 100vw"
-                    unoptimized
+                    // MSN-2959 / TSK-2959-POLISH-B: Vercel image opt (AVIF/WebP).
                   />
                 </div>
                 <figcaption className="mt-3 text-caption text-ink-600">

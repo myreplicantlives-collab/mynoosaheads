@@ -531,6 +531,9 @@ function Section({
 
 function SubHeading({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="mt-6 mb-3 text-eyebrow text-ocean-700 first:mt-0">{children}</h3>
+    // MSN-2959 / TSK-2959-POLISH-C: dropped `text-ocean-700` override so the
+    // eyebrow register now uses text-ocean-900 (#0E4A41) for WCAG AA on
+    // white surfaces — see .eyebrow in src/app/globals.css.
+    <h3 className="mt-6 mb-3 text-eyebrow first:mt-0">{children}</h3>
   );
 }

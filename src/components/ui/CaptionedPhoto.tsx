@@ -58,7 +58,9 @@ export function CaptionedPhoto({
           placeholder={blurDataURL ? "blur" : "empty"}
           blurDataURL={blurDataURL}
           priority={priority}
-          unoptimized
+          // MSN-2959 / TSK-2959-POLISH-B: route through Vercel image
+          // optimisation pipeline (AVIF/WebP). `unoptimized` removed
+          // to recover Lighthouse Best Practices.
         />
       </div>
       <figcaption className="mt-3 flex flex-col gap-1 text-caption text-ink-600 sm:flex-row sm:items-baseline sm:justify-between">

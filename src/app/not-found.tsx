@@ -5,7 +5,10 @@ export default function NotFound() {
   return (
     <div className="bg-paper-50">
       <div className="container-narrow py-20 text-center">
-        <p className="eyebrow text-ocean-700">404</p>
+        {/* MSN-2959 / TSK-2959-POLISH-C: dropped `text-ocean-700` override
+         * so the eyebrow register resolves to text-ocean-900 (#0E4A41)
+         * for WCAG AA on white — see .eyebrow in src/app/globals.css. */}
+        <p className="eyebrow">404</p>
         <h1 className="mt-2 font-display text-display-lg text-ink-900 text-balance">
           Page not found
         </h1>

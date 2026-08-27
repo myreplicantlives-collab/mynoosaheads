@@ -115,7 +115,7 @@ export default function WebcamsPage() {
                   decoding="async"
                   className="w-full h-auto"
                   sizes="(min-width: 768px) 50vw, 100vw"
-                  unoptimized
+                  // MSN-2959 / TSK-2959-POLISH-B: Vercel image opt (AVIF/WebP).
                 />
                 <figcaption className="px-4 py-3 text-caption text-ink-700 bg-paper-100 border-t border-paper-200">
                   <span className="font-medium text-ink-800">{p.caption}</span>
