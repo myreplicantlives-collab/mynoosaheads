@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    unoptimized: true, // we ship pre-resized JPEGs to avoid Vercel Image Optimization complexity
+    unoptimized: true, // Sprint 1.1 has no imagery yet; TSK-2957-03 will revisit
   },
   trailingSlash: false,
   poweredByHeader: false,

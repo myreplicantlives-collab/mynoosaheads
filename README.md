@@ -1,66 +1,145 @@
-# mynoosaheads.com v2
+# My Noosa Heads
 
 > Plan your Noosa trip well.
 
-A tourism-positive, photo-led, sourced guide to Noosa Heads (Queensland, Australia). Built fresh in August 2026 under chairman direction, replacing the prior "Honest Guide" anti-tourism build.
+A tourism-positive, sourced guide to Noosa Heads (Queensland, Australia).
 
-## What's here
+**Status:** Sprint 1.1 of 5 — foundation scaffold complete; design system + content + CI/CD coming in subsequent sub-tasks.
 
-- **Homepage** — hero, utility grid, tone, where-to-stay callout, monetisation note
-- **Where to stay** — area comparison table + cards (Hastings Street, Noosaville, Sunshine Beach, Peregian, Hinterland), occasion table, FAQ. Visit-Noosa-benchmark clean filters + contextual affiliate CTAs
-- **Eat & drink** — 20 reviewed restaurants across 5 areas, all with verified official websites
-- **Surf & weather** — live BOM forecast via Open-Meteo + BOM marine forecast, source-health panel, honest accuracy notes
-- **National Park** — full coastal walk, headlands, walks table, dolphin/whale seasons, current QPWS alerts
-- **Hikes** — 6 walks with distances/times and QPWS links
-- **Things to do** — sports, tours, boat hire, fishing, offers
-- **Itineraries** — 6 trip plans (1-day, weekend, 4-day, family, surfer, foodie)
-- **Webcams** — links to public Coastwatch/council cams (no fake embeds)
-- **Fishing** — species table, BOM tide links, QLD rules
-- **Boat hire** — 4 verified operators with Viator affiliate links
-- **K'gari (Fraser Island)** — operators, permits, safety, weather
-- **Offers** — 3 real partner offers (Booking.com, GetYourGuide, Viator)
-- **Sources** — full citation ledger (35+ sources)
-- **About / Contact / Editorial policy / Corrections / Image credits**
+This is the new foundation. The previous v2 build is retained in the
+post-MSN-2881 rollback snapshot for reference; this repository is the
+canonical build going forward.
+
+## What is here
+
+- Next.js 14 (App Router) + TypeScript strict + Tailwind CSS 3
+- MDX support via `next-mdx-remote` (server-rendered)
+- 7-token coastal palette as CSS custom properties (`bg`, `surface`, `text`, `text-muted`, `ocean`, `rainforest`, `coral`)
+- A minimal "Hello, Noosa — coming soon" landing page
+- An example MDX page at `/hello-noosa`
+- Header + footer placeholders (brand: My Noosa Heads)
+- Path aliases: `@/components/*`, `@/lib/*`, `@/content/*`, `@/data/*`
+
+## What is NOT here yet
+
+- Design system (typography scale, component library, accessibility primitives) — **TSK-2957-02**
+- Real content (where to stay, eat & drink, surf & weather, hikes, things to do, itineraries) — **TSK-2957-03**
+- Custom domain DNS flip from GoDaddy to Vercel — **TSK-2957-03**
+- Per-PR preview deploys, Lighthouse CI, broken-link scans — **TSK-2957-04**
+- Live data refreshers (BOM marine, Open-Meteo, QPWS alerts) — **TSK-2957-03**
 
 ## Stack
 
-- Next.js 14.2.15 (App Router, TypeScript)
-- Tailwind CSS 3.4.13 (parchment + ocean + rainforest + coral palette)
-- Static export-friendly (`output: 'export'` would work — currently SSR via Vercel)
-- Image registry: 15 CC BY/SA Wikimedia Commons photos
-- Live data: BOM marine (XML), Open-Meteo (JSON), refresh on `npm run data:refresh`
+| Concern | Choice |
+|---|---|
+| Framework | Next.js 14.2.15 (App Router) |
+| Language | TypeScript 5.6.2 (strict mode) |
+| Styling | Tailwind CSS 3.4.13 + `@tailwindcss/typography` |
+| MDX | `next-mdx-remote` 5.0.0 (server components) + `gray-matter` + `reading-time` |
+| Hosting | Vercel Hobby (free tier) — upgrade to Pro A$30/mo only when traffic warrants |
+| GitHub | (to be linked — see "Deploy" section below) |
+| Custom domain | `mynoosaheads.com` (currently parked at GoDaddy) |
 
-## Run locally
+## Folder structure
+
+```
+mynoosaheads/
+├── app/                    # Next.js App Router (NOTE: this project uses src/app/)
+├── content/                # MDX content files
+│   └── posts/
+│       └── hello-noosa.mdx # sample post (Sprint 1.1 demo)
+├── lib/                    # cross-cutting utilities
+│   └── posts.ts            # MDX loader (gray-matter + reading-time)
+├── public/                 # static assets (favicon, robots.txt)
+├── src/
+│   ├── app/                # Next.js App Router pages
+│   │   ├── hello-noosa/
+│   │   │   └── page.tsx    # MDX route
+│   │   ├── globals.css     # Tailwind base + 7-token palette
+│   │   ├── layout.tsx      # root layout
+│   │   ├── not-found.tsx   # 404
+│   │   └── page.tsx        # "Hello, Noosa" landing
+│   ├── components/         # React components
+│   │   ├── mdxComponents.tsx
+│   │   ├── SiteFooter.tsx
+│   │   └── SiteHeader.tsx
+│   └── data/
+│       └── site.ts         # SITE + SPRINT constants
+├── next.config.mjs
+├── package.json
+├── postcss.config.js
+├── tailwind.config.ts      # 7-token palette + typography plugin
+├── tsconfig.json           # strict mode + path aliases
+└── README.md
+```
+
+## Local dev
 
 ```bash
 npm install
-npm run dev              # http://localhost:3011
-npm run build            # static export
-npm run data:refresh     # refresh live snapshots
-npm run link:scan        # broken-link scan
-npm run lighthouse       # lighthouse on prod (after deploy)
+npm run dev              # http://localhost:3010
+```
+
+The dev server runs on **port 3010** by default (per the Sprint 1.1 brief;
+the previous v2 used 3011).
+
+## Production build
+
+```bash
+npm run build
+npm run start            # serves the production build on port 3010
 ```
 
 ## Deploy
 
+### Vercel (current production)
+
+- Project: `noosa-site-v2` (id `prj_2muUnurKCimGdolqUvS2mDjZmQPY`)
+- Workspace: `myreplicantlives-5263`
+- Production URL: **https://noosa-site-v2.vercel.app** (200 OK)
+- Custom domain: `mynoosaheads.com` (parked at GoDaddy — DNS flip is TSK-2957-03)
+
 ```bash
-npm run deploy:prod
+vercel link --project noosa-site-v2     # one-time
+vercel deploy --prod --yes              # deploy the current branch
 ```
 
-Targets the existing Vercel project `noosa-site-v2` in the `myreplicantlives-5263` workspace.
+### GitHub auto-deploy (planned for TSK-2957-04)
 
-## Custom domain
+1. Push this repo to GitHub.
+2. In Vercel, set the production branch to `main`.
+3. Future pushes to `main` auto-deploy.
 
-`mynoosaheads.com` is **parked at GoDaddy** (A records `76.223.67.189` / `13.248.213.45`, NS `domaincontrol.com`). The build is production-ready on the Vercel project; the DNS flip requires GoDaddy credentials that are not in this build scope.
+## Design tokens
 
-Live URL: **https://noosa-site-v2.vercel.app**
+The coastal palette is defined in `src/app/globals.css` as CSS custom
+properties and exposed via Tailwind utilities (`bg-ocean`, `text-text`,
+`bg-surface`, etc.). The brief asks for 7 tokens; all are present:
+
+| # | Token | Hex | Role |
+|---|---|---|---|
+| 1 | `--color-bg` | `#FBF7F0` | Page background (warm parchment) |
+| 2 | `--color-surface` | `#F5EFE3` | Card / panel surface |
+| 3 | `--color-text` | `#251F17` | Primary text |
+| 4 | `--color-text-muted` | `#54483A` | Secondary text |
+| 5 | `--color-ocean` | `#1D5A6F` | Primary brand (ocean blue) |
+| 6 | `--color-rainforest` | `#3A5240` | Secondary brand (rainforest) |
+| 7 | `--color-coral` | `#D26A4C` | Accent (sunset coral) |
+
+TSK-2957-02 will extend these into full scales (50–900).
+
+## Build plan reference
+
+MSN-2956 build plan (DOCX):
+https://docs.google.com/document/d/1uhgrrsZjayHMPiJGB7_NHsq3N__SV-lD/edit
 
 ## Honest boundaries
 
-- No sample data, no fake webcams, no invented affiliate IDs, no fabricated surf numbers
-- All imagery CC BY or CC BY-SA with full attribution
-- Affiliate links are environment-driven (`NEXT_PUBLIC_BOOKING_AID` etc.); unset = official-fallback destination + "Partner · not yet monetised" badge
-- Provider outages show explicit unavailable/error state with last refresh time
-- BOM marine forecasts cover a large zone — we don't claim metre-level surf accuracy
-
-See `/sources`, `/editorial-policy` and `/corrections` for the standards in full.
+- Sprint 1.1 ships **no real content** — that lands in Sprint 1.3.
+- The production URL is intentionally minimal: a "Hello, Noosa" landing.
+- The previous v2 build is preserved in the post-rollback snapshot for
+  reference; the new v3 (this build) replaces it.
+- The custom domain DNS is still parked at GoDaddy. The Vercel build is
+  production-ready at `https://noosa-site-v2.vercel.app`; the
+  `mynoosaheads.com` flip is gated on Tim providing GoDaddy DNS
+  credentials (Sally routes the question).
