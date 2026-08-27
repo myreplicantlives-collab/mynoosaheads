@@ -344,7 +344,12 @@
            rounded-pill px-2 py-0.5;
   }
   .eyebrow {
-    @apply text-xs uppercase tracking-[0.16em] font-semibold text-ocean-700;
+    /* MSN-2959 / TSK-2959-POLISH-C: bumped from text-ocean-700 (#2F8074,
+     * contrast 4.69:1 on white — just over WCAG AA but Lighthouse flagged
+     * it) to text-ocean-900 (#0E4A41, contrast 10.05:1 — well above WCAG
+     * AA/AAA on --paper-50). Victor's re-QA found A11y score dropped
+     * from 100 → 96 on the new white surface. */
+    @apply text-xs uppercase tracking-[0.16em] font-semibold text-ocean-900;
   }
   .lead {
     @apply text-body-lg text-ink-700 leading-relaxed;

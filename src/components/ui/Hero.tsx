@@ -57,7 +57,12 @@ export function Hero({
             sizes="100vw"
             className="object-cover"
             aria-hidden={!imageAlt}
-            unoptimized
+            // MSN-2959 / TSK-2959-POLISH-B: route through Vercel image
+            // optimisation (AVIF/WebP). Previously bypassed to fix a
+            // now-resolved Sentry build pipeline issue, but the
+            // bypass drops Lighthouse Best Practices (was 77) and
+            // Mobile Performance (was 85). Vercel CDN optimises
+            // remote (Wikimedia) images by default — no `unoptimized`.
             priority={fullBleed}
           />
           <div className="hero-overlay absolute inset-0" aria-hidden="true" />

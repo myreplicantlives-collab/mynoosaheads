@@ -51,7 +51,9 @@ export function HeroPhoto({
           placeholder={blurDataURL ? "blur" : "empty"}
           blurDataURL={blurDataURL}
           priority
-          unoptimized
+          // MSN-2959 / TSK-2959-POLISH-B: route through Vercel image
+          // optimisation pipeline (AVIF/WebP) — previously bypassed
+          // which dropped Lighthouse Best Practices & Mobile Perf.
         />
         {/* Caption + credit on the photo (lower-left). */}
         <div className="absolute inset-0 pointer-events-none">

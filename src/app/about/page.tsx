@@ -39,7 +39,10 @@ export default function AboutPage() {
         <div className="container-page py-14 md:py-20">
           <p
             id="brand-statement-h"
-            className="eyebrow text-ocean-700"
+            // MSN-2959 / TSK-2959-POLISH-C: dropped explicit `text-ocean-700`
+            // override so the bumped `.eyebrow` class (text-ocean-900) wins
+            // and the eyebrow contrast on white is WCAG AA-compliant.
+            className="eyebrow"
           >
             Brand statement
           </p>
@@ -177,24 +180,27 @@ export default function AboutPage() {
               <CardHeader eyebrow="At a glance" title="" />
               <CardBody>
                 <dl className="text-body-sm space-y-3 text-ink-800">
+                  {/* MSN-2959 / TSK-2959-POLISH-C: explicit `text-ocean-700`
+                   * dropped from each `<dt>` so the eyebrow register
+                   * resolves to text-ocean-900 (#0E4A41, ~10:1 on white). */}
                   <div>
-                    <dt className="text-eyebrow text-ocean-700">Region</dt>
+                    <dt className="text-eyebrow">Region</dt>
                     <dd>Noosa Shire, Queensland, Australia</dd>
                   </div>
                   <div>
-                    <dt className="text-eyebrow text-ocean-700">Locale</dt>
+                    <dt className="text-eyebrow">Locale</dt>
                     <dd>en-AU</dd>
                   </div>
                   <div>
-                    <dt className="text-eyebrow text-ocean-700">Established</dt>
+                    <dt className="text-eyebrow">Established</dt>
                     <dd>2026</dd>
                   </div>
                   <div>
-                    <dt className="text-eyebrow text-ocean-700">Hosting</dt>
+                    <dt className="text-eyebrow">Hosting</dt>
                     <dd>Vercel Hobby (free tier)</dd>
                   </div>
                   <div>
-                    <dt className="text-eyebrow text-ocean-700">Newsletter</dt>
+                    <dt className="text-eyebrow">Newsletter</dt>
                     <dd>None. Per chairman directive.</dd>
                   </div>
                 </dl>
