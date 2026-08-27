@@ -4,25 +4,29 @@
 
 A tourism-positive, sourced guide to Noosa Heads (Queensland, Australia).
 
-**Status:** Sprint 1.1 of 5 — foundation scaffold complete; design system + content + CI/CD coming in subsequent sub-tasks.
+**Status:** Sprint 1.2 of 5 — design system + brand/logo mocks shipped; content + CI/CD coming in subsequent sub-tasks.
 
 This is the new foundation. The previous v2 build is retained in the
 post-MSN-2881 rollback snapshot for reference; this repository is the
 canonical build going forward.
 
-## What is here
+## What is here (Sprint 1.2)
 
 - Next.js 14 (App Router) + TypeScript strict + Tailwind CSS 3
 - MDX support via `next-mdx-remote` (server-rendered)
-- 7-token coastal palette as CSS custom properties (`bg`, `surface`, `text`, `text-muted`, `ocean`, `rainforest`, `coral`)
-- A minimal "Hello, Noosa — coming soon" landing page
-- An example MDX page at `/hello-noosa`
-- Header + footer placeholders (brand: My Noosa Heads)
+- **Design system** — `src/components/ui/`:
+  - Typography: Fraunces (display) + Inter (body) + Caveat (accent) via `next/font`, 14-step fluid scale
+  - Colour ramps: 7 palettes × 11 shades (50–950) — Paper / Ink / Eucalyptus / Ocean / Rainforest / Coral / Sand
+  - Components: Button (6 variants × 4 sizes), Card, Hero, NavBar, Footer, LiveDataWidget, Form, Logo, Icon (21)
+- `/styleguide` — live design system reference (Albert-facing logo review)
+- 3 logo mocks at `public/brand/logo-{1,2,3}.svg` (Albert picks the final)
+- Homepage, `/hello-noosa` sample MDX, `/styleguide`, 404 page
+- Accessibility: skip link, focus rings, ARIA landmarks, axe-core 0 violations
 - Path aliases: `@/components/*`, `@/lib/*`, `@/content/*`, `@/data/*`
 
 ## What is NOT here yet
 
-- Design system (typography scale, component library, accessibility primitives) — **TSK-2957-02**
+- Design system (typography scale, component library, accessibility primitives) — **TSK-2957-02 ✓**
 - Real content (where to stay, eat & drink, surf & weather, hikes, things to do, itineraries) — **TSK-2957-03**
 - Custom domain DNS flip from GoDaddy to Vercel — **TSK-2957-03**
 - Per-PR preview deploys, Lighthouse CI, broken-link scans — **TSK-2957-04**
