@@ -1,10 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="MyNoosaHeads — Sprig Mark">
-  <title>Sprig Mark — clean sea-glass sprig silhouette (MSN-2959 r2 repaint)</title>
-  <!-- Sea-glass base (sea-glass-900 #0E4A41) — was eucalyptus green #2C4A3E. -->
+  <title>Sprig Mark — sea-glass sprig silhouette (MSN-2959 r2 repaint)</title>
   <g fill="none" stroke="#0E4A41" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-    <!-- Vertical stem -->
     <path d="M32 58 V20" />
-    <!-- Symmetric paired leaves around the stem -->
     <path d="M32 22 C24 22 18 18 16 12 C24 12 30 16 32 22 Z" fill="#0E4A41" fill-opacity="0.12" />
     <path d="M32 22 C40 22 46 18 48 12 C40 12 34 16 32 22 Z" fill="#0E4A41" fill-opacity="0.12" />
     <path d="M32 32 C25 32 19 29 17 23 C25 23 30 27 32 32 Z" fill="#0E4A41" fill-opacity="0.18" />
@@ -13,9 +10,7 @@
     <path d="M32 42 C38 42 43 40 45 35 C38 35 34 38 32 42 Z" fill="#0E4A41" fill-opacity="0.22" />
     <path d="M32 52 C27 52 23 50 22 46 C27 46 30 49 32 52 Z" fill="#0E4A41" fill-opacity="0.28" />
     <path d="M32 52 C37 52 41 50 42 46 C37 46 34 49 32 52 Z" fill="#0E4A41" fill-opacity="0.28" />
-    <!-- Crown bud at top -->
     <circle cx="32" cy="18" r="2" fill="#0E4A41" />
   </g>
-  <!-- Sea-glass accent dot (sea-glass-500 #5BA89B) — was coral #D77A61. -->
   <circle cx="50" cy="50" r="3.5" fill="#5BA89B" />
 </svg>

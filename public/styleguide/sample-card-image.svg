@@ -1,8 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice">
-  <!-- MSN-2959 r2 — sample card image repainted to sea-glass.
-       Anchors:
-         sea-glass-300 sky  = #A8D4CA (was light eucalyptus #A6C2AF)
-         sea-glass-900 mass = #0E4A41 (was eucalyptus #2C4A3E) -->
+  <!-- MSN-2959 r2 — sample card image: sea-glass sky + sea-glass mass. -->
   <rect width="320" height="180" fill="#A8D4CA"/>
   <path d="M0 130 C40 110 80 130 120 110 C160 90 200 130 240 110 C280 90 320 130 320 130 L320 180 L0 180 Z" fill="#0E4A41"/>
 </svg>

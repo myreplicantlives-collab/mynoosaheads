@@ -1,10 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <!-- MSN-2959 r2 — favicon repainted to white + sea-glass to match the
-       Headland mark. Anchors:
-         white surface       = #FFFFFF (was #FBF6E9 parchment)
-         sea-glass-900 mass  = #0E4A41 (was eucalyptus #2C4A3E)
-         sea-glass-900 line  = #0E4A41 (was sand #6B5943)
-         sea-glass-500 dot   = #5BA89B (was coral #D77A61) -->
+  <!-- MSN-2959 r2 — favicon repainted to white + sea-glass (Headland mark). -->
   <rect width="32" height="32" rx="6" fill="#FFFFFF" />
   <path d="M3 23 C5 18 7 13 10 10 C11 9 12 9 13 10 C14 10 14.5 11 15 11.5 C15.5 11 16 10.5 17 11 C18 11.5 18.5 13 19.5 14 C21 16 22.5 19 23 23 Z" fill="#0E4A41" />
   <path d="M14 7 V10" stroke="#0E4A41" stroke-width="1" stroke-linecap="round" />

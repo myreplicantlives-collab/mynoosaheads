@@ -5,14 +5,8 @@
       - Left mass = Noosa Heads granite headland (tall, sloping)
       - Right mass = far headland / North Coast (lower, broader)
       - Tiny notch = Noosa lighthouse at the apex
-      - Sand line at the base
       - Single Sea-Glass accent dot at bottom-right (lockup accent)
-    Confirmed as the primary candidate in Albert's design brief §1.
-    Palette anchors:
-      sea-glass-300 = #A8D4CA (far headland)
-      sea-glass-500 = #5BA89B (accent dot)
-      sea-glass-900 = #0E4A41 (main mass, baseline, lighthouse nub)
-      white         = #FFFFFF (silhouette stroke)
+    Anchors: sea-glass-300 / sea-glass-500 / sea-glass-900 / white.
   -->
   <g>
     <!-- Far headland (background, lighter sea-glass) -->
@@ -28,7 +22,7 @@
     <!-- Lighthouse nub -->
     <rect x="29" y="14" width="2" height="6" fill="#0E4A41" />
     <circle cx="30" cy="13" r="0.9" fill="#0E4A41" />
-    <!-- Single-line overlay stroke (single-line silhouette per brief) -->
+    <!-- Single-line overlay stroke -->
     <path
       d="M6 50 C10 40 14 30 20 22 C22 19 25 17 28 18 C30 18.5 31 20 32 22 C33 21 34.5 20.5 36 21 C37.5 21.5 38 23 39 24 C40 22.5 41.5 22 43 23 C46 24.5 48 28 50 32 C53 38 55 44 56 50"
       fill="none"
@@ -36,9 +30,9 @@
       stroke-width="0.8"
       stroke-linecap="round"
     />
-    <!-- Sand baseline (sea-glass 900) -->
+    <!-- Sand baseline -->
     <path d="M4 51 H60" stroke="#0E4A41" stroke-width="1.2" stroke-linecap="round" />
-    <!-- Single sea-glass accent dot (lockup) -->
+    <!-- Sea-glass accent dot (lockup) -->
     <circle cx="52" cy="56" r="3" fill="#5BA89B" />
   </g>
 </svg>
