@@ -26,6 +26,7 @@
  */
 
 import type { Metadata } from "next";
+import Image from "next/image";
 import {
   Button,
   Card,
@@ -245,10 +246,13 @@ export default function StyleGuidePage() {
       <Section id="cards" eyebrow="Components" title="Cards">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           <Card>
-            <img
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'><rect width='320' height='180' fill='%23A6C2AF'/><path d='M0 130 C40 110 80 130 120 110 C160 90 200 130 240 110 C280 90 320 130 320 130 L320 180 L0 180 Z' fill='%232C4A3E'/></svg>"
+            <Image
+              src="/styleguide/sample-card-image.svg"
               alt=""
+              width={320}
+              height={180}
               className="aspect-[16/9] w-full object-cover"
+              unoptimized
             />
             <CardHeader
               eyebrow="Where to stay"
