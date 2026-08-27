@@ -7,7 +7,22 @@ import { withSentryConfig } from "@sentry/nextjs";
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    unoptimized: true, // Sprint 1.1 has no imagery yet; TSK-2957-03 will revisit
+    // Sprint 1.5 (MSN-2958 / TSK-2958-02): photo wire-up via next/image.
+    // Wikimedia Commons is the source of truth for category-page imagery
+    // (per Albert's `photo_inventory.md`). Allow `upload.wikimedia.org`
+    // thumbnails at known widths.
+    //
+    // We do NOT set `unoptimized: true` anymore — next/image's optimizer
+    // is now in play, so the remotePatterns allowlist is required for
+    // every external host we pull from.
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "upload.wikimedia.org",
+        port: "",
+        pathname: "/wikipedia/commons/**",
+      },
+    ],
   },
   trailingSlash: false,
   poweredByHeader: false,

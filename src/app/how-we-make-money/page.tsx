@@ -26,7 +26,7 @@ const AFFILIATE_PROGRAMMES = [
     name: "Stayz Affiliate Programme",
     jurisdiction: "Australia (Expedia Group)",
     disclosure: "We earn commission on completed bookings made through Stayz links from this site. Stayz is operated by Expedia Group.",
-    link: "https://www.stayz.com.au/",
+    link: "https://www.stayz.com.au/affiliates",
   },
   {
     name: "Expedia Partner Solutions",
@@ -35,10 +35,10 @@ const AFFILIATE_PROGRAMMES = [
     link: "https://www.expediapartnercentral.com/",
   },
   {
-    name: "Airbnb Associates",
-    jurisdiction: "United States (Airbnb)",
-    disclosure: "We earn commission on completed bookings made through Airbnb links from this site.",
-    link: "https://www.airbnb.com.au/associates",
+    name: "Airbnb Affiliate Programme",
+    jurisdiction: "United States (Airbnb) — historical",
+    disclosure: "We earn commission on completed bookings made through Airbnb links from this site. Airbnb operates its affiliate programme from a single global sign-up page.",
+    link: "https://www.airbnb.com/affiliates",
   },
 ];
 

@@ -141,26 +141,28 @@
   --font-body: "Inter Fallback", "Inter", "ui-sans-serif", "system-ui", "sans-serif";
   --font-accent: "Caveat Fallback", "Caveat", "cursive";
 
-  /* Fluid type-scale clamps. Mobile sizes at the low end, desktop sizes
-   * at the high end, with `clamp(min, vw-driven, max)` doing the work.
-   * The unit `cqi` would be cleaner but isn't universally supported; the
-   * `vw` trick works everywhere and reads identically in SSR.
+  /* Fluid type-scale clamps — Sprint 1.5 (MSN-2958, Albert brief).
+   * Chair feedback (2026-08-27 14:46 BST): font too large. Per Albert's
+   * `typography_decisions.md`, every display size drops 9–17 % and body
+   * goes from 18 → 16 px. The 0–18 % composite drop is what brings the
+   * page from "poster density" to "magazine density". Mobile (low end)
+   * and desktop (high end) bracketed by `clamp(min, vw-driven, max)`.
    */
-  --text-display-xl: clamp(2.75rem, 1.5rem + 5.0vw, 4.5rem);   /* H0: hero */
-  --text-display-lg: clamp(2.25rem, 1.4rem + 3.4vw, 3.5rem);   /* H1: page */
-  --text-display-md: clamp(1.85rem, 1.2rem + 2.6vw, 2.75rem);  /* H2 */
-  --text-display-sm: clamp(1.5rem, 1.0rem + 2.0vw, 2.15rem);   /* H3 */
-  --text-headline-lg: clamp(1.35rem, 1.0rem + 1.4vw, 1.75rem); /* H4 */
-  --text-headline-md: clamp(1.2rem, 0.95rem + 1.0vw, 1.5rem);  /* H5 */
-  --text-headline-sm: clamp(1.05rem, 0.9rem + 0.6vw, 1.25rem); /* H6 */
-  --text-body-lg: clamp(1.05rem, 0.95rem + 0.4vw, 1.2rem);     /* lead */
-  --text-body-md: clamp(0.95rem, 0.9rem + 0.25vw, 1.0625rem); /* body */
-  --text-body-sm: clamp(0.825rem, 0.78rem + 0.2vw, 0.95rem);   /* small */
-  --text-caption: 0.8125rem;                                     /* caption */
-  --text-eyebrow: 0.75rem;                                       /* eyebrow */
-  --text-code: 0.875rem;                                         /* code */
-  --text-accent-lg: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);    /* Caveat hero accent */
-  --text-accent-md: clamp(1.1rem, 0.95rem + 0.6vw, 1.4rem);    /* Caveat small */
+  --text-display-xl: clamp(2.5rem, 1.8rem + 2.6vw, 3.75rem);   /* H0 hero (was 2.75/4.5 rem) */
+  --text-display-lg: clamp(1.875rem, 1.5rem + 1.5vw, 2.5rem);   /* H1 (was 2.25/3.5 rem) */
+  --text-display-md: clamp(1.5rem, 1.25rem + 1vw, 2rem);        /* H2 (was 1.85/2.75 rem) */
+  --text-display-sm: clamp(1.25rem, 1.125rem + 0.5vw, 1.5rem);  /* H3 (was 1.5/2.15 rem) */
+  --text-headline-lg: clamp(1.0625rem, 1rem + 0.25vw, 1.25rem);/* H4 (was 1.35/1.75 rem) */
+  --text-headline-md: clamp(1.0625rem, 1rem + 0.25vw, 1.25rem); /* H5 (was 1.2/1.5 rem) */
+  --text-headline-sm: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);   /* H6 (was 1.05/1.25 rem) */
+  --text-body-lg: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);       /* lead (was 1.05/1.2 rem) */
+  --text-body-md: 1rem;                                          /* body — fixed 16 px (was 0.95/1.0625 rem) */
+  --text-body-sm: 0.875rem;                                      /* small — fixed 14 px (was 0.825/0.95 rem) */
+  --text-caption: 0.8125rem;                                     /* caption 13 px (unchanged) */
+  --text-eyebrow: 0.75rem;                                       /* eyebrow 12 px (unchanged) */
+  --text-code: 0.875rem;                                         /* code (unchanged) */
+  --text-accent-lg: clamp(1.25rem, 1rem + 1vw, 1.75rem);        /* Caveat hero (was 1.5/2.25 rem) */
+  --text-accent-md: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);       /* Caveat small (was 1.1/1.4 rem) */
 
   /* Layout */
   --container-max: 80rem;
@@ -179,6 +181,9 @@
     color: var(--ink-900);
     font-family: var(--font-body);
     font-size: var(--text-body-md);
+    /* Sprint 1.5 (MSN-2958): body line-height 1.55 → 1.6 per Albert brief
+     * — slightly airier at the new smaller 16 px base.
+     */
     line-height: 1.6;
   }
   h1, h2, h3, h4, h5, h6 {
@@ -187,12 +192,18 @@
     font-weight: 500;
     letter-spacing: -0.012em;
   }
-  h1 { font-size: var(--text-display-lg); line-height: 1.05; letter-spacing: -0.022em; }
-  h2 { font-size: var(--text-display-md); line-height: 1.1; letter-spacing: -0.018em; }
-  h3 { font-size: var(--text-display-sm); line-height: 1.15; letter-spacing: -0.015em; }
-  h4 { font-size: var(--text-headline-lg); line-height: 1.2; }
-  h5 { font-size: var(--text-headline-md); line-height: 1.25; }
-  h6 { font-size: var(--text-headline-sm); line-height: 1.3; }
+  /* Sprint 1.5 (MSN-2958): tighter line-heights per Albert brief.
+   * Display 1.10→1.18 (more breathing room at 30-40 px scale).
+   * Section 1.20→1.28 (better for 20-24 px range).
+   * Body 1.55→1.6 (slightly airier at smaller 16 px).
+   * Letter-spacing display 0 → -0.02em (editorial tightness).
+   */
+  h1 { font-size: var(--text-display-lg); line-height: 1.18; letter-spacing: -0.02em; font-weight: 600; }
+  h2 { font-size: var(--text-display-md); line-height: 1.18; letter-spacing: -0.02em; font-weight: 600; }
+  h3 { font-size: var(--text-display-sm); line-height: 1.28; letter-spacing: -0.015em; }
+  h4 { font-size: var(--text-headline-lg); line-height: 1.28; letter-spacing: -0.012em; }
+  h5 { font-size: var(--text-headline-md); line-height: 1.28; letter-spacing: -0.01em; }
+  h6 { font-size: var(--text-headline-sm); line-height: 1.3; letter-spacing: -0.008em; }
 
   /* Italic display headings use Fraunces italic optical sizing. */
   h1 em, h2 em, h3 em,
@@ -311,16 +322,16 @@
    * Cards & surfaces
    * ──────────────────────────────────────────────────────────────── */
   .card {
-    @apply rounded-2xl border border-paper-200 bg-paper-50 overflow-hidden shadow-sm;
+    @apply rounded-xl border border-paper-200 bg-paper-50 overflow-hidden shadow-sm;
   }
   .card-body {
     @apply p-5 md:p-6;
   }
   .card-surface {
-    @apply rounded-2xl bg-paper-100 border border-paper-200 p-5 md:p-6;
+    @apply rounded-xl bg-paper-100 border border-paper-200 p-5 md:p-6;
   }
   .card-flat {
-    @apply rounded-xl bg-paper-50 p-4 md:p-5;
+    @apply rounded-lg bg-paper-50 p-4 md:p-5;
   }
 
   /* ────────────────────────────────────────────────────────────────
@@ -451,15 +462,19 @@
 }
 .prose-mdx h1 {
   @apply font-display text-display-md mt-10 mb-5 text-ink-900;
+  /* Sprint 1.5 (MSN-2958): tighter line-height for body h1 in prose */
+  line-height: 1.18;
   font-style: normal;
   font-weight: 600;
 }
 .prose-mdx h2 {
   @apply font-display text-display-sm mt-10 mb-4 text-ink-900;
+  line-height: 1.28;
   font-weight: 600;
 }
 .prose-mdx h3 {
   @apply font-display text-headline-lg mt-8 mb-3 text-ink-900;
+  line-height: 1.28;
   font-weight: 500;
 }
 .prose-mdx p {

@@ -17,13 +17,14 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <CategoryPage
+      slug="things-to-do"
       eyebrow="What locals actually do"
       title="Things to do in Noosa"
       subtitle="The brochure leads with whale-watching and jet-skis. We organise around what residents actually do on a Tuesday morning: the headland walk, a coffee on Hastings Street, the river bar at slack tide, and an unhurried dinner."
       flourish="Slow categories for a slow town."
       primarySources={[
         { label: "Tourism Noosa (industry body)", href: "https://www.visitnoosa.com.au/" },
-        { label: "Noosa Council — Things to do", href: "https://www.noosa.qld.gov.au/Community/Things-to-do" },
+        { label: "Noosa Council — About Noosa", href: "https://www.noosa.qld.gov.au/Community/About-Noosa" },
         { label: "Visit Sunshine Coast", href: "https://www.visitsunshinecoast.com/" },
       ]}
       bodySections={[

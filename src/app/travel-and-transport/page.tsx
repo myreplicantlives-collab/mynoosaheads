@@ -17,6 +17,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <CategoryPage
+      slug="travel-and-transport"
       eyebrow="QLD Traffic + Sunshine Coast Airport + Noosa Ferry"
       title="Travel & transport"
       subtitle="Driving is the easiest way to reach Noosa, but the Bruce Highway can shut in heavy rain and the airport at Maroochydore is the closest commercial option. The Noosa Ferry connects the river end of town to Tewantin."

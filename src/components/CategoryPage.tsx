@@ -4,6 +4,11 @@
  * LiveDataGrid, editorial body, sources footer — but injects unique
  * copy, sources, and disclosure pills.
  *
+ * Sprint 1.5 (MSN-2958 / TSK-2958-02): now also renders the category
+ * hero photo (full-bleed, ~60vh) and inline images distributed
+ * through the body. Both come from `src/data/photos.ts` which maps
+ * Albert's verified Wikimedia inventory to each category slug.
+ *
  * This component is server-rendered; the live-data fetch is invoked
  * once per page request.
  */
@@ -12,6 +17,8 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import {
   Hero,
+  HeroPhoto,
+  CaptionedPhoto,
   LiveDataWidget,
   LiveDataGrid,
   Card,
@@ -21,12 +28,16 @@ import {
   Icons,
 } from "@/components/ui";
 import { fetchLiveBundle } from "@/lib/live-data";
+import { CATEGORY_PHOTOS, type WikimediaPhoto } from "@/data/photos";
 
 export type CategoryPageProps = {
   eyebrow: string;
   title: ReactNode;
   subtitle: ReactNode;
   flourish?: ReactNode;
+  /** Category slug — drives which photos render. Optional; if absent,
+   * no photos are rendered (legacy mode). */
+  slug?: string;
   primarySources: { label: string; href: string }[];
   bodySections: {
     heading: string;
@@ -53,6 +64,7 @@ export async function CategoryPage({
   title,
   subtitle,
   flourish,
+  slug,
   primarySources,
   bodySections,
   disclosure,
@@ -60,9 +72,22 @@ export async function CategoryPage({
   relatedLinks,
 }: CategoryPageProps) {
   const live = await fetchLiveBundle();
+  const photos = slug ? CATEGORY_PHOTOS[slug] : undefined;
+
+  const creditLine = (p: WikimediaPhoto) => `Photo: ${p.author} / Wikimedia Commons · ${p.licence}`;
 
   return (
     <div className="bg-paper-50">
+      {/* Sprint 1.5: full-bleed hero photo above the editorial hero,
+       * with the eyebrow+title+subtitle overlaid. */}
+      {photos?.hero ? (
+        <HeroPhoto
+          src={photos.hero.url}
+          alt={photos.hero.caption}
+          credit={creditLine(photos.hero)}
+          caption={photos.hero.caption}
+        />
+      ) : null}
       <Hero
         eyebrow={eyebrow}
         title={title}
@@ -192,6 +217,18 @@ export async function CategoryPage({
                     </ul>
                   ) : null}
                 </div>
+                {/* Sprint 1.5: inline image after this section. Distribute
+                 * 4 inline images across the body sections cyclically.
+                 * If a category has 4 sections we get one per section;
+                 * if 8 sections we still get one per section (mod 4). */}
+                {photos?.inline?.[i % photos.inline.length] ? (
+                  <CaptionedPhoto
+                    src={photos.inline[i % photos.inline.length].url}
+                    alt={photos.inline[i % photos.inline.length].caption}
+                    credit={creditLine(photos.inline[i % photos.inline.length])}
+                    caption={photos.inline[i % photos.inline.length].caption}
+                  />
+                ) : null}
               </section>
             ))}
             {callout ? (

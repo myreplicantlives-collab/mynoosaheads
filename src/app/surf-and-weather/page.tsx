@@ -18,6 +18,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <CategoryPage
+      slug="surf-and-weather"
       eyebrow="Live · BOM Capricornia–Hervey Bay + Open-Meteo Marine"
       title="Surf & weather"
       subtitle="The marine forecast for the Capricornia–Hervey Bay district covers Noosa Heads, Sunshine Beach, and the river bar. The tiles on this page refresh themselves every 30 minutes — we don’t push them by hand."
@@ -25,7 +26,7 @@ export default function Page() {
       primarySources={[
         { label: "BOM — Capricornia–Hervey Bay coastal forecast", href: "https://www.bom.gov.au/qld/forecasts/coastal.shtml" },
         { label: "BOM — Tewantin tide", href: "https://www.bom.gov.au/australia/tides/#!/qld-tewantin" },
-        { label: "Open-Meteo Marine API (free, no key)", href: "https://open-meteo.com/en/docs/marine-api" },
+        { label: "Open-Meteo Marine Weather API (free, no key)", href: "https://open-meteo.com/en/docs/marine-weather-api" },
         { label: "Cancer Council SunSmart (UV thresholds)", href: "https://www.sunsmart.com.au/" },
         { label: "Marine Safety Queensland — bar crossings", href: "https://www.msq.qld.gov.au/Safety/Bar-crossings-and-coastal-conditions" },
       ]}

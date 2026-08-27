@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Card,
   CardBody,
   CardHeader,
   Hero,
+  HeroPhoto,
   Button,
   Icons,
 } from "@/components/ui";
 import { fetchLiveBundle } from "@/lib/live-data";
+import { CATEGORY_PHOTOS } from "@/data/photos";
 
 export const metadata: Metadata = {
   title: "Accommodation",
@@ -59,8 +62,21 @@ const AREAS = [
 
 export default async function AccommodationPage() {
   const live = await fetchLiveBundle();
+  const photos = CATEGORY_PHOTOS["accommodation"];
+  const heroCredit = photos
+    ? `Photo: ${photos.hero.author} / Wikimedia Commons · ${photos.hero.licence}`
+    : "";
   return (
     <div className="bg-paper-50">
+      {/* Sprint 1.5: full-bleed hero photo (Hastings Street storefronts) */}
+      {photos?.hero ? (
+        <HeroPhoto
+          src={photos.hero.url}
+          alt={photos.hero.caption}
+          credit={heroCredit}
+          caption={photos.hero.caption}
+        />
+      ) : null}
       <Hero
         eyebrow="Where to stay · ACCC-compliant affiliate disclosure"
         title="Accommodation in Noosa"
@@ -80,6 +96,47 @@ export default async function AccommodationPage() {
         }
         flourish="Right town, right price, right block."
       />
+
+      {/* ─── Inline photo gallery ─── */}
+      {photos?.inline?.length ? (
+        <section className="container-page py-14 md:py-20" aria-label="Accommodation photo gallery">
+          <p className="eyebrow">A few of the properties</p>
+          <h2 className="mt-1 font-display text-display-md text-ink-900 text-balance">
+            Hastings Street, Main Beach, Noosaville
+          </h2>
+          <p className="mt-3 lead max-w-3xl">
+            We don’t take inventory. We don’t list every property in the
+            shire. The photo set below is the editorial cross-section we
+            use as the basis for the booking-engine links further down —
+            all CC-licensed photographs from Wikimedia Commons contributors
+            who shoot Noosa specifically.
+          </p>
+          <div className="mt-10 grid gap-8 md:grid-cols-2">
+            {photos.inline.slice(0, 4).map((p, i) => (
+              <figure key={i}>
+                <div className="relative w-full overflow-hidden rounded-2xl border border-paper-200 bg-paper-100">
+                  <Image
+                    src={p.url}
+                    alt={p.caption}
+                    width={1280}
+                    height={720}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-auto"
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    unoptimized
+                  />
+                </div>
+                <figcaption className="mt-3 text-caption text-ink-600">
+                  <span className="font-medium text-ink-700">{p.caption}</span>
+                  <br />
+                  <span className="text-ink-600">Photo: {p.author} / Wikimedia Commons · {p.licence}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       {/* ─── Disclosure band ─── */}
       <section className="border-t border-paper-200 bg-paper-100" aria-labelledby="accc-disclosure-heading">
@@ -133,7 +190,7 @@ export default async function AccommodationPage() {
                     Booking.com <span className="pill-disclosure ml-2">Sponsored · ACCC</span>
                   </Button>
                   <Button
-                    href="https://www.stayz.com.au/search?query=Noosa+Heads"
+                    href="https://www.stayz.com.au/holiday-rental-search?query=Noosa+Heads"
                     external
                     size="sm"
                     variant="outline"
@@ -151,7 +208,7 @@ export default async function AccommodationPage() {
                     Airbnb <span className="pill-disclosure ml-2">Sponsored · ACCC</span>
                   </Button>
                   <Button
-                    href="https://www.expedia.com.au/Hotel-Search?destination=Noosa+Heads"
+                    href="https://www.expedia.com.au/Hotels?destination=Noosa+Heads"
                     external
                     size="sm"
                     variant="outline"
