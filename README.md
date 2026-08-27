@@ -142,4 +142,4 @@ https://docs.google.com/document/d/1uhgrrsZjayHMPiJGB7_NHsq3N__SV-lD/edit
 - The custom domain DNS is still parked at GoDaddy. The Vercel build is
   production-ready at `https://noosa-site-v2.vercel.app`; the
   `mynoosaheads.com` flip is gated on Tim providing GoDaddy DNS
-  credentials (Sally routes the question).
+  credentials (Sally routes the question).# Sprint 1.1 — auto-deploy verified 2026-08-27T11:06:39Z
