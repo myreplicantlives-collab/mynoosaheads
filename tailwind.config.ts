@@ -10,10 +10,11 @@ import typography from "@tailwindcss/typography";
  *      to those CSS vars so component code stays declarative.
  *   3. Components (src/components/ui/*) — consume Tailwind utilities.
  *
- * Palette: 7 brand colours × 11 shades (50–950) = 77 ramps. The 50/100/200
- * bands are the "paper/surface" cream tones; the 600/700/800 are the deep
- * brand colours (eucalyptus green, sunset coral, ocean blue); 900/950 are
- * ink for body copy.
+ * Palette (MSN-2959 chairman directive): white + blue-green. Paper shifted
+ * to cool white; coral + sand removed. 5 brand colours × 11 shades
+ * (50–950) = 55 ramps. The 50/100/200 bands are paper / surface white
+ * tones; the 600/700/800 are the deep brand colours (eucalyptus +
+ * rainforest greens, ocean blue); 900/950 are ink for body copy.
  *
  * Typography: 3 fonts — Fraunces (display serif), Inter (body sans),
  * Caveat (accent handwritten). All SIL OFL 1.1, loaded via next/font in
@@ -110,41 +111,15 @@ const config: Config = {
           950: "var(--rainforest-950)",
         },
         // ────────────────────────────────────────────────────────────
-        // Coral — accent (sunset dot, alerts, road closures)
+        // MSN-2959: coral + sand palettes removed. Every former coral
+        // utility is migrated to ocean (calm unavailable state) or
+        // rainforest (alert state) in the consuming components.
         // ────────────────────────────────────────────────────────────
-        coral: {
-          50: "var(--coral-50)",
-          100: "var(--coral-100)",
-          200: "var(--coral-200)",
-          300: "var(--coral-300)",
-          400: "var(--coral-400)",
-          500: "var(--coral-500)",
-          600: "var(--coral-600)",
-          700: "var(--coral-700)",
-          800: "var(--coral-800)",
-          900: "var(--coral-900)",
-          950: "var(--coral-950)",
-        },
-        // ────────────────────────────────────────────────────────────
-        // Sand — sun/UV warm tone (subtle bands)
-        // ────────────────────────────────────────────────────────────
-        sand: {
-          50: "var(--sand-50)",
-          100: "var(--sand-100)",
-          200: "var(--sand-200)",
-          300: "var(--sand-300)",
-          400: "var(--sand-400)",
-          500: "var(--sand-500)",
-          600: "var(--sand-600)",
-          700: "var(--sand-700)",
-          800: "var(--sand-800)",
-          900: "var(--sand-900)",
-          950: "var(--sand-950)",
-        },
+
         // ────────────────────────────────────────────────────────────
         // Backwards-compat aliases (Sprint 1.1 → Sprint 1.2 migration)
-        // bg, surface, text, text-muted, ocean, rainforest, coral keep
-        // working so we don't break existing utilities during the upgrade.
+        // bg, surface, text, text-muted, ocean, rainforest keep working
+        // so we don't break existing utilities during the upgrade.
         // ────────────────────────────────────────────────────────────
         bg: "var(--color-bg)",
         surface: "var(--color-surface)",

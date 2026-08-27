@@ -94,8 +94,8 @@ export default async function HomePage() {
               <p className="mt-2 text-body-sm text-ink-700 max-w-2xl">
                 Drawn from the Bureau of Meteorology’s Capricornia–Hervey
                 Bay marine district and Open-Meteo’s free marine API. Refresh
-                every 30 minutes; if a tile falls out, it goes{" "}
-                <span className="text-coral-700">Unavailable</span> in coral
+                every 30 minutes; if a tile falls out, it shows an{" "}
+                <span className="text-ocean-700">Unavailable</span> badge
                 rather than guessing.
               </p>
             </div>
@@ -249,16 +249,10 @@ export default async function HomePage() {
                 don’t collect email addresses, and we don’t operate a login.
                 Where a page contains a monetised link — typically
                 accommodation bookings — we mark it{" "}
-                <span className="chip-coral">Sponsored · ACCC Sch 2</span>{" "}
+                <span className="chip-ocean">Sponsored · ACCC Sch 2</span>{" "}
                 before you click. The full statement, including which
-                affiliate programmes we participate in, lives at{" "}
-                <Link
-                  href="/how-we-make-money"
-                  className="link text-ocean-700 font-medium"
-                >
-                  /how-we-make-money
-                </Link>
-                .
+                affiliate programmes we participate in, sits in the
+                footer.
               </p>
             </div>
             <Card variant="surface" as="aside">

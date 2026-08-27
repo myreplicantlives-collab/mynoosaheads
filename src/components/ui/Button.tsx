@@ -4,7 +4,6 @@
  * Variants:
  *   - primary     Eucalyptus (default brand action: "Read more", "Subscribe to alerts" — note: site has no newsletter)
  *   - secondary   Ocean (informational: "View the BOM forecast")
- *   - coral       Coral (attention: "Road closure — check detours")
  *   - outline     Subtle action with paper border
  *   - ghost       Inline / tertiary action
  *   - link        Underlined text-only action (use sparingly)
@@ -26,7 +25,6 @@ import type {
 export type ButtonVariant =
   | "primary"
   | "secondary"
-  | "coral"
   | "outline"
   | "ghost"
   | "link";
@@ -36,7 +34,6 @@ export type ButtonSize = "sm" | "md" | "lg" | "xl";
 const VARIANT_CLASS: Record<ButtonVariant, string> = {
   primary: "btn-primary",
   secondary: "btn-secondary",
-  coral: "btn-coral",
   outline: "btn-outline",
   ghost: "btn-ghost",
   link: "btn-link",

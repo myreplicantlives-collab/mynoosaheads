@@ -30,7 +30,7 @@ export default function AboutPage() {
       />
       {/* Sprint 1.5 (MSN-2958) — brand-statement masthead.
        * Tim's north-star quote as a `<Section>` at the top of /about,
-       * styled as Fraunces italic display with a coral accent.
+       * styled as Fraunces italic display with an ocean accent.
        */}
       <section
         className="border-b border-paper-200 bg-paper-100"
@@ -39,7 +39,7 @@ export default function AboutPage() {
         <div className="container-page py-14 md:py-20">
           <p
             id="brand-statement-h"
-            className="eyebrow text-coral-700"
+            className="eyebrow text-ocean-700"
           >
             Brand statement
           </p>
@@ -56,12 +56,12 @@ export default function AboutPage() {
             <p className="mt-3 font-display not-italic text-display-sm md:text-display-md text-ink-800 leading-snug">
               Built slowly, sourced always, never fabricated
               <span
-                className="ml-2 inline-block h-2.5 w-2.5 rounded-full bg-coral-700 align-middle"
+                className="ml-2 inline-block h-2.5 w-2.5 rounded-full bg-ocean-700 align-middle"
                 aria-hidden="true"
               />
             </p>
           </blockquote>
-          <p className="mt-6 font-accent text-accent-md text-coral-700">
+          <p className="mt-6 font-accent text-accent-md text-ocean-700">
             — Editorial, MyNoosaHeads
           </p>
           <p className="mt-4 text-caption text-ink-600">
@@ -114,15 +114,15 @@ export default function AboutPage() {
                   Noosa Council), an industry body (Tourism Noosa, Visit
                   Sunshine Coast), or a third-sector service (Beachsafe,
                   SLSQ). Affiliate links are marked{" "}
-                  <span className="chip-coral">Sponsored · ACCC Sch 2</span>{" "}
+                  <span className="chip-ocean">Sponsored · ACCC Sch 2</span>{" "}
                   before you click, and the full statement lives at{" "}
-                  <Link href="/how-we-make-money" className="link text-ocean-700">/how-we-make-money</Link>.
+                  the footer (full disclosure).
                 </p>
                 <p>
                   The live data tiles on the site refresh themselves every 30
                   minutes from BOM and Open-Meteo. We do not push them by
                   hand, and we do not edit the numbers. If a tile fails,
-                  it falls back to a coral Unavailable badge rather than
+                  it falls back to a calm Unavailable badge rather than
                   guessing.
                 </p>
                 <p>
@@ -202,9 +202,6 @@ export default function AboutPage() {
                   </li>
                   <li>
                     <Link href="/terms" className="link text-ocean-700">Terms of use</Link>
-                  </li>
-                  <li>
-                    <Link href="/how-we-make-money" className="link text-ocean-700">How we make money</Link>
                   </li>
                 </ul>
               </CardBody>

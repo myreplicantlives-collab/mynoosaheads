@@ -87,11 +87,8 @@ export default function TermsPage() {
           <p>
             Some links on this site are affiliate links. We earn a
             commission if you complete a qualifying action after clicking.
-            See the full statement at{" "}
-            <a href="/how-we-make-money" className="link text-ocean-700">
-              /how-we-make-money
-            </a>{" "}
-            for the programmes we participate in and the editorial
+            See the footer for the full statement on the programmes we
+            participate in and the editorial
             firewall that protects the integrity of the publication.
           </p>
 

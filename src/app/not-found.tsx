@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <div className="bg-paper-50">
       <div className="container-narrow py-20 text-center">
-        <p className="eyebrow text-coral-700">404</p>
+        <p className="eyebrow text-ocean-700">404</p>
         <h1 className="mt-2 font-display text-display-lg text-ink-900 text-balance">
           Page not found
         </h1>

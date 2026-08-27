@@ -43,7 +43,7 @@ export function FormField({
       <label htmlFor={fieldId} className="block text-body-sm font-medium text-ink-800">
         {label}
         {required ? (
-          <span className="text-coral-600 ml-0.5" aria-hidden="true">
+          <span className="text-ocean-700 ml-0.5" aria-hidden="true">
             *
           </span>
         ) : null}
@@ -55,7 +55,7 @@ export function FormField({
         </p>
       ) : null}
       {error ? (
-        <p id={errorId} role="alert" className="text-caption text-coral-700">
+        <p id={errorId} role="alert" className="text-caption text-ocean-700">
           {error}
         </p>
       ) : null}
@@ -77,7 +77,7 @@ export const TextInput = ({
     className={[
       "block w-full rounded-lg border bg-paper-50 px-3 py-2 text-body text-ink-900 placeholder:text-ink-400",
       "border-paper-300 focus:border-ocean-500 focus:ring-2 focus:ring-ocean-300 focus:outline-none",
-      invalid ? "border-coral-500 focus:border-coral-600 focus:ring-coral-300" : "",
+      invalid ? "border-ocean-500 focus:border-ocean-600 focus:ring-ocean-300" : "",
       className ?? "",
     ].join(" ")}
     {...rest}
@@ -94,7 +94,7 @@ export const TextArea = ({ invalid, className, ...rest }: TextAreaProps) => (
     className={[
       "block w-full rounded-lg border bg-paper-50 px-3 py-2 text-body text-ink-900 placeholder:text-ink-400",
       "border-paper-300 focus:border-ocean-500 focus:ring-2 focus:ring-ocean-300 focus:outline-none",
-      invalid ? "border-coral-500 focus:border-coral-600 focus:ring-coral-300" : "",
+      invalid ? "border-ocean-500 focus:border-ocean-600 focus:ring-ocean-300" : "",
       className ?? "",
     ].join(" ")}
     {...rest}
@@ -111,7 +111,7 @@ export const Select = ({ invalid, className, children, ...rest }: SelectProps) =
     className={[
       "block w-full rounded-lg border bg-paper-50 px-3 py-2 text-body text-ink-900",
       "border-paper-300 focus:border-ocean-500 focus:ring-2 focus:ring-ocean-300 focus:outline-none",
-      invalid ? "border-coral-500 focus:border-coral-600 focus:ring-coral-300" : "",
+      invalid ? "border-ocean-500 focus:border-ocean-600 focus:ring-ocean-300" : "",
       className ?? "",
     ].join(" ")}
     {...rest}

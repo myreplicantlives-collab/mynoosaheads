@@ -7,7 +7,7 @@
  *   "Header (logo · nav · search · 'Live' badge)"
  *
  * The nav renders a sticky top bar with logo, primary links, a search
- * button (placeholder until /search ships in Sprint 1.3), and a coral
+ * button (placeholder until /search ships in Sprint 1.3), and an ocean
  * "Live" pulse badge indicating live data is fresh.
  *
  * Mobile (<md): collapses to a hamburger sheet. Uses native <details>/<summary>

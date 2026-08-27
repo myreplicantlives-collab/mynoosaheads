@@ -52,3 +52,6 @@ export type { FooterProps, FooterColumn } from "./Footer";
 
 export { Icons } from "./Icon";
 export type { IconProps, IconName } from "./Icon";
+
+export { AffiliateBadge } from "./AffiliateBadge";
+export type { AffiliateBadgeProps } from "./AffiliateBadge";

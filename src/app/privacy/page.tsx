@@ -78,11 +78,9 @@ export default function PrivacyPage() {
 
           <h2>Affiliate programmes</h2>
           <p>
-            Some links on the site are affiliate links (see{" "}
-            <a href="/how-we-make-money" className="link text-ocean-700">
-              How we make money
-            </a>
-            ). Affiliate programmes may set their own cookies on the
+            Some links on the site are affiliate links (see the
+            footer for the full disclosure). Affiliate programmes may set
+            their own cookies on the
             destination site when you click through; we do not see the
             contents of those cookies, only whether a click resulted in a
             conversion for our account. The major programmes we

@@ -57,13 +57,13 @@ const KIND_ICON: Record<LiveDataKind, ReactNode> = {
 const STATE_CLASS: Record<LiveDataState, string> = {
   fresh: "border-rainforest-300 bg-rainforest-50/50 text-ink-900",
   stale: "border-paper-300 bg-paper-50 text-ink-700",
-  unavailable: "border-coral-300 bg-coral-50/50 text-ink-800",
+  unavailable: "border-ocean-300 bg-ocean-50/50 text-ink-800",
 };
 
 const STATE_BADGE: Record<LiveDataState, { text: string; cls: string }> = {
   fresh: { text: "Live", cls: "chip-rainforest" },
   stale: { text: "Stale", cls: "chip" },
-  unavailable: { text: "Unavailable", cls: "chip-coral" },
+  unavailable: { text: "Unavailable", cls: "chip-ocean" },
 };
 
 export function LiveDataWidget({
@@ -112,7 +112,7 @@ export function LiveDataWidget({
                   ? "bg-rainforest-500"
                   : state === "stale"
                     ? "bg-paper-500"
-                    : "bg-coral-500",
+                    : "bg-ocean-500",
               ].join(" ")}
               aria-hidden="true"
             />

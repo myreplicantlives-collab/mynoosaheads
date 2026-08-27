@@ -89,7 +89,7 @@ export default function Page() {
             .
           </>
         ),
-        variant: "coral",
+        variant: "rainforest",
       }}
       relatedLinks={[
         { label: "Noosa National Park", href: "/noosa-national-park", description: "Coastal walk and wildlife." },

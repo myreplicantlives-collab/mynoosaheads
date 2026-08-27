@@ -48,14 +48,13 @@ export type CategoryPageProps = {
   callout?: {
     title: string;
     body: ReactNode;
-    variant?: "rainforest" | "coral" | "ocean";
+    variant?: "rainforest" | "ocean";
   };
   relatedLinks?: { label: string; href: string; description: string }[];
 };
 
 const calloutClass: Record<NonNullable<CategoryPageProps["callout"]>["variant"] & string, string> = {
   rainforest: "callout-rainforest",
-  coral: "callout-warn",
   ocean: "callout",
 };
 
@@ -95,7 +94,11 @@ export async function CategoryPage({
         flourish={flourish}
       />
 
-      {/* ─── Live data strip (shared across all categories) ─── */}
+      {/* ─── Live data strip (shared across all categories) ───
+       * MSN-2959: the coast-time eyebrow label was removed per chairman
+       * directive. Section retitled "Live conditions" to match the
+       * homepage live-strip copy.
+       */}
       <section
         className="border-t border-paper-200 bg-paper-100"
         aria-labelledby="cat-live-data-heading"
@@ -103,7 +106,7 @@ export async function CategoryPage({
         <div className="container-page py-12 md:py-14">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6">
             <div>
-              <p className="eyebrow">Today on the coast</p>
+              <p className="eyebrow">Live conditions</p>
               <h2
                 id="cat-live-data-heading"
                 className="mt-1 font-display text-display-sm text-ink-900"

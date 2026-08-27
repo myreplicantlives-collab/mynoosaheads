@@ -94,7 +94,7 @@ export const CATEGORIES = [
     icon: "Compass" as const,
     pitch: "Hotels, apartments, holiday houses. Booking, Stayz, Airbnb, Expedia.",
     longDescription:
-      "We don't take inventory. Each booking option links out to Booking.com, Stayz, Expedia, or Airbnb with our affiliate tag. Per ACCC Schedule 2, every monetised link is labelled before you click, and the full disclosure lives at /how-we-make-money.",
+      "We don't take inventory. Each booking option links out to Booking.com, Stayz, Expedia, or Airbnb with our affiliate tag. Per ACCC Schedule 2, every monetised link is labelled before you click; the full disclosure is in the footer.",
     primarySources: [
       { label: "Booking.com affiliate disclosure", href: "https://www.booking.com/affiliate-program/v2/index.html" },
       { label: "Stayz affiliate program", href: "https://www.stayz.com.au/affiliates" },
@@ -208,7 +208,6 @@ export const FOOTER_DISCLOSURE = {
       links: [
         { label: "About", href: "/about" },
         { label: "Contact", href: "/contact" },
-        { label: "How we make money", href: "/how-we-make-money" },
       ],
     },
     {
@@ -216,8 +215,6 @@ export const FOOTER_DISCLOSURE = {
       links: [
         { label: "Privacy", href: "/privacy", disclosure: "Privacy Act 1988 (Cth)" },
         { label: "Terms", href: "/terms", disclosure: "ACCC" },
-        { label: "Affiliate disclosure", href: "/how-we-make-money", disclosure: "ACCC Sch 2" },
-        { label: "Spam Act statement", href: "/privacy#spam-act-2003", disclosure: "Spam Act 2003" },
       ],
     },
     {
@@ -236,7 +233,7 @@ export const FOOTER_DISCLOSURE = {
    * beyond what the host provides.
    */
   complianceBand:
-    "MyNoosaHeads is an independent Australian publication. We do not run a newsletter, collect email addresses, or operate a login. We earn affiliate commission on some accommodation and booking links (see /how-we-make-money). All editorial content is written by humans; all data tiles are sourced from BOM and Open-Meteo.",
+    "MyNoosaHeads is an independent Australian publication. We do not run a newsletter, collect email addresses, or operate a login. We earn affiliate commission on some accommodation and booking links; every monetised link is labelled before you click. All editorial content is written by humans; all data tiles are sourced from BOM and Open-Meteo.",
   region: "AU · en-AU · Queensland, Australia",
   copyrightYear: 2026,
 } as const;
@@ -244,10 +241,10 @@ export const FOOTER_DISCLOSURE = {
 /**
  * Affiliate programme disclosure — the canonical disclosure pill text
  * shown on any monetised link per ACCC Schedule 2 (Australian Consumer
- * Law). See /how-we-make-money for the full statement.
+ * Law). See the footer for the full statement.
  */
 export const ACCC_DISCLOSURE = {
   pill: "Sponsored · ACCC Sch 2",
   body:
-    "Some links on this page are affiliate links. If you book or purchase through them, MyNoosaHeads may earn a small commission at no extra cost to you. Affiliate relationships do not influence the editorial content. See the full statement on the /how-we-make-money page, per the Competition and Consumer Act 2010 (Cth) Schedule 2.",
+    "Some links on this page are affiliate links. If you book or purchase through them, MyNoosaHeads may earn a small commission at no extra cost to you. Affiliate relationships do not influence the editorial content. See the footer for the full statement, per the Competition and Consumer Act 2010 (Cth) Schedule 2.",
 } as const;

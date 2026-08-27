@@ -79,7 +79,7 @@ export default function Page() {
             .
           </>
         ),
-        variant: "coral",
+        variant: "rainforest",
       }}
       relatedLinks={[
         { label: "Surf & weather", href: "/surf-and-weather", description: "BOM + Open-Meteo tiles." },

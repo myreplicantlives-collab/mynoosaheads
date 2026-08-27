@@ -13,7 +13,7 @@
  *   - Lighthouse nub adds a story beat without harming small-size legibility.
  *   - Wave candidate was explicitly dropped in the brief (wave-mark
  *     saturation) and reintroduces #1D5A6F ocean blue — outside our
- *     paper/eucalyptus/coral palette and re-tropicalising the register.
+ *     paper/eucalyptus/ocean palette and re-tropicalising the register.
  *   - Eucalyptus sprig (mark 1) is calm but generic — could be any
  *     wellness/tea brand; doesn't anchor Noosa.
  *
@@ -93,7 +93,7 @@ export function Logo({
           {showDot ? (
             <span
               aria-hidden="true"
-              className="ml-0.5 inline-block bg-coral-500 rounded-full"
+              className="ml-0.5 inline-block bg-ocean-500 rounded-full"
               style={{
                 width: `calc(${px}px * 0.18)`,
                 height: `calc(${px}px * 0.18)`,
@@ -123,7 +123,7 @@ export function LogoCompare() {
             key={m}
             className={[
               "card-surface flex flex-col items-center text-center",
-              isFinal ? "ring-2 ring-coral-500 ring-offset-2 ring-offset-paper-50" : "",
+              isFinal ? "ring-2 ring-ocean-500 ring-offset-2 ring-offset-paper-50" : "",
             ].join(" ")}
           >
             <div className="bg-paper-50 rounded-xl border border-paper-200 w-full py-10 flex items-center justify-center">
@@ -132,7 +132,7 @@ export function LogoCompare() {
             <p className="mt-4 text-eyebrow text-ink-600">
               Candidate {m.toUpperCase()}
               {isFinal ? (
-                <span className="ml-2 inline-block align-middle bg-coral-500 text-paper-50 text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full">
+                <span className="ml-2 inline-block align-middle bg-ocean-500 text-paper-50 text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full">
                   Final pick
                 </span>
               ) : null}

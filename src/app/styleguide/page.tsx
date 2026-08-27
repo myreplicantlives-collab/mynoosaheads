@@ -60,8 +60,6 @@ const COLOUR_RAMPS = [
   { name: "Eucalyptus", prefix: "eucalyptus", shades: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] },
   { name: "Ocean", prefix: "ocean", shades: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] },
   { name: "Rainforest", prefix: "rainforest", shades: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] },
-  { name: "Coral", prefix: "coral", shades: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] },
-  { name: "Sand", prefix: "sand", shades: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] },
 ] as const;
 
 const TYPOGRAPHY_SAMPLES = [
@@ -206,7 +204,6 @@ export default function StyleGuidePage() {
         <div className="flex flex-wrap gap-3">
           <Button variant="primary">Primary</Button>
           <Button variant="secondary">Secondary</Button>
-          <Button variant="coral">Coral</Button>
           <Button variant="outline">Outline</Button>
           <Button variant="ghost">Ghost</Button>
           <Button variant="link">Link</Button>

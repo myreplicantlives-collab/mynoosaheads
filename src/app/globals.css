@@ -3,22 +3,21 @@
 @tailwind utilities;
 
 /*
- * Sprint 1.2 — Design system tokens (per Albert's MSN-2956-01 design brief).
- *
- * This file is the **runtime source of truth** for the design system.
- * Tailwind config (tailwind.config.ts) binds utility classes to the CSS
- * custom properties declared here.
+ * MSN-2959 — Chairman directive (2026-08-27 20:05 BST): switch to white +
+ * blue-green palette. Drop the warm parchment paper tones and the coral /
+ * sand accents. Lean ocean + rainforest + white space. This file remains
+ * the runtime source of truth for the design system; tailwind.config.ts
+ * binds utility classes to the CSS custom properties declared here.
  *
  * Token groups:
- *   1. Colour ramps — 8 brand palettes × 11 shades (50–950).
- *      Paper / Ink / Eucalyptus / Ocean / Rainforest / Coral / Sand /
- *      (Surface is the same as Paper 100; declared as --color-surface alias.)
+ *   1. Colour ramps — 5 palettes × 11 shades (50–950).
+ *      Paper (cool white) / Ink (cool neutral) / Eucalyptus / Ocean /
+ *      Rainforest. Coral + Sand removed under MSN-2959.
  *   2. Typography — 3 font families + 14 fluid type-scale clamps.
- *   3. Backwards-compat aliases — the 7 Sprint 1.1 tokens still resolve so
- *      we don't break existing utilities during the migration.
+ *   3. Backwards-compat aliases — the 7 Sprint 1.1 tokens still resolve.
  *
- * All colours are WCAG AA on --paper-50 (#FBF6E9). Pairs verified in
- * evidence/SPRINT-1.2/colour_scales.md (see contrast matrix).
+ * All colours are WCAG AA on --paper-50 (#FFFFFF). Contrast pairs
+ * verified against the editorial body text --ink-900 (#0C1117).
  */
 
 :root {
@@ -26,33 +25,34 @@
    * Colour ramps — 11 shades (50, 100, 200, 300, 400, 500, 600, 700,
    * 800, 900, 950). 500 is the canonical brand hex from the design
    * brief; other shades are interpolations tuned for editorial UI.
+   * MSN-2959: paper shifted from warm parchment to cool white.
    * ──────────────────────────────────────────────────────────────── */
 
-  /* Paper & surface — warm parchment cream */
-  --paper-50: #FBF6E9;
-  --paper-100: #F4EDDF;
-  --paper-200: #EBE2CF;
-  --paper-300: #DDD0B6;
-  --paper-400: #C4B392;
-  --paper-500: #A8916E;
-  --paper-600: #8B7458;
-  --paper-700: #6B5943;
-  --paper-800: #4A3D2D;
-  --paper-900: #2D2419;
-  --paper-950: #1B1610;
+  /* Paper & surface — cool white (MSN-2959 chairman directive) */
+  --paper-50: #FFFFFF;
+  --paper-100: #F5F8FA;
+  --paper-200: #E5EBEF;
+  --paper-300: #CFD7DD;
+  --paper-400: #A6B2BB;
+  --paper-500: #7B8993;
+  --paper-600: #586571;
+  --paper-700: #3D4853;
+  --paper-800: #27303A;
+  --paper-900: #161D24;
+  --paper-950: #0A0F14;
 
-  /* Ink — warm body text (not pure black) */
-  --ink-50: #F7F5F1;
-  --ink-100: #ECE7DE;
-  --ink-200: #D5CCBE;
-  --ink-300: #B8AB96;
-  --ink-400: #897D6A;
-  --ink-500: #5C5246;
-  --ink-600: #443C33;
-  --ink-700: #332E27;
-  --ink-800: #25211C;
-  --ink-900: #181612;
-  --ink-950: #0F0D0B;
+  /* Ink — cool neutral body text (MSN-2959) */
+  --ink-50: #F7F9FB;
+  --ink-100: #ECF1F5;
+  --ink-200: #D6DFE6;
+  --ink-300: #AEB9C4;
+  --ink-400: #7C8A98;
+  --ink-500: #54616E;
+  --ink-600: #3A4651;
+  --ink-700: #26303A;
+  --ink-800: #171E26;
+  --ink-900: #0C1117;
+  --ink-950: #050810;
 
   /* Eucalyptus — primary brand (replaces teal in Sprint 1.1) */
   --eucalyptus-50: #EEF4F0;
@@ -93,31 +93,11 @@
   --rainforest-900: #112017;
   --rainforest-950: #09110C;
 
-  /* Coral — accent (sunset coral, alerts, road closures) */
-  --coral-50: #FBEFE9;
-  --coral-100: #F4D7C9;
-  --coral-200: #E9B29B;
-  --coral-300: #DC8B6E;
-  --coral-400: #D77A61;
-  --coral-500: #D26A4C;
-  --coral-600: #B8553C;
-  --coral-700: #8E3F2C;
-  --coral-800: #642C1F;
-  --coral-900: #3E1B12;
-  --coral-950: #231008;
-
-  /* Sand — subtle warm tone (sun/UV bands) */
-  --sand-50: #FBF5E8;
-  --sand-100: #F4E7C8;
-  --sand-200: #EBD39C;
-  --sand-300: #DDB868;
-  --sand-400: #C99C42;
-  --sand-500: #A87E2E;
-  --sand-600: #856325;
-  --sand-700: #634A1C;
-  --sand-800: #443313;
-  --sand-900: #271D0B;
-  --sand-950: #141004;
+  /* MSN-2959: Coral + Sand palettes removed per chairman directive
+   * (white + blue-green only). Reference the old hex #D77A61 / sand
+   * family is intentionally gone — every former coral utility is
+   * migrated to ocean (calm unavailable state) or rainforest (alert
+   * state) in the consuming components. */
 
   /* ────────────────────────────────────────────────────────────────
    * Sprint 1.1 backwards-compat aliases. These 7 tokens are the public
@@ -130,7 +110,6 @@
   --color-text-muted: var(--paper-700);
   --color-ocean: var(--ocean-500);
   --color-rainforest: var(--rainforest-500);
-  --color-coral: var(--coral-500);
 
   /* ────────────────────────────────────────────────────────────────
    * Typography — CSS variables consumed by Tailwind font tokens.
@@ -223,13 +202,13 @@
     text-decoration: none;
   }
 
-  /* Selection — coral highlight, paper text. */
+  /* Selection — ocean highlight, paper text (MSN-2959). */
   ::selection {
-    background-color: var(--coral-200);
+    background-color: var(--ocean-200);
     color: var(--ink-900);
   }
   ::-moz-selection {
-    background-color: var(--coral-200);
+    background-color: var(--ocean-200);
     color: var(--ink-900);
   }
 
@@ -297,11 +276,7 @@
            hover:bg-ocean-600 active:bg-ocean-700
            focus-visible:ring-ocean-500;
   }
-  .btn-coral {
-    @apply bg-coral-700 text-paper-50 shadow-sm
-           hover:bg-coral-800 active:bg-coral-900
-           focus-visible:ring-coral-500;
-  }
+  /* btn-coral removed (MSN-2959). Use btn-primary or btn-secondary. */
   .btn-outline {
     @apply border border-paper-300 bg-transparent text-ink-800
            hover:bg-paper-100 hover:border-paper-400 active:bg-paper-200
@@ -347,9 +322,7 @@
   .chip-ocean {
     @apply chip border-ocean-200 bg-ocean-50 text-ocean-700;
   }
-  .chip-coral {
-    @apply chip border-coral-200 bg-coral-50 text-coral-700;
-  }
+  /* chip-coral removed (MSN-2959). Use chip-ocean or chip-rainforest. */
   .chip-rainforest {
     @apply chip border-rainforest-200 bg-rainforest-50 text-rainforest-700;
   }
@@ -402,7 +375,7 @@
     @apply rounded-xl border border-ocean-200 bg-ocean-50 p-4 text-sm text-ink-800;
   }
   .callout-warn {
-    @apply rounded-xl border border-coral-300 bg-coral-50 p-4 text-sm text-ink-800;
+    @apply rounded-xl border border-ocean-300 bg-ocean-50 p-4 text-sm text-ink-800;
   }
   .callout-stale {
     @apply rounded-xl border border-paper-300 bg-paper-100 p-4 text-sm text-ink-700;
@@ -514,7 +487,7 @@
  * ---------------------------------------------------------------- */
 .accent-flourish {
   font-family: var(--font-accent);
-  color: var(--coral-700);
+  color: var(--ocean-700);
   font-weight: 500;
   line-height: 1;
 }

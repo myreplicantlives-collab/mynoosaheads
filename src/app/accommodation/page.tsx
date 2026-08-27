@@ -9,6 +9,7 @@ import {
   HeroPhoto,
   Button,
   Icons,
+  AffiliateBadge,
 } from "@/components/ui";
 import { fetchLiveBundle } from "@/lib/live-data";
 import { CATEGORY_PHOTOS } from "@/data/photos";
@@ -85,13 +86,9 @@ export default async function AccommodationPage() {
             We don’t run a booking engine and we don’t take inventory. The
             listings on this page link out to Booking.com, Stayz, Expedia, or
             Airbnb — with our affiliate tag, where we have one. Every monetised
-            link is marked <span className="chip-coral">Sponsored · ACCC Sch 2</span>{" "}
+            link is marked <span className="chip-ocean">Sponsored · ACCC Sch 2</span>{" "}
             before you click, per the Competition and Consumer Act 2010 (Cth)
-            Schedule 2. The full statement lives at{" "}
-            <Link href="/how-we-make-money" className="link text-ocean-700 font-medium">
-              /how-we-make-money
-            </Link>
-            .
+            Schedule 2. The full statement is in the footer.
           </>
         }
         flourish="Right town, right price, right block."
@@ -187,7 +184,8 @@ export default async function AccommodationPage() {
                     size="sm"
                     trailingIcon={<Icons.External size={12} />}
                   >
-                    Booking.com <span className="pill-disclosure ml-2">Sponsored · ACCC</span>
+                    Booking.com
+                    <AffiliateBadge programme="Booking.com" mode="compact" />
                   </Button>
                   <Button
                     href="https://www.stayz.com.au/holiday-rental-search?query=Noosa+Heads"
@@ -196,7 +194,8 @@ export default async function AccommodationPage() {
                     variant="outline"
                     trailingIcon={<Icons.External size={12} />}
                   >
-                    Stayz <span className="pill-disclosure ml-2">Sponsored · ACCC</span>
+                    Stayz
+                    <AffiliateBadge programme="Stayz" mode="compact" />
                   </Button>
                   <Button
                     href="https://www.airbnb.com.au/s/Noosa-Heads--Australia/homes"
@@ -205,7 +204,8 @@ export default async function AccommodationPage() {
                     variant="outline"
                     trailingIcon={<Icons.External size={12} />}
                   >
-                    Airbnb <span className="pill-disclosure ml-2">Sponsored · ACCC</span>
+                    Airbnb
+                    <AffiliateBadge programme="Airbnb" mode="compact" />
                   </Button>
                   <Button
                     href="https://www.expedia.com.au/Hotels?destination=Noosa+Heads"
@@ -214,7 +214,8 @@ export default async function AccommodationPage() {
                     variant="outline"
                     trailingIcon={<Icons.External size={12} />}
                   >
-                    Expedia <span className="pill-disclosure ml-2">Sponsored · ACCC</span>
+                    Expedia
+                    <AffiliateBadge programme="Expedia" mode="compact" />
                   </Button>
                 </div>
               </CardBody>
