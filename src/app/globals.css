@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Sprint 1.1 — 7-token coastal palette (per Albert's design brief).
+ * CSS custom properties so the runtime palette can be re-themed without
+ * touching the Tailwind config. See tailwind.config.ts for the token
+ * contract.
+ */
+:root {
+  --color-bg: #FBF7F0;          /* 1. warm parchment — page background */
+  --color-surface: #F5EFE3;     /* 2. light parchment — card / panel surface */
+  --color-text: #251F17;        /* 3. dark parchment — primary text */
+  --color-text-muted: #54483A;  /* 4. mid parchment — secondary text */
+  --color-ocean: #1D5A6F;       /* 5. deep ocean blue — primary brand */
+  --color-rainforest: #3A5240;  /* 6. rainforest green — secondary brand */
+  --color-coral: #D26A4C;       /* 7. sunset coral — accent */
+}
+
 @layer base {
   html {
     -webkit-font-smoothing: antialiased;
@@ -10,14 +26,14 @@
     scroll-behavior: smooth;
   }
   body {
-    background-color: theme('colors.parchment.50');
-    color: theme('colors.parchment.800');
+    background-color: var(--color-bg);
+    color: var(--color-text);
     font-family: theme('fontFamily.sans');
     font-feature-settings: "ss01", "cv11";
   }
   h1, h2, h3, h4 {
     font-family: theme('fontFamily.serif');
-    color: theme('colors.parchment.900');
+    color: var(--color-text);
     letter-spacing: -0.015em;
   }
   h1 { line-height: 1.05; }
@@ -31,7 +47,7 @@
 
   /* Focus ring for accessibility */
   :focus-visible {
-    outline: 2px solid theme('colors.ocean.500');
+    outline: 2px solid var(--color-ocean);
     outline-offset: 2px;
     border-radius: 4px;
   }
@@ -51,16 +67,16 @@
     @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition focus:outline-none;
   }
   .btn-primary {
-    @apply bg-ocean-600 text-white hover:bg-ocean-700 shadow-sm;
+    @apply bg-ocean text-white shadow-sm hover:opacity-90;
   }
   .btn-outline {
-    @apply border border-ocean-600 text-ocean-700 hover:bg-ocean-50;
+    @apply border border-ocean text-ocean hover:bg-surface;
   }
   .btn-ghost {
-    @apply text-parchment-700 hover:bg-parchment-100;
+    @apply text-text-muted hover:bg-surface;
   }
   .chip {
-    @apply inline-flex items-center gap-1 rounded-full border border-parchment-200 bg-parchment-50 px-3 py-1 text-xs font-medium text-parchment-700;
+    @apply inline-flex items-center gap-1 rounded-full border border-parchment-200 bg-surface px-3 py-1 text-xs font-medium text-text-muted;
   }
   .section {
     @apply py-14 md:py-20;
@@ -69,10 +85,10 @@
     @apply py-10 md:py-14;
   }
   .eyebrow {
-    @apply text-xs uppercase tracking-[0.16em] font-semibold text-ocean-600;
+    @apply text-xs uppercase tracking-[0.16em] font-semibold text-ocean;
   }
   .lead {
-    @apply text-lg md:text-xl text-parchment-700 leading-relaxed;
+    @apply text-lg md:text-xl text-text-muted leading-relaxed;
   }
   .card {
     @apply rounded-2xl border border-parchment-200 bg-white overflow-hidden shadow-sm;
@@ -81,10 +97,10 @@
     @apply p-5 md:p-6;
   }
   .pill-disclosure {
-    @apply text-[10px] uppercase tracking-[0.12em] font-semibold text-parchment-500 bg-parchment-100 rounded-full px-2 py-0.5;
+    @apply text-[10px] uppercase tracking-[0.12em] font-semibold text-text-muted bg-surface rounded-full px-2 py-0.5;
   }
   .link {
-    @apply underline decoration-ocean-400 underline-offset-4 hover:decoration-ocean-600;
+    @apply underline decoration-ocean underline-offset-4 hover:opacity-80;
   }
   .table-clean {
     @apply w-full border-collapse text-sm;
@@ -94,25 +110,25 @@
     @apply border-b border-parchment-200 px-3 py-2.5 text-left align-top;
   }
   .table-clean th {
-    @apply bg-parchment-50 font-semibold text-parchment-700;
+    @apply bg-surface font-semibold text-text-muted;
   }
   .table-clean tbody tr:hover td {
-    @apply bg-parchment-50;
+    @apply bg-surface;
   }
   .callout {
-    @apply rounded-xl border border-ocean-200 bg-ocean-50 p-4 text-sm text-ocean-800;
+    @apply rounded-xl border border-ocean/30 bg-ocean/10 p-4 text-sm;
   }
   .callout-warn {
-    @apply rounded-xl border border-coral-400/40 bg-coral-400/10 p-4 text-sm text-coral-600;
+    @apply rounded-xl border border-coral/40 bg-coral/10 p-4 text-sm;
   }
   .callout-stale {
-    @apply rounded-xl border border-parchment-300 bg-parchment-100 p-4 text-sm text-parchment-700;
+    @apply rounded-xl border border-parchment-300 bg-surface p-4 text-sm text-text-muted;
   }
   .breadcrumb {
-    @apply text-xs text-parchment-500 flex items-center gap-2;
+    @apply text-xs text-text-muted flex items-center gap-2;
   }
   .breadcrumb a:hover {
-    @apply text-ocean-600;
+    @apply text-ocean;
   }
   .hero-overlay {
     background: linear-gradient(to bottom, rgba(8,28,36,0.15) 0%, rgba(8,28,36,0.55) 100%);
@@ -126,4 +142,45 @@
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* Prose styles for MDX-rendered content (post bodies) */
+.prose-mdx {
+  @apply max-w-prose;
+}
+.prose-mdx h1 {
+  @apply font-serif text-4xl mt-8 mb-4;
+}
+.prose-mdx h2 {
+  @apply font-serif text-3xl mt-8 mb-3;
+}
+.prose-mdx h3 {
+  @apply font-serif text-2xl mt-6 mb-2;
+}
+.prose-mdx p {
+  @apply my-4 leading-relaxed;
+}
+.prose-mdx a {
+  @apply link;
+}
+.prose-mdx ul {
+  @apply list-disc pl-6 my-4 space-y-2;
+}
+.prose-mdx ol {
+  @apply list-decimal pl-6 my-4 space-y-2;
+}
+.prose-mdx blockquote {
+  @apply border-l-4 border-ocean pl-4 italic text-text-muted my-4;
+}
+.prose-mdx code {
+  @apply font-mono text-sm bg-surface px-1.5 py-0.5 rounded;
+}
+.prose-mdx pre {
+  @apply bg-surface rounded-lg p-4 overflow-x-auto my-4;
+}
+.prose-mdx pre code {
+  @apply bg-transparent p-0;
+}
+.prose-mdx hr {
+  @apply border-parchment-200 my-8;
 }

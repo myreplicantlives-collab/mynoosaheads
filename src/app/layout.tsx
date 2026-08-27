@@ -11,39 +11,26 @@ export const metadata: Metadata = {
     template: `%s — ${SITE.brand}`,
   },
   description:
-    "Plan your Noosa trip well. Honest, sourced, current information about Noosa Heads — beaches, hikes, food, where to stay, weather, and the national park. Written and fact-checked locally.",
+    "Plan your Noosa trip well. Honest, sourced, current information about Noosa Heads — coming soon.",
   applicationName: SITE.brand,
-  authors: [{ name: SITE.author.name }],
+  authors: [{ name: SITE.brand }],
   generator: "Next.js",
-  keywords: [
-    "Noosa", "Noosa Heads", "Queensland", "Australia", "travel guide",
-    "surf forecast Noosa", "Noosa National Park", "Hastings Street",
-    "where to stay Noosa", "Fraser Island", "K'gari",
-  ],
+  keywords: ["Noosa", "Noosa Heads", "Queensland", "Australia", "travel guide"],
   openGraph: {
     type: "website",
     locale: SITE.locale,
     siteName: SITE.brand,
     title: `${SITE.brand} — ${SITE.tagline}`,
-    description:
-      "Honest, sourced, current information about Noosa Heads. Plan your trip well.",
-    images: ["/images/noosa/noosa_main_beach_hero.jpg"],
+    description: "Plan your Noosa trip well. Coming soon.",
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE.brand} — ${SITE.tagline}`,
-    description: "Plan your Noosa trip well.",
-    images: ["/images/noosa/noosa_main_beach_hero.jpg"],
+    description: "Plan your Noosa trip well. Coming soon.",
   },
   robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
+    index: false, // Sprint 1.1 is a foundation scaffold — don't index yet
+    follow: false,
   },
   alternates: {
     canonical: "/",
@@ -59,11 +46,6 @@ export const viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-AU">
-      <head>
-        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs" />
-        <link rel="alternate" type="text/plain" href="/ai.txt" title="AI policy" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-      </head>
       <body>
         <a href="#main" className="skip-link">Skip to content</a>
         <SiteHeader />
