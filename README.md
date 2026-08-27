@@ -4,33 +4,42 @@
 
 A tourism-positive, sourced guide to Noosa Heads (Queensland, Australia).
 
-**Status:** Sprint 1.2 of 5 — design system + brand/logo mocks shipped; content + CI/CD coming in subsequent sub-tasks.
+[![Live](https://img.shields.io/badge/Live-noosa--site--v2.vercel.app-success?style=flat-square)](https://noosa-site-v2.vercel.app/)
+[![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?style=flat-square&logo=vercel)](https://vercel.com/myreplicantlives-5263s-projects/noosa-site-v2)
+[![Next.js](https://img.shields.io/badge/Next.js-14.2.15-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![Sprint](https://img.shields.io/badge/Sprint-1.4%20%2F%205-blue?style=flat-square)](./RUNBOOK.md)
+[![ESLint](https://img.shields.io/badge/ESLint-0%20warnings%20%2F%200%20errors-brightgreen?style=flat-square)](./RUNBOOK.md)
+[![Cron](https://img.shields.io/badge/Cron-5%20jobs%20live-brightgreen?style=flat-square)](./RUNBOOK.md)
+
+**Status:** Sprint 1.4 of 5 — operational baseline shipped (CI/CD + Sentry + cron + ESLint clean). Next: Victor QA gate (TSK-2957-05).
 
 This is the new foundation. The previous v2 build is retained in the
 post-MSN-2881 rollback snapshot for reference; this repository is the
 canonical build going forward.
 
-## What is here (Sprint 1.2)
+## What is here (Sprint 1.4)
 
 - Next.js 14 (App Router) + TypeScript strict + Tailwind CSS 3
-- MDX support via `next-mdx-remote` (server-rendered)
-- **Design system** — `src/components/ui/`:
-  - Typography: Fraunces (display) + Inter (body) + Caveat (accent) via `next/font`, 14-step fluid scale
-  - Colour ramps: 7 palettes × 11 shades (50–950) — Paper / Ink / Eucalyptus / Ocean / Rainforest / Coral / Sand
-  - Components: Button (6 variants × 4 sizes), Card, Hero, NavBar, Footer, LiveDataWidget, Form, Logo, Icon (21)
-- `/styleguide` — live design system reference (Albert-facing logo review)
-- 3 logo mocks at `public/brand/logo-{1,2,3}.svg` (Albert picks the final)
-- Homepage, `/hello-noosa` sample MDX, `/styleguide`, 404 page
-- Accessibility: skip link, focus rings, ARIA landmarks, axe-core 0 violations
-- Path aliases: `@/components/*`, `@/lib/*`, `@/content/*`, `@/data/*`
+- **14 public routes** live: `/`, 8 categories, 5 editorial/legal pages
+- **Live data** — Open-Meteo Marine + Forecast + NOAA solar + Conway moon
+- **Design system** — Fraunces / Inter / Caveat, 7 colour ramps × 11 shades
+- **Accessibility** — skip link, focus rings, ARIA landmarks, axe-core 0 violations
+- **ESLint** — 0 warnings / 0 errors
+- **Sitemap** — `/sitemap.xml` auto-generated from `src/app/sitemap.ts`
+- **Robots** — `/robots.txt` allows /, disallows `/api/`, `/styleguide`, `/_next/`
+- **Sentry** — `@sentry/nextjs` 8.55 wired (client/server/edge); activation gated on `SENTRY_DSN` env var
+- **Sentry test endpoint** — `/api/sentry-example-error` throws a verifiable error
+- **5 OpenClaw cron jobs** — health-check / broken-link / sitemap / affiliate-link / content-backup (see [RUNBOOK](./RUNBOOK.md))
+- **Vercel auto-deploy** — `main` → production; PRs get preview URLs
+- **Operational runbook** — see [RUNBOOK.md](./RUNBOOK.md)
 
 ## What is NOT here yet
 
-- Design system (typography scale, component library, accessibility primitives) — **TSK-2957-02 ✓**
-- Real content (where to stay, eat & drink, surf & weather, hikes, things to do, itineraries) — **TSK-2957-03**
-- Custom domain DNS flip from GoDaddy to Vercel — **TSK-2957-03**
-- Per-PR preview deploys, Lighthouse CI, broken-link scans — **TSK-2957-04**
-- Live data refreshers (BOM marine, Open-Meteo, QPWS alerts) — **TSK-2957-03**
+- Sentry org/DSN — **needs Tim's Sentry account** (see [RUNBOOK §3](./RUNBOOK.md#3-view-sentry-errors))
+- Better Stack uptime monitor — **needs Tim's Better Stack account** (see [RUNBOOK §4](./RUNBOOK.md#4-view-better-stack-uptime))
+- Lighthouse CI — deferred (Vercel Speed Insights covers the basics for free)
+- Per-PR preview deploys already work via Vercel Git integration (no extra wiring needed)
+- Custom domain DNS flip from GoDaddy to Vercel — **blocked on Tim providing GoDaddy creds**
 
 ## Stack
 
@@ -108,11 +117,20 @@ vercel link --project noosa-site-v2     # one-time
 vercel deploy --prod --yes              # deploy the current branch
 ```
 
-### GitHub auto-deploy (planned for TSK-2957-04)
+### GitHub auto-deploy (live as of Sprint 1.4)
 
-1. Push this repo to GitHub.
-2. In Vercel, set the production branch to `main`.
-3. Future pushes to `main` auto-deploy.
+- Repo: `https://github.com/myreplicantlives-collab/mynoosaheads`
+- Production branch: `main` — every merge auto-deploys (~30–60s).
+- PR previews: every PR gets a unique preview URL via Vercel.
+- Verified: Sprint 1.4 PR #1 → squash-merged → production deployment `b47b6ac` (TSK-2957-04).
+
+To trigger a manual production deploy:
+
+```bash
+vercel deploy --prod --yes
+```
+
+To roll back to a prior known-good build: see [RUNBOOK §2](./RUNBOOK.md#2-roll-back-a-deploy).
 
 ## Design tokens
 
@@ -132,6 +150,27 @@ properties and exposed via Tailwind utilities (`bg-ocean`, `text-text`,
 
 TSK-2957-02 will extend these into full scales (50–900).
 
+## Operational baseline
+
+See [RUNBOOK.md](./RUNBOOK.md) for:
+
+- Health check, rollback, Sentry, Better Stack, cron logs
+- Manual triggers for each cron job
+- Escalation matrix (Sally vs Tim)
+- Cron schedule reference
+
+**Cron jobs (live):**
+
+| Cron | Schedule | Purpose |
+|---|---|---|
+| health_check | every 15 min | HEAD on production URL |
+| broken_link_check | daily 09:30 BST | linkinator crawl of all 14 routes |
+| sitemap_regen | Mon 03:00 BST | verify /sitemap.xml + IndexNow submit |
+| affiliate_check | 1st of month 04:00 BST | Booking/Stayz/Expedia/Airbnb validity |
+| db_backup | daily 02:00 BST | tarball + git-commit content/ tree |
+
+All alerts route to Tim via Telegram (chat ID 7620112671).
+
 ## Build plan reference
 
 MSN-2956 build plan (DOCX):
@@ -146,4 +185,6 @@ https://docs.google.com/document/d/1uhgrrsZjayHMPiJGB7_NHsq3N__SV-lD/edit
 - The custom domain DNS is still parked at GoDaddy. The Vercel build is
   production-ready at `https://noosa-site-v2.vercel.app`; the
   `mynoosaheads.com` flip is gated on Tim providing GoDaddy DNS
-  credentials (Sally routes the question).# Sprint 1.1 — auto-deploy verified 2026-08-27T11:06:39Z
+  credentials (Sally routes the question).# Sprint 1.4 — operational baseline shipped 2026-08-27
+# Sprint 1.3 — content migration shipped 2026-08-27
+# Sprint 1.1 — auto-deploy verified 2026-08-27T11:06:39Z
