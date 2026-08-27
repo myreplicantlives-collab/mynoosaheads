@@ -95,7 +95,12 @@ export default async function HomePage() {
                 Drawn from the Bureau of Meteorology’s Capricornia–Hervey
                 Bay marine district and Open-Meteo’s free marine API. Refresh
                 every 30 minutes; if a tile falls out, it shows an{" "}
-                <span className="text-ocean-700">Unavailable</span> badge
+                {/* MSN-2959 / TSK-2959-POLISH-C (extended): bumped from
+                 * text-ocean-700 (#2F8074, contrast 4.39:1 on
+                 * bg-paper-100) to text-ocean-900 (#0E4A41, ~10:1).
+                 * This span lives inside a section with bg-paper-100
+                 * so the .eyebrow class fix didn't reach it. */}
+                <span className="text-ocean-900">Unavailable</span> badge
                 rather than guessing.
               </p>
             </div>
