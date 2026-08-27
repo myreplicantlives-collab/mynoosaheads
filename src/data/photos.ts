@@ -52,7 +52,7 @@ const HERO = {
   },
   noosaNationalPark: {
     caption: "The Noosa Headlands coastal walk — granite boulders, tallowwood forest, and the surf below.",
-    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Noosa_Heads_and_Weyba_Creek.JPG/1280px-Noosa_Heads_and_Weyba_Creek.JPG",
+    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Noosa_Heads_and_Weyba_Creek.JPG/1280px-Noosa_Heads_and_Weyba_Creek.JPG",
     author: "Kgbo",
     licence: "CC BY-SA 4.0",
     commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_and_Weyba_Creek.JPG",
@@ -110,7 +110,7 @@ const INLINE = {
   surf: [
     {
       caption: "Children learning to surf in the shallows at First Bay.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Children_learning_surfing_at_Noosa_Heads_beach%2C_Queensland.jpg/1280px-Children_learning_surfing_at_Noosa_Heads_beach%2C_Queensland.jpg",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Children_learning_surfing_at_Noosa_Heads_beach%2C_Queensland.jpg/1280px-Children_learning_surfing_at_Noosa_Heads_beach%2C_Queensland.jpg",
       author: "Kgbo",
       licence: "CC BY-SA 4.0",
       commonsPage: "https://commons.wikimedia.org/wiki/File:Children_learning_surfing_at_Noosa_Heads_beach,_Queensland.jpg",
@@ -124,7 +124,7 @@ const INLINE = {
     },
     {
       caption: "Stand-up paddleboarder in the bay — the calm-water alternative when the swell is too big.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Man_with_stand_up_board_at_Noosa_Heads_beach%2C_Queensland.jpg/1280px-Man_with_stand_up_board_at_Noosa_Heads_beach%2C_Queensland.jpg",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Man_with_stand_up_board_at_Noosa_Heads_beach%2C_Queensland.jpg/1280px-Man_with_stand_up_board_at_Noosa_Heads_beach%2C_Queensland.jpg",
       author: "Kgbo",
       licence: "CC BY-SA 4.0",
       commonsPage: "https://commons.wikimedia.org/wiki/File:Man_with_stand_up_board_at_Noosa_Heads_beach,_Queensland.jpg",
@@ -177,7 +177,7 @@ const INLINE = {
     },
     {
       caption: "Maison Noosa Resort entrance — one of the Hastings Street properties.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Maison_Noosa_Resort.jpg/1280px-Maison_Noosa_Resort.jpg",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Maison_Noosa_Resort.jpg/1280px-Maison_Noosa_Resort.jpg",
       author: "Kgbo",
       licence: "CC BY-SA 4.0",
       commonsPage: "https://commons.wikimedia.org/wiki/File:Maison_Noosa_Resort.jpg",
@@ -191,7 +191,7 @@ const INLINE = {
     },
     {
       caption: "Noosa Harbour Resort, on the Noosaville waterfront.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Noosa_Harbour_Resort.jpg/1280px-Noosa_Harbour_Resort.jpg",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Noosa_Harbour_Resort.jpg/1280px-Noosa_Harbour_Resort.jpg",
       author: "Kgbo",
       licence: "CC BY-SA 4.0",
       commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Harbour_Resort.jpg",
@@ -214,14 +214,14 @@ const INLINE = {
     },
     {
       caption: "Noosa Farmers Market — Sunday morning on the Noosaville showgrounds.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Noosa_farmers_market.jpg/1280px-Noosa_farmers_market.jpg",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Noosa_farmers_market.jpg/1280px-Noosa_farmers_market.jpg",
       author: "Kgbo",
       licence: "CC BY-SA 4.0",
       commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_farmers_market.jpg",
     },
     {
       caption: "Stand-up paddleboarder in the bay.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Man_with_stand_up_board_at_Noosa_Heads_beach%2C_Queensland.jpg/1280px-Man_with_stand_up_board_at_Noosa_Heads_beach%2C_Queensland.jpg",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Man_with_stand_up_board_at_Noosa_Heads_beach%2C_Queensland.jpg/1280px-Man_with_stand_up_board_at_Noosa_Heads_beach%2C_Queensland.jpg",
       author: "Kgbo",
       licence: "CC BY-SA 4.0",
       commonsPage: "https://commons.wikimedia.org/wiki/File:Man_with_stand_up_board_at_Noosa_Heads_beach,_Queensland.jpg",
@@ -244,7 +244,7 @@ const INLINE = {
     },
     {
       caption: "Child building a sandcastle at Noosa Main Beach — the weekday rhythm of the lagoon.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Artis_building_a_sand_castle_at_Noosa_Heads_beach%2C_Queensland_in_November_2016.jpg/1280px-Artis_building_a_sand_castle_at_Noosa_Heads_beach%2C_Queensland_in_November_2016.jpg",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Artis_building_a_sand_castle_at_Noosa_Heads_beach%2C_Queensland_in_November_2016.jpg/1280px-Artis_building_a_sand_castle_at_Noosa_Heads_beach%2C_Queensland_in_November_2016.jpg",
       author: "Kgbo",
       licence: "CC BY-SA 4.0",
       commonsPage: "https://commons.wikimedia.org/wiki/File:Artis_building_a_sand_castle_at_Noosa_Heads_beach,_Queensland_in_November_2016.jpg",
@@ -267,7 +267,7 @@ const INLINE = {
     },
     {
       caption: "Stand-up paddleboarder on the bay — the paddle craft most commonly hired in Noosa.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Man_with_stand_up_board_at_Noosa_Heads_beach%2C_Queensland.jpg/1280px-Man_with_stand_up_board_at_Noosa_Heads_beach%2C_Queensland.jpg",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Man_with_stand_up_board_at_Noosa_Heads_beach%2C_Queensland.jpg/1280px-Man_with_stand_up_board_at_Noosa_Heads_beach%2C_Queensland.jpg",
       author: "Kgbo",
       licence: "CC BY-SA 4.0",
       commonsPage: "https://commons.wikimedia.org/wiki/File:Man_with_stand_up_board_at_Noosa_Heads_beach,_Queensland.jpg",
@@ -281,7 +281,7 @@ const INLINE = {
     },
     {
       caption: "The Noosa River at low tide, viewed from the headland.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Noosa_Heads_and_Weyba_Creek.JPG/1280px-Noosa_Heads_and_Weyba_Creek.JPG",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Noosa_Heads_and_Weyba_Creek.JPG/1280px-Noosa_Heads_and_Weyba_Creek.JPG",
       author: "Kgbo",
       licence: "CC BY-SA 4.0",
       commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_and_Weyba_Creek.JPG",
@@ -304,7 +304,7 @@ const INLINE = {
     },
     {
       caption: "Campervan on the Coast — the road-trip mode into Noosa.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Camper_Wohnmobil_Australien_%2823979876582%29.jpg/1280px-Camper_Wohnmobil_Australien_%2823979876582%29.jpg",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Camper_Wohnmobil_Australien_%2823979876582%29.jpg/1280px-Camper_Wohnmobil_Australien_%2823979876582%29.jpg",
       author: "Kgbo",
       licence: "CC BY 2.0",
       commonsPage: "https://commons.wikimedia.org/wiki/File:Camper_Wohnmobil_Australien_(23979876582).jpg",
@@ -396,7 +396,7 @@ export const HOMEPAGE_HERO: WikimediaPhoto = {
 
 export const ABOUT_BRAND_IMAGE: WikimediaPhoto = {
   caption: "The granite headland and the Weyba Creek confluence, viewed from the coastal walk.",
-  url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Noosa_Heads_and_Weyba_Creek.JPG/1280px-Noosa_Heads_and_Weyba_Creek.JPG",
+  url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Noosa_Heads_and_Weyba_Creek.JPG/1280px-Noosa_Heads_and_Weyba_Creek.JPG",
   author: "Kgbo",
   licence: "CC BY-SA 4.0",
   commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_and_Weyba_Creek.JPG",
