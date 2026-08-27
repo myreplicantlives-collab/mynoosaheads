@@ -26,10 +26,11 @@
  *   /public/brand/logo-3.svg (wave — dropped per brief)
  *
  * Note: the full SVG files in /public/brand/ are the source of truth.
- * Components below render those SVGs via <img src> so there is no
- * markup drift between mocks and shipped components.
+ * Components below render those SVGs via next/image (with unoptimized)
+ * so there is no markup drift between mocks and shipped components.
  */
 
+import Image from "next/image";
 import type { CSSProperties } from "react";
 
 export type LogoMark = "1" | "2" | "3";
@@ -74,13 +75,14 @@ export function Logo({
       style={style}
       aria-label={showWordmark ? undefined : `${wordmark} logo`}
     >
-      <img
+      <Image
         src={`/brand/logo-${mark}.svg`}
         alt=""
         aria-hidden="true"
         height={px}
         width={px}
         style={{ display: "block" }}
+        unoptimized
       />
       {showWordmark ? (
         <span

@@ -6,6 +6,7 @@
  * use the constrained variant. Hero takes children for the trailing slot.
  */
 
+import Image from "next/image";
 import type { ReactNode } from "react";
 
 export type HeroProps = {
@@ -49,11 +50,15 @@ export function Hero({
     >
       {background === "image" && imageSrc ? (
         <>
-          <img
+          <Image
             src={imageSrc}
             alt={imageAlt ?? ""}
-            className="absolute inset-0 h-full w-full object-cover"
+            fill
+            sizes="100vw"
+            className="object-cover"
             aria-hidden={!imageAlt}
+            unoptimized
+            priority={fullBleed}
           />
           <div className="hero-overlay absolute inset-0" aria-hidden="true" />
         </>
