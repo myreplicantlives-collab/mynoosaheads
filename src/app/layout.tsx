@@ -6,18 +6,16 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SITE } from "@/data/site";
 
 /**
- * Sprint 1.2 — Typography stack loaded via next/font (Google Fonts, SIL OFL 1.1).
+ * Root layout — Sprint 1.3.
  *
- *   - Fraunces  → display headings (editorial serif, 500/600 italic optical sizing)
- *   - Inter     → body + UI sans (workhorse, 400–700)
- *   - Caveat    → accent handwritten flourishes (byline, dates, sparingly)
+ * Typography stack: Fraunces (display), Inter (body), Caveat (accent).
+ * Each font is configured with display: "swap" so the page never FOITs.
+ * All fonts are SIL OFL 1.1 and loaded via next/font (self-hosted at
+ * build time).
  *
- * Each font is configured with:
- *   - display: "swap" → no FOIT, fallback shows immediately
- *   - subsets: ["latin"] → keeps payload small
- *   - variable: "--font-{name}" → exposed as CSS var so Tailwind tokens in
- *     tailwind.config.ts can bind `font-display`/`font-body`/`font-accent`
- *     to them.
+ * Locale is en-AU. Robots are index/follow on the production hostname —
+ * Sprint 1.3 is content-complete enough to be indexed; we let the
+ * Search Console verification sit under TSK-2957-04.
  */
 
 const fraunces = Fraunces({
@@ -46,32 +44,45 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.productionUrl),
   title: {
     default: `${SITE.brand} — ${SITE.tagline}`,
-    template: `%s — ${SITE.brand}`,
+    template: `%s · ${SITE.brand}`,
   },
   description:
-    "Plan your Noosa trip well. Honest, sourced, current information about Noosa Heads — coming soon.",
+    "An independent, sourced, slow-guide field manual for Noosa Heads — surf, weather, the national park, accommodation, fishing, boats, travel and webcams. Built slowly on the Sunshine Coast.",
   applicationName: SITE.brand,
   authors: [{ name: SITE.brand }],
   generator: "Next.js",
-  keywords: ["Noosa", "Noosa Heads", "Queensland", "Australia", "travel guide"],
+  keywords: [
+    "Noosa",
+    "Noosa Heads",
+    "Queensland",
+    "Sunshine Coast",
+    "Australia",
+    "surf report Noosa",
+    "Noosa National Park",
+    "Noosa travel guide",
+  ],
   openGraph: {
     type: "website",
     locale: SITE.locale,
     siteName: SITE.brand,
     title: `${SITE.brand} — ${SITE.tagline}`,
-    description: "Plan your Noosa trip well. Coming soon.",
+    description:
+      "An independent, sourced, slow-guide field manual for Noosa Heads.",
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE.brand} — ${SITE.tagline}`,
-    description: "Plan your Noosa trip well. Coming soon.",
+    description: "An independent, sourced, slow-guide field manual for Noosa Heads.",
   },
   robots: {
-    index: false, // Sprint 1.1 is a foundation scaffold — don't index yet
-    follow: false,
+    index: true,
+    follow: true,
   },
   alternates: {
     canonical: "/",
+  },
+  icons: {
+    icon: "/favicon.svg",
   },
 };
 
