@@ -323,7 +323,7 @@ export default function StyleGuidePage() {
         id="live-data"
         eyebrow="Components"
         title="LiveDataWidget"
-        subtitle="Placeholder slot for Sprint 1.3 data feeds (BOM, Open-Meteo, QPWS). Renders correctly in fresh, stale, and unavailable states."
+        subtitle="Live data widget demo — renders fresh, stale, and unavailable states."
       >
         <SubHeading>Fresh (default)</SubHeading>
         <LiveDataGrid>

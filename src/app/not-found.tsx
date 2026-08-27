@@ -10,8 +10,8 @@ export default function NotFound() {
           Page not found
         </h1>
         <p className="mt-4 lead text-pretty">
-          That page isn’t here. The site is under construction — Sprint 1.3 will fill
-          these in with real content.
+          This page doesn’t exist. Try the <Link href="/">home page</Link>, or
+          check back soon — we’re adding new pages weekly.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Button href="/">Back to home</Button>
