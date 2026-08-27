@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# AI / LLM bots — attribution requested
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+
+# Sitemap
+Sitemap: https://noosa-site-v2.vercel.app/sitemap.xml
+
+# Custom domain is currently parked at the registrar. The build is served from this Vercel project.
+# When DNS is flipped, update the sitemap URL to https://mynoosaheads.com/sitemap.xml

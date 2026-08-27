@@ -1,0 +1,24 @@
+{
+  "site": "mynoosaheads.com",
+  "generatedAt": "2026-08-24T10:21:21.297Z",
+  "sources": [
+    {
+      "source": "http://www.bom.gov.au/fwo/IDQ11290.xml",
+      "status": "ok",
+      "fetchedAt": "2026-08-24T10:21:20.696Z",
+      "note": "BOM Sunshine Coast Waters (Double Island Point to Cape Moreton). Resolution: 4 daily forecast periods, wind to ~knots, seas to ~metres."
+    },
+    {
+      "source": "https://api.open-meteo.com/v1/forecast?latitude=-26.394&longitude=153.09&current=temperature_2m,wind_speed_10m,relative_humidity_2m,weather_code,apparent_temperature,wind_direction_10m&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weather_code,wind_speed_10m_max,wind_direction_10m_dominant&forecast_days=7&timezone=Australia%2FBrisbane",
+      "status": "ok",
+      "fetchedAt": "2026-08-24T10:21:21.051Z",
+      "note": "Open-Meteo forecast API (public, no-auth, combines national weather services including BOM). Source attribution: open-meteo.com."
+    },
+    {
+      "source": "https://parks.des.qld.gov.au/alerts/?p=NOOSA",
+      "status": "unavailable",
+      "fetchedAt": "2026-08-24T10:21:21.293Z",
+      "note": "QPWS alerts page could not be fetched from this build (HTTP 403). The QPWS source remains authoritative — always check the URL above before walking the coastal track."
+    }
+  ]
+}
