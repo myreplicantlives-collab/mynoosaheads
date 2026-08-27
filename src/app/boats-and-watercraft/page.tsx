@@ -17,13 +17,14 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <CategoryPage
+      slug="boats-and-watercraft"
       eyebrow="MSQ bar crossings + Noosa Council ramps"
       title="Boats & watercraft"
       subtitle="Crossing the Noosa River bar is a forecast-driven decision. Hire options and public ramp maps live below; the BOM forecast and MSQ bulletin sit in the sidebar."
       flourish="Slack water. Light wind. Outgoing tide."
       primarySources={[
         { label: "Marine Safety Queensland — bar crossings", href: "https://www.msq.qld.gov.au/Safety/Bar-crossings-and-coastal-conditions" },
-        { label: "Noosa Council — boat ramps", href: "https://www.noosa.qld.gov.au/Community/Boating/Boat-ramps" },
+        { label: "Noosa Council — Parks and Facilities", href: "https://www.noosa.qld.gov.au/Services-and-Facilities/Parks-and-Facilities" },
         { label: "BOM — Capricornia–Hervey Bay", href: "https://www.bom.gov.au/qld/forecasts/coastal.shtml" },
         { label: "Transport and Main Roads — recreational boating", href: "https://www.tmr.qld.gov.au/Maritime/Recreational-boating" },
       ]}

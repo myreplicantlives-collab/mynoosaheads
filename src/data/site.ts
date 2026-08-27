@@ -70,7 +70,7 @@ export const CATEGORIES = [
       "The Noosa bar opens on an outgoing tide with a south-east wind under 15 km/h. We pull the marine forecast from the Bureau of Meteorology's Capricornia–Hervey Bay district and Open-Meteo's free marine API, so the tiles on this page update themselves every 30 minutes without a human pushing them.",
     primarySources: [
       { label: "BOM Capricornia–Hervey Bay", href: "https://www.bom.gov.au/qld/forecasts/coastal.shtml" },
-      { label: "Open-Meteo Marine API", href: "https://open-meteo.com/en/docs/marine-api" },
+      { label: "Open-Meteo Marine Weather API", href: "https://open-meteo.com/en/docs/marine-weather-api" },
       { label: "BOM Tewantin tide", href: "https://www.bom.gov.au/australia/tides/#!/qld-tewantin" },
     ],
   },
@@ -83,8 +83,8 @@ export const CATEGORIES = [
     longDescription:
       "Noosa National Park covers about 4,000 hectares between Noosa Heads and Peregian Beach. The park is managed by the Queensland Parks and Wildlife Service. We link directly to QPWS alerts and conditions pages so you can check before you drive.",
     primarySources: [
-      { label: "QPWS — Noosa National Park", href: "https://www.qld.gov.au/Recreation/Activities/Nature/NationalParks/NoosaNationalPark" },
-      { label: "QPWS park alerts", href: "https://www.qld.gov.au/environment/parks/alerts" },
+      { label: "QPWS — Noosa National Park", href: "https://parks.qld.gov.au/find-a-park/national-parks/noosa-national-park" },
+      { label: "QPWS park alerts", href: "https://parks.qld.gov.au/park-alerts" },
     ],
   },
   {
@@ -97,8 +97,8 @@ export const CATEGORIES = [
       "We don't take inventory. Each booking option links out to Booking.com, Stayz, Expedia, or Airbnb with our affiliate tag. Per ACCC Schedule 2, every monetised link is labelled before you click, and the full disclosure lives at /how-we-make-money.",
     primarySources: [
       { label: "Booking.com affiliate disclosure", href: "https://www.booking.com/affiliate-program/v2/index.html" },
-      { label: "Stayz affiliate program", href: "https://www.stayz.com.au/" },
-      { label: "Airbnb associates program", href: "https://www.airbnb.com.au/associates" },
+      { label: "Stayz affiliate program", href: "https://www.stayz.com.au/affiliates" },
+      { label: "Airbnb affiliate program", href: "https://news.airbnb.com/en-us/airbnb-affiliate-program/" },
       { label: "Expedia Partner Solutions", href: "https://www.expediapartnercentral.com/" },
     ],
   },
@@ -112,7 +112,7 @@ export const CATEGORIES = [
       "Categories are organised around the things locals actually do, not what the visitor brochure leads with. Hastings Street, the Noosa River, the hinterland villages (Pomona, Cooran, Kin Kin), and the surf beaches — each with its own weather and tide cues.",
     primarySources: [
       { label: "Tourism Noosa (industry body)", href: "https://www.visitnoosa.com.au/" },
-      { label: "Noosa Council — things to do", href: "https://www.noosa.qld.gov.au/Community/Things-to-do" },
+      { label: "Noosa Council — About Noosa", href: "https://www.noosa.qld.gov.au/Community/About-Noosa" },
     ],
   },
   {
@@ -138,7 +138,7 @@ export const CATEGORIES = [
       "Crossing the Noosa River bar is a forecast-driven decision. We link Marine Safety Queensland's bar-crossing bulletin, Noosa Council's ramp map, and the hire operators that operate from the Noosaville and Tewantin precincts. Hire prices are operator-set; check the live page before booking.",
     primarySources: [
       { label: "MSQ bar crossings", href: "https://www.msq.qld.gov.au/Safety/Bar-crossings-and-coastal-conditions" },
-      { label: "Noosa Council — boat ramps", href: "https://www.noosa.qld.gov.au/Community/Boating/Boat-ramps" },
+      { label: "Noosa Council — Parks and Facilities", href: "https://www.noosa.qld.gov.au/Services-and-Facilities/Parks-and-Facilities" },
     ],
   },
   {

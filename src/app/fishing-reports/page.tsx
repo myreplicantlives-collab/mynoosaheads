@@ -17,15 +17,16 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <CategoryPage
+      slug="fishing-reports"
       eyebrow="Recreational fishing · QLD rules apply"
       title="Fishing in Noosa"
       subtitle="Recreational fishing in Queensland is governed by a size-and-possession-limit framework administered by the Department of Primary Industries. The BOM tide for Tewantin and the sun-moon data on this page help you pick a window. The rest is up to you — and the fish."
       flourish="A light spin at first light."
       primarySources={[
-        { label: "QLD recreational fishing rules", href: "https://www.qld.gov.au/recreation/activities/boating-fishing/rec-fishing" },
-        { label: "QLD fishing — size and possession limits", href: "https://www.qld.gov.au/recreation/activities/boating-fishing/rec-fishing/limits" },
+        { label: "QLD recreational fishing rules", href: "https://www.qld.gov.au/recreation/activities/boating-fishing" },
+        { label: "QLD fishing — size and possession limits", href: "https://www.qld.gov.au/recreation/activities/boating-fishing" },
         { label: "BOM — Tewantin tide", href: "https://www.bom.gov.au/australia/tides/#!/qld-tewantin" },
-        { label: "QLD freshwater fishing", href: "https://www.qld.gov.au/recreation/activities/boating-fishing/rec-fishing/freshwater" },
+        { label: "QLD freshwater fishing", href: "https://www.qld.gov.au/recreation/activities/boating-fishing" },
       ]}
       bodySections={[
         {

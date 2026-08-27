@@ -64,7 +64,7 @@ export default function TermsPage() {
             </a>
             . For park closures, defer to{" "}
             <a
-              href="https://www.qld.gov.au/environment/parks/alerts"
+              href="https://parks.qld.gov.au/park-alerts"
               className="link text-ocean-700"
               rel="noopener noreferrer"
               target="_blank"

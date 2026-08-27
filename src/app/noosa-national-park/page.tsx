@@ -17,15 +17,16 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <CategoryPage
+      slug="noosa-national-park"
       eyebrow="Managed by QPWS · alerts checked before every visit"
       title="Noosa National Park"
       subtitle="About 4,000 hectares of wallum heath, eucalypt forest, and rocky headland between Noosa Heads and Peregian Beach. The coastal walk is the headline, but the inland tracks are quieter and just as good."
       flourish="Koalas sleep in the tallowwoods. Walk softly."
       primarySources={[
-        { label: "QPWS — Noosa National Park", href: "https://www.qld.gov.au/Recreation/Activities/Nature/NationalParks/NoosaNationalPark" },
-        { label: "QPWS park alerts (statewide)", href: "https://www.qld.gov.au/environment/parks/alerts" },
-        { label: "QPWS Day-Use Areas — Noosa section", href: "https://www.qld.gov.au/Recreation/Activities/Nature/NationalParks/NoosaNationalPark/Day-use-areas" },
-        { label: "QLD wildlife — koala conservation", href: "https://www.qld.gov.au/environment/plants-animals/conservation/koalas" },
+        { label: "QPWS — Noosa National Park", href: "https://parks.qld.gov.au/find-a-park/national-parks/noosa-national-park" },
+        { label: "QPWS park alerts (statewide)", href: "https://parks.qld.gov.au/park-alerts" },
+        { label: "QPWS Day-Use Areas — Noosa section", href: "https://parks.qld.gov.au/find-a-park/national-parks/noosa-national-park/day-use-areas" },
+        { label: "QLD wildlife — koala conservation", href: "https://parks.qld.gov.au/koala" },
       ]}
       bodySections={[
         {
@@ -71,7 +72,7 @@ export default function Page() {
             so pack out what you bring in. Dogs are not permitted anywhere in
             the park, on-lead or off. See the{" "}
             <a
-              href="https://www.qld.gov.au/Recreation/Activities/Nature/NationalParks/NoosaNationalPark"
+              href="https://parks.qld.gov.au/find-a-park/national-parks/noosa-national-park"
               className="link text-ocean-700"
               rel="noopener noreferrer"
               target="_blank"

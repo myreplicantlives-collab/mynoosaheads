@@ -161,36 +161,39 @@ const config: Config = {
         mono: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       fontSize: {
-        // Type scale — editorial register, fluid clamp between mobile/desktop.
-        // Names follow Tailwind 3 convention but reference CSS variables so
-        // they can be re-themed globally.
+        // Type scale — Sprint 1.5 (MSN-2958, Albert brief).
+        // Chair feedback (2026-08-27 14:46 BST): font too large.
+        // Composite headline drop ~18 %. Display pieces top out at 40 px
+        // (down from 48 px). Body anchored at 16 px (down from 18 px).
+        // The fluid clamps live in CSS custom properties (globals.css)
+        // — Tailwind utilities just bind to them.
         "display-xl": [
           "var(--text-display-xl)",
-          { lineHeight: "1.02", letterSpacing: "-0.025em", fontWeight: "600" },
+          { lineHeight: "1.18", letterSpacing: "-0.02em", fontWeight: "600" },
         ],
         "display-lg": [
           "var(--text-display-lg)",
-          { lineHeight: "1.05", letterSpacing: "-0.022em", fontWeight: "600" },
+          { lineHeight: "1.18", letterSpacing: "-0.02em", fontWeight: "600" },
         ],
         "display-md": [
           "var(--text-display-md)",
-          { lineHeight: "1.1", letterSpacing: "-0.018em", fontWeight: "600" },
+          { lineHeight: "1.18", letterSpacing: "-0.02em", fontWeight: "600" },
         ],
         "display-sm": [
           "var(--text-display-sm)",
-          { lineHeight: "1.15", letterSpacing: "-0.015em", fontWeight: "500" },
+          { lineHeight: "1.28", letterSpacing: "-0.015em", fontWeight: "500" },
         ],
         "headline-lg": [
           "var(--text-headline-lg)",
-          { lineHeight: "1.15", letterSpacing: "-0.012em", fontWeight: "500" },
+          { lineHeight: "1.28", letterSpacing: "-0.012em", fontWeight: "500" },
         ],
         "headline-md": [
           "var(--text-headline-md)",
-          { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "500" },
+          { lineHeight: "1.28", letterSpacing: "-0.01em", fontWeight: "500" },
         ],
         "headline-sm": [
           "var(--text-headline-sm)",
-          { lineHeight: "1.25", letterSpacing: "-0.008em", fontWeight: "500" },
+          { lineHeight: "1.3", letterSpacing: "-0.008em", fontWeight: "500" },
         ],
         "body-lg": [
           "var(--text-body-lg)",
@@ -210,7 +213,9 @@ const config: Config = {
         ],
         eyebrow: [
           "var(--text-eyebrow)",
-          { lineHeight: "1.3", letterSpacing: "0.16em", fontWeight: "600" },
+          // Sprint 1.5: tighter tracking on uppercase labels (0.08em → 0.12em
+          // is in CSS, the Tailwind utility stays at the same base 12 px).
+          { lineHeight: "1.3", letterSpacing: "0.12em", fontWeight: "600" },
         ],
         code: [
           "var(--text-code)",

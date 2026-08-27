@@ -15,6 +15,12 @@ export type { CardProps, CardVariant, CardBodyProps, CardHeaderProps, CardFooter
 export { Hero } from "./Hero";
 export type { HeroProps } from "./Hero";
 
+export { HeroPhoto } from "./HeroPhoto";
+export type { HeroPhotoProps } from "./HeroPhoto";
+
+export { CaptionedPhoto } from "./CaptionedPhoto";
+export type { CaptionedPhotoProps } from "./CaptionedPhoto";
+
 export { LiveDataWidget, LiveDataGrid } from "./LiveDataWidget";
 export type { LiveDataWidgetProps, LiveDataKind, LiveDataState } from "./LiveDataWidget";
 

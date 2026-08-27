@@ -2,6 +2,7 @@ import Link from "next/link";
 import { fetchLiveBundle } from "@/lib/live-data";
 import {
   Hero,
+  HeroPhoto,
   LiveDataWidget,
   LiveDataGrid,
   Button,
@@ -11,6 +12,7 @@ import {
   Icons,
 } from "@/components/ui";
 import { CATEGORIES, SITE } from "@/data/site";
+import { HOMEPAGE_HERO } from "@/data/photos";
 
 /**
  * Homepage — Sprint 1.3 real copy.
@@ -31,6 +33,16 @@ export default async function HomePage() {
 
   return (
     <div className="bg-paper-50">
+      {/* Sprint 1.5 (MSN-2958): full-bleed homepage hero photo.
+       * Per Albert's visual_audit.md §1, the homepage hero is ~60vh
+       * full-bleed with the headline overlaid in the lower-left.
+       */}
+      <HeroPhoto
+        src={HOMEPAGE_HERO.url}
+        alt={HOMEPAGE_HERO.caption}
+        credit={`Photo: ${HOMEPAGE_HERO.author} / Wikimedia Commons · ${HOMEPAGE_HERO.licence}`}
+        caption={HOMEPAGE_HERO.caption}
+      />
       <Hero
         eyebrow={`${SITE.region} · independent editorial`}
         title="By the headland, by the bar."

@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Hero,
+  HeroPhoto,
   Card,
   CardBody,
   CardHeader,
   Button,
   Icons,
 } from "@/components/ui";
+import { CATEGORY_PHOTOS } from "@/data/photos";
 
 export const metadata: Metadata = {
   title: "Webcams",
@@ -28,7 +31,7 @@ const CAMS = [
     operator: "Sunshine Coast Council",
     description:
       "The flagship Noosa Heads beach cam. Look north-west to see the surf club and the flags. Useful for the morning check before the walk down Hastings Street.",
-    href: "https://www.sunshinecoast.qld.gov.au/Environment/Rivers-and-coast/Coastal-cameras",
+    href: "https://www.sunshinecoast.qld.gov.au/Environment/Rivers-and-coast",
     embed: false,
   },
   {
@@ -36,7 +39,7 @@ const CAMS = [
     operator: "Sunshine Coast Council",
     description:
       "About 25 minutes south of Noosa Heads. Useful when the south-east is running and you want a longer-period look at the swell.",
-    href: "https://www.sunshinecoast.qld.gov.au/Environment/Rivers-and-coast/Coastal-cameras",
+    href: "https://www.sunshinecoast.qld.gov.au/Environment/Rivers-and-coast",
     embed: false,
   },
   {
@@ -44,7 +47,7 @@ const CAMS = [
     operator: "Sunshine Coast Council",
     description:
       "Mooloolaba is 40 minutes north. A different angle on the same marine district — useful if you’re deciding between the two ends of the coast.",
-    href: "https://www.sunshinecoast.qld.gov.au/Environment/Rivers-and-coast/Coastal-cameras",
+    href: "https://www.sunshinecoast.qld.gov.au/Environment/Rivers-and-coast",
     embed: false,
   },
   {
@@ -74,14 +77,56 @@ const CAMS = [
 ];
 
 export default function WebcamsPage() {
+  const photos = CATEGORY_PHOTOS["webcams"];
+  const heroCredit = photos
+    ? `Photo: ${photos.hero.author} / Wikimedia Commons · ${photos.hero.licence}`
+    : "";
+
   return (
     <div className="bg-paper-50">
+      {/* Sprint 1.5: full-bleed hero photo (drone view) */}
+      {photos?.hero ? (
+        <HeroPhoto
+          src={photos.hero.url}
+          alt={photos.hero.caption}
+          credit={heroCredit}
+          caption={photos.hero.caption}
+        />
+      ) : null}
       <Hero
         eyebrow="Public feeds · we link, we don’t scrape"
         title="Webcams"
         subtitle="A short, honest list of public coastal webcams around Noosa. Where the operator allows embedding with attribution, we link; where the feed requires a link-out, we link."
         flourish="Check the cam before you check the car keys."
       />
+
+      {/* Sprint 1.5: inline images after the gallery */}
+      {photos?.inline?.length ? (
+        <section className="container-page pb-14 md:pb-20" aria-label="Webcam subject photos">
+          <div className="grid gap-8 md:grid-cols-2">
+            {photos.inline.slice(0, 4).map((p, i) => (
+              <figure key={i} className="relative w-full overflow-hidden rounded-2xl border border-paper-200 bg-paper-100">
+                <Image
+                  src={p.url}
+                  alt={p.caption}
+                  width={1280}
+                  height={720}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-auto"
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  unoptimized
+                />
+                <figcaption className="px-4 py-3 text-caption text-ink-700 bg-paper-100 border-t border-paper-200">
+                  <span className="font-medium text-ink-800">{p.caption}</span>
+                  <br />
+                  <span className="text-ink-600">Photo: {p.author} / Wikimedia Commons · {p.licence}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section
         className="container-page py-14 md:py-20"

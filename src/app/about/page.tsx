@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Hero, Card, CardBody, CardHeader } from "@/components/ui";
+import { ABOUT_BRAND_IMAGE } from "@/data/photos";
 
 export const metadata: Metadata = {
   title: "About",
@@ -18,6 +19,52 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="bg-paper-50">
+      {/* Sprint 1.5 (MSN-2958) — brand-statement masthead.
+       * Tim's north-star quote as a `<Section>` at the top of /about,
+       * styled as Fraunces italic display with a coral accent.
+       */}
+      <section
+        className="border-b border-paper-200 bg-paper-100"
+        aria-labelledby="brand-statement-h"
+      >
+        <div className="container-page py-14 md:py-20">
+          <p
+            id="brand-statement-h"
+            className="eyebrow text-coral-700"
+          >
+            Brand statement
+          </p>
+          <blockquote className="mt-4 max-w-4xl text-balance text-eucalyptus-700 leading-tight">
+            <p className="font-display italic text-display-lg md:text-display-xl">
+              By the headland, by the bar.
+            </p>
+            <p className="mt-5 font-display not-italic text-display-sm md:text-display-md text-ink-800 leading-snug">
+              MyNoosaHeads is a slow-guide field manual for Noosa Heads —
+              surf and weather, the national park, accommodation, and the
+              local rules that keep everyone on the right side of a
+              south-east swell.
+            </p>
+            <p className="mt-3 font-display not-italic text-display-sm md:text-display-md text-ink-800 leading-snug">
+              Built slowly, sourced always, never fabricated
+              <span
+                className="ml-2 inline-block h-2.5 w-2.5 rounded-full bg-coral-700 align-middle"
+                aria-hidden="true"
+              />
+            </p>
+          </blockquote>
+          <p className="mt-6 font-accent text-accent-md text-coral-700">
+            — Editorial, MyNoosaHeads
+          </p>
+          <p className="mt-4 text-caption text-ink-600">
+            Photo above:{" "}
+            <span className="font-medium text-ink-700">
+              {ABOUT_BRAND_IMAGE.caption}
+            </span>{" "}
+            — Photo: {ABOUT_BRAND_IMAGE.author} / Wikimedia Commons ·{" "}
+            {ABOUT_BRAND_IMAGE.licence}
+          </p>
+        </div>
+      </section>
       <Hero
         eyebrow="About"
         title="MyNoosaHeads"
