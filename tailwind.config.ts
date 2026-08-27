@@ -120,6 +120,18 @@ const config: Config = {
         // ────────────────────────────────────────────────────────────
 
         // ────────────────────────────────────────────────────────────
+        // MSN-2959 / TSK-2959-FIX-3: single amber accent.
+        // Per Albert's spec §3.3, amber appears ONCE only — on the
+        // brand-statement dot on /about. Tailwind exposes 500 (the
+        // canonical token) and a 50/100 wash for any future use.
+        // ────────────────────────────────────────────────────────────
+        amber: {
+          50: "var(--accent-amber)",
+          100: "var(--accent-amber)",
+          500: "var(--accent-amber)",
+        },
+
+        // ────────────────────────────────────────────────────────────
         // Backwards-compat aliases (Sprint 1.1 → Sprint 1.2 migration)
         // bg, surface, text, text-muted, ocean, rainforest keep working
         // so we don't break existing utilities during the upgrade.

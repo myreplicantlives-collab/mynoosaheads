@@ -3,7 +3,7 @@ import { Fraunces, Inter, Caveat } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import { SITE } from "@/data/site";
+import { SITE, FOOTER_DISCLOSURE } from "@/data/site";
 
 /**
  * Root layout — Sprint 1.3.
@@ -107,7 +107,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main" tabIndex={-1}>
           {children}
         </main>
-        <SiteFooter />
+        {/*
+         * MSN-2959 / TSK-2959-FIX-3: explicitly wire FOOTER_DISCLOSURE
+         * into <SiteFooter /> at the root-layout layer. This is the
+         * single source of truth — any edit to `src/data/site.ts`
+         * FOOTER_DISCLOSURE re-flows through here to the rendered
+         * footer on every page. Prior to r2, hardcoded DEFAULT_COLUMNS
+         * inside Footer.tsx won at runtime; this fix removes that bug.
+         */}
+        <SiteFooter
+          columns={FOOTER_DISCLOSURE.columns.map((col) => ({
+            heading: col.heading,
+            links: [...col.links],
+          }))}
+          region={FOOTER_DISCLOSURE.region}
+          copyrightYear={FOOTER_DISCLOSURE.copyrightYear}
+          complianceBand={FOOTER_DISCLOSURE.complianceBand}
+        />
       </body>
     </html>
   );

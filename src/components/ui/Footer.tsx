@@ -10,6 +10,16 @@
  *
  * Sprint 1.2 ships the layout + ACCC pill placeholder. Sprint 1.3
  * (TSK-2957-03) wires real outbound links.
+ *
+ * MSN-2959 / TSK-2959-FIX-3:
+ *   - The Legal column now carries the three mandatory AU-statute
+ *     pills (Privacy Act 1988, ACCC Sch 2, Spam Act 2003).
+ *   - The "Affiliate disclosure" link points at #affiliate-disclosure
+ *     (the in-page anchor on the compliance band below).
+ *   - The compliance band is rendered as a full-width body paragraph
+ *     above the column grid (not as a flourish next to the logo) so it
+ *     carries the in-page anchor and is the canonical ACCC disclosure
+ *     location per Albert's spec §4.6.
  */
 
 import Link from "next/link";
@@ -25,8 +35,14 @@ export type FooterProps = {
   columns?: FooterColumn[];
   /** Override the legal-region text. Defaults to "AU · en-AU". */
   region?: string;
-  /** Bottom-left flourish (e.g. "Built on the Sunshine Coast"). */
-  flourish?: ReactNode;
+  /**
+   * Compliance band paragraph (ACCC-aware monetisation summary).
+   * MSN-2959: replaces the deleted /how-we-make-money route; the
+   * canonical disclosure location is now the footer on every page.
+   * The paragraph carries `id="affiliate-disclosure"` so the Legal
+   * column's "Affiliate disclosure" link scrolls here.
+   */
+  complianceBand?: ReactNode;
   copyrightYear?: number;
 };
 
@@ -66,7 +82,8 @@ const DEFAULT_COLUMNS: FooterColumn[] = [
     heading: "Legal",
     links: [
       { label: "Privacy", href: "/privacy", disclosure: "Privacy Act 1988 (Cth)" },
-      { label: "Terms", href: "/terms", disclosure: "ACCC" },
+      { label: "Affiliate disclosure", href: "#affiliate-disclosure", disclosure: "ACCC Sch 2" },
+      { label: "Spam Act statement", href: "/privacy#spam-act-2003", disclosure: "Spam Act 2003" },
     ],
   },
   {
@@ -83,13 +100,27 @@ const DEFAULT_COLUMNS: FooterColumn[] = [
 export function Footer({
   columns = DEFAULT_COLUMNS,
   region = "AU · en-AU · Queensland, Australia",
-  flourish,
+  complianceBand,
   copyrightYear,
 }: FooterProps) {
   const year = copyrightYear ?? new Date().getFullYear();
   return (
     <footer className="mt-16 border-t border-paper-300 bg-paper-100">
       <div className="container-page py-12 md:py-16">
+        {/* MSN-2959 / TSK-2959-FIX-3: compliance band — the canonical
+         * ACCC disclosure location, replacing the deleted
+         * /how-we-make-money dedicated route. Renders above the column
+         * grid so it carries the in-page anchor and is visible on
+         * every page. Per Albert's spec §4.6. */}
+        {complianceBand ? (
+          <div
+            id="affiliate-disclosure"
+            className="mb-10 max-w-3xl border-l-2 border-ocean-300 pl-4 text-caption text-ink-700 leading-relaxed"
+          >
+            {complianceBand}
+          </div>
+        ) : null}
+
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8">
           <div className="col-span-2 sm:col-span-3 lg:col-span-1">
             <Logo mark="2" size="md" />
@@ -97,9 +128,6 @@ export function Footer({
               An honest, sourced guide to Noosa Heads. Built slowly, on the
               Sunshine Coast.
             </p>
-            {flourish ? (
-              <p className="mt-3 accent-flourish text-accent-md">{flourish}</p>
-            ) : null}
           </div>
           {columns.map((col) => (
             <nav
