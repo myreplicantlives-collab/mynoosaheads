@@ -89,7 +89,7 @@ export default function WebcamsPage() {
       >
         <p className="eyebrow">Six public feeds</p>
         <h2 id="cams-h" className="mt-1 font-display text-display-md text-ink-900 text-balance">
-          Cam grid (placeholder for Sprint 2 embed)
+          Live webcam gallery
         </h2>
         <p className="mt-3 lead max-w-3xl">
           Sprint 1.3 ships the editorial shell; Sprint 2 will wire live
@@ -103,12 +103,12 @@ export default function WebcamsPage() {
             <Card key={cam.name} as="article">
               <CardHeader eyebrow={cam.operator} title={cam.name} />
               <CardBody>
-                {/* Placeholder image — Sprint 2 will replace with embed.
-                    Uses paper-100 to make the empty state honest. */}
+                {/* Empty-state tile — live embed arrives when the operator
+                    permits it. Uses paper-100 to make the empty state honest. */}
                 <div
                   className="aspect-video w-full rounded-lg bg-paper-200 border border-paper-300 flex items-center justify-center text-ink-500"
                   role="img"
-                  aria-label={`${cam.name} — placeholder; embed arrives in Sprint 2`}
+                  aria-label={`${cam.name} — live embed coming soon`}
                 >
                   <Icons.Camera size={32} />
                 </div>

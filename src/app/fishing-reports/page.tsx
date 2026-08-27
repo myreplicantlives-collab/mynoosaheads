@@ -62,12 +62,12 @@ export default function Page() {
         },
       ]}
       callout={{
-        title: "Sprint 1.3 placeholder",
+        title: "Why we don’t run a live catch feed",
         body: (
           <>
             This page carries the rules, the tides, and the sources. A live
             weekly species-and-bite-rate feed would be useful; it is not free
-            and it is out of scope for Sprint 1.3. We will revisit when a
+            and it is not in our current scope. We will revisit when a
             public data source appears.
           </>
         ),

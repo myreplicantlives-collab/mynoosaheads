@@ -133,6 +133,18 @@ export default function HowWeMakeMoneyPage() {
             to your booking details. The destination operator’s own
             privacy and cookie policy applies once you’re on their site.
           </p>
+          <h3>Spam Act 2003</h3>
+          <p>
+            MyNoosaHeads does not send commercial electronic messages.
+            There is no newsletter, no marketing SMS, no push
+            notifications, and no opt-in form. Because we do not solicit
+            contact with you, the Spam Act 2003 (Cth) does not apply to
+            the publication. The full statement lives at{" "}
+            <Link href="/privacy#spam-act-2003" className="link text-ocean-700">
+              Spam Act 2003 in our privacy policy
+            </Link>
+            .
+          </p>
         </div>
 
         <aside className="callout mt-10 max-w-3xl">

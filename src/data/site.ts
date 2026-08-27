@@ -217,6 +217,7 @@ export const FOOTER_DISCLOSURE = {
         { label: "Privacy", href: "/privacy", disclosure: "Privacy Act 1988 (Cth)" },
         { label: "Terms", href: "/terms", disclosure: "ACCC" },
         { label: "Affiliate disclosure", href: "/how-we-make-money", disclosure: "ACCC Sch 2" },
+        { label: "Spam Act statement", href: "/privacy#spam-act-2003", disclosure: "Spam Act 2003" },
       ],
     },
     {

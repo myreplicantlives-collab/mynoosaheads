@@ -90,7 +90,7 @@ export default function PrivacyPage() {
             (Booking.com, Stayz, Expedia, Airbnb).
           </p>
 
-          <h2>Spam Act 2003</h2>
+          <h2 id="spam-act-2003">Spam Act 2003</h2>
           <p>
             We do not send commercial electronic messages. There is no
             newsletter, no marketing SMS, no push notifications. The Spam
