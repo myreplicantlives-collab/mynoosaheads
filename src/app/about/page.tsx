@@ -55,8 +55,15 @@ export default function AboutPage() {
             </p>
             <p className="mt-3 font-display not-italic text-display-sm md:text-display-md text-ink-800 leading-snug">
               Built slowly, sourced always, never fabricated
+              {/*
+                * MSN-2959 / TSK-2959-FIX-3: brand-statement full-stop
+                * dot — the single place --accent-amber (#B8742A) appears
+                * on the site. Per Albert's spec §3.3, amber is the ONE
+                * warm hue; it punctuates the brand statement, not the
+                * rest of the palette.
+                */}
               <span
-                className="ml-2 inline-block h-2.5 w-2.5 rounded-full bg-ocean-700 align-middle"
+                className="ml-2 inline-block h-2.5 w-2.5 rounded-full bg-amber-500 align-middle"
                 aria-hidden="true"
               />
             </p>
@@ -114,7 +121,7 @@ export default function AboutPage() {
                   Noosa Council), an industry body (Tourism Noosa, Visit
                   Sunshine Coast), or a third-sector service (Beachsafe,
                   SLSQ). Affiliate links are marked{" "}
-                  <span className="chip-ocean">Sponsored · ACCC Sch 2</span>{" "}
+                  <span className="chip-ocean">Affiliate</span>{" "}
                   before you click, and the full statement lives at{" "}
                   the footer (full disclosure).
                 </p>

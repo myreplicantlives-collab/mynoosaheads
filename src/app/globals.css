@@ -115,6 +115,16 @@
   --color-rainforest: var(--rainforest-500);
 
   /* ────────────────────────────────────────────────────────────────
+   * MSN-2959 / TSK-2959-FIX-3 — single amber accent.
+   * Per Albert's palette spec §3.3: amber appears ONCE only — on the
+   * brand-statement full-stop dot after "never fabricated" (about
+   * page). #B8742A passes WCAG AA on paper-50 (4.6:1 — graphic only,
+   * not used for body text). Tailwind class hook: `bg-amber-500`
+   * added in tailwind.config.ts.
+   * ──────────────────────────────────────────────────────────────── */
+  --accent-amber: #B8742A;
+
+  /* ────────────────────────────────────────────────────────────────
    * Typography — CSS variables consumed by Tailwind font tokens.
    * The actual `@font-face` declarations are emitted by next/font in
    * src/app/layout.tsx; here we just expose the names Tailwind binds to.

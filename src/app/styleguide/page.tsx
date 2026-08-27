@@ -254,7 +254,7 @@ export default function StyleGuidePage() {
             <CardHeader
               eyebrow="Where to stay"
               title="A pocket guide to Noosa's accommodation"
-              disclosure="Sponsored"
+              disclosure="Affiliate"
             />
             <CardBody>
               <p className="text-body-sm text-ink-700">

@@ -1,16 +1,22 @@
 /**
  * CategoryPage — shared layout for the 8 functional-area landing
  * pages (Sprint 1.3). Each route renders the same chrome — Hero,
- * LiveDataGrid, editorial body, sources footer — but injects unique
- * copy, sources, and disclosure pills.
+ * editorial body, sources footer — but injects unique copy, sources,
+ * and disclosure pills.
  *
  * Sprint 1.5 (MSN-2958 / TSK-2958-02): now also renders the category
  * hero photo (full-bleed, ~60vh) and inline images distributed
  * through the body. Both come from `src/data/photos.ts` which maps
  * Albert's verified Wikimedia inventory to each category slug.
  *
- * This component is server-rendered; the live-data fetch is invoked
- * once per page request.
+ * MSN-2959 / TSK-2959-FIX-3: the live-data strip section was removed
+ * site-wide. The coast-time live tiles belong on /surf-and-weather
+ * only; the category pages describe their category with editorial
+ * body + sources. The homepage keeps its own distinct live-data strip
+ * ("What the coast is doing right now"); /surf-and-weather is the
+ * canonical live-data destination.
+ *
+ * Server-rendered.
  */
 
 import type { ReactNode } from "react";
@@ -19,15 +25,12 @@ import {
   Hero,
   HeroPhoto,
   CaptionedPhoto,
-  LiveDataWidget,
-  LiveDataGrid,
   Card,
   CardBody,
   CardHeader,
   Button,
   Icons,
 } from "@/components/ui";
-import { fetchLiveBundle } from "@/lib/live-data";
 import { CATEGORY_PHOTOS, type WikimediaPhoto } from "@/data/photos";
 
 export type CategoryPageProps = {
@@ -70,7 +73,6 @@ export async function CategoryPage({
   callout,
   relatedLinks,
 }: CategoryPageProps) {
-  const live = await fetchLiveBundle();
   const photos = slug ? CATEGORY_PHOTOS[slug] : undefined;
 
   const creditLine = (p: WikimediaPhoto) => `Photo: ${p.author} / Wikimedia Commons · ${p.licence}`;
@@ -94,101 +96,15 @@ export async function CategoryPage({
         flourish={flourish}
       />
 
-      {/* ─── Live data strip (shared across all categories) ───
-       * MSN-2959: the coast-time eyebrow label was removed per chairman
-       * directive. Section retitled "Live conditions" to match the
-       * homepage live-strip copy.
-       */}
-      <section
-        className="border-t border-paper-200 bg-paper-100"
-        aria-labelledby="cat-live-data-heading"
-      >
-        <div className="container-page py-12 md:py-14">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6">
-            <div>
-              <p className="eyebrow">Live conditions</p>
-              <h2
-                id="cat-live-data-heading"
-                className="mt-1 font-display text-display-sm text-ink-900"
-              >
-                Live tiles for this page
-              </h2>
-            </div>
-            <p className="text-caption text-ink-600">
-              as of{" "}
-              <time dateTime={live.asOf}>
-                {new Date(live.asOf).toLocaleString("en-AU", {
-                  timeZone: "Australia/Brisbane",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  day: "2-digit",
-                  month: "short",
-                })}
-              </time>{" "}
-              AEST
-            </p>
-          </div>
-          <LiveDataGrid>
-            <LiveDataWidget
-              kind="surf"
-              title="Surf"
-              value={live.surf.value}
-              secondary={live.surf.secondary}
-              source={live.surf.source}
-              asOf={live.asOf}
-              state={live.surf.state}
-            />
-            <LiveDataWidget
-              kind="wind"
-              title="Wind"
-              value={live.wind.value}
-              secondary={live.wind.secondary}
-              source={live.wind.source}
-              asOf={live.asOf}
-              state={live.wind.state}
-            />
-            <LiveDataWidget
-              kind="tide"
-              title="Tide"
-              value={live.tide.value}
-              secondary={live.tide.secondary}
-              source={live.tide.source}
-              asOf={live.asOf}
-              state={live.tide.state}
-            />
-            <LiveDataWidget
-              kind="uv"
-              title="UV"
-              value={live.uv.value}
-              secondary={live.uv.secondary}
-              source={live.uv.source}
-              asOf={live.asOf}
-              state={live.uv.state}
-            />
-            <LiveDataWidget
-              kind="sun-moon"
-              title="Sun &amp; moon"
-              value={live.sunMoon.value}
-              secondary={live.sunMoon.secondary}
-              source={live.sunMoon.source}
-              asOf={live.asOf}
-              state={live.sunMoon.state}
-            />
-            <LiveDataWidget
-              kind="alerts"
-              title="Alerts"
-              value="See QPWS"
-              secondary="Track closures and wildlife notices."
-              source="QPWS · QLD Traffic"
-              state="fresh"
-            />
-          </LiveDataGrid>
-          <p className="mt-4 text-caption text-ink-600">
-            {live.sourceNote} For authoritative conditions, cross-check the
-            BOM Capricornia–Hervey Bay forecast before any bar crossing.
-          </p>
-        </div>
-      </section>
+      {/* MSN-2959 / TSK-2959-FIX-3: live-data strip section removed site-wide.
+       * The coast-time live tiles (surf, wind, tide, UV, sun-moon, alerts)
+       * belong on the dedicated /surf-and-weather page, not duplicated
+       * across 6+ category pages. Chairman directive 2026-08-27 20:05 BST.
+       * Per Albert's spec §4.1: delete the entire section; do not just
+       * relabel the eyebrow. The /surf-and-weather page remains the
+       * canonical live-data destination; the homepage keeps its own
+       * live-data strip ("What the coast is doing right now") which is
+       * a distinct surface. */}
 
       {/* ─── Editorial body ─── */}
       <section

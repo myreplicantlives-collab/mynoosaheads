@@ -249,7 +249,7 @@ export default async function HomePage() {
                 don’t collect email addresses, and we don’t operate a login.
                 Where a page contains a monetised link — typically
                 accommodation bookings — we mark it{" "}
-                <span className="chip-ocean">Sponsored · ACCC Sch 2</span>{" "}
+                <span className="chip-ocean">Affiliate</span>{" "}
                 before you click. The full statement, including which
                 affiliate programmes we participate in, sits in the
                 footer.

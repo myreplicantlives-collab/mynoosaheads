@@ -214,7 +214,8 @@ export const FOOTER_DISCLOSURE = {
       heading: "Legal",
       links: [
         { label: "Privacy", href: "/privacy", disclosure: "Privacy Act 1988 (Cth)" },
-        { label: "Terms", href: "/terms", disclosure: "ACCC" },
+        { label: "Affiliate disclosure", href: "#affiliate-disclosure", disclosure: "ACCC Sch 2" },
+        { label: "Spam Act statement", href: "/privacy#spam-act-2003", disclosure: "Spam Act 2003" },
       ],
     },
     {
@@ -228,12 +229,19 @@ export const FOOTER_DISCLOSURE = {
     },
   ],
   /**
-   * Compliance disclosure band that sits at the foot of every page.
-   * Plain English — no newsletter, no lead-gen, no analytics tracking
-   * beyond what the host provides.
+   * MSN-2959 / TSK-2959-FIX-3 — 97-word compliance band (replaces the
+   * deleted /how-we-make-money dedicated route). Rendered in the
+   * Footer on every page. Per Albert's spec §4.6: the new disclosure
+   * is more transparent than the old dedicated page because it shows
+   * on every page, not one route most visitors would never find.
+   *
+   * Carries the in-page anchor id="affiliate-disclosure" so the
+   * Footer's "Affiliate disclosure" link (#affiliate-disclosure)
+   * scrolls here. Statutory pills (Privacy Act 1988, ACCC Sch 2,
+   * Spam Act 2003) sit in the Legal column above.
    */
   complianceBand:
-    "MyNoosaHeads is an independent Australian publication. We do not run a newsletter, collect email addresses, or operate a login. We earn affiliate commission on some accommodation and booking links; every monetised link is labelled before you click. All editorial content is written by humans; all data tiles are sourced from BOM and Open-Meteo.",
+    "MyNoosaHeads is independent. We don’t run a newsletter, collect email addresses, or operate a login. Some links on this site are affiliate links — if you book or purchase through them, we may earn a small commission at no extra cost to you. We participate in the Booking.com, Stayz, Expedia, and Airbnb affiliate programmes; affiliate relationships do not influence our editorial copy. Full statement of which programmes and our editorial firewall: see the Affiliate disclosure item in the Legal column below, per the Competition and Consumer Act 2010 (Cth) Schedule 2.",
   region: "AU · en-AU · Queensland, Australia",
   copyrightYear: 2026,
 } as const;
@@ -242,9 +250,15 @@ export const FOOTER_DISCLOSURE = {
  * Affiliate programme disclosure — the canonical disclosure pill text
  * shown on any monetised link per ACCC Schedule 2 (Australian Consumer
  * Law). See the footer for the full statement.
+ *
+ * MSN-2959 / TSK-2959-FIX-3: pill text renamed from "Sponsored · ACCC
+ * Sch 2" to "Affiliate" per Albert's spec §4.5. The noun "Affiliate"
+ * is the more accurate legal term (paid sponsorship ≠ affiliate
+ * commission). The programme name and the statute are surfaced via
+ * the link element's `title` attribute on the AffiliateBadge.
  */
 export const ACCC_DISCLOSURE = {
-  pill: "Sponsored · ACCC Sch 2",
+  pill: "Affiliate",
   body:
     "Some links on this page are affiliate links. If you book or purchase through them, MyNoosaHeads may earn a small commission at no extra cost to you. Affiliate relationships do not influence the editorial content. See the footer for the full statement, per the Competition and Consumer Act 2010 (Cth) Schedule 2.",
 } as const;

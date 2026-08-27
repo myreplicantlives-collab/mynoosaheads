@@ -86,7 +86,7 @@ export default async function AccommodationPage() {
             We don’t run a booking engine and we don’t take inventory. The
             listings on this page link out to Booking.com, Stayz, Expedia, or
             Airbnb — with our affiliate tag, where we have one. Every monetised
-            link is marked <span className="chip-ocean">Sponsored · ACCC Sch 2</span>{" "}
+            link is marked <span className="chip-ocean">Affiliate</span>{" "}
             before you click, per the Competition and Consumer Act 2010 (Cth)
             Schedule 2. The full statement is in the footer.
           </>
