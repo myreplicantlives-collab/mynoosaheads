@@ -1,156 +1,263 @@
 import Link from "next/link";
-import { Button, Card, CardBody, CardHeader, Hero, LiveDataWidget, LiveDataGrid, Icons } from "@/components/ui";
-import { SPRINT } from "@/data/site";
+import { fetchLiveBundle } from "@/lib/live-data";
+import {
+  Hero,
+  LiveDataWidget,
+  LiveDataGrid,
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Icons,
+} from "@/components/ui";
+import { CATEGORIES, SITE } from "@/data/site";
 
-// Sprint 1.2 — homepage restyled on the new design system.
-// No content work in this sprint (that's TSK-2957-03). We showcase every
-// major component here so the design system is visibly live end-to-end.
-export default function HomePage() {
+/**
+ * Homepage — Sprint 1.3 real copy.
+ *
+ * Layout per Albert's brief:
+ *   1. Hero (headline, flourish, actions, live strip)
+ *   2. Live-data grid (5 tiles: surf, wind, tide, UV, sun-moon)
+ *   3. Eight functional-area entry cards
+ *   4. "How we make money" disclosure card (ACCC)
+ *   5. Footer compliance band (rendered by global Footer)
+ *
+ * The page is a React Server Component. Live data is fetched at request
+ * time with a 6 s budget; if the upstream APIs fail, the tiles render
+ * in their "unavailable" state.
+ */
+export default async function HomePage() {
+  const live = await fetchLiveBundle();
+
   return (
     <div className="bg-paper-50">
       <Hero
-        eyebrow={`${SPRINT.id} · Sprint 1.3 coming`}
-        title="My Noosa Heads — coming soon."
-        subtitle="An honest, sourced, current guide to Noosa Heads. Built slowly on the Sunshine Coast, with the locals first."
-        flourish="by the headland, by the bar"
+        eyebrow={`${SITE.region} · independent editorial`}
+        title="By the headland, by the bar."
+        subtitle={
+          <>
+            MyNoosaHeads is a slow-guide field manual for Noosa Heads — surf
+            and weather, the national park, accommodation, and the local
+            rules that keep everyone on the right side of a south-east
+            swell. Built slowly, sourced always, never fabricated.
+          </>
+        }
+        flourish="Plan your Noosa trip well."
         actions={
           <>
-            <Button leadingIcon={<Icons.Wave size={16} />} size="lg">
-              Today’s surf
+            <Button
+              href="/surf-and-weather"
+              leadingIcon={<Icons.Wave size={16} />}
+              size="lg"
+            >
+              Today’s surf &amp; weather
             </Button>
-            <Button variant="outline" size="lg" trailingIcon={<Icons.ChevronRight size={16} />}>
-              Design system
+            <Button
+              href="/noosa-national-park"
+              variant="outline"
+              size="lg"
+              trailingIcon={<Icons.ChevronRight size={16} />}
+            >
+              National Park alerts
             </Button>
           </>
         }
-        trailingSlot={
+      />
+
+      {/* ─── Live data strip ─── */}
+      <section
+        className="border-t border-paper-200 bg-paper-100"
+        aria-labelledby="live-data-heading"
+      >
+        <div className="container-page py-12 md:py-16">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6">
+            <div>
+              <p className="eyebrow">Live conditions</p>
+              <h2
+                id="live-data-heading"
+                className="mt-1 font-display text-display-md text-ink-900 text-balance"
+              >
+                What the coast is doing right now
+              </h2>
+              <p className="mt-2 text-body-sm text-ink-700 max-w-2xl">
+                Drawn from the Bureau of Meteorology’s Capricornia–Hervey
+                Bay marine district and Open-Meteo’s free marine API. Refresh
+                every 30 minutes; if a tile falls out, it goes{" "}
+                <span className="text-coral-700">Unavailable</span> in coral
+                rather than guessing.
+              </p>
+            </div>
+            <p className="text-caption text-ink-600">
+              Last refresh:{" "}
+              <time dateTime={live.asOf}>
+                {new Date(live.asOf).toLocaleString("en-AU", {
+                  timeZone: "Australia/Brisbane",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  day: "2-digit",
+                  month: "short",
+                })}
+              </time>{" "}
+              AEST
+            </p>
+          </div>
           <LiveDataGrid>
             <LiveDataWidget
               kind="surf"
-              title="Surf"
-              value="1.4 m"
-              secondary="SSE swell, period 9 s"
-              source="BOM"
-              asOf="06:40"
+              title="Surf — Noosa Heads"
+              value={live.surf.value}
+              secondary={live.surf.secondary}
+              source={live.surf.source}
+              asOf={live.asOf}
+              state={live.surf.state}
+              href="/surf-and-weather"
             />
             <LiveDataWidget
               kind="wind"
-              title="Wind"
-              value="14 km/h SE"
-              secondary="Gusts 22 km/h"
-              source="Open-Meteo"
-              asOf="06:40"
+              title="Wind — coast"
+              value={live.wind.value}
+              secondary={live.wind.secondary}
+              source={live.wind.source}
+              asOf={live.asOf}
+              state={live.wind.state}
+              href="/surf-and-weather"
             />
             <LiveDataWidget
               kind="tide"
-              title="Tide"
-              value="0.8 m ↓"
-              secondary="High 11:42, low 18:09"
-              source="BOM"
-              asOf="06:40"
+              title="Tide — Tewantin"
+              value={live.tide.value}
+              secondary={live.tide.secondary}
+              source={live.tide.source}
+              asOf={live.asOf}
+              state={live.tide.state}
+              href="/surf-and-weather"
+            />
+            <LiveDataWidget
+              kind="uv"
+              title="UV index"
+              value={live.uv.value}
+              secondary={live.uv.secondary}
+              source={live.uv.source}
+              asOf={live.asOf}
+              state={live.uv.state}
+              href="/surf-and-weather"
+            />
+            <LiveDataWidget
+              kind="sun-moon"
+              title="Sun &amp; moon"
+              value={live.sunMoon.value}
+              secondary={live.sunMoon.secondary}
+              source={live.sunMoon.source}
+              asOf={live.asOf}
+              state={live.sunMoon.state}
+              href="/surf-and-weather"
+            />
+            <LiveDataWidget
+              kind="alerts"
+              title="Park &amp; road alerts"
+              value="See QPWS"
+              secondary="Track closures, wildlife, and Bruce Highway conditions."
+              source="QPWS · QLD Traffic"
+              state="fresh"
+              href="/noosa-national-park"
             />
           </LiveDataGrid>
-        }
-      />
-
-      <section className="border-t border-paper-200 bg-paper-100">
-        <div className="container-page py-14 md:py-20">
-          <p className="eyebrow">Sprint status</p>
-          <h2 className="mt-1 font-display text-display-md text-ink-900 text-balance">
-            Where we are
-          </h2>
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
-            <Card>
-              <CardHeader eyebrow="Sprint 1.1" title="Foundation scaffold" />
-              <CardBody>
-                <p className="text-body-sm text-ink-700">
-                  Next.js 14, TypeScript strict, Tailwind, MDX. Deployed to Vercel.
-                </p>
-              </CardBody>
-            </Card>
-            <Card>
-              <CardHeader eyebrow="Sprint 1.2" title="Design system" disclosure="You are here" />
-              <CardBody>
-                <p className="text-body-sm text-ink-700">
-                  Coastal palette, typography, component library, accessibility primitives,
-                  and three logo mocks for Albert to review.
-                </p>
-                <div className="mt-4">
-                  <Button
-                    href="/styleguide"
-                    variant="outline"
-                    size="sm"
-                    trailingIcon={<Icons.ChevronRight size={14} />}
-                  >
-                    See the style guide
-                  </Button>
-                </div>
-              </CardBody>
-            </Card>
-            <Card>
-              <CardHeader eyebrow="Sprint 1.3" title="Content + go live" />
-              <CardBody>
-                <p className="text-body-sm text-ink-700">
-                  Where to stay, eat &amp; drink, surf &amp; weather, hikes, things to do,
-                  itineraries, sources, and the custom domain flip.
-                </p>
-              </CardBody>
-            </Card>
-          </div>
+          <p className="mt-4 text-caption text-ink-600">{live.sourceNote}</p>
         </div>
       </section>
 
-      <section className="container-page py-14 md:py-20">
-        <div className="grid gap-10 md:grid-cols-2 items-start">
-          <div>
-            <p className="eyebrow">What this site is</p>
-            <h2 className="mt-1 font-display text-display-md text-ink-900 text-balance">
-              A slow-guide field manual for Noosa.
-            </h2>
-            <p className="mt-4 lead text-pretty">
-              MyNoosaHeads is a warm, practical guide — surf, weather, parks, places to stay,
-              places to eat. Every claim has a source. We update the data ourselves so you
-              don’t have to.
-            </p>
-            <p className="mt-4 text-body-sm text-ink-700">
-              No newsletter. No pop-ups. No fabricated reviews. No AI photography. Just an
-              honest guide you can check before you head to the bar.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link
-                href="https://docs.google.com/document/d/1uhgrrsZjayHMPiJGB7_NHsq3N__SV-lD/edit"
-                className="btn-primary btn-md"
-                rel="noopener noreferrer"
-                target="_blank"
+      {/* ─── Eight functional-area entry cards ─── */}
+      <section
+        className="container-page py-14 md:py-20"
+        aria-labelledby="areas-heading"
+      >
+        <p className="eyebrow">Eight areas, one guide</p>
+        <h2
+          id="areas-heading"
+          className="mt-1 font-display text-display-md text-ink-900 text-balance"
+        >
+          Pick where you want to start
+        </h2>
+        <p className="mt-3 lead max-w-3xl">
+          The shire is small enough to cover properly. We organise
+          MyNoosaHeads around eight functional areas so you don’t have to
+          wade through visitor-brochure categories that don’t reflect what
+          people actually do here.
+        </p>
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {CATEGORIES.map((cat) => {
+            const Icon = Icons[cat.icon];
+            return (
+              <Card key={cat.slug} as="article">
+                <CardHeader eyebrow={cat.navLabel} title="" />
+                <CardBody>
+                  <div className="flex items-start gap-3">
+                    <span
+                      className="shrink-0 inline-flex h-10 w-10 items-center justify-center rounded-full bg-eucalyptus-50 text-eucalyptus-700"
+                      aria-hidden="true"
+                    >
+                      <Icon size={20} />
+                    </span>
+                    <p className="text-body-sm text-ink-800 text-pretty">
+                      {cat.pitch}
+                    </p>
+                  </div>
+                  <div className="mt-4">
+                    <Link
+                      href={cat.href}
+                      className="link text-ocean-700 text-body-sm font-medium"
+                    >
+                      Open {cat.navLabel} →
+                    </Link>
+                  </div>
+                </CardBody>
+              </Card>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ─── Disclosure band ─── */}
+      <section
+        className="border-t border-paper-200 bg-paper-100"
+        aria-labelledby="disclosure-heading"
+      >
+        <div className="container-page py-12 md:py-16">
+          <div className="grid gap-8 md:grid-cols-3 items-start">
+            <div className="md:col-span-2">
+              <p className="eyebrow">How we make money</p>
+              <h2
+                id="disclosure-heading"
+                className="mt-1 font-display text-display-md text-ink-900 text-balance"
               >
-                Read the build plan
-              </Link>
-              <Link href="/hello-noosa" className="btn-outline btn-md">
-                Sample MDX page
-              </Link>
+                Editorial first. Disclosure second.
+              </h2>
+              <p className="mt-3 lead max-w-2xl">
+                MyNoosaHeads is independent. We don’t run a newsletter, we
+                don’t collect email addresses, and we don’t operate a login.
+                Where a page contains a monetised link — typically
+                accommodation bookings — we mark it{" "}
+                <span className="chip-coral">Sponsored · ACCC Sch 2</span>{" "}
+                before you click. The full statement, including which
+                affiliate programmes we participate in, lives at{" "}
+                <Link
+                  href="/how-we-make-money"
+                  className="link text-ocean-700 font-medium"
+                >
+                  /how-we-make-money
+                </Link>
+                .
+              </p>
             </div>
-          </div>
-          <div>
-            <Card variant="surface">
+            <Card variant="surface" as="aside">
               <CardBody>
-                <p className="eyebrow">Sample MDX route</p>
-                <h3 className="mt-1 font-display text-headline-lg text-ink-900">
-                  Hello, Noosa — quick tour
-                </h3>
-                <p className="mt-3 text-body-sm text-ink-700">
-                  The hello-noosa page demonstrates the full MDX pipeline (gray-matter
-                  frontmatter, reading time, custom components, server-rendered). It’s
-                  still the v1 placeholder copy — Sprint 1.3 will replace it with real
-                  editorial content.
-                </p>
-                <div className="mt-4 flex gap-2">
-                  <Link href="/hello-noosa" className="btn-outline btn-sm">
-                    Open sample
-                  </Link>
-                  <Link href="/styleguide" className="btn-ghost btn-sm">
-                    Style guide
-                  </Link>
-                </div>
+                <p className="eyebrow">What we don’t do</p>
+                <ul className="mt-3 space-y-2 text-body-sm text-ink-800 list-disc pl-5">
+                  <li>No newsletter, no email capture</li>
+                  <li>No AI-generated photography</li>
+                  <li>No fabricated reviews or stats</li>
+                  <li>No pop-ups, no login walls</li>
+                </ul>
               </CardBody>
             </Card>
           </div>

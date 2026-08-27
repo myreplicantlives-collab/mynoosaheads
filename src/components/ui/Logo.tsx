@@ -95,7 +95,7 @@ export function Logo({
               style={{
                 width: `calc(${px}px * 0.18)`,
                 height: `calc(${px}px * 0.18)`,
-                verticalAlign: "calc(${px}px * 0.18)",
+                verticalAlign: `calc(${px}px * 0.18)`,
               }}
             />
           ) : null}

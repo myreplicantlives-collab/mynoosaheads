@@ -23,7 +23,7 @@ const VARIANT_CLASS: Record<CardVariant, string> = {
 export type CardProps = HTMLAttributes<HTMLElement> & {
   variant?: CardVariant;
   /** Tag override — defaults to <article> for semantic editorial cards. */
-  as?: "article" | "section" | "div" | "li";
+  as?: "article" | "section" | "div" | "li" | "aside";
   children?: ReactNode;
 };
 

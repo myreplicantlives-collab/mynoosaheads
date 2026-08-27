@@ -1,11 +1,21 @@
 import { Footer } from "@/components/ui";
+import { FOOTER_DISCLOSURE } from "@/data/site";
 
-// Sprint 1.2 — Site footer now wraps the design-system Footer (5 columns,
-// ACCC pills on legal/affiliate links, no newsletter field per chairman).
+/**
+ * SiteFooter — wraps the design-system Footer, populating it from the
+ * canonical FOOTER_DISCLOSURE constant so the entire footer is
+ * data-driven.
+ */
 export function SiteFooter() {
   return (
     <Footer
-      flourish="Slow guides for Noosa locals — and the people who love it."
+      columns={FOOTER_DISCLOSURE.columns.map((col) => ({
+        heading: col.heading,
+        links: [...col.links],
+      }))}
+      region={FOOTER_DISCLOSURE.region}
+      copyrightYear={FOOTER_DISCLOSURE.copyrightYear}
+      flourish={FOOTER_DISCLOSURE.complianceBand}
     />
   );
 }
