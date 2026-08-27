@@ -1,19 +1,19 @@
 /**
  * Logo — MyNoosaHeads brand mark + wordmark.
  *
- * FINAL PICK (MSN-2957-LOGO-PICK, Albert 2026-08-27):
+ * FINAL PICK (MSN-2957-LOGO-PICK, Albert 2026-08-27, repainted MSN-2959 r2):
  *   mark = "2" (The Headland) — single-line Noosa Headland silhouette
- *   with the lighthouse nub and a single Sunset Coral dot accent.
+ *   with the lighthouse nub and a single Sea-Glass accent dot.
  *
  * Rationale (per design brief §1, MSN-2956-01):
  *   - The headland IS the most identifiable Noosa landmark — local,
  *     not generic, distinct from the AU-coastal-set wave-mark saturation.
- *   - Two-tone Eucalyptus Green (#2C4A3E / #A6C2AF) gives depth at large
+ *   - Two-tone Sea-Glass (#0E4A41 / #A8D4CA) gives depth at large
  *     sizes while collapsing to a single-ink silhouette at favicon scale.
  *   - Lighthouse nub adds a story beat without harming small-size legibility.
  *   - Wave candidate was explicitly dropped in the brief (wave-mark
- *     saturation) and reintroduces #1D5A6F ocean blue — outside our
- *     paper/eucalyptus/ocean palette and re-tropicalising the register.
+ *     saturation) and reintroduces deep-water blue — outside the
+ *     white + blue-green palette directive (MSN-2959 r2).
  *   - Eucalyptus sprig (mark 1) is calm but generic — could be any
  *     wellness/tea brand; doesn't anchor Noosa.
  *
@@ -21,8 +21,8 @@
  * but mark="2" is the canonical brand mark going forward.
  *
  * File paths:
- *   /public/brand/logo-1.svg (eucalyptus sprig — fallback)
- *   /public/brand/logo-2.svg (headland — FINAL)
+ *   /public/brand/logo-1.svg (sprig — fallback)
+ *   /public/brand/logo-2.svg (headland — FINAL, sea-glass repaint)
  *   /public/brand/logo-3.svg (wave — dropped per brief)
  *
  * Note: the full SVG files in /public/brand/ are the source of truth.

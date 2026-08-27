@@ -89,7 +89,8 @@ export const metadata: Metadata = {
 export const viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#FBF6E9",
+  // MSN-2959 r2 — pure white surface (was #FBF6E9 warm parchment).
+  themeColor: "#FFFFFF",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

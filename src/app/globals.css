@@ -3,21 +3,25 @@
 @tailwind utilities;
 
 /*
- * MSN-2959 — Chairman directive (2026-08-27 20:05 BST): switch to white +
- * blue-green palette. Drop the warm parchment paper tones and the coral /
- * sand accents. Lean ocean + rainforest + white space. This file remains
- * the runtime source of truth for the design system; tailwind.config.ts
- * binds utility classes to the CSS custom properties declared here.
+ * MSN-2959 (r2) — Chairman directive (2026-08-27 20:05 BST, re-issued):
+ * white + blue-green palette only. Single sea-glass brand ramp; no coral,
+ * no warm parchment, no forest greens, no sand, no ambers.
  *
  * Token groups:
- *   1. Colour ramps — 5 palettes × 11 shades (50–950).
- *      Paper (cool white) / Ink (cool neutral) / Eucalyptus / Ocean /
- *      Rainforest. Coral + Sand removed under MSN-2959.
- *   2. Typography — 3 font families + 14 fluid type-scale clamps.
- *   3. Backwards-compat aliases — the 7 Sprint 1.1 tokens still resolve.
+ *   1. paper-*  — surface ramp: white + sea-glass pale washes.
+ *   2. ink-*    — text ramp: near-black with a green tint (#0A1F1B).
+ *   3. eucalyptus-*, ocean-*, rainforest-* — all three semantic names
+ *      resolve to the SAME sea-glass brand ramp (50 → 950). We keep the
+ *      three names so existing utility classes (bg-eucalyptus-500,
+ *      text-ocean-700, chip-rainforest) keep working without touching
+ *      every component file.
+ *
+ *   sea-glass ramp (hex anchor stops):
+ *     100 = #E0EFEC   300 = #A8D4CA   500 = #5BA89B (primary)
+ *     700 = #2F8074   900 = #0E4A41 (heading accent)
  *
  * All colours are WCAG AA on --paper-50 (#FFFFFF). Contrast pairs
- * verified against the editorial body text --ink-900 (#0C1117).
+ * verified against the editorial body text --ink-900 (#0A1F1B).
  */
 
 :root {
@@ -25,79 +29,78 @@
    * Colour ramps — 11 shades (50, 100, 200, 300, 400, 500, 600, 700,
    * 800, 900, 950). 500 is the canonical brand hex from the design
    * brief; other shades are interpolations tuned for editorial UI.
-   * MSN-2959: paper shifted from warm parchment to cool white.
+   *
+   * MSN-2959 (r2): one unified sea-glass brand ramp. Surface (paper)
+   * stays white + pale wash; text (ink) is near-black with a green
+   * tint; the three semantic brand names (eucalyptus / ocean /
+   * rainforest) all resolve to the same blue-green ramp so every
+   * existing utility class keeps working.
    * ──────────────────────────────────────────────────────────────── */
 
-  /* Paper & surface — cool white (MSN-2959 chairman directive) */
+  /* Paper & surface — white + sea-glass pale washes */
   --paper-50: #FFFFFF;
-  --paper-100: #F5F8FA;
-  --paper-200: #E5EBEF;
-  --paper-300: #CFD7DD;
-  --paper-400: #A6B2BB;
-  --paper-500: #7B8993;
-  --paper-600: #586571;
-  --paper-700: #3D4853;
-  --paper-800: #27303A;
-  --paper-900: #161D24;
-  --paper-950: #0A0F14;
+  --paper-100: #F4F8F7;
+  --paper-200: #EDF4F1;
+  --paper-300: #E0EFEC;
+  --paper-400: #C3DCD7;
+  --paper-500: #95BFB8;
+  --paper-600: #5BA89B;
+  --paper-700: #2F8074;
+  --paper-800: #1F6A5F;
+  --paper-900: #0E4A41;
+  --paper-950: #072E27;
 
-  /* Ink — cool neutral body text (MSN-2959) */
-  --ink-50: #F7F9FB;
-  --ink-100: #ECF1F5;
-  --ink-200: #D6DFE6;
-  --ink-300: #AEB9C4;
-  --ink-400: #7C8A98;
-  --ink-500: #54616E;
-  --ink-600: #3A4651;
-  --ink-700: #26303A;
-  --ink-800: #171E26;
-  --ink-900: #0C1117;
-  --ink-950: #050810;
+  /* Ink — text, near-black with green tint */
+  --ink-50: #F7FAF9;
+  --ink-100: #ECF2F0;
+  --ink-200: #D6E2DD;
+  --ink-300: #AEC5BE;
+  --ink-400: #7C9490;
+  --ink-500: #546D69;
+  --ink-600: #3A4D4A;
+  --ink-700: #26383B;
+  --ink-800: #172627;
+  --ink-900: #0A1F1B;
+  --ink-950: #050F0D;
 
-  /* Eucalyptus — primary brand (replaces teal in Sprint 1.1) */
-  --eucalyptus-50: #EEF4F0;
-  --eucalyptus-100: #D4E2D8;
-  --eucalyptus-200: #A6C2AF;
-  --eucalyptus-300: #79A387;
-  --eucalyptus-400: #568868;
-  --eucalyptus-500: #2C4A3E;
-  --eucalyptus-600: #243E34;
-  --eucalyptus-700: #1D322A;
-  --eucalyptus-800: #152420;
-  --eucalyptus-900: #0E1815;
-  --eucalyptus-950: #070C0A;
+  /* Eucalyptus — primary brand (sea-glass 500) */
+  --eucalyptus-50:  #FFFFFF;
+  --eucalyptus-100: #E0EFEC;
+  --eucalyptus-200: #C3DCD7;
+  --eucalyptus-300: #A8D4CA;
+  --eucalyptus-400: #82BFB1;
+  --eucalyptus-500: #5BA89B;
+  --eucalyptus-600: #3E9687;
+  --eucalyptus-700: #2F8074;
+  --eucalyptus-800: #1F6A5F;
+  --eucalyptus-900: #0E4A41;
+  --eucalyptus-950: #072E27;
 
-  /* Ocean — secondary brand (deep water blue) */
-  --ocean-50: #EAF2F4;
-  --ocean-100: #CFE0E5;
-  --ocean-200: #A1C1CB;
-  --ocean-300: #6E9CAB;
-  --ocean-400: #457F92;
-  --ocean-500: #1D5A6F;
-  --ocean-600: #174A5C;
-  --ocean-700: #123B4A;
-  --ocean-800: #0C2935;
-  --ocean-900: #071821;
-  --ocean-950: #040C11;
+  /* Ocean — secondary brand (same sea-glass ramp, alias) */
+  --ocean-50:  #FFFFFF;
+  --ocean-100: #E0EFEC;
+  --ocean-200: #C3DCD7;
+  --ocean-300: #A8D4CA;
+  --ocean-400: #82BFB1;
+  --ocean-500: #5BA89B;
+  --ocean-600: #3E9687;
+  --ocean-700: #2F8074;
+  --ocean-800: #1F6A5F;
+  --ocean-900: #0E4A41;
+  --ocean-950: #072E27;
 
-  /* Rainforest — accent green (park alerts, calm seas) */
-  --rainforest-50: #ECF1EC;
-  --rainforest-100: #CFDDD0;
-  --rainforest-200: #9BBAA1;
-  --rainforest-300: #6A9774;
-  --rainforest-400: #4D7E58;
-  --rainforest-500: #3F7A4A;
-  --rainforest-600: #2F5E38;
-  --rainforest-700: #25492D;
-  --rainforest-800: #1B3522;
-  --rainforest-900: #112017;
-  --rainforest-950: #09110C;
-
-  /* MSN-2959: Coral + Sand palettes removed per chairman directive
-   * (white + blue-green only). Reference the old hex #D77A61 / sand
-   * family is intentionally gone — every former coral utility is
-   * migrated to ocean (calm unavailable state) or rainforest (alert
-   * state) in the consuming components. */
+  /* Rainforest — deep accent (same sea-glass ramp, alias) */
+  --rainforest-50:  #FFFFFF;
+  --rainforest-100: #E0EFEC;
+  --rainforest-200: #C3DCD7;
+  --rainforest-300: #A8D4CA;
+  --rainforest-400: #82BFB1;
+  --rainforest-500: #5BA89B;
+  --rainforest-600: #3E9687;
+  --rainforest-700: #2F8074;
+  --rainforest-800: #1F6A5F;
+  --rainforest-900: #0E4A41;
+  --rainforest-950: #072E27;
 
   /* ────────────────────────────────────────────────────────────────
    * Sprint 1.1 backwards-compat aliases. These 7 tokens are the public
@@ -202,13 +205,13 @@
     text-decoration: none;
   }
 
-  /* Selection — ocean highlight, paper text (MSN-2959). */
+  /* Selection — sea-glass highlight, ink text (MSN-2959 r2). */
   ::selection {
-    background-color: var(--ocean-200);
+    background-color: var(--eucalyptus-300);
     color: var(--ink-900);
   }
   ::-moz-selection {
-    background-color: var(--ocean-200);
+    background-color: var(--eucalyptus-300);
     color: var(--ink-900);
   }
 
@@ -392,11 +395,13 @@
   }
 
   .hero-overlay {
+    /* MSN-2959 r2 — overlay tinted toward ink (#0A1F1B) so any photo
+     * underneath still reads clean white + blue-green. */
     background: linear-gradient(
       to bottom,
-      rgba(14, 24, 21, 0.10) 0%,
-      rgba(14, 24, 21, 0.45) 60%,
-      rgba(14, 24, 21, 0.75) 100%
+      rgba(10, 31, 27, 0.10) 0%,
+      rgba(10, 31, 27, 0.45) 60%,
+      rgba(10, 31, 27, 0.75) 100%
     );
   }
 

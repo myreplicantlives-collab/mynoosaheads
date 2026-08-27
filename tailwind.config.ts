@@ -2,7 +2,7 @@ import type { Config } from "tailwindcss";
 import typography from "@tailwindcss/typography";
 
 /**
- * Sprint 1.2 — Design system tokens (per Albert's MSN-2956-01 design brief).
+ * MSN-2959 (r2) — Design system tokens.
  *
  * Three-tier architecture:
  *   1. CSS custom properties (src/app/globals.css) — source of truth at runtime.
@@ -10,11 +10,15 @@ import typography from "@tailwindcss/typography";
  *      to those CSS vars so component code stays declarative.
  *   3. Components (src/components/ui/*) — consume Tailwind utilities.
  *
- * Palette (MSN-2959 chairman directive): white + blue-green. Paper shifted
- * to cool white; coral + sand removed. 5 brand colours × 11 shades
- * (50–950) = 55 ramps. The 50/100/200 bands are paper / surface white
- * tones; the 600/700/800 are the deep brand colours (eucalyptus +
- * rainforest greens, ocean blue); 900/950 are ink for body copy.
+ * Palette: white + single blue-green (sea-glass) ramp. The three semantic
+ * brand names (eucalyptus / ocean / rainforest) all resolve to the SAME
+ * sea-glass ramp so existing utility classes keep working without touching
+ * every component file. 5 token groups × 11 shades (50–950) = 55 ramps.
+ *
+ *   sea-glass anchors:
+ *     500 = #5BA89B (primary brand)
+ *     700 = #2F8074 (mid)
+ *     900 = #0E4A41 (heading accent)
  *
  * Typography: 3 fonts — Fraunces (display serif), Inter (body sans),
  * Caveat (accent handwritten). All SIL OFL 1.1, loaded via next/font in
@@ -31,7 +35,7 @@ const config: Config = {
     extend: {
       colors: {
         // ────────────────────────────────────────────────────────────
-        // Paper & surface — warm parchment / cream (Sprint 1.1 base)
+        // Paper & surface — white + sea-glass pale washes (MSN-2959 r2)
         // ────────────────────────────────────────────────────────────
         paper: {
           50: "var(--paper-50)",
@@ -47,7 +51,7 @@ const config: Config = {
           950: "var(--paper-950)",
         },
         // ────────────────────────────────────────────────────────────
-        // Ink — body text (warm dark, not pure black)
+        // Ink — body text (near-black with green tint, #0A1F1B)
         // ────────────────────────────────────────────────────────────
         ink: {
           50: "var(--ink-50)",
@@ -63,7 +67,7 @@ const config: Config = {
           950: "var(--ink-950)",
         },
         // ────────────────────────────────────────────────────────────
-        // Eucalyptus — primary brand (replaces teal/ocean in Sprint 1.1)
+        // Eucalyptus — primary brand (sea-glass 500 = #5BA89B)
         // ────────────────────────────────────────────────────────────
         eucalyptus: {
           50: "var(--eucalyptus-50)",
@@ -79,7 +83,7 @@ const config: Config = {
           950: "var(--eucalyptus-950)",
         },
         // ────────────────────────────────────────────────────────────
-        // Ocean — secondary brand (deep water blue, hyperlink + accent)
+        // Ocean — secondary brand (sea-glass ramp alias, same hex as eucalyptus)
         // ────────────────────────────────────────────────────────────
         ocean: {
           50: "var(--ocean-50)",
@@ -95,7 +99,7 @@ const config: Config = {
           950: "var(--ocean-950)",
         },
         // ────────────────────────────────────────────────────────────
-        // Rainforest — accent green (park alerts, calm seas)
+        // Rainforest — deep accent (sea-glass ramp alias, same hex as eucalyptus)
         // ────────────────────────────────────────────────────────────
         rainforest: {
           50: "var(--rainforest-50)",
@@ -111,9 +115,8 @@ const config: Config = {
           950: "var(--rainforest-950)",
         },
         // ────────────────────────────────────────────────────────────
-        // MSN-2959: coral + sand palettes removed. Every former coral
-        // utility is migrated to ocean (calm unavailable state) or
-        // rainforest (alert state) in the consuming components.
+        // MSN-2959 r2: coral + sand + warm-tone palettes fully removed.
+        // No coral utility exists in this config. Single sea-glass brand.
         // ────────────────────────────────────────────────────────────
 
         // ────────────────────────────────────────────────────────────
@@ -215,14 +218,15 @@ const config: Config = {
         pill: "999px",
       },
       boxShadow: {
-        // Soft, warm shadows that read as paper-on-paper, not chrome-on-glass.
-        sm: "0 1px 2px rgba(37, 31, 23, 0.04)",
-        DEFAULT: "0 2px 6px rgba(37, 31, 23, 0.06), 0 1px 2px rgba(37, 31, 23, 0.04)",
-        md: "0 6px 14px rgba(37, 31, 23, 0.07), 0 2px 4px rgba(37, 31, 23, 0.05)",
-        lg: "0 14px 30px rgba(37, 31, 23, 0.10), 0 4px 8px rgba(37, 31, 23, 0.05)",
-        xl: "0 24px 50px rgba(37, 31, 23, 0.14), 0 8px 16px rgba(37, 31, 23, 0.06)",
+        // MSN-2959 r2 — cool shadows tinted toward ink (#0A1F1B), not warm
+        // brown. Read as sea-glass-on-paper, not chrome-on-glass.
+        sm: "0 1px 2px rgba(10, 31, 27, 0.04)",
+        DEFAULT: "0 2px 6px rgba(10, 31, 27, 0.06), 0 1px 2px rgba(10, 31, 27, 0.04)",
+        md: "0 6px 14px rgba(10, 31, 27, 0.07), 0 2px 4px rgba(10, 31, 27, 0.05)",
+        lg: "0 14px 30px rgba(10, 31, 27, 0.10), 0 4px 8px rgba(10, 31, 27, 0.05)",
+        xl: "0 24px 50px rgba(10, 31, 27, 0.14), 0 8px 16px rgba(10, 31, 27, 0.06)",
         // Glow ring (used by live-data tiles + cards with attention state).
-        ring: "0 0 0 3px rgba(31, 90, 111, 0.18)",
+        ring: "0 0 0 3px rgba(91, 168, 155, 0.30)",
       },
       maxWidth: {
         prose: "68ch",
