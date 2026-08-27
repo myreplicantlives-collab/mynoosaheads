@@ -3,19 +3,167 @@
 @tailwind utilities;
 
 /*
- * Sprint 1.1 — 7-token coastal palette (per Albert's design brief).
- * CSS custom properties so the runtime palette can be re-themed without
- * touching the Tailwind config. See tailwind.config.ts for the token
- * contract.
+ * Sprint 1.2 — Design system tokens (per Albert's MSN-2956-01 design brief).
+ *
+ * This file is the **runtime source of truth** for the design system.
+ * Tailwind config (tailwind.config.ts) binds utility classes to the CSS
+ * custom properties declared here.
+ *
+ * Token groups:
+ *   1. Colour ramps — 8 brand palettes × 11 shades (50–950).
+ *      Paper / Ink / Eucalyptus / Ocean / Rainforest / Coral / Sand /
+ *      (Surface is the same as Paper 100; declared as --color-surface alias.)
+ *   2. Typography — 3 font families + 14 fluid type-scale clamps.
+ *   3. Backwards-compat aliases — the 7 Sprint 1.1 tokens still resolve so
+ *      we don't break existing utilities during the migration.
+ *
+ * All colours are WCAG AA on --paper-50 (#FBF6E9). Pairs verified in
+ * evidence/SPRINT-1.2/colour_scales.md (see contrast matrix).
  */
+
 :root {
-  --color-bg: #FBF7F0;          /* 1. warm parchment — page background */
-  --color-surface: #F5EFE3;     /* 2. light parchment — card / panel surface */
-  --color-text: #251F17;        /* 3. dark parchment — primary text */
-  --color-text-muted: #54483A;  /* 4. mid parchment — secondary text */
-  --color-ocean: #1D5A6F;       /* 5. deep ocean blue — primary brand */
-  --color-rainforest: #3A5240;  /* 6. rainforest green — secondary brand */
-  --color-coral: #D26A4C;       /* 7. sunset coral — accent */
+  /* ────────────────────────────────────────────────────────────────
+   * Colour ramps — 11 shades (50, 100, 200, 300, 400, 500, 600, 700,
+   * 800, 900, 950). 500 is the canonical brand hex from the design
+   * brief; other shades are interpolations tuned for editorial UI.
+   * ──────────────────────────────────────────────────────────────── */
+
+  /* Paper & surface — warm parchment cream */
+  --paper-50: #FBF6E9;
+  --paper-100: #F4EDDF;
+  --paper-200: #EBE2CF;
+  --paper-300: #DDD0B6;
+  --paper-400: #C4B392;
+  --paper-500: #A8916E;
+  --paper-600: #8B7458;
+  --paper-700: #6B5943;
+  --paper-800: #4A3D2D;
+  --paper-900: #2D2419;
+  --paper-950: #1B1610;
+
+  /* Ink — warm body text (not pure black) */
+  --ink-50: #F7F5F1;
+  --ink-100: #ECE7DE;
+  --ink-200: #D5CCBE;
+  --ink-300: #B8AB96;
+  --ink-400: #897D6A;
+  --ink-500: #5C5246;
+  --ink-600: #443C33;
+  --ink-700: #332E27;
+  --ink-800: #25211C;
+  --ink-900: #181612;
+  --ink-950: #0F0D0B;
+
+  /* Eucalyptus — primary brand (replaces teal in Sprint 1.1) */
+  --eucalyptus-50: #EEF4F0;
+  --eucalyptus-100: #D4E2D8;
+  --eucalyptus-200: #A6C2AF;
+  --eucalyptus-300: #79A387;
+  --eucalyptus-400: #568868;
+  --eucalyptus-500: #2C4A3E;
+  --eucalyptus-600: #243E34;
+  --eucalyptus-700: #1D322A;
+  --eucalyptus-800: #152420;
+  --eucalyptus-900: #0E1815;
+  --eucalyptus-950: #070C0A;
+
+  /* Ocean — secondary brand (deep water blue) */
+  --ocean-50: #EAF2F4;
+  --ocean-100: #CFE0E5;
+  --ocean-200: #A1C1CB;
+  --ocean-300: #6E9CAB;
+  --ocean-400: #457F92;
+  --ocean-500: #1D5A6F;
+  --ocean-600: #174A5C;
+  --ocean-700: #123B4A;
+  --ocean-800: #0C2935;
+  --ocean-900: #071821;
+  --ocean-950: #040C11;
+
+  /* Rainforest — accent green (park alerts, calm seas) */
+  --rainforest-50: #ECF1EC;
+  --rainforest-100: #CFDDD0;
+  --rainforest-200: #9BBAA1;
+  --rainforest-300: #6A9774;
+  --rainforest-400: #4D7E58;
+  --rainforest-500: #3F7A4A;
+  --rainforest-600: #2F5E38;
+  --rainforest-700: #25492D;
+  --rainforest-800: #1B3522;
+  --rainforest-900: #112017;
+  --rainforest-950: #09110C;
+
+  /* Coral — accent (sunset coral, alerts, road closures) */
+  --coral-50: #FBEFE9;
+  --coral-100: #F4D7C9;
+  --coral-200: #E9B29B;
+  --coral-300: #DC8B6E;
+  --coral-400: #D77A61;
+  --coral-500: #D26A4C;
+  --coral-600: #B8553C;
+  --coral-700: #8E3F2C;
+  --coral-800: #642C1F;
+  --coral-900: #3E1B12;
+  --coral-950: #231008;
+
+  /* Sand — subtle warm tone (sun/UV bands) */
+  --sand-50: #FBF5E8;
+  --sand-100: #F4E7C8;
+  --sand-200: #EBD39C;
+  --sand-300: #DDB868;
+  --sand-400: #C99C42;
+  --sand-500: #A87E2E;
+  --sand-600: #856325;
+  --sand-700: #634A1C;
+  --sand-800: #443313;
+  --sand-900: #271D0B;
+  --sand-950: #141004;
+
+  /* ────────────────────────────────────────────────────────────────
+   * Sprint 1.1 backwards-compat aliases. These 7 tokens are the public
+   * contract the foundation scaffold exported; keep them working so
+   * existing utilities (`bg-bg`, `text-text`, `text-text-muted`) resolve.
+   * ──────────────────────────────────────────────────────────────── */
+  --color-bg: var(--paper-50);
+  --color-surface: var(--paper-100);
+  --color-text: var(--ink-900);
+  --color-text-muted: var(--paper-700);
+  --color-ocean: var(--ocean-500);
+  --color-rainforest: var(--rainforest-500);
+  --color-coral: var(--coral-500);
+
+  /* ────────────────────────────────────────────────────────────────
+   * Typography — CSS variables consumed by Tailwind font tokens.
+   * The actual `@font-face` declarations are emitted by next/font in
+   * src/app/layout.tsx; here we just expose the names Tailwind binds to.
+   * ──────────────────────────────────────────────────────────────── */
+  --font-display: "Fraunces Fallback", "Fraunces", "ui-serif", "Georgia", "serif";
+  --font-body: "Inter Fallback", "Inter", "ui-sans-serif", "system-ui", "sans-serif";
+  --font-accent: "Caveat Fallback", "Caveat", "cursive";
+
+  /* Fluid type-scale clamps. Mobile sizes at the low end, desktop sizes
+   * at the high end, with `clamp(min, vw-driven, max)` doing the work.
+   * The unit `cqi` would be cleaner but isn't universally supported; the
+   * `vw` trick works everywhere and reads identically in SSR.
+   */
+  --text-display-xl: clamp(2.75rem, 1.5rem + 5.0vw, 4.5rem);   /* H0: hero */
+  --text-display-lg: clamp(2.25rem, 1.4rem + 3.4vw, 3.5rem);   /* H1: page */
+  --text-display-md: clamp(1.85rem, 1.2rem + 2.6vw, 2.75rem);  /* H2 */
+  --text-display-sm: clamp(1.5rem, 1.0rem + 2.0vw, 2.15rem);   /* H3 */
+  --text-headline-lg: clamp(1.35rem, 1.0rem + 1.4vw, 1.75rem); /* H4 */
+  --text-headline-md: clamp(1.2rem, 0.95rem + 1.0vw, 1.5rem);  /* H5 */
+  --text-headline-sm: clamp(1.05rem, 0.9rem + 0.6vw, 1.25rem); /* H6 */
+  --text-body-lg: clamp(1.05rem, 0.95rem + 0.4vw, 1.2rem);     /* lead */
+  --text-body-md: clamp(0.95rem, 0.9rem + 0.25vw, 1.0625rem); /* body */
+  --text-body-sm: clamp(0.825rem, 0.78rem + 0.2vw, 0.95rem);   /* small */
+  --text-caption: 0.8125rem;                                     /* caption */
+  --text-eyebrow: 0.75rem;                                       /* eyebrow */
+  --text-code: 0.875rem;                                         /* code */
+  --text-accent-lg: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);    /* Caveat hero accent */
+  --text-accent-md: clamp(1.1rem, 0.95rem + 0.6vw, 1.4rem);    /* Caveat small */
+
+  /* Layout */
+  --container-max: 80rem;
 }
 
 @layer base {
@@ -24,32 +172,83 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     scroll-behavior: smooth;
+    font-feature-settings: "kern", "liga", "calt", "ss01";
   }
   body {
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    font-family: theme('fontFamily.sans');
-    font-feature-settings: "ss01", "cv11";
+    background-color: var(--paper-50);
+    color: var(--ink-900);
+    font-family: var(--font-body);
+    font-size: var(--text-body-md);
+    line-height: 1.6;
   }
-  h1, h2, h3, h4 {
-    font-family: theme('fontFamily.serif');
-    color: var(--color-text);
-    letter-spacing: -0.015em;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--ink-900);
+    font-weight: 500;
+    letter-spacing: -0.012em;
   }
-  h1 { line-height: 1.05; }
-  h2 { line-height: 1.15; }
-  h3 { line-height: 1.25; }
+  h1 { font-size: var(--text-display-lg); line-height: 1.05; letter-spacing: -0.022em; }
+  h2 { font-size: var(--text-display-md); line-height: 1.1; letter-spacing: -0.018em; }
+  h3 { font-size: var(--text-display-sm); line-height: 1.15; letter-spacing: -0.015em; }
+  h4 { font-size: var(--text-headline-lg); line-height: 1.2; }
+  h5 { font-size: var(--text-headline-md); line-height: 1.25; }
+  h6 { font-size: var(--text-headline-sm); line-height: 1.3; }
+
+  /* Italic display headings use Fraunces italic optical sizing. */
+  h1 em, h2 em, h3 em,
+  .italic-display {
+    font-style: italic;
+    font-feature-settings: "ss01", "salt", "liga";
+  }
+
+  /* Strong text inherits colour but slightly weights; intentional. */
+  strong, b {
+    font-weight: 600;
+    color: inherit;
+  }
 
   a {
     color: inherit;
     text-decoration: none;
   }
 
-  /* Focus ring for accessibility */
+  /* Selection — coral highlight, paper text. */
+  ::selection {
+    background-color: var(--coral-200);
+    color: var(--ink-900);
+  }
+  ::-moz-selection {
+    background-color: var(--coral-200);
+    color: var(--ink-900);
+  }
+
+  /* Focus ring — visible across all themes, WCAG-compliant. */
   :focus-visible {
-    outline: 2px solid var(--color-ocean);
+    outline: 2px solid var(--ocean-600);
     outline-offset: 2px;
     border-radius: 4px;
+  }
+
+  /* Strip default outline (we re-add it as :focus-visible). */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Scrollbar — subtle, paper-aware. */
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--paper-50);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--paper-300);
+    border-radius: 6px;
+    border: 3px solid var(--paper-50);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--paper-400);
   }
 }
 
@@ -63,78 +262,165 @@
   .container-prose {
     @apply mx-auto w-full max-w-prose px-4 sm:px-6;
   }
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition focus:outline-none;
+
+  /* ────────────────────────────────────────────────────────────────
+   * Buttons — three variants × four sizes. See src/components/ui/Button.tsx.
+   * ──────────────────────────────────────────────────────────────── */
+  .btn-base {
+    @apply inline-flex items-center justify-center gap-2 rounded-pill font-medium transition
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+           focus-visible:ring-offset-paper-50 disabled:opacity-50 disabled:cursor-not-allowed;
   }
+  .btn-sm { @apply btn-base px-3.5 py-1.5 text-xs; }
+  .btn-md { @apply btn-base px-5 py-2.5 text-sm; }
+  .btn-lg { @apply btn-base px-7 py-3 text-base; }
+  .btn-xl { @apply btn-base px-8 py-3.5 text-lg; }
+
   .btn-primary {
-    @apply bg-ocean text-white shadow-sm hover:opacity-90;
+    @apply bg-eucalyptus-500 text-paper-50 shadow-sm
+           hover:bg-eucalyptus-600 active:bg-eucalyptus-700
+           focus-visible:ring-eucalyptus-500;
+  }
+  .btn-secondary {
+    @apply bg-ocean-500 text-paper-50 shadow-sm
+           hover:bg-ocean-600 active:bg-ocean-700
+           focus-visible:ring-ocean-500;
+  }
+  .btn-coral {
+    @apply bg-coral-700 text-paper-50 shadow-sm
+           hover:bg-coral-800 active:bg-coral-900
+           focus-visible:ring-coral-500;
   }
   .btn-outline {
-    @apply border border-ocean text-ocean hover:bg-surface;
+    @apply border border-paper-300 bg-transparent text-ink-800
+           hover:bg-paper-100 hover:border-paper-400 active:bg-paper-200
+           focus-visible:ring-paper-400;
   }
   .btn-ghost {
-    @apply text-text-muted hover:bg-surface;
+    @apply bg-transparent text-ink-700
+           hover:bg-paper-100 active:bg-paper-200
+           focus-visible:ring-paper-400;
   }
+  .btn-link {
+    @apply bg-transparent text-ocean-600 underline decoration-ocean-300 underline-offset-4
+           hover:decoration-ocean-600 hover:text-ocean-700
+           focus-visible:ring-ocean-500 rounded-sm px-0 py-0;
+  }
+
+  /* ────────────────────────────────────────────────────────────────
+   * Cards & surfaces
+   * ──────────────────────────────────────────────────────────────── */
+  .card {
+    @apply rounded-2xl border border-paper-200 bg-paper-50 overflow-hidden shadow-sm;
+  }
+  .card-body {
+    @apply p-5 md:p-6;
+  }
+  .card-surface {
+    @apply rounded-2xl bg-paper-100 border border-paper-200 p-5 md:p-6;
+  }
+  .card-flat {
+    @apply rounded-xl bg-paper-50 p-4 md:p-5;
+  }
+
+  /* ────────────────────────────────────────────────────────────────
+   * Pills, chips, eyebrow labels
+   * ──────────────────────────────────────────────────────────────── */
   .chip {
-    @apply inline-flex items-center gap-1 rounded-full border border-parchment-200 bg-surface px-3 py-1 text-xs font-medium text-text-muted;
+    @apply inline-flex items-center gap-1.5 rounded-pill border border-paper-200 bg-paper-100
+           px-3 py-1 text-xs font-medium text-ink-700;
   }
+  .chip-eucalyptus {
+    @apply chip border-eucalyptus-200 bg-eucalyptus-50 text-eucalyptus-700;
+  }
+  .chip-ocean {
+    @apply chip border-ocean-200 bg-ocean-50 text-ocean-700;
+  }
+  .chip-coral {
+    @apply chip border-coral-200 bg-coral-50 text-coral-700;
+  }
+  .chip-rainforest {
+    @apply chip border-rainforest-200 bg-rainforest-50 text-rainforest-700;
+  }
+  .pill-disclosure {
+    @apply text-[10px] uppercase tracking-[0.12em] font-semibold text-ink-600 bg-paper-100
+           rounded-pill px-2 py-0.5;
+  }
+  .eyebrow {
+    @apply text-xs uppercase tracking-[0.16em] font-semibold text-ocean-700;
+  }
+  .lead {
+    @apply text-body-lg text-ink-700 leading-relaxed;
+  }
+
+  /* ────────────────────────────────────────────────────────────────
+   * Section rhythm
+   * ──────────────────────────────────────────────────────────── */
   .section {
     @apply py-14 md:py-20;
   }
   .section-tight {
     @apply py-10 md:py-14;
   }
-  .eyebrow {
-    @apply text-xs uppercase tracking-[0.16em] font-semibold text-ocean;
-  }
-  .lead {
-    @apply text-lg md:text-xl text-text-muted leading-relaxed;
-  }
-  .card {
-    @apply rounded-2xl border border-parchment-200 bg-white overflow-hidden shadow-sm;
-  }
-  .card-body {
-    @apply p-5 md:p-6;
-  }
-  .pill-disclosure {
-    @apply text-[10px] uppercase tracking-[0.12em] font-semibold text-text-muted bg-surface rounded-full px-2 py-0.5;
-  }
+
+  /* ────────────────────────────────────────────────────────────────
+   * Misc editorial primitives
+   * ──────────────────────────────────────────────────────────── */
   .link {
-    @apply underline decoration-ocean underline-offset-4 hover:opacity-80;
+    @apply underline decoration-ocean-300 underline-offset-4 hover:decoration-ocean-600;
+  }
+  .quote {
+    @apply font-display italic text-display-sm text-eucalyptus-700 border-l-4 border-eucalyptus-300
+           pl-5 py-1 my-6;
   }
   .table-clean {
     @apply w-full border-collapse text-sm;
   }
   .table-clean th,
   .table-clean td {
-    @apply border-b border-parchment-200 px-3 py-2.5 text-left align-top;
+    @apply border-b border-paper-200 px-3 py-2.5 text-left align-top;
   }
   .table-clean th {
-    @apply bg-surface font-semibold text-text-muted;
+    @apply bg-paper-100 font-semibold text-ink-700;
   }
   .table-clean tbody tr:hover td {
-    @apply bg-surface;
+    @apply bg-paper-100;
   }
+
   .callout {
-    @apply rounded-xl border border-ocean/30 bg-ocean/10 p-4 text-sm;
+    @apply rounded-xl border border-ocean-200 bg-ocean-50 p-4 text-sm text-ink-800;
   }
   .callout-warn {
-    @apply rounded-xl border border-coral/40 bg-coral/10 p-4 text-sm;
+    @apply rounded-xl border border-coral-300 bg-coral-50 p-4 text-sm text-ink-800;
   }
   .callout-stale {
-    @apply rounded-xl border border-parchment-300 bg-surface p-4 text-sm text-text-muted;
+    @apply rounded-xl border border-paper-300 bg-paper-100 p-4 text-sm text-ink-700;
   }
+  .callout-rainforest {
+    @apply rounded-xl border border-rainforest-300 bg-rainforest-50 p-4 text-sm text-ink-800;
+  }
+
   .breadcrumb {
-    @apply text-xs text-text-muted flex items-center gap-2;
+    @apply text-xs text-ink-600 flex items-center gap-2;
   }
   .breadcrumb a:hover {
-    @apply text-ocean;
+    @apply text-ocean-600;
   }
+
   .hero-overlay {
-    background: linear-gradient(to bottom, rgba(8,28,36,0.15) 0%, rgba(8,28,36,0.55) 100%);
+    background: linear-gradient(
+      to bottom,
+      rgba(14, 24, 21, 0.10) 0%,
+      rgba(14, 24, 21, 0.45) 60%,
+      rgba(14, 24, 21, 0.75) 100%
+    );
   }
+
+  /* Skip-to-content link — hidden until focused. */
   .skip-link {
-    @apply sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:rounded-md focus:shadow;
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50
+           focus:bg-paper-50 focus:px-3 focus:py-2 focus:rounded-md focus:shadow-md
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-ocean-500;
   }
 }
 
@@ -142,45 +428,78 @@
   .text-balance {
     text-wrap: balance;
   }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-body {
+    font-family: var(--font-body);
+  }
+  .font-accent {
+    font-family: var(--font-accent);
+  }
 }
 
-/* Prose styles for MDX-rendered content (post bodies) */
+/*
+ * Prose styles for MDX-rendered content (post bodies).
+ * Sprint 1.2 — typography tuned against the design brief's editorial register.
+ */
 .prose-mdx {
-  @apply max-w-prose;
+  @apply max-w-prose font-body;
 }
 .prose-mdx h1 {
-  @apply font-serif text-4xl mt-8 mb-4;
+  @apply font-display text-display-md mt-10 mb-5 text-ink-900;
+  font-style: normal;
+  font-weight: 600;
 }
 .prose-mdx h2 {
-  @apply font-serif text-3xl mt-8 mb-3;
+  @apply font-display text-display-sm mt-10 mb-4 text-ink-900;
+  font-weight: 600;
 }
 .prose-mdx h3 {
-  @apply font-serif text-2xl mt-6 mb-2;
+  @apply font-display text-headline-lg mt-8 mb-3 text-ink-900;
+  font-weight: 500;
 }
 .prose-mdx p {
-  @apply my-4 leading-relaxed;
+  @apply my-5 leading-relaxed text-ink-800;
 }
 .prose-mdx a {
-  @apply link;
+  @apply link text-ocean-700;
 }
 .prose-mdx ul {
-  @apply list-disc pl-6 my-4 space-y-2;
+  @apply list-disc pl-6 my-5 space-y-2 text-ink-800;
 }
 .prose-mdx ol {
-  @apply list-decimal pl-6 my-4 space-y-2;
+  @apply list-decimal pl-6 my-5 space-y-2 text-ink-800;
 }
 .prose-mdx blockquote {
-  @apply border-l-4 border-ocean pl-4 italic text-text-muted my-4;
+  @apply quote border-eucalyptus-400;
 }
 .prose-mdx code {
-  @apply font-mono text-sm bg-surface px-1.5 py-0.5 rounded;
+  @apply font-mono text-sm bg-paper-100 text-ink-800 px-1.5 py-0.5 rounded;
 }
 .prose-mdx pre {
-  @apply bg-surface rounded-lg p-4 overflow-x-auto my-4;
+  @apply bg-paper-100 rounded-lg p-4 overflow-x-auto my-5 border border-paper-200;
 }
 .prose-mdx pre code {
-  @apply bg-transparent p-0;
+  @apply bg-transparent p-0 text-ink-900;
 }
 .prose-mdx hr {
-  @apply border-parchment-200 my-8;
+  @apply border-paper-200 my-8;
+}
+.prose-mdx strong {
+  @apply font-semibold text-ink-900;
+}
+
+/* ----------------------------------------------------------------
+ * Caveat accent — used for handwritten flourishes (byline, dates,
+ * pull-quote asides). Make sure it inherits colour contextually.
+ * ---------------------------------------------------------------- */
+.accent-flourish {
+  font-family: var(--font-accent);
+  color: var(--coral-700);
+  font-weight: 500;
+  line-height: 1;
 }

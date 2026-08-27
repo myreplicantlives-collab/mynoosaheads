@@ -1,36 +1,17 @@
 // src/components/mdxComponents.tsx — MDX components map used by
-// next-mdx-remote/rsc on the server. Provides light typography styling so
-// MDX renders with the coastal palette. TSK-2957-02 will replace these
-// with the proper component library.
+// next-mdx-remote/rsc on the server. Sprint 1.2 — typography tuned against
+// the design brief's editorial register. The .prose-mdx class in
+// globals.css owns most of the styling; this file just adds a few extras.
 
 import type { MDXComponents } from "mdx/types";
 import Link from "next/link";
+import { Icons } from "@/components/ui";
 
 export const mdxComponents: MDXComponents = {
-  h1: (props) => (
-    <h1
-      className="font-serif text-4xl mt-8 mb-4 text-[color:var(--color-text)]"
-      {...props}
-    />
-  ),
-  h2: (props) => (
-    <h2
-      className="font-serif text-3xl mt-8 mb-3 text-[color:var(--color-text)]"
-      {...props}
-    />
-  ),
-  h3: (props) => (
-    <h3
-      className="font-serif text-2xl mt-6 mb-2 text-[color:var(--color-text)]"
-      {...props}
-    />
-  ),
-  p: (props) => (
-    <p
-      className="my-4 leading-relaxed text-[color:var(--color-text)]"
-      {...props}
-    />
-  ),
+  h1: (props) => <h1 className="font-display text-display-md mt-10 mb-5 text-ink-900" {...props} />,
+  h2: (props) => <h2 className="font-display text-display-sm mt-10 mb-4 text-ink-900" {...props} />,
+  h3: (props) => <h3 className="font-display text-headline-lg mt-8 mb-3 text-ink-900" {...props} />,
+  p: (props) => <p className="my-5 leading-relaxed text-ink-800" {...props} />,
   a: ({ href, ...rest }) => {
     const isInternal =
       typeof href === "string" &&
@@ -39,7 +20,7 @@ export const mdxComponents: MDXComponents = {
       return (
         <Link
           href={href as string}
-          className="underline decoration-[color:var(--color-ocean)] underline-offset-4 hover:opacity-80"
+          className="underline decoration-ocean-300 underline-offset-4 hover:decoration-ocean-600 text-ocean-700"
           {...rest}
         />
       );
@@ -49,33 +30,31 @@ export const mdxComponents: MDXComponents = {
         href={href}
         rel="noopener noreferrer"
         target="_blank"
-        className="underline decoration-[color:var(--color-ocean)] underline-offset-4 hover:opacity-80"
+        className="underline decoration-ocean-300 underline-offset-4 hover:decoration-ocean-600 text-ocean-700 inline-flex items-center gap-1"
         {...rest}
-      />
+      >
+        {rest.children}
+        <Icons.External size={14} />
+      </a>
     );
   },
-  ul: (props) => <ul className="list-disc pl-6 my-4 space-y-2" {...props} />,
-  ol: (props) => <ol className="list-decimal pl-6 my-4 space-y-2" {...props} />,
+  ul: (props) => <ul className="list-disc pl-6 my-5 space-y-2 text-ink-800" {...props} />,
+  ol: (props) => <ol className="list-decimal pl-6 my-5 space-y-2 text-ink-800" {...props} />,
   li: (props) => <li className="leading-relaxed" {...props} />,
   blockquote: (props) => (
     <blockquote
-      className="border-l-4 border-[color:var(--color-ocean)] pl-4 italic text-[color:var(--color-text-muted)] my-4"
+      className="border-l-4 border-eucalyptus-400 pl-4 italic text-ink-700 my-5 font-display"
       {...props}
     />
   ),
   code: (props) => (
-    <code
-      className="font-mono text-sm bg-[color:var(--color-surface)] px-1.5 py-0.5 rounded"
-      {...props}
-    />
+    <code className="font-mono text-sm bg-paper-100 text-ink-800 px-1.5 py-0.5 rounded" {...props} />
   ),
   pre: (props) => (
     <pre
-      className="bg-[color:var(--color-surface)] rounded-lg p-4 overflow-x-auto my-4"
+      className="bg-paper-100 rounded-lg p-4 overflow-x-auto my-5 border border-paper-200"
       {...props}
     />
   ),
-  hr: (props) => (
-    <hr className="border-[color:var(--color-surface)] my-8" {...props} />
-  ),
+  hr: (props) => <hr className="border-paper-200 my-8" {...props} />,
 };
