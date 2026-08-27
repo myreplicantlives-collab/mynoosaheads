@@ -83,7 +83,7 @@ export function LiveDataWidget({
     ? {
         href,
         className:
-          "block group focus:outline-none focus-visible:ring-2 focus-visible:ring-ocean-500 rounded-2xl",
+          "block group focus:outline-none focus-visible:ring-2 focus-visible:ring-ocean-500 rounded-xl",
       }
     : { className: "block" };
 
@@ -91,7 +91,7 @@ export function LiveDataWidget({
     <Wrapper {...(wrapperProps as object)}>
       <article
         className={[
-          "rounded-2xl border p-4 transition shadow-sm",
+          "rounded-xl border p-4 transition shadow-sm",
           STATE_CLASS[state],
           href ? "group-hover:shadow-md" : "",
         ].join(" ")}

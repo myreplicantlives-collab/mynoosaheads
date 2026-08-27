@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Hero, Card, CardBody, CardHeader } from "@/components/ui";
+import { Hero, HeroPhoto, Card, CardBody, CardHeader } from "@/components/ui";
 import { ABOUT_BRAND_IMAGE } from "@/data/photos";
 
 export const metadata: Metadata = {
@@ -19,6 +19,15 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="bg-paper-50">
+      {/* Sprint 1.5 (MSN-2958): full-bleed masthead photo. Quiet headland
+       * view rather than the swimming beach — this is the editorial
+       * "figure" under which the brand statement sits. */}
+      <HeroPhoto
+        src={ABOUT_BRAND_IMAGE.url}
+        alt={ABOUT_BRAND_IMAGE.caption}
+        caption={ABOUT_BRAND_IMAGE.caption}
+        credit={`Photo: ${ABOUT_BRAND_IMAGE.author} / Wikimedia Commons · ${ABOUT_BRAND_IMAGE.licence}`}
+      />
       {/* Sprint 1.5 (MSN-2958) — brand-statement masthead.
        * Tim's north-star quote as a `<Section>` at the top of /about,
        * styled as Fraunces italic display with a coral accent.
