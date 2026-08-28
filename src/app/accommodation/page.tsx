@@ -335,7 +335,7 @@ export default async function AccommodationPage() {
               </CardBody>
             </Card>
             <Card variant="surface" as="article">
-              <CardHeader eyebrow="Sea level" title="" />
+              <CardHeader eyebrow="Sea level (approx.)" title="" />
               <CardBody>
                 <p className="font-display text-display-sm text-ink-900">{live.tide.value}</p>
                 <p className="mt-1 text-caption text-ink-700">{live.tide.secondary}</p>

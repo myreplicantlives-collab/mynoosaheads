@@ -26,7 +26,7 @@ export default function Page() {
       eyebrow="MSQ bar crossings + Noosa Council ramps"
       title="Boats & watercraft"
       subtitle="Crossing the Noosa River bar is a forecast-driven decision. Hire options and public ramp maps live below; the BOM forecast and MSQ bulletin sit in the sidebar."
-      flourish="Slack water. Light wind. Outgoing tide."
+      flourish="MSQ + Noosa Coast Guard — every crossing, every time."
       primarySources={[
         { label: "Marine Safety Queensland — bar crossings", href: "https://www.msq.qld.gov.au/Safety/Bar-crossings-and-coastal-conditions" },
         { label: "Noosa Council — Parks and Facilities", href: "https://www.noosa.qld.gov.au/Services-and-Facilities/Parks-and-Facilities" },
@@ -38,8 +38,8 @@ export default function Page() {
         {
           heading: "Crossing the bar",
           paragraphs: [
-            "The Noosa River bar is a trained entrance — it has been dredged and maintained, but it remains shallow and subject to swell. The general rule is to cross on the slack water or the outgoing tide with a south-east wind under 15 km/h. Crossings are discouraged in southerly conditions over 20 knots, on a heavy swell, or when MSQ has flagged a closed-bar condition.",
-            "If you don’t know the bar, go with a local operator for the first crossing. The VMR Noosa volunteers (channel 16) are a good fallback for a live reading.",
+            "The Noosa River bar is a trained entrance — it has been dredged and maintained, but it remains shallow and subject to swell, and conditions vary hour to hour. Always check the MSQ Noosa bar report and listen to the Noosa Coast Guard broadcast (VHF channel 16 or 67) before attempting a crossing. Marine Safety Queensland’s general guidance is to cross on an incoming tide when conditions allow. We do not publish a recommended crossing window — defer to MSQ.",
+            "If you don’t know the bar, go with a local operator for the first crossing. The VMR Noosa volunteers (channel 16) and Noosa Coast Guard are the live sources. Crossings are discouraged when MSQ has flagged a closed-bar condition, on a heavy swell, or in southerly conditions; defer to the MSQ bulletin for the current threshold.",
           ],
         },
         {

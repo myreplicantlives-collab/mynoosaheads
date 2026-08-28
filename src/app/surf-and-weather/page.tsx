@@ -66,8 +66,8 @@ export default function Page() {
         {
           heading: "Tide — and the bar",
           paragraphs: [
-            "Noosa River bar is shallow and shifts. The general rule is that the bar is friendliest on the slack and on the outgoing tide with a light south-east wind. Crossing on an incoming tide with a southerly running is the combination Marine Safety Queensland warns against most directly. If you’re not sure, don’t go out — phone VMR Noosa (channel 16) for a local reading.",
-            "The tide tile on this page uses Open-Meteo’s sea-level figure as a guide and points at the BOM Tewantin harmonic as the authoritative reference. Always defer to the BOM harmonic for a planned crossing.",
+            "Noosa River bar crossing conditions vary hour to hour with swell, wind, and tide. Always check the MSQ Noosa bar report and listen to the Noosa Coast Guard broadcast (VHF channel 16 or 67) before attempting a crossing. Marine Safety Queensland’s general guidance is to cross on an incoming tide when conditions allow. Do not rely on this website for navigation — we are a planning tool, not a navigational authority.",
+            "The \"Sea level\" tile on this page is an Open-Meteo sea-level figure, not an authoritative tide reading. For any planned crossing, defer to the BOM Tewantin tide harmonic (the authoritative local tide source) and the MSQ bulletin above. We do not publish a recommended crossing window.",
           ],
         },
         {
