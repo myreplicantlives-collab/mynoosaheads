@@ -186,7 +186,7 @@ const CATEGORIES: CategoryCard[] = [
     body: "Boutiques, markets and makers from Hastings Street to the hinterland villages.",
     href: "/shopping",
     image: {
-      caption: "Noosa Farmers Market — Saturday morning at the Noosaville showgrounds.",
+      caption: "Noosa Farmers Market — Sunday morning at the Noosaville showgrounds.",
       url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Noosa_farmers_market.jpg/1280px-Noosa_farmers_market.jpg",
       author: "Kgbo",
       licence: "CC BY-SA 4.0",
@@ -297,7 +297,7 @@ export default function ThingsToDoPage() {
                 Hastings Street runs from the surf club to the headland —
                 cafés for breakfast (walk-in), restaurants for dinner
                 (book ahead in summer). Across the river, Gympie Terrace
-                is the foreshore dinner strip. The Saturday Noosa
+                is the foreshore dinner strip. The Sunday Noosa
                 Farmers Market is the regional food event.
               </p>
             </article>
@@ -323,9 +323,9 @@ export default function ThingsToDoPage() {
                 Surf lessons at Main Beach and Sunshine Beach; kayak and
                 paddleboard hire on the Noosa River; Hinterland tours to
                 the Glass House Mountains and Australia Zoo; guided walks
-                through the coastal track. Operators are linked with
-                affiliate disclosure where a commercial relationship
-                exists.
+                through the coastal track. Operators are linked from
+                the directory; commercial relationships are disclosed
+                before you click.
               </p>
             </article>
           </div>

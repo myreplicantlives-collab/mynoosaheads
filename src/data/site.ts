@@ -75,7 +75,7 @@ export const CATEGORIES = [
     longDescription:
       "Live conditions for Noosa Heads: BOM Southeast Coast marine district and Open-Meteo's free marine API. Tiles refresh themselves every 30 minutes without a human pushing them.",
     primarySources: [
-      { label: "BOM Southeast Coast", href: "https://www.bom.gov.au/marine/forecast/QLD/QLD-Southeast-Coast.shtml" },
+      { label: "BOM Southeast Coast", href: "https://www.bom.gov.au/coastal-location/australia" },
       { label: "MSQ — Noosa bar report", href: "https://www.msq.qld.gov.au/" },
       { label: "Open-Meteo Marine Weather API", href: "https://open-meteo.com/en/docs/marine-weather-api" },
       { label: "BOM Tewantin tide", href: "https://www.bom.gov.au/australia/tides/#!/qld-tewantin" },
@@ -88,7 +88,7 @@ export const CATEGORIES = [
     icon: "ParkGate" as const,
     pitch: "Coastal walk, Tanglewood track, wildlife sightings — QPWS alerts on top.",
     longDescription:
-      "Noosa National Park covers about 4,000 hectares between Noosa Heads and Peregian Beach. The park is managed by the Queensland Parks and Wildlife Service. We link directly to QPWS alerts and conditions pages so you can check before you drive.",
+      "Noosa National Park covers 2,883 hectares (28.83 km²) between Noosa Heads and Peregian Beach. The park is managed by the Queensland Parks and Wildlife Service. We link directly to QPWS alerts and conditions pages so you can check before you drive.",
     primarySources: [
       { label: "QPWS — Noosa National Park", href: "https://parks.qld.gov.au/find-a-park/national-parks/noosa-national-park" },
       { label: "QPWS park alerts", href: "https://parks.qld.gov.au/park-alerts" },
@@ -103,7 +103,7 @@ export const CATEGORIES = [
     longDescription:
       "We don't take inventory. Each booking option links out to a third-party booking engine. Where MyNoosaHeads participates in an affiliate programme and the link is monetised, it is marked Affiliate before you click, per the Competition and Consumer Act 2010 (Cth) Schedule 2. The full disclosure is in the footer.",
     primarySources: [
-      { label: "Tourism Noosa — Where to stay", href: "https://www.tourismnoosa.com.au/accommodation" },
+      { label: "Visit Noosa — Where to stay", href: "https://www.visitnoosa.com.au/" },
       { label: "Noosa Shire Council — Visitor info", href: "https://www.noosa.qld.gov.au/Community-services/Visitor-information" },
     ],
   },
@@ -116,7 +116,7 @@ export const CATEGORIES = [
     longDescription:
       "Categories cover the four functional corners of the shire — Hastings Street, the Noosa River, the hinterland villages (Pomona, Cooran, Kin Kin), and the surf beaches — each with its own weather and tide cues.",
     primarySources: [
-      { label: "Tourism Noosa (industry body)", href: "https://www.visitnoosa.com.au/" },
+      { label: "Visit Noosa", href: "https://www.visitnoosa.com.au/" },
       { label: "Noosa Council — About Noosa", href: "https://www.noosa.qld.gov.au/Community/About-Noosa" },
     ],
   },

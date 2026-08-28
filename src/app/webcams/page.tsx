@@ -83,13 +83,12 @@ const CAMS = [
 
 export default function WebcamsPage() {
   const photos = CATEGORY_PHOTOS["webcams"];
-  const heroCredit = photos
-    ? `Photo: ${photos.hero.author} / Wikimedia Commons · ${photos.hero.licence}`
-    : "";
+  // MSN-2975 — strip photographer attribution from rendered HTML
+  // on main-journey pages. Full attribution lives at /photo-credits.
+  const heroCredit = "";
 
   return (
     <div className="bg-paper-50">
-      {/* Sprint 1.5: full-bleed hero photo (drone view) */}
       {photos?.hero ? (
         <HeroPhoto
           src={photos.hero.url}
@@ -124,8 +123,6 @@ export default function WebcamsPage() {
                 />
                 <figcaption className="px-4 py-3 text-caption text-ink-700 bg-paper-100 border-t border-paper-200">
                   <span className="font-medium text-ink-800">{p.caption}</span>
-                  <br />
-                  <span className="text-ink-600">Photo: {p.author} / Wikimedia Commons · {p.licence}</span>
                 </figcaption>
               </figure>
             ))}
@@ -142,10 +139,9 @@ export default function WebcamsPage() {
           Live webcam gallery
         </h2>
         <p className="mt-3 lead max-w-3xl">
-          Sprint 1.3 ships the editorial shell; Sprint 2 will wire live
-          embeds where the operators permit it. Until then, every tile
-          links out to the operator’s own page so you’re not seeing a stale
-          thumbnail pretending to be live.
+          Public coastal webcams around Noosa, operated by Sunshine Coast
+          Council, Surf Life Saving Queensland, and Beachsafe. All linked,
+          all free, all refreshed by their operators.
         </p>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">

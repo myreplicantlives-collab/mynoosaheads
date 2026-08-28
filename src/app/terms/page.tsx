@@ -60,7 +60,7 @@ export default function TermsPage() {
             </a>
             . For coastal conditions, defer to the{" "}
             <a
-              href="https://www.bom.gov.au/marine/forecast/QLD/QLD-Southeast-Coast.shtml"
+              href="https://www.bom.gov.au/coastal-location/australia"
               className="link text-ocean-700"
               rel="noopener noreferrer"
               target="_blank"

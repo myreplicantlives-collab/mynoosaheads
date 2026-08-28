@@ -176,7 +176,7 @@ export async function CategoryPage({
         <div className="grid gap-10 lg:grid-cols-3">
           <div className="lg:col-span-2 space-y-10">
             <h2 id="cat-body-heading" className="sr-only">
-              Editorial body
+              Page body
             </h2>
             {bodySections.map((section, i) => (
               <section key={i} aria-labelledby={`section-${i}-h`}>
@@ -232,7 +232,7 @@ export async function CategoryPage({
           {/* ─── Sidebar ─── */}
           <aside className="space-y-6">
             <Card variant="surface">
-              <CardHeader eyebrow="Primary sources" title="" />
+              <CardHeader eyebrow="Where to check" title="" />
               <CardBody>
                 <ul className="space-y-2 text-body-sm">
                   {primarySources.map((s) => (

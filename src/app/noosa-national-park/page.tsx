@@ -4,7 +4,7 @@ import { CategoryPage } from "@/components/CategoryPage";
 export const metadata: Metadata = {
   title: "Noosa National Park",
   description:
-    "Noosa National Park covers ~4,000 hectares between Noosa Heads and Peregian Beach. Tracks, wildlife, QPWS alerts, and the coastal walk.",
+    "Noosa National Park covers 2,883 hectares (28.83 km²) between Noosa Heads and Peregian Beach. Tracks, wildlife, QPWS alerts, and the coastal walk.",
   alternates: { canonical: "/noosa-national-park" },
   openGraph: {
     title: "Noosa National Park · MyNoosaHeads",
@@ -26,7 +26,7 @@ export default function Page() {
       showCredits={false}
       eyebrow="Managed by QPWS · alerts checked before every visit"
       title="Noosa National Park"
-      subtitle="About 4,000 hectares of wallum heath, eucalypt forest, and rocky headland between Noosa Heads and Peregian Beach. The coastal walk is the headline, but the inland tracks are quieter and just as good."
+      subtitle="2,883 hectares (28.83 km²) of wallum heath, eucalypt forest, and rocky headland between Noosa Heads and Peregian Beach. The coastal walk is the headline, but the inland tracks are quieter and just as good."
       flourish="Koalas sleep in the tallowwoods. Walk softly."
       primarySources={[
         { label: "QPWS — Noosa National Park", href: "https://parks.qld.gov.au/find-a-park/national-parks/noosa-national-park" },

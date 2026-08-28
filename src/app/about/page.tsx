@@ -84,7 +84,7 @@ export default function AboutPage() {
         src={ABOUT_BRAND_IMAGE.url}
         alt={ABOUT_BRAND_IMAGE.caption}
         caption={ABOUT_BRAND_IMAGE.caption}
-        credit={`Photo: ${ABOUT_BRAND_IMAGE.author} / Wikimedia Commons · ${ABOUT_BRAND_IMAGE.licence}`}
+        credit=""
       />
       {/* Sprint 1.5 (MSN-2958) — brand-statement masthead.
        * Tim's north-star quote as a `<Section>` at the top of /about,
@@ -129,16 +129,12 @@ export default function AboutPage() {
               />
             </p>
           </blockquote>
-          <p className="mt-6 font-accent text-accent-md text-ocean-700">
-            — Editorial, MyNoosaHeads
-          </p>
           <p className="mt-4 text-caption text-ink-600">
-            Photo above:{" "}
-            <span className="font-medium text-ink-700">
-              {ABOUT_BRAND_IMAGE.caption}
-            </span>{" "}
-            — Photo: {ABOUT_BRAND_IMAGE.author} / Wikimedia Commons ·{" "}
-            {ABOUT_BRAND_IMAGE.licence}
+            Full attribution for every image on the site lives at{" "}
+            <Link href="/photo-credits" className="link text-ocean-700">
+              /photo-credits
+            </Link>
+            .
           </p>
         </div>
       </section>
@@ -192,11 +188,10 @@ export default function AboutPage() {
                   guessing.
                 </p>
                 <p>
-                  Editorial copy is reviewed against current QPWS and
-                  council sources every month. All photography is sourced
-                  from Wikimedia Commons contributors who shoot Noosa
-                  specifically. Every editorial claim links to a public
-                  source.
+                  Copy on every page is reviewed against current QPWS
+                  and council sources. All photography is sourced from
+                  Wikimedia Commons contributors who shoot Noosa
+                  specifically. Every claim links to a public source.
                 </p>
               </div>
             </section>

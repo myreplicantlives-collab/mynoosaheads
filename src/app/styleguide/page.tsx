@@ -107,8 +107,8 @@ export default function StyleGuidePage() {
   return (
     <div className="bg-paper-50">
       <Hero
-        eyebrow="Sprint 1.2"
-        title="MyNoosaHeads design system"
+        eyebrow="Design system"
+        title="How the site looks."
         subtitle="Colours, typography, components, icons, accessibility — every token that ships to production, on one page."
         flourish="Discover Noosa."
       />
@@ -185,7 +185,7 @@ export default function StyleGuidePage() {
                 {t.token === "accent-lg" || t.token === "accent-md"
                   ? "The quick brown fox jumps over the lazy dog"
                   : t.token === "eyebrow" || t.token === "caption"
-                    ? "Small caps sample — Sprint 1.2"
+                    ? "Small caps sample"
                     : "Plan your Noosa trip well."}
               </p>
             </div>
@@ -304,7 +304,7 @@ export default function StyleGuidePage() {
           eyebrow="Sample eyebrow"
           title="A full Noosa guide — surf, parks, places to eat."
           subtitle="Hero takes children for trailing slots. Backgrounds: paper, surface, or full-bleed image."
-          flourish="Hero flourish text — Sprint 1.2"
+          flourish="Hero flourish text"
           actions={
             <>
               <Button leadingIcon={<Icons.Wave size={16} />}>Surf report</Button>

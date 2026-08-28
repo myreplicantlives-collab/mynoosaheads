@@ -30,7 +30,7 @@ export default function Page() {
       primarySources={[
         { label: "Marine Safety Queensland — bar crossings", href: "https://www.msq.qld.gov.au/Safety/Bar-crossings-and-coastal-conditions" },
         { label: "Noosa Council — Parks and Facilities", href: "https://www.noosa.qld.gov.au/Services-and-Facilities/Parks-and-Facilities" },
-        { label: "BOM — Southeast Coast", href: "https://www.bom.gov.au/marine/forecast/QLD/QLD-Southeast-Coast.shtml" },
+        { label: "BOM — Southeast Coast", href: "https://www.bom.gov.au/coastal-location/australia" },
         { label: "MSQ — Noosa bar report", href: "https://www.msq.qld.gov.au/" },
         { label: "Transport and Main Roads — recreational boating", href: "https://www.tmr.qld.gov.au/Maritime/Recreational-boating" },
       ]}

@@ -216,7 +216,7 @@ export default async function AccommodationPage() {
             Ten places we&apos;d send a friend.
           </h2>
           <p className="mt-3 lead max-w-3xl text-pretty">
-            Not 37 listings. Ten picks, each with a single live
+            Ten curated properties, each with a single live
             availability link.
           </p>
 
