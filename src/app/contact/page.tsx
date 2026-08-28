@@ -7,12 +7,12 @@ import { SITE } from "@/data/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact MyNoosaHeads — error reports, broken links, editorial suggestions. The contact form opens your email client; we don't store any data.",
+    "Contact MyNoosaHeads — error reports, broken links, suggestions. The contact form opens your email client; nothing is stored on this site.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: "Contact · MyNoosaHeads",
     description:
-      "Error reports, broken links, editorial suggestions. No data captured by this site.",
+      "Error reports, broken links, suggestions. The contact form opens your email client; nothing is stored.",
     url: "/contact",
     type: "website",
   },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Contact · MyNoosaHeads",
     description:
-      "Error reports, broken links, editorial suggestions. No data captured.",
+      "Error reports, broken links, suggestions. The contact form opens your email client; nothing is stored.",
   },
 };
 
@@ -106,8 +106,7 @@ export default function ContactPage() {
               <CardBody>
                 <p className="text-body-sm text-ink-800">
                   We aim to reply within 3 business days. The site is run
-                  by a small editorial team; complex editorial questions
-                  may take longer.
+                  by a small team; complex questions may take longer.
                 </p>
               </CardBody>
             </Card>

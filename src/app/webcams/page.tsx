@@ -101,7 +101,7 @@ export default function WebcamsPage() {
       <Hero
         eyebrow="Public feeds · we link, we don’t scrape"
         title="Webcams"
-        subtitle="A short, honest list of public coastal webcams around Noosa. Where the operator allows embedding with attribution, we link; where the feed requires a link-out, we link."
+        subtitle="A practical list of public coastal webcams around Noosa. Where the operator allows embedding with attribution, we embed; where a link-out is required, we link."
         flourish="Check the cam before you check the car keys."
       />
 

@@ -15,7 +15,7 @@
 export const SITE = {
   brand: "My Noosa Heads",
   brandShort: "mynoosaheads",
-  tagline: "By the headland, by the bar.",
+  tagline: "Discover Noosa.",
   domain: "mynoosaheads.com",
   // MSN-2964: live URL is the Cloudflare Workers deployment. The Vercel
   // URL is no longer authoritative (it returns 404 to external reviewers
@@ -44,20 +44,20 @@ export const SPRINT = {
 } as const;
 
 /**
- * Primary navigation — order is editorial. Surf & weather first (the
- * highest-frequency page a local opens each morning), then National Park
- * (alerts + tracks), then the consumer categories. No newsletter link,
- * no login, no social. Per chairman directive 2026-08-27.
+ * Primary navigation — MSN-2972 IA rewrite.
+ * Order is visitor-first (per Albert's D4 brief): Stay first (commercial
+ * anchor), then Things to do, Beaches & nature, Eat & drink, Plan your
+ * trip, Today in Noosa. The old category routes (fishing, boats, travel,
+ * webcams) survive as direct URLs and as the "More" footer section.
+ * No newsletter link, no login, no social. Per chairman directive 2026-08-27.
  */
 export const NAV = [
-  { label: "Surf & weather", href: "/surf-and-weather", description: "Live BOM + Open-Meteo tiles, tide, UV." },
-  { label: "National Park", href: "/noosa-national-park", description: "Tracks, wildlife, QPWS alerts." },
-  { label: "Accommodation", href: "/accommodation", description: "Hotels, apartments, holiday houses." },
-  { label: "Things to do", href: "/things-to-do", description: "Day-by-day ideas across the shire." },
-  { label: "Fishing", href: "/fishing-reports", description: "Weekly report, tides, solunar." },
-  { label: "Boats", href: "/boats-and-watercraft", description: "Hire, ramps, river bar crossings." },
-  { label: "Travel", href: "/travel-and-transport", description: "Bruce Highway, airport, ferry." },
-  { label: "Webcams", href: "/webcams", description: "Council cams + SLSQ flags." },
+  { label: "Stay", href: "/accommodation", description: "Where to stay — five areas, verified properties." },
+  { label: "Things to do", href: "/things-to-do", description: "Twelve ways to spend your days." },
+  { label: "Beaches & nature", href: "/noosa-national-park", description: "Coastal walk, wildlife, QPWS alerts." },
+  { label: "Eat & drink", href: "/things-to-do#food-and-drink", description: "Hastings Street, riverfront cafés, markets." },
+  { label: "Plan your trip", href: "/things-to-do#itineraries", description: "Itineraries, transport, maps." },
+  { label: "Today in Noosa", href: "/surf-and-weather", description: "Live surf, weather, UV, park alerts." },
 ] as const;
 
 /**
@@ -188,13 +188,13 @@ export const FOOTER_DISCLOSURE = {
     {
       heading: "Sitemap",
       links: [
-        { label: "Surf & weather", href: "/surf-and-weather" },
-        { label: "National Park", href: "/noosa-national-park" },
         { label: "Accommodation", href: "/accommodation" },
         { label: "Things to do", href: "/things-to-do" },
-        { label: "Fishing", href: "/fishing-reports" },
-        { label: "Boats", href: "/boats-and-watercraft" },
-        { label: "Travel", href: "/travel-and-transport" },
+        { label: "National Park", href: "/noosa-national-park" },
+        { label: "Surf & weather", href: "/surf-and-weather" },
+        { label: "Fishing reports", href: "/fishing-reports" },
+        { label: "Boats & watercraft", href: "/boats-and-watercraft" },
+        { label: "Travel & transport", href: "/travel-and-transport" },
         { label: "Webcams", href: "/webcams" },
       ],
     },

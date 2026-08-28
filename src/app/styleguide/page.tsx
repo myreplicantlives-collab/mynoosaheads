@@ -110,7 +110,7 @@ export default function StyleGuidePage() {
         eyebrow="Sprint 1.2"
         title="MyNoosaHeads design system"
         subtitle="Colours, typography, components, icons, accessibility — every token that ships to production, on one page."
-        flourish="By the headland, by the bar."
+        flourish="Discover Noosa."
       />
 
       <Section
@@ -423,8 +423,8 @@ export default function StyleGuidePage() {
           <div className="flex items-start gap-2">
             <Checkbox id="newsletter" />
             <Label htmlFor="newsletter" className="font-normal">
-              Note: per chairman directive, MyNoosaHeads has no newsletter — this checkbox is
-              intentionally absent from production.
+              Note: MyNoosaHeads has no newsletter — this checkbox is
+              for documentation only.
             </Label>
           </div>
           <div className="flex gap-3">

@@ -377,27 +377,212 @@ export const CATEGORY_PHOTOS: Record<string, CategoryPhotos> = {
 };
 
 /* ----------------------------------------------------------------------
- * Homepage hero — MSN-2965 swap.
+ * Homepage hero — MSN-2972 aspirational upgrade.
  *
- * Compared the previous drone-shot-of-township with three Wikimedia
- * candidates (the original drone shot, a December 2022 Hastings
- * Street Christmas roundabout, and a January 2015 golden-hour Main
- * Beach scene with the headland beyond). The January 2015 beach scene
- * wins on every tourism-marker: golden-hour light, lone wanderer
- * providing a focal point and human scale, foreground beach activity,
- * headland backdrop, and strong contrast against any overlay.
+ * Compared the MSN-2965 hero (January 2015 golden-hour Main Beach with
+ * walker) against three new sunset candidates. The April 2020 sunset
+ * over the actual beach (headland silhouetted, palm in foreground,
+ * sand-and-water texture) wins on:
+ *   - real sunset light (not golden-hour) — destination-mood setter
+ *   - headland silhouette in the upper third (geographic signature)
+ *   - foreground palm-frond provides natural framing for overlay
+ *   - 3948×2961 px source — high enough for 2K rendering
+ * Avoids the township drone and the existing "By the headland, by the
+ * bar" tonal register.
  *
  * Credits: Kgbo / Wikimedia Commons · CC BY-SA 4.0.
  * -------------------------------------------------------------------- */
 
 export const HOMEPAGE_HERO: WikimediaPhoto = {
   caption:
-    "Late afternoon on Main Beach — golden light, the headland beyond, and a walker heading toward the water.",
-  url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Noosa_Heads_beach_in_January_2015.JPG/1280px-Noosa_Heads_beach_in_January_2015.JPG",
+    "Sunset over Noosa Main Beach, April 2020 — headland silhouette, palm frond and the long beach.",
+  url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Sunset_over_Noosa_Beach%2C_Noosa_Heads%2C_Queensland_04.jpg/1280px-Sunset_over_Noosa_Beach%2C_Noosa_Heads%2C_Queensland_04.jpg",
   author: "Kgbo",
   licence: "CC BY-SA 4.0",
-  commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_in_January_2015.JPG",
+  commonsPage:
+    "https://commons.wikimedia.org/wiki/File:Sunset_over_Noosa_Beach,_Noosa_Heads,_Queensland_04.jpg",
 };
+
+/* ----------------------------------------------------------------------
+ * MSN-2972 — six image-led homepage tiles.
+ *
+ * Each tile gets a single aspirational Wikimedia Commons image. The
+ * "Where to stay" tile is intentionally the strongest (Hastings Street
+ * 2022, the highest-resolution, golden-hour, palm-lined, walk-up to the
+ * headland). The other tiles are chosen for topic fit + visual variety.
+ *
+ * Each photo URL is a 1280-px upload.wikimedia.org thumbnail, which
+ * next/image can transform (see next.config.mjs remotePatterns).
+ * -------------------------------------------------------------------- */
+
+export const HOME_TILES = {
+  /** Strongest commercial — Hastings Street looking up to the headland. */
+  whereToStay: {
+    caption:
+      "Hastings Street looking up to the headland — the walk from a Hastings Street hotel to Main Beach.",
+    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Hastings_Street%2C_Noosa_Heads%2C_Queensland%2C_2022%2C_03.jpg/1280px-Hastings_Street%2C_Noosa_Heads%2C_Queensland%2C_2022%2C_03.jpg",
+    author: "Kgbo",
+    licence: "CC BY-SA 4.0",
+    commonsPage:
+      "https://commons.wikimedia.org/wiki/File:Hastings_Street,_Noosa_Heads,_Queensland,_2022,_03.jpg",
+  },
+  /** Noosa River calm water — alternative to surf. */
+  thingsToDo: {
+    caption:
+      "The Noosa River at Noosaville, looking downstream — paddleboard and kayak water.",
+    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Noosa_River_bank_at_Noosaville%2C_Queensland%2C_2024.jpg/1280px-Noosa_River_bank_at_Noosaville%2C_Queensland%2C_2024.jpg",
+    author: "Chris Olszewski",
+    licence: "CC BY-SA 4.0",
+    commonsPage:
+      "https://commons.wikimedia.org/wiki/File:Noosa_River_bank_at_Noosaville,_Queensland,_2024.jpg",
+  },
+  /** Beaches & nature — headland view from the coastal walk. */
+  beachesAndNature: {
+    caption:
+      "The Noosa headland and the river mouth — the coastal walk's signature view.",
+    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Noosa_Heads_and_Weyba_Creek.JPG/1280px-Noosa_Heads_and_Weyba_Creek.JPG",
+    author: "Kgbo",
+    licence: "CC BY-SA 4.0",
+    commonsPage:
+      "https://commons.wikimedia.org/wiki/File:Noosa_Heads_and_Weyba_Creek.JPG",
+  },
+  /** Eat & drink — Hastings Street café table with the beach in view. */
+  eatAndDrink: {
+    caption:
+      "A Hastings Street café table with the headland and Main Beach in the background.",
+    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Aromas_Latte_art%2C_Noosa_Heads%2C_Queensland.jpg/1280px-Aromas_Latte_art%2C_Noosa_Heads%2C_Queensland.jpg",
+    author: "Kgbo",
+    licence: "CC BY-SA 4.0",
+    commonsPage:
+      "https://commons.wikimedia.org/wiki/File:Aromas_Latte_art,_Noosa_Heads,_Queensland.jpg",
+  },
+  /** Plan your trip — the Noosa Ferry, river-borne transport. */
+  planYourTrip: {
+    caption:
+      "The Noosa Ferry at the Sofitel wharf — the easiest waterborne transport between Hastings Street and Noosaville.",
+    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Noosa_Ferry_outside_Sofitel_Noosa_Pacific_Resort%2C_Noosa_Heads%2C_Queensland.jpg/1280px-Noosa_Ferry_outside_Sofitel_Noosa_Pacific_Resort%2C_Noosa_Heads%2C_Queensland.jpg",
+    author: "Kgbo",
+    licence: "CC BY-SA 4.0",
+    commonsPage:
+      "https://commons.wikimedia.org/wiki/File:Noosa_Ferry_outside_Sofitel_Noosa_Pacific_Resort,_Noosa_Heads,_Queensland.jpg",
+  },
+  /** Today in Noosa — Main Beach on a sunny day. */
+  todayInNoosa: {
+    caption:
+      "Noosa Main Beach on a sunny day — the live surf and weather destination for the homepage live strip.",
+    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Noosa_Heads_beach_on_Christmas_Day_2015_03.jpeg/1280px-Noosa_Heads_beach_on_Christmas_Day_2015_03.jpeg",
+    author: "Kgbo",
+    licence: "CC BY-SA 4.0",
+    commonsPage:
+      "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_on_Christmas_Day_2015_03.jpeg",
+  },
+} as const;
+
+/** Inspirational feature image — sunrise over Laguna Bay from headland. */
+export const FEATURE_IMAGE: WikimediaPhoto = {
+  caption:
+    "Sunrise over Laguna Bay from the Noosa headland coastal walk.",
+  url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Noosa_Heads_beach.jpg/1280px-Noosa_Heads_beach.jpg",
+  author: "Renee Whelan",
+  licence: "CC BY-SA 4.0",
+  commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach.jpg",
+};
+
+/* ----------------------------------------------------------------------
+ * MSN-2972 — twelve /things-to-do category images.
+ *
+ * One image per category card, mapped to the D2 category list. Each
+ * image is verified on Commons (Kwbo / Chris Olszewski / dronepicr)
+ * and uses the same upload.wikimedia.org 1280-px thumbnail convention
+ * as the rest of the photo set.
+ * -------------------------------------------------------------------- */
+
+export const CATEGORY_CARD_PHOTOS = {
+  bestBeaches: {
+    caption: "Noosa Main Beach at midday — the patrolled swimming beach at the bottom of Hastings Street.",
+    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Noosa_Heads_beach_on_Christmas_Day_2015_03.jpeg/1280px-Noosa_Heads_beach_on_Christmas_Day_2015_03.jpeg",
+    author: "Kgbo",
+    licence: "CC BY-SA 4.0",
+    commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_on_Christmas_Day_2015_03.jpeg",
+  },
+  walksAndNature: {
+    caption: "The Noosa headland coastal walk — granite boulders, tallowwood forest, the surf below.",
+    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Noosa_Heads_and_Weyba_Creek.JPG/1280px-Noosa_Heads_and_Weyba_Creek.JPG",
+    author: "Kgbo",
+    licence: "CC BY-SA 4.0",
+    commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_and_Weyba_Creek.JPG",
+  },
+  riverAdventures: {
+    caption: "The Noosa River at Noosaville — kayak and paddleboard water.",
+    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Noosa_River_bank_at_Noosaville%2C_Queensland%2C_2024.jpg/1280px-Noosa_River_bank_at_Noosaville%2C_Queensland%2C_2024.jpg",
+    author: "Chris Olszewski",
+    licence: "CC BY-SA 4.0",
+    commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_River_bank_at_Noosaville,_Queensland,_2024.jpg",
+  },
+  foodAndDrink: {
+    caption: "A Hastings Street café table — latte and the headland beyond.",
+    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Aromas_Latte_art%2C_Noosa_Heads%2C_Queensland.jpg/1280px-Aromas_Latte_art%2C_Noosa_Heads%2C_Queensland.jpg",
+    author: "Kgbo",
+    licence: "CC BY-SA 4.0",
+    commonsPage: "https://commons.wikimedia.org/wiki/File:Aromas_Latte_art,_Noosa_Heads,_Queensland.jpg",
+  },
+  surfingAndWaterSports: {
+    caption: "Early-morning paddle-out at Noosa Main Beach — the calm-water option when the swell is up.",
+    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Noosa_Heads_beach_on_Christmas_Day_2015_04.jpeg/1280px-Noosa_Heads_beach_on_Christmas_Day_2015_04.jpeg",
+    author: "Kgbo",
+    licence: "CC BY-SA 4.0",
+    commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_on_Christmas_Day_2015_04.jpeg",
+  },
+  familyActivities: {
+    caption: "Children learning to surf in the shallows at First Bay.",
+    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Children_learning_surfing_at_Noosa_Heads_beach%2C_Queensland.jpg/1280px-Children_learning_surfing_at_Noosa_Heads_beach%2C_Queensland.jpg",
+    author: "Kgbo",
+    licence: "CC BY-SA 4.0",
+    commonsPage: "https://commons.wikimedia.org/wiki/File:Children_learning_surfing_at_Noosa_Heads_beach,_Queensland.jpg",
+  },
+  wellnessAndRelaxation: {
+    caption: "Boardwalk along Main Beach — the short walk between Hastings Street and the Surf Club.",
+    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Boardwalk_along_Noosa_Heads%E2%80%99_main_beach%2C_Queensland.jpg/1280px-Boardwalk_along_Noosa_Heads%E2%80%99_main_beach%2C_Queensland.jpg",
+    author: "Kgbo",
+    licence: "CC BY-SA 4.0",
+    commonsPage: "https://commons.wikimedia.org/wiki/File:Boardwalk_along_Noosa_Heads%E2%80%99_main_beach,_Queensland.jpg",
+  },
+  marketsAndShopping: {
+    caption: "Noosa Farmers Market — Sunday morning on the Noosaville showgrounds.",
+    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Noosa_farmers_market.jpg/1280px-Noosa_farmers_market.jpg",
+    author: "Kgbo",
+    licence: "CC BY-SA 4.0",
+    commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_farmers_market.jpg",
+  },
+  dayTrips: {
+    caption: "A camper on the Coast — the road-trip mode into the Noosa Hinterland.",
+    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Camper_Wohnmobil_Australien_%2823979876582%29.jpg/1280px-Camper_Wohnmobil_Australien_%2823979876582%29.jpg",
+    author: "Kgbo",
+    licence: "CC BY 2.0",
+    commonsPage: "https://commons.wikimedia.org/wiki/File:Camper_Wohnmobil_Australien_(23979876582).jpg",
+  },
+  rainyDay: {
+    caption: "Hastings Street in soft overcast light — the rainy-day walk.",
+    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Hastings_Street_Noosa_Heads%2C_Queensland.jpg/1280px-Hastings_Street_Noosa_Heads%2C_Queensland.jpg",
+    author: "Kgbo",
+    licence: "CC BY-SA 4.0",
+    commonsPage: "https://commons.wikimedia.org/wiki/File:Hastings_Street_Noosa_Heads,_Queensland.jpg",
+  },
+  bookableExperiences: {
+    caption: "Stand-up paddleboarder in the bay — the hire-watercraft most visitors start with.",
+    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Man_with_stand_up_board_at_Noosa_Heads_beach%2C_Queensland.jpg/1280px-Man_with_stand_up_board_at_Noosa_Heads_beach%2C_Queensland.jpg",
+    author: "Kgbo",
+    licence: "CC BY-SA 4.0",
+    commonsPage: "https://commons.wikimedia.org/wiki/File:Man_with_stand_up_board_at_Noosa_Heads_beach,_Queensland.jpg",
+  },
+  itineraries: {
+    caption: "Sunset over Noosa Beach — the headline image for first-time visitor itineraries.",
+    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Sunset_over_Noosa_Beach%2C_Noosa_Heads%2C_Queensland_04.jpg/1280px-Sunset_over_Noosa_Beach%2C_Noosa_Heads%2C_Queensland_04.jpg",
+    author: "Kgbo",
+    licence: "CC BY-SA 4.0",
+    commonsPage: "https://commons.wikimedia.org/wiki/File:Sunset_over_Noosa_Beach,_Noosa_Heads,_Queensland_04.jpg",
+  },
+} as const;
 
 /* ----------------------------------------------------------------------
  * /about brand-statement masthead image — quieter, more editorial

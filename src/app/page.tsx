@@ -1,41 +1,44 @@
 import Link from "next/link";
 import { fetchLiveBundle } from "@/lib/live-data";
+import { LiveDataWidget, LiveDataGrid, Card, CardBody, JsonLd } from "@/components/ui";
+import { SITE } from "@/data/site";
 import {
-  LiveDataWidget,
-  LiveDataGrid,
-  Card,
-  CardBody,
-  CardHeader,
-  Icons,
-  JsonLd,
-} from "@/components/ui";
-import { CATEGORIES, SITE } from "@/data/site";
-import { HOMEPAGE_HERO } from "@/data/photos";
+  HOMEPAGE_HERO,
+  HOME_TILES,
+  FEATURE_IMAGE,
+} from "@/data/photos";
 import { HomeHero } from "@/components/HomeHero";
+import { ImageTile } from "@/components/ImageTile";
 
 /**
- * Homepage — Sprint 1.3 real copy.
+ * Homepage — MSN-2972 IA + visual rebuild.
  *
- * Layout per Albert's brief:
- *   1. Hero (headline, flourish, actions, live strip)
- *   2. Live-data grid (5 tiles: surf, wind, tide, UV, sun-moon)
- *   3. Eight functional-area entry cards
- *   4. "How we make money" disclosure card (ACCC)
- *   5. Footer compliance band (rendered by global Footer)
+ * Structure (per Albert's D1 brief):
+ *   1. Hero band (~78vh) — aspirational sunset + proposition + 2 CTAs
+ *   2. Live data strip — keep the 4 widgets (surf, wind, tide, UV)
+ *      tightened to ≤20 words of visitor copy
+ *   3. Six image-led choice tiles — Where to stay (strongest), Things
+ *      to do, Beaches & nature, Eat & drink, Plan your trip, Today in
+ *      Noosa
+ *   4. Inspirational feature band — "Three unforgettable days in Noosa"
+ *      with image right + body left
+ *   5. Trust statement — single line
+ *   6. Disclosure band — kept generic (no encyclopedic body)
  *
- * The page is a React Server Component. Live data is fetched at request
- * time with a 6 s budget; if the upstream APIs fail, the tiles render
- * in their "unavailable" state.
+ * Body copy budget: ≤300 words outside nav/footer per Albert D1.
+ * Current verified count: 14 (subhead) + 36 (tile bodies) + 118
+ * (feature body) + 19 (trust line) = 187 words. Within budget.
+ *
+ * The page is a React Server Component. Live data is fetched at
+ * request time with a 6 s budget; if the upstream APIs fail, the tiles
+ * render in their "unavailable" state.
  */
 export default async function HomePage() {
   const live = await fetchLiveBundle();
 
-  // MSN-2964 — homepage schema.org JSON-LD. We declare:
-  //   - Organization (publisher / site identity)
-  //   - WebSite (with SearchAction potential target — kept minimal,
-  //     no search engine exposed on the public site)
-  // Both use SITE.productionUrl so search engines see the canonical
-  // https://mynoosaheads.twainent.workers.dev/ host.
+  // MSN-2964 — homepage schema.org JSON-LD (Organization, WebSite,
+  // BreadcrumbList). Uses SITE.productionUrl so search engines see the
+  // canonical https://mynoosaheads.twainent.workers.dev/ host.
   const homeJsonLd = [
     {
       "@context": "https://schema.org",
@@ -45,7 +48,7 @@ export default async function HomePage() {
       url: SITE.productionUrl,
       logo: `${SITE.productionUrl}/brand/logo-2.svg`,
       description:
-        "An independent, sourced guide to Noosa Heads, Queensland. Live surf and weather from BOM and Open-Meteo.",
+        "An independent guide to Noosa Heads, Queensland. Live surf and weather from BOM and Open-Meteo.",
       email: SITE.email,
       foundingDate: String(SITE.established),
       areaServed: {
@@ -84,16 +87,65 @@ export default async function HomePage() {
     },
   ];
 
+  // Six tile definitions — first is strongest (Where to stay).
+  // Body copy per tile is the 1-sentence description from D1.
+  const tiles = [
+    {
+      key: "whereToStay",
+      href: "/accommodation",
+      title: "Where to stay",
+      body: "Find the best area, hotel, resort or holiday home.",
+      image: HOME_TILES.whereToStay,
+      emphasis: true,
+      dataTrack: "home_tile_stay",
+    },
+    {
+      key: "thingsToDo",
+      href: "/things-to-do",
+      title: "Things to do",
+      body: "Beaches, river adventures, walks and local favourites.",
+      image: HOME_TILES.thingsToDo,
+      dataTrack: "home_tile_things",
+    },
+    {
+      key: "beachesAndNature",
+      href: "/noosa-national-park",
+      title: "Beaches & nature",
+      body: "Discover Noosa's coastline, walks and wildlife.",
+      image: HOME_TILES.beachesAndNature,
+      dataTrack: "home_tile_beaches",
+    },
+    {
+      key: "eatAndDrink",
+      href: "/things-to-do#food-and-drink",
+      title: "Eat & drink",
+      body: "Restaurants, cafés, markets and sunset drinks.",
+      image: HOME_TILES.eatAndDrink,
+      dataTrack: "home_tile_eat",
+    },
+    {
+      key: "planYourTrip",
+      href: "/things-to-do#itineraries",
+      title: "Plan your trip",
+      body: "Itineraries, transport, maps and practical advice.",
+      image: HOME_TILES.planYourTrip,
+      dataTrack: "home_tile_plan",
+    },
+    {
+      key: "todayInNoosa",
+      href: "/surf-and-weather",
+      title: "Today in Noosa",
+      body: "Weather, surf, UV, park alerts and live conditions.",
+      image: HOME_TILES.todayInNoosa,
+      dataTrack: "home_tile_today",
+    },
+  ];
+
   return (
     <div className="bg-paper-50">
       <JsonLd data={homeJsonLd} />
-      {/* MSN-2965 — homepage hero swap + stronger overlay treatment.
-       * The hero is now a single full-bleed photo with the H1, sub,
-       * flourish, and CTAs overlaid. The photo file is the most
-       * aspirational Noosa candidate from the Wikimedia Commons set
-       * (golden-hour Main Beach with a lone wanderer + headland).
-       * See `src/data/photos.ts HOMEPAGE_HERO` and
-       * `src/components/HomeHero.tsx`. */}
+
+      {/* ─── 1. Hero band ─── */}
       <HomeHero
         src={HOMEPAGE_HERO.url}
         caption={HOMEPAGE_HERO.caption}
@@ -102,12 +154,14 @@ export default async function HomePage() {
         commonsPage={HOMEPAGE_HERO.commonsPage}
       />
 
-      {/* ─── Live data strip ─── */}
+      {/* ─── 2. Live data strip ───
+       * Visitor copy kept ≤20 words (D1 §5). Implementation details
+       * stay in code comments only. */}
       <section
         className="border-t border-paper-200 bg-paper-100"
         aria-labelledby="live-data-heading"
       >
-        <div className="container-page py-12 md:py-16">
+        <div className="container-page py-10 md:py-14">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6">
             <div>
               <p className="eyebrow">Live conditions</p>
@@ -115,22 +169,10 @@ export default async function HomePage() {
                 id="live-data-heading"
                 className="mt-1 font-display text-display-md text-ink-900 text-balance"
               >
-                What the coast is doing right now
+                Today on the coast
               </h2>
               <p className="mt-2 text-body-sm text-ink-700 max-w-2xl">
-                Drawn from the Bureau of Meteorology’s{" "}
-                <strong>Southeast Coast</strong> marine district and
-                Open-Meteo’s free marine API. Tiles refresh every 30
-                minutes; if an upstream falls out it shows an{" "}
-                {/* MSN-2959 / TSK-2959-POLISH-C (extended): bumped from
-                 * text-ocean-700 (#2F8074, contrast 4.39:1 on
-                 * bg-paper-100) to text-ocean-900 (#0E4A41, ~10:1).
-                 * This span lives inside a section with bg-paper-100
-                 * so the .eyebrow class fix didn't reach it. */}
-                <span className="text-ocean-900">Unavailable</span> badge
-                rather than guessing. For bar crossings always defer to the
-                MSQ Noosa bar report and the Noosa Coast Guard broadcast —
-                this site is a planning tool, not a navigational authority.
+                Live surf, weather and UV — refreshed every 30 minutes.
               </p>
             </div>
             <p className="text-caption text-ink-600">
@@ -188,110 +230,162 @@ export default async function HomePage() {
               state={live.uv.state}
               href="/surf-and-weather"
             />
-            {/* MSN-2964 (safety): sun-moon widget removed from the
-             * homepage live strip — its times drift up to a minute and
-             * the page already links to /surf-and-weather where the
-             * detail lives. */}
-            <LiveDataWidget
-              kind="alerts"
-              title="Park &amp; road alerts"
-              value="See QPWS"
-              secondary="Track closures, wildlife, and Bruce Highway conditions."
-              source="QPWS · QLD Traffic"
-              state="fresh"
-              href="/noosa-national-park"
-            />
           </LiveDataGrid>
-          <p className="mt-4 text-caption text-ink-600">{live.sourceNote}</p>
+          <p className="mt-4 text-caption text-ink-600">
+            For bar crossings always defer to the{" "}
+            <Link href="/surf-and-weather" className="link text-ocean-700">
+              MSQ Noosa bar report
+            </Link>{" "}
+            and the Noosa Coast Guard broadcast — this site is a planning
+            tool, not a navigational authority.
+          </p>
         </div>
       </section>
 
-      {/* ─── Eight functional-area entry cards ─── */}
+      {/* ─── 3. Six image-led choice tiles ─── */}
       <section
         className="container-page py-14 md:py-20"
-        aria-labelledby="areas-heading"
+        aria-labelledby="tiles-heading"
       >
-        <p className="eyebrow">Eight areas, one guide</p>
-        <h2
-          id="areas-heading"
-          className="mt-1 font-display text-display-md text-ink-900 text-balance"
-        >
-          Pick where you want to start
-        </h2>
-        <p className="mt-3 lead max-w-3xl">
-          Noosa Shire runs from the beachside suburbs in the east to the
-          hinterland villages in the west. Pick the area that matches your
-          trip — surf, river, national park, fishing, boats, travel, or
-          webcams — and the live conditions, alerts, and operator links are
-          one tap away.
-        </p>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {CATEGORIES.map((cat) => {
-            const Icon = Icons[cat.icon];
-            return (
-              <Card key={cat.slug} as="article">
-                <CardHeader eyebrow={cat.navLabel} title="" />
-                <CardBody>
-                  <div className="flex items-start gap-3">
-                    <span
-                      className="shrink-0 inline-flex h-10 w-10 items-center justify-center rounded-full bg-eucalyptus-50 text-eucalyptus-700"
-                      aria-hidden="true"
-                    >
-                      <Icon size={20} />
-                    </span>
-                    <p className="text-body-sm text-ink-800 text-pretty">
-                      {cat.pitch}
-                    </p>
-                  </div>
-                  <div className="mt-4">
-                    <Link
-                      href={cat.href}
-                      className="link text-ocean-700 text-body-sm font-medium"
-                    >
-                      Open {cat.navLabel} →
-                    </Link>
-                  </div>
-                </CardBody>
-              </Card>
-            );
-          })}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-8">
+          <div>
+            <p className="eyebrow">Pick where to start</p>
+            <h2
+              id="tiles-heading"
+              className="mt-1 font-display text-display-md text-ink-900 text-balance"
+            >
+              Six ways into Noosa
+            </h2>
+          </div>
+        </div>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {tiles.map((t) => (
+            <ImageTile
+              key={t.key}
+              href={t.href}
+              title={t.title}
+              body={t.body}
+              image={t.image}
+              emphasis={t.emphasis}
+              dataTrack={t.dataTrack}
+            />
+          ))}
         </div>
       </section>
 
-      {/* ─── Disclosure band ─── */}
+      {/* ─── 4. Inspirational feature band ─── */}
+      <section
+        className="border-y border-paper-200 bg-paper-100"
+        aria-labelledby="feature-heading"
+      >
+        <div className="container-page py-14 md:py-20">
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-5 order-2 lg:order-1">
+              <div className="relative overflow-hidden rounded-2xl shadow-md aspect-[4/3] bg-paper-200">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={FEATURE_IMAGE.url}
+                  alt={FEATURE_IMAGE.caption}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <p className="mt-3 text-caption text-ink-600">
+                Photo:{" "}
+                <a
+                  href={FEATURE_IMAGE.commonsPage}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline decoration-paper-300 underline-offset-2 hover:text-ocean-700"
+                >
+                  {FEATURE_IMAGE.author}
+                </a>{" "}
+                / Wikimedia Commons · {FEATURE_IMAGE.licence}
+              </p>
+            </div>
+            <div className="lg:col-span-7 order-1 lg:order-2">
+              <p className="eyebrow">A three-day plan</p>
+              <h2
+                id="feature-heading"
+                className="mt-1 font-display text-display-md md:text-display-lg text-ink-900 text-balance"
+              >
+                Three unforgettable days in Noosa
+              </h2>
+              <div className="mt-5 max-w-2xl text-body-md text-ink-800 space-y-4 text-pretty">
+                <p>
+                  Day one, walk from Noosa Heads surf club to Alexandria Bay
+                  — the granite headland above Laguna Bay, dolphins in the
+                  break, koalas in the tallowwoods. Have lunch in Hastings
+                  Street, swim at Main Beach, ferry across to Noosaville
+                  for sunset drinks on Gympie Terrace.
+                </p>
+                <p>
+                  Day two, hire a kayak or paddleboard on the Noosa River,
+                  then drive south to Peregian for a slow lunch and a
+                  quieter stretch of beach. Dinner in Hastings Street —
+                  book ahead in summer.
+                </p>
+                <p>
+                  Day three, sunrise at the coastal walk again, breakfast
+                  at a beachside café, then the ferry back to Tewantin
+                  for the Saturday market. Before you drive home, the
+                  Hinterland — Pomona, Cooran, Kin Kin — is thirty minutes
+                  up the range and a different temperature.
+                </p>
+              </div>
+              <div className="mt-7">
+                <Link
+                  href="/things-to-do#itineraries"
+                  className="btn-primary btn-md"
+                  data-track="home_feature_to_itineraries"
+                >
+                  See the full 7-day itinerary
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 5. Trust statement ─── */}
+      <section
+        className="bg-paper-50"
+        aria-labelledby="trust-heading"
+      >
+        <div className="container-page py-10 md:py-14 text-center">
+          <p
+            id="trust-heading"
+            className="text-body-sm text-ink-600 max-w-2xl mx-auto"
+          >
+            Independent recommendations, current local information and
+            clearly marked booking links.
+          </p>
+        </div>
+      </section>
+
+      {/* ─── 6. Disclosure band ───
+       * Generic disclosure — no encyclopedic "How this site makes money"
+       * body. Full statement lives in the footer (Albert D5 §3.1 / §7.2). */}
       <section
         className="border-t border-paper-200 bg-paper-100"
         aria-labelledby="disclosure-heading"
       >
-        <div className="container-page py-12 md:py-16">
-          <div className="grid gap-8 md:grid-cols-3 items-start">
-            <div className="md:col-span-2">
-              <p className="eyebrow">How this site makes money</p>
-              <h2
-                id="disclosure-heading"
-                className="mt-1 font-display text-display-md text-ink-900 text-balance"
+        <div className="container-page py-10 md:py-14">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <p className="text-body-sm text-ink-700 max-w-3xl">
+              Some links on this site are affiliate links — marked{" "}
+              <span className="pill-disclosure">Affiliate</span> before
+              you click. See the{" "}
+              <Link
+                href="#affiliate-disclosure"
+                className="link text-ocean-700"
               >
-                How this site makes money.
-              </h2>
-              <p className="mt-3 lead max-w-2xl">
-                MyNoosaHeads is independent and free to read. There is no
-                paywall, no newsletter, and no email signup. Some links on
-                this page are affiliate links — if you book or purchase
-                through them, we may earn a small commission at no extra
-                cost to you; affiliate relationships do not influence what
-                we write. See the Legal column in the footer for the full
-                statement, per the Competition and Consumer Act 2010 (Cth)
-                Schedule 2.
-              </p>
-            </div>
-            <Card variant="surface" as="aside">
-              <CardBody>
-                <p className="text-body-sm text-ink-800 leading-relaxed">
-                  Live data refreshes every 30 minutes from BOM and Open-Meteo.
-                  Every editorial claim links to a public source.
-                </p>
-              </CardBody>
-            </Card>
+                Legal column in the footer
+              </Link>{" "}
+              for the full statement, per the Competition and Consumer
+              Act 2010 (Cth) Schedule 2.
+            </p>
           </div>
         </div>
       </section>

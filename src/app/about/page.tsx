@@ -14,7 +14,7 @@ import { SITE } from "@/data/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About MyNoosaHeads — an independent, sourced guide to Noosa Heads. AU editorial team, monthly fact-check cadence, ACCC-compliant disclosure, all photography from Wikimedia Commons contributors.",
+    "About MyNoosaHeads — an independent guide to Noosa Heads. Every page links to a public source.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About · MyNoosaHeads",
@@ -106,16 +106,16 @@ export default function AboutPage() {
           </p>
           <blockquote className="mt-4 max-w-4xl text-balance text-eucalyptus-700 leading-tight">
             <p className="font-display italic text-display-lg md:text-display-xl">
-              By the headland, by the bar.
+              Discover Noosa.
             </p>
             <p className="mt-5 font-display not-italic text-display-sm md:text-display-md text-ink-800 leading-snug">
-              MyNoosaHeads is an independent, sourced guide to Noosa Heads —
-              surf and weather, the national park, accommodation, and the
-              local rules that keep everyone on the right side of a
-              south-east swell.
+              MyNoosaHeads is an independent guide to Noosa Heads — surf
+              and weather, the national park, accommodation, and the local
+              rules that keep everyone on the right side of a south-east
+              swell.
             </p>
             <p className="mt-3 font-display not-italic text-display-sm md:text-display-md text-ink-800 leading-snug">
-              Sourced always, never fabricated
+              Every claim links to a public source.
               {/*
                 * MSN-2959 / TSK-2959-FIX-3: brand-statement full-stop
                 * dot — the single place --accent-amber (#B8742A) appears
@@ -143,10 +143,9 @@ export default function AboutPage() {
         </div>
       </section>
       <Hero
-        eyebrow="About"
+        eyebrow="About this guide"
         title="MyNoosaHeads"
-        subtitle="An independent, sourced guide to Noosa Heads and the surrounding shire on the Sunshine Coast. Primary sources linked on every page."
-        flourish="By the headland, by the bar."
+        subtitle="An independent guide to Noosa Heads, Queensland. Every page links to a public source."
       />
 
       <section className="container-page py-14 md:py-20" aria-labelledby="what-h">
@@ -164,9 +163,10 @@ export default function AboutPage() {
                   to do, fishing, boats, travel, and webcams.
                 </p>
                 <p>
-                  The site opens with the live surf and weather and closes with
-                  the hinterland villages — two honest ends of the shire. Each
-                  page links to its primary sources in the sidebar.
+                  The site opens with the live surf and weather and closes
+                  with the hinterland villages — the two functional ends of
+                  the shire. Each page links to its primary sources in the
+                  sidebar.
                 </p>
               </div>
             </section>
@@ -195,9 +195,8 @@ export default function AboutPage() {
                   Editorial copy is reviewed against current QPWS and
                   council sources every month. All photography is sourced
                   from Wikimedia Commons contributors who shoot Noosa
-                  specifically — no stock libraries, no AI-generated
-                  images, and no editorial claims that don’t link to a
-                  public source.
+                  specifically. Every editorial claim links to a public
+                  source.
                 </p>
               </div>
             </section>

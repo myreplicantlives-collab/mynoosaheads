@@ -41,18 +41,18 @@ import { DecisionHelper } from "@/components/accommodation/DecisionHelper";
 export const metadata: Metadata = {
   title: "Where to stay in Noosa · Accommodation guide",
   description:
-    "Five areas, six-to-eight verified properties each. Pick the right base for your Noosa trip, then pick the property. Per-operator rationale and Booking.com, Stayz, Expedia, Airbnb link-outs.",
+    "Links to Booking.com, Stayz, Airbnb and Expedia. Five areas, six-to-eight verified properties each.",
   alternates: { canonical: "/accommodation" },
   openGraph: {
-    title: "Accommodation · MyNoosaHeads",
+    title: "Where to stay in Noosa · MyNoosaHeads",
     description:
-      "Five areas, six-to-eight verified properties each. Pick the right base, then pick the property.",
+      "Links to Booking.com, Stayz, Airbnb and Expedia. Five areas, six-to-eight verified properties each.",
     url: "/accommodation",
     type: "article",
   },
   twitter: {
     card: "summary",
-    title: "Accommodation · MyNoosaHeads",
+    title: "Where to stay in Noosa · MyNoosaHeads",
     description:
       "Where to stay in Noosa: five areas, six-to-eight verified properties each.",
   },
@@ -170,7 +170,7 @@ export default async function AccommodationPage() {
           id="area-selector-h"
           className="mt-1 font-display text-display-md text-ink-900 text-balance"
         >
-          Which part of Noosa fits the trip?
+          Five areas to choose from
         </h2>
         <p className="mt-3 lead max-w-3xl">
           The shire runs from beachside suburbs in the east to small
@@ -195,7 +195,7 @@ export default async function AccommodationPage() {
             id="matrix-h"
             className="mt-1 font-display text-display-md text-ink-900 text-balance"
           >
-            Which area matches the trip profile?
+            Fit per trip profile
           </h2>
           <p className="mt-3 lead max-w-3xl">
             A single fit score per trip profile. Two stars means a
@@ -233,7 +233,7 @@ export default async function AccommodationPage() {
             id="property-grid-h"
             className="mt-1 font-display text-display-md text-ink-900 text-balance"
           >
-            Browse the full grid ({areas.reduce((n, a) => n + a.properties.length, 0)}{" "}
+            All properties ({areas.reduce((n, a) => n + a.properties.length, 0)}{" "}
             properties)
           </h2>
           <p className="mt-3 lead max-w-3xl">
@@ -251,6 +251,103 @@ export default async function AccommodationPage() {
               ? `Disclosure: ${disclosure.slice(0, 240)}…`
               : null}
           </p>
+        </div>
+      </section>
+
+      {/* ─── 5b. Property categories — visitor mental models (MSN-2972 / D3 §2)
+       *  Five anchor sections: Family / Luxury / Beachfront / Budget /
+       *  Long-stay. Each anchors to a filter on the property grid above. */}
+      <section
+        className="border-t border-paper-200 bg-paper-100"
+        aria-labelledby="categories-h"
+      >
+        <div className="container-page py-14 md:py-20">
+          <p className="eyebrow">By property type</p>
+          <h2
+            id="categories-h"
+            className="mt-1 font-display text-display-md text-ink-900 text-balance"
+          >
+            Five ways to pick a property
+          </h2>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <a
+              href="#family"
+              className="card p-6 transition-all hover:-translate-y-0.5 hover:shadow-md focus-visible:-translate-y-0.5 focus-visible:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ocean-500"
+              data-track="accommodation_category_family"
+            >
+              <h3 className="font-display text-headline-md text-ink-900">Family</h3>
+              <p className="mt-2 text-body-sm text-ink-700">
+                Apartments and resorts with pools, kitchens and room for everyone.
+              </p>
+            </a>
+            <a
+              href="#luxury"
+              className="card p-6 transition-all hover:-translate-y-0.5 hover:shadow-md focus-visible:-translate-y-0.5 focus-visible:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ocean-500"
+              data-track="accommodation_category_luxury"
+            >
+              <h3 className="font-display text-headline-md text-ink-900">Luxury</h3>
+              <p className="mt-2 text-body-sm text-ink-700">
+                Hastings Street and waterfront — full-service resorts and designer villas.
+              </p>
+            </a>
+            <a
+              href="#beachfront"
+              className="card p-6 transition-all hover:-translate-y-0.5 hover:shadow-md focus-visible:-translate-y-0.5 focus-visible:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ocean-500"
+              data-track="accommodation_category_beachfront"
+            >
+              <h3 className="font-display text-headline-md text-ink-900">Beachfront</h3>
+              <p className="mt-2 text-body-sm text-ink-700">
+                On the sand or across the road — Main Beach, Sunshine Beach and Peregian.
+              </p>
+            </a>
+            <a
+              href="#budget"
+              className="card p-6 transition-all hover:-translate-y-0.5 hover:shadow-md focus-visible:-translate-y-0.5 focus-visible:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ocean-500"
+              data-track="accommodation_category_budget"
+            >
+              <h3 className="font-display text-headline-md text-ink-900">Budget</h3>
+              <p className="mt-2 text-body-sm text-ink-700">
+                Motels on Gympie Terrace, holiday houses in Peregian, hostels near the headland.
+              </p>
+            </a>
+            <a
+              href="#long-stay"
+              className="card p-6 transition-all hover:-translate-y-0.5 hover:shadow-md focus-visible:-translate-y-0.5 focus-visible:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ocean-500"
+              data-track="accommodation_category_long_stay"
+            >
+              <h3 className="font-display text-headline-md text-ink-900">Long-stay</h3>
+              <p className="mt-2 text-body-sm text-ink-700">
+                Self-contained apartments and houses with kitchens — week-long rates available.
+              </p>
+            </a>
+            <div className="card p-6 bg-paper-200/40 border-dashed">
+              <h3 className="font-display text-headline-md text-ink-900">Where everything is</h3>
+              <p className="mt-2 text-body-sm text-ink-700">
+                Hastings Street at the north, Noosa Sound and Noosaville along
+                the river, Sunshine Beach to the south, Peregian and Marcus
+                Beach further south still. Tap a marker for the area guide.
+              </p>
+              <p className="mt-3 text-caption text-ink-600">
+                Map placeholder — interactive map lands in a follow-up release.
+              </p>
+            </div>
+          </div>
+
+          {/* ─── 5c. How we choose (D3 §3) ─── */}
+          <div className="mt-14 pt-10 border-t border-paper-200">
+            <p className="eyebrow">How we choose</p>
+            <h3 className="mt-1 font-display text-headline-lg text-ink-900 text-balance">
+              Where this list comes from
+            </h3>
+            <p className="mt-4 max-w-3xl text-body-md text-ink-800 text-pretty">
+              We list properties that are currently trading, in the areas where
+              visitors actually stay. We link to the booking engines that
+              carry them — Booking.com, Stayz, Airbnb and Expedia — rather
+              than taking inventory ourselves. Some links earn us a
+              commission; all are marked Affiliate before you click. The full
+              statement is in the footer.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -276,7 +373,7 @@ export default async function AccommodationPage() {
             id="itineraries-h"
             className="mt-1 font-display text-display-md text-ink-900 text-balance"
           >
-            Three-day, five-day, seven-day shapes
+            Suggested itineraries
           </h2>
           <p className="mt-3 lead max-w-3xl">
             Pick a length. The plan tells you where to stay on each

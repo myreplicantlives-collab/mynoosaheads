@@ -675,7 +675,7 @@ export const AREAS: Area[] = [
     id: "peregian",
     name: "Peregian & Marcus Beach",
     pitch: "South past Sunshine. Quieter again; village-square feel. Coolum stretch starts here.",
-    bestFor: "Slow stays, dog-friendly accommodation (verify each operator), surfers.",
+    bestFor: "Extended stays, dog-friendly accommodation (verify each operator), surfers.",
     /**
      * MSN-2965: price compass added from Albert's
      * `accommodation-content-pack.md` (D2 content pack).

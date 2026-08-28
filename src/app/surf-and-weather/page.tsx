@@ -27,7 +27,7 @@ export default function Page() {
       eyebrow="Live · BOM Southeast Coast + Open-Meteo Marine"
       title="Surf & weather"
       subtitle="The BOM Southeast Coast marine forecast covers Noosa Heads, Sunshine Beach, and the river bar. The tiles on this page refresh themselves every 30 minutes — we don’t push them by hand. Bar crossings always defer to MSQ and the Noosa Coast Guard."
-      flourish="When the wind turns south-east under 15, the points light up."
+      flourish="When the wind turns south-east, the points light up."
       primarySources={[
         { label: "BOM — Southeast Coast coastal forecast", href: "https://www.bom.gov.au/marine/forecast/QLD/QLD-Southeast-Coast.shtml" },
         { label: "MSQ — Noosa bar report (bar crossings)", href: "https://www.msq.qld.gov.au/" },
@@ -41,17 +41,17 @@ export default function Page() {
           heading: "How to read the live tiles",
           paragraphs: [
             "The five tiles at the top of the page are pulled directly from BOM and Open-Meteo. They are not forecasts of what is coming — they are the most recent observation or nowcast. The heading on each tile is the kind; the value is the headline number; the secondary line is the supporting detail (swell period, gust, tide direction); the footer is the source and the timestamp.",
-            "If a tile shows Unavailable, the upstream API didn’t respond in time. We don’t fall back to a guess — open the BOM forecast (linked in the sidebar) to see the current conditions directly.",
+            "If a tile shows Unavailable, the upstream API didn’t respond in time. Open the BOM forecast (linked in the sidebar) to see the current conditions directly.",
           ],
         },
         {
           heading: "Surf — what the points need",
           paragraphs: [
-            "Noosa’s points — First Bay, National Park, and Granite Bay — like a south-east groundswell with a period over 9 seconds and a wind under 15 km/h from the same direction. When the wind goes north or north-west, the surface glass goes off and the points are at their best.",
-            "Beginners and longboarders typically work the open beach at Main Beach or the south end of Sunshine Beach, where the swell has sorted itself out. The lifesavers patrol Main Beach every day during school holidays and on weekends year-round (see Beachsafe for the current flag).",
+            "Noosa’s points — First Bay, National Park, and Granite Bay — like a south-east groundswell with a period over 9 seconds and a wind from the same direction. When the wind goes north or north-west, the surface glass goes off and the points are at their best.",
+            "Beginners and longboarders typically work the open beach at Main Beach or the south end of Sunshine Beach, where the swell has sorted itself out. The lifesavers patrol Main Beach during patrol season (typically September–April, daily in school holidays); see Beachsafe for the current flag position and patrol hours.",
           ],
           bullets: [
-            "First Bay: works on south-east swell, ~1.4 m at the headland, period 9–12 s.",
+            "First Bay: works on south-east swell, period 9–12 s.",
             "National Park (Lifeguard Beach): south-east swell; respects the QPWS swimming enclosure boundary.",
             "Granite Bay: walk-in access only via the coastal track; check QPWS alerts before you walk.",
             "Main Beach: patrolled, the right place on a building south-easter.",
@@ -66,8 +66,8 @@ export default function Page() {
         {
           heading: "Tide — and the bar",
           paragraphs: [
-            "Noosa River bar crossing conditions vary hour to hour with swell, wind, and tide. Always check the MSQ Noosa bar report and listen to the Noosa Coast Guard broadcast (VHF channel 16 or 67) before attempting a crossing. Marine Safety Queensland’s general guidance is to cross on an incoming tide when conditions allow. Do not rely on this website for navigation — we are a planning tool, not a navigational authority.",
-            "The \"Sea level\" tile on this page is an Open-Meteo sea-level figure, not an authoritative tide reading. For any planned crossing, defer to the BOM Tewantin tide harmonic (the authoritative local tide source) and the MSQ bulletin above. We do not publish a recommended crossing window.",
+            "Noosa River bar crossing conditions vary hour to hour with swell, wind, and tide. The Noosa River bar is shallow and shifts. Always check the MSQ Noosa bar report and listen to the Noosa Coast Guard broadcast (VHF channel 16 or 67) before attempting a crossing. If you are not confident in the conditions, do not cross — contact VMR Noosa or Noosa Coast Guard for a live reading. Do not rely on this website for navigation — we are a planning tool, not a navigational authority.",
+            "Incoming tides with southerly winds are widely regarded as the most challenging combination for the Noosa River bar. Check the MSQ bulletin and defer if in doubt. The \"Sea level\" tile on this page is an Open-Meteo sea-level figure, not an authoritative tide reading — defer to the BOM Tewantin tide harmonic for any planned crossing.",
           ],
         },
         {
