@@ -209,63 +209,72 @@ export default async function AccommodationPage() {
         aria-labelledby="picks-h"
       >
         <div className="container-page py-14 md:py-20">
-          <p className="eyebrow">Ten curated picks</p>
           <h2
             id="picks-h"
-            className="mt-1 font-display text-display-md text-ink-900 text-balance"
+            className="font-display text-display-md text-ink-900 text-balance"
           >
-            The properties visitors actually consider
+            Ten places we&apos;d send a friend.
           </h2>
           <p className="mt-3 lead max-w-3xl text-pretty">
-            Not 37 listings — a curated ten. Each card carries a
-            &quot;best for&quot; tag, the key benefits, an indicative
-            rating, and a single link to check live availability on
-            the operator&apos;s third-party booking engine.
+            Not 37 listings. Ten picks, each with a single live
+            availability link.
           </p>
 
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
-            {curatedProperties.map((p, idx) => (
-              <article
-                key={p.name}
-                id={`pick-${idx + 1}`}
-                className="card p-6 flex flex-col h-full"
-                data-track={`accommodation_pick_${idx + 1}`}
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <p className="eyebrow">{p.bestFor}</p>
-                    <h3 className="mt-1 font-display text-headline-lg text-ink-900 text-balance">
-                      {p.name}
-                    </h3>
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {curatedProperties.map((p, idx) => {
+              const area = areas.find((a) => a.id === p.areaId);
+              return (
+                <article
+                  key={p.name}
+                  id={`pick-${idx + 1}`}
+                  className="group overflow-hidden rounded-2xl bg-paper-50 shadow-sm ring-1 ring-paper-200 transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                  data-track={`accommodation_pick_${idx + 1}`}
+                >
+                  {/* Image-dominant (KUBE-style) — falls back to area image */}
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-eucalyptus-900">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={area?.photo.url}
+                      alt={area?.photo.caption ?? ""}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                    <div
+                      className="absolute inset-0 bg-gradient-to-t from-ink-900/50 via-transparent to-transparent"
+                      aria-hidden="true"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
+                      <h3 className="font-display text-display-sm md:text-display-md text-paper-50 text-balance">
+                        {p.name}
+                      </h3>
+                    </div>
                   </div>
-                  <span className="pill-disclosure shrink-0 mt-1">
-                    {p.rating.split(" · ")[0]}
-                  </span>
-                </div>
-                <p className="mt-3 text-body-md text-ink-800 text-pretty">
-                  {p.rationale}
-                </p>
-                <p className="mt-3 text-caption text-ink-700">
-                  <span className="font-semibold text-ink-900">Area:</span>{" "}
-                  {areas.find((a) => a.id === p.areaId)?.name ?? p.areaId} ·
-                  {" "}
-                  <span className="font-semibold text-ink-900">Rating:</span>{" "}
-                  {p.rating}
-                </p>
-                <div className="mt-5 flex flex-wrap gap-2 pt-4 mt-auto border-t border-paper-200">
-                  <a
-                    href={p.bookingUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary btn-sm"
-                    data-track={`accommodation_pick_cta_${idx + 1}`}
-                  >
-                    Check availability
-                    <span aria-hidden="true"> →</span>
-                  </a>
-                </div>
-              </article>
-            ))}
+
+                  {/* Card body — atmospheric copy + CTA */}
+                  <div className="p-5 md:p-6">
+                    <p className="text-body-md text-ink-700 italic text-pretty font-display">
+                      {p.descriptor}
+                    </p>
+                    <div className="mt-5 flex flex-wrap items-center gap-2">
+                      <a
+                        href={p.bookingUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-primary btn-sm"
+                        data-track={`accommodation_pick_cta_${idx + 1}`}
+                      >
+                        Check availability
+                        <span aria-hidden="true"> →</span>
+                      </a>
+                      <span className="text-caption text-ink-600">
+                        {area?.name ?? p.areaId} · {p.rating.split(" · ")[0]}
+                      </span>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>

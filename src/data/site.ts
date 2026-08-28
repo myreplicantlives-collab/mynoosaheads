@@ -188,25 +188,10 @@ export const FOOTER_DISCLOSURE = {
     {
       heading: "Sitemap",
       links: [
-        { label: "Accommodation", href: "/accommodation" },
+        { label: "Where to stay", href: "/accommodation" },
         { label: "Things to do", href: "/things-to-do" },
         { label: "National Park", href: "/noosa-national-park" },
         { label: "Surf & weather", href: "/surf-and-weather" },
-        { label: "Fishing reports", href: "/fishing-reports" },
-        { label: "Boats & watercraft", href: "/boats-and-watercraft" },
-        { label: "Travel & transport", href: "/travel-and-transport" },
-        { label: "Webcams", href: "/webcams" },
-      ],
-    },
-    {
-      heading: "Live sources",
-      links: [
-        { label: "BOM Southeast Coast", href: "https://www.bom.gov.au/marine/forecast/QLD/QLD-Southeast-Coast.shtml", external: true },
-        { label: "MSQ — Noosa bar report", href: "https://www.msq.qld.gov.au/", external: true },
-        { label: "Open-Meteo", href: "https://open-meteo.com/", external: true },
-        { label: "QLD Traffic", href: "https://qldtraffic.qld.gov.au/", external: true },
-        { label: "Surf Life Saving QLD", href: "https://www.lifesaving.com.au/", external: true },
-        { label: "Beachsafe.org.au", href: "https://beachsafe.org.au/", external: true },
       ],
     },
     {
@@ -215,24 +200,14 @@ export const FOOTER_DISCLOSURE = {
         { label: "About", href: "/about" },
         { label: "Contact", href: "/contact" },
         { label: "Photo credits", href: "/photo-credits" },
-        { label: "Terms", href: "/terms" },
       ],
     },
     {
       heading: "Legal",
       links: [
         { label: "Privacy", href: "/privacy", disclosure: "Privacy Act 1988 (Cth)" },
-        { label: "Affiliate disclosure", href: "#affiliate-disclosure", disclosure: "ACCC Sch 2" },
+        { label: "Affiliate disclosure", href: "/terms#affiliate-disclosure", disclosure: "ACCC Sch 2" },
         { label: "Spam Act statement", href: "/privacy#spam-act-2003", disclosure: "Spam Act 2003" },
-      ],
-    },
-    {
-      heading: "Local partners",
-      links: [
-        { label: "Noosa Council", href: "https://www.noosa.qld.gov.au/", external: true },
-        { label: "Tourism Noosa", href: "https://www.visitnoosa.com.au/", external: true },
-        { label: "Sunshine Coast Council", href: "https://www.sunshinecoast.qld.gov.au/", external: true },
-        { label: "QPWS", href: "https://www.qld.gov.au/environment/parks", external: true },
       ],
     },
   ],
@@ -253,7 +228,7 @@ export const FOOTER_DISCLOSURE = {
    * column above (Privacy Act 1988, ACCC Sch 2, Spam Act 2003).
    */
   complianceBand:
-    "Some links on this site are affiliate links — we may earn a small commission at no extra cost to you. The full statement sits in the Legal column above.",
+    "Some links earn us a small commission.",
   region: "AU · en-AU · Queensland, Australia",
   copyrightYear: 2026,
 } as const;

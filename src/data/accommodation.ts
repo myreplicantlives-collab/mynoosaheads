@@ -36,12 +36,11 @@ export type InternalLink = { label: string; href: string; description?: string }
 
 export type Property = {
   name: string;
-  /** Short 1-line descriptor (style, scale, what it suits). */
+  /** Atmospheric 1-line copy (KUBE-style — image-dominant cards). */
   descriptor: string;
-  /** "Why we list it" — 2 sentences max. */
+  /** "Why we list it" — 2 sentences max (kept in data, not displayed). */
   rationale: string;
-  /** "Best for" tag (Albert's brief: couples / family / luxury /
-   *  beachfront / value / long-stay). */
+  /** "Best for" tag (kept in data, not displayed per KUBE). */
   bestFor: string;
   /** Property type badge. */
   type: string;
@@ -227,8 +226,7 @@ export const AREAS: Area[] = [
 export const CURATED_PROPERTIES: Property[] = [
   {
     name: "Sofitel Noosa Pacific Resort",
-    descriptor:
-      "Hastings's only oceanfront pool deck; full-service resort.",
+    descriptor: "Pacific blue, palm shadows, Hastings Street.",
     rationale:
       "Hastings's only oceanfront pool deck; direct access to Main Beach; the closest hotel to the headland coastal walk.",
     bestFor: "Luxury · couples",
@@ -240,8 +238,7 @@ export const CURATED_PROPERTIES: Property[] = [
   },
   {
     name: "RACV Noosa Resort",
-    descriptor:
-      "Largest family-suite inventory on Hastings Street; heated lagoon pool.",
+    descriptor: "Lagoon mornings and family-sized rooms.",
     rationale:
       "Largest family-suite inventory on Hastings Street; heated lagoon pool; East Lodge adults-only section for grandparents.",
     bestFor: "Family",
@@ -253,8 +250,7 @@ export const CURATED_PROPERTIES: Property[] = [
   },
   {
     name: "The Sebel Noosa",
-    descriptor:
-      "Apartment-style rooms with kitchenettes; one block back from the beach.",
+    descriptor: "A quiet block behind Hastings.",
     rationale:
       "Apartment-style rooms with kitchenettes; one block back from the beach (quieter than beachfront).",
     bestFor: "Long-stay · self-caterers",
@@ -266,8 +262,7 @@ export const CURATED_PROPERTIES: Property[] = [
   },
   {
     name: "Netanya Noosa",
-    descriptor:
-      "Two- and three-bedroom Hastings Street apartments at family rates.",
+    descriptor: "Family apartments where Main Beach meets Hastings.",
     rationale:
       "Two- and three-bedroom Hastings Street apartments; family-friendly without 5-star rates.",
     bestFor: "Family · value",
@@ -279,8 +274,7 @@ export const CURATED_PROPERTIES: Property[] = [
   },
   {
     name: "South Pacific Resort & Spa Noosa",
-    descriptor:
-      "Apartment-style rooms with kitchenettes; heated pool; walkable to the ferry wharf.",
+    descriptor: "Gympie Terrace's biggest lagoon.",
     rationale:
       "Apartment-style rooms with kitchenettes; heated pool; walkable to the Noosaville ferry wharf.",
     bestFor: "Family · long-stay",
@@ -292,8 +286,7 @@ export const CURATED_PROPERTIES: Property[] = [
   },
   {
     name: "Noosa Quays",
-    descriptor:
-      "River-front two-bed apartments at the south end of the Sound.",
+    descriptor: "River-front quiet at the Sound.",
     rationale:
       "River-front apartments at the south end of the Sound; two-bed units; quieter than Hastings or Noosaville.",
     bestFor: "Couples · quiet",
@@ -305,8 +298,7 @@ export const CURATED_PROPERTIES: Property[] = [
   },
   {
     name: "Sunshine Beach Resort",
-    descriptor:
-      "Apartments directly opposite the patrolled Sunshine Beach surf club.",
+    descriptor: "Across the road from the patrolled sand.",
     rationale:
       "Apartments directly opposite the patrolled surf club; closest beachfront option south of the headland.",
     bestFor: "Beachfront",
@@ -318,8 +310,7 @@ export const CURATED_PROPERTIES: Property[] = [
   },
   {
     name: "Ramada by Wyndham Noosa",
-    descriptor:
-      "Modern hotel apartments on Hastings Crescent; hotel service without Hastings rates.",
+    descriptor: "Hotel service, village pace.",
     rationale:
       "Modern hotel apartments on Hastings Crescent; hotel service without Hastings rates; quieter village.",
     bestFor: "Couples · value",
@@ -331,8 +322,7 @@ export const CURATED_PROPERTIES: Property[] = [
   },
   {
     name: "Peregian Court",
-    descriptor:
-      "Small apartment complex in the village centre; walkable to the surf club and cafés.",
+    descriptor: "A village address, ten minutes south.",
     rationale:
       "Small apartment complex in the village centre; walking distance to the surf club, market, and the village cafés.",
     bestFor: "Couples · value",
@@ -343,9 +333,8 @@ export const CURATED_PROPERTIES: Property[] = [
     areaId: "peregian",
   },
   {
-    name: "Noosa-area holiday houses (Stayz)",
-    descriptor:
-      "Stand-alone houses bookable on Stayz — the default for groups and dog-friendly trips.",
+    name: "Noosa-area holiday houses",
+    descriptor: "Stand-alone houses for longer stays.",
     rationale:
       "Stand-alone houses bookable on Stayz; the default for groups of four or more and for anyone bringing a dog.",
     bestFor: "Long-stay · family · groups · dog-friendly",

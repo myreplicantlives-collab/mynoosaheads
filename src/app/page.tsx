@@ -10,29 +10,24 @@ import { HomeHero } from "@/components/HomeHero";
 import { ImageTile } from "@/components/ImageTile";
 
 /**
- * Homepage — MSN-2973 cinematic + IA build.
+ * Homepage — MSN-2973 cinematic + KUBE atmospheric.
  *
- * Structure (per Albert's D1 brief, ≤250-word primary content budget):
- *   1. Hero band (~88vh) — aspirational sunset + Albert's headline +
- *      subhead + 2 CTAs
- *   2. Six image-led choice tiles — "Make Noosa yours" heading
- *   3. Inspirational feature band — Albert's "Three unforgettable days"
- *      (111 words) + single CTA
- *   4. Trust statement — single line, centred
+ * Structure (per Albert's D1 brief + KUBE Saint-Tropez cues):
+ *   1. Hero band (~88vh) — single poetic headline + 2 CTAs, image
+ *      dominates the overlay
+ *   2. Six image-led choice tiles — no section heading (KUBE-style:
+ *      let the tiles speak). "Where to stay" is the primary, with
+ *      a stronger ring/badge per KUBE pattern.
+ *   3. Inspirational feature band — single image + atmospheric
+ *      3-bullet itinerary. "Three unforgettable days" header.
+ *   4. Trust statement — single line.
  *
- * Attribution: stripped from this page per MSN-2973 directive. All
- * photo credits live at /photo-credits, linked from the footer only.
+ * Attribution stripped from rendered HTML. Full credit at /photo-credits.
  *
- * Live data: lives at /surf-and-weather; the homepage "Today in Noosa"
- * tile links there but no live tiles render on this page.
- *
- * Body copy budget: ≤250 words visitor-facing primary content (eyebrows,
- * titles, CTAs not counted). Albert's D1 audit: 221 words.
+ * Word count target: ≤250 visitor-facing primary content.
  */
 export default async function HomePage() {
-  // MSN-2964 — homepage schema.org JSON-LD (Organization, WebSite,
-  // BreadcrumbList). Uses SITE.productionUrl so search engines see the
-  // canonical https://mynoosaheads.twainent.workers.dev/ host.
+  // MSN-2964 — homepage schema.org JSON-LD.
   const homeJsonLd = [
     {
       "@context": "https://schema.org",
@@ -81,23 +76,23 @@ export default async function HomePage() {
     },
   ];
 
-  // Six tile definitions — first is strongest (Where to stay).
-  // Body copy per tile is the 1-sentence description from D1.
+  // Six tiles — KUBE atmospheric hooks. "Where to stay" is the
+  // primary commercial anchor (emphasis: true).
   const tiles = [
     {
       key: "whereToStay",
       href: "/accommodation",
       title: "Where to stay",
-      body: "Five areas, the right one for the trip you have in mind.",
+      body: "Hastings Street at dawn.",
       image: HOME_TILES.whereToStay,
-      emphasis: false,
+      emphasis: true,
       dataTrack: "home_tile_stay",
     },
     {
       key: "thingsToDo",
       href: "/things-to-do",
       title: "Things to do",
-      body: "A coastal walk, a quiet river, a Hinterland village.",
+      body: "Where the river runs slow.",
       image: HOME_TILES.thingsToDo,
       dataTrack: "home_tile_things",
     },
@@ -105,7 +100,7 @@ export default async function HomePage() {
       key: "beachesAndNature",
       href: "/noosa-national-park",
       title: "Beaches & nature",
-      body: "Patrolled swimming, headland tracks, koalas in the tallowwoods.",
+      body: "The headland walk at first light.",
       image: HOME_TILES.beachesAndNature,
       dataTrack: "home_tile_beaches",
     },
@@ -113,7 +108,7 @@ export default async function HomePage() {
       key: "eatAndDrink",
       href: "/things-to-do#eat-and-drink",
       title: "Eat & drink",
-      body: "Hastings Street, Gympie Terrace, Saturday markets.",
+      body: "Long lunches on Hastings.",
       image: HOME_TILES.eatAndDrink,
       dataTrack: "home_tile_eat",
     },
@@ -121,7 +116,7 @@ export default async function HomePage() {
       key: "planYourTrip",
       href: "/things-to-do#itineraries",
       title: "Plan your trip",
-      body: "Itineraries, the ferry, getting here.",
+      body: "Three unforgettable days.",
       image: HOME_TILES.planYourTrip,
       dataTrack: "home_tile_plan",
     },
@@ -129,7 +124,7 @@ export default async function HomePage() {
       key: "todayInNoosa",
       href: "/surf-and-weather",
       title: "Today in Noosa",
-      body: "Surf, wind, tide, UV — refreshed every 30 minutes.",
+      body: "What the coast is doing right now.",
       image: HOME_TILES.todayInNoosa,
       dataTrack: "home_tile_today",
     },
@@ -139,26 +134,17 @@ export default async function HomePage() {
     <div className="bg-paper-50">
       <JsonLd data={homeJsonLd} />
 
-      {/* ─── 1. Hero band (cinematic, ~88vh) ─── */}
-      <HomeHero
-        src={HOMEPAGE_HERO.url}
-        caption={HOMEPAGE_HERO.caption}
-      />
+      {/* ─── 1. Hero band (cinematic, atmospheric, ~88vh) ─── */}
+      <HomeHero src={HOMEPAGE_HERO.url} />
 
-      {/* ─── 2. Six image-led choice tiles — Albert's heading ─── */}
+      {/* ─── 2. Six image-led choice tiles — no heading (KUBE) ─── */}
       <section
         className="container-page py-14 md:py-20"
         aria-labelledby="tiles-heading"
       >
-        <h2
-          id="tiles-heading"
-          className="mb-3 font-display text-display-lg md:text-display-lg text-ink-900 text-balance"
-        >
-          Make Noosa yours
+        <h2 id="tiles-heading" className="sr-only">
+          Choose your Noosa
         </h2>
-        <p className="mb-8 lead max-w-2xl text-ink-700 text-pretty">
-          Six paths into the same place.
-        </p>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {tiles.map((t) => (
             <ImageTile
@@ -175,7 +161,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ─── 3. Inspirational feature band — Albert's 111-word 3-day plan ─── */}
+      {/* ─── 3. Inspirational feature band — atmospheric, image + bullets ─── */}
       <section
         className="border-y border-paper-200 bg-paper-100"
         aria-labelledby="feature-heading"
@@ -187,7 +173,7 @@ export default async function HomePage() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={FEATURE_IMAGE.url}
-                  alt={FEATURE_IMAGE.caption}
+                  alt="Sunrise over Laguna Bay from the Noosa headland coastal walk."
                   loading="lazy"
                   className="h-full w-full object-cover"
                 />
@@ -198,31 +184,45 @@ export default async function HomePage() {
                 id="feature-heading"
                 className="font-display text-display-md md:text-display-lg text-ink-900 text-balance"
               >
-                Three unforgettable days in Noosa
+                Three unforgettable days.
               </h2>
-              <div className="mt-5 max-w-2xl text-body-md text-ink-800 space-y-3 text-pretty">
-                <p>
-                  <strong className="text-ink-900">Day one —</strong> walk
-                  the headland from the surf club to Alexandria Bay, granite
-                  and tallowwoods, koalas overhead. Lunch on Hastings
-                  Street, a swim at Main Beach, the ferry to Noosaville for
-                  sunset on Gympie Terrace.
-                </p>
-                <p>
-                  <strong className="text-ink-900">Day two —</strong> kayak
-                  or paddleboard the Noosa River, then south to Peregian
-                  for a slow lunch and a quieter stretch of sand. Dinner
-                  back on Hastings Street — book ahead in summer.
-                </p>
-                <p>
-                  <strong className="text-ink-900">Day three —</strong>{" "}
-                  sunrise on the coastal walk, breakfast at a beachside
-                  café, the Saturday market at Tewantin. The Hinterland —
-                  Pomona, Cooran, Kin Kin — is thirty minutes up the range
-                  and a different temperature.
-                </p>
-              </div>
-              <div className="mt-7">
+              <ol className="mt-7 max-w-2xl space-y-5 list-none">
+                <li className="flex gap-4">
+                  <span className="font-display text-eucalyptus-700 shrink-0 text-display-sm leading-none mt-1">
+                    1
+                  </span>
+                  <p className="text-body-md text-ink-800 text-pretty">
+                    <strong className="text-ink-900">The headland.</strong>{" "}
+                    Walk from the surf club to Alexandria Bay at sunrise —
+                    granite, tallowwoods, koalas overhead. Lunch on Hastings
+                    Street, a swim at Main Beach, the ferry to Noosaville for
+                    sunset on Gympie Terrace.
+                  </p>
+                </li>
+                <li className="flex gap-4">
+                  <span className="font-display text-eucalyptus-700 shrink-0 text-display-sm leading-none mt-1">
+                    2
+                  </span>
+                  <p className="text-body-md text-ink-800 text-pretty">
+                    <strong className="text-ink-900">The river.</strong>{" "}
+                    Kayak or paddleboard the Noosa River, then south to
+                    Peregian for a slow lunch. Dinner back on Hastings —
+                    book ahead in summer.
+                  </p>
+                </li>
+                <li className="flex gap-4">
+                  <span className="font-display text-eucalyptus-700 shrink-0 text-display-sm leading-none mt-1">
+                    3
+                  </span>
+                  <p className="text-body-md text-ink-800 text-pretty">
+                    <strong className="text-ink-900">The hinterland.</strong>{" "}
+                    Sunrise on the coastal walk, the Saturday market at
+                    Tewantin, then Pomona, Cooran, Kin Kin — thirty minutes
+                    up the range, a different temperature.
+                  </p>
+                </li>
+              </ol>
+              <div className="mt-8">
                 <Link
                   href="/things-to-do#itineraries"
                   className="btn-primary btn-md"
@@ -237,7 +237,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ─── 4. Trust statement (Albert's 13-word line) ─── */}
+      {/* ─── 4. Trust statement (single line) ─── */}
       <section className="bg-paper-50" aria-labelledby="trust-heading">
         <div className="container-page py-10 md:py-14 text-center">
           <p

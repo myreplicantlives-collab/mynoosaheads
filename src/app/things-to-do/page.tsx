@@ -21,7 +21,7 @@ import { ImageTile } from "@/components/ImageTile";
 export const metadata: Metadata = {
   title: "Things to do in Noosa",
   description:
-    "Eight ways to spend your days in Noosa — coastal walks, river days, surf, beaches, eating out, families, the Hinterland, and bookable tours.",
+    "Eight ways to spend your days in Noosa.",
   alternates: { canonical: "/things-to-do" },
   openGraph: {
     title: "Things to do in Noosa · MyNoosaHeads",
@@ -60,7 +60,7 @@ const CATEGORIES: CategoryCard[] = [
   {
     key: "headlandWalk",
     title: "Walk the Noosa headland",
-    body: "The 5 km coastal walk from the surf club to Alexandria Bay — granite headlands, tallowwood forest, koalas overhead.",
+    body: "Granite, tallowwoods, koalas overhead.",
     href: "/noosa-national-park",
     image: {
       caption: "The Noosa headland coastal walk — granite boulders, tallowwood forest, the surf below.",
@@ -74,7 +74,7 @@ const CATEGORIES: CategoryCard[] = [
   {
     key: "riverDay",
     title: "Spend a day on the river",
-    body: "Kayak, paddleboard or the Noosa Ferry on the Noosa River — calm water from Tewantin to Laguna Bay.",
+    body: "Calm water, river ferries, sunset on Gympie Terrace.",
     href: "/boats-and-watercraft",
     image: {
       caption: "The Noosa River at Noosaville — kayak and paddleboard water.",
@@ -89,7 +89,7 @@ const CATEGORIES: CategoryCard[] = [
   {
     key: "learnToSurf",
     title: "Learn to surf",
-    body: "Main Beach for first lessons; the points south of the headland when the south-east swell wraps in.",
+    body: "First lessons at Main Beach; the points when the swell wraps in.",
     href: "/surf-and-weather",
     image: {
       caption: "Early-morning paddle-out at Noosa Main Beach — the calm-water option when the swell is up.",
@@ -104,7 +104,7 @@ const CATEGORIES: CategoryCard[] = [
   {
     key: "perfectBeach",
     title: "Find the perfect beach",
-    body: "Eight patrolled beaches from Noosa Heads to Peregian — Main Beach, Sunshine, Peregian, plus the smaller coves along the coastal walk.",
+    body: "Eight patrolled beaches, headland to Peregian.",
     href: "/noosa-national-park",
     image: {
       caption: "Noosa Main Beach at midday — the patrolled swimming beach at the bottom of Hastings Street.",
@@ -119,7 +119,7 @@ const CATEGORIES: CategoryCard[] = [
   {
     key: "eatAndDrink",
     title: "Eat your way along Hastings Street",
-    body: "Hastings Street cafés for breakfast, restaurants for dinner, the surf club for a long lunch — and Noosaville's Gympie Terrace for riverside dinners.",
+    body: "Cafés, restaurants, the surf club for a long lunch.",
     href: "/things-to-do#eat-and-drink",
     image: {
       caption: "A Hastings Street café table — latte and the headland beyond.",
@@ -134,7 +134,7 @@ const CATEGORIES: CategoryCard[] = [
   {
     key: "withChildren",
     title: "Discover Noosa with children",
-    body: "Patrolled swimming, the ferry, ice cream at the surf club, a slow river day, the aquarium at Mooloolaba for the rainy afternoon.",
+    body: "Patrolled swimming, ferry rides, slow river days.",
     href: "/noosa-national-park",
     image: {
       caption: "Children learning to surf in the shallows at First Bay.",
@@ -149,7 +149,7 @@ const CATEGORIES: CategoryCard[] = [
   {
     key: "hinterland",
     title: "Escape into the hinterland",
-    body: "Pomona, Cooran, Kin Kin — thirty minutes up the range, cooler, quieter, and a different temperature. Australia Zoo and the Glass House Mountains are within an hour.",
+    body: "Thirty minutes up the range, a different temperature.",
     href: "/things-to-do#hinterland",
     image: {
       caption: "A camper on the Coast — the road-trip mode into the Noosa Hinterland.",
@@ -164,7 +164,7 @@ const CATEGORIES: CategoryCard[] = [
   {
     key: "bookable",
     title: "Book a cruise, tour or wellness experience",
-    body: "River cruises, Hinterland tours, surf lessons, day spas on Hastings Street — bookable with verified local operators.",
+    body: "River cruises, Hinterland tours, day spas on Hastings.",
     href: "/things-to-do#bookable",
     image: {
       caption: "Stand-up paddleboarder in the bay — the hire-watercraft most visitors start with.",
@@ -186,7 +186,7 @@ export default function ThingsToDoPage() {
       "@id": `${SITE.productionUrl}/things-to-do#destination`,
       name: "Noosa Heads",
       description:
-        "Eight ways to spend your days in Noosa — coastal walks, river days, surf, beaches, eating out, families, the Hinterland, and bookable tours.",
+        "Eight ways to spend your days in Noosa.",
       url: `${SITE.productionUrl}/things-to-do`,
       touristType: ["Family", "Couple", "Solo", "Group", "Active"],
       address: {
@@ -223,15 +223,10 @@ export default function ThingsToDoPage() {
       {/* ─── 1. Hero ─── */}
       <section className="border-b border-paper-200 bg-paper-50">
         <div className="container-page py-12 md:py-16">
-          <p className="eyebrow">Eight ways to spend your days</p>
+          <p className="eyebrow">Eight days</p>
           <h1 className="mt-3 font-display text-display-xl md:text-display-xl text-ink-900 text-balance max-w-4xl">
-            Things to do in Noosa
+            Things to do in Noosa.
           </h1>
-          <p className="mt-5 lead max-w-3xl text-pretty">
-            From a coastal walk at first light to a Hinterland village
-            after lunch — eight ways to spend the days, each linked to
-            where the detail lives.
-          </p>
         </div>
       </section>
 
@@ -268,7 +263,7 @@ export default function ThingsToDoPage() {
             id="ttd-anchors-heading"
             className="font-display text-display-md text-ink-900 text-balance"
           >
-            A few more notes
+            A little more.
           </h2>
 
           <div className="mt-8 grid gap-10 lg:grid-cols-3">
