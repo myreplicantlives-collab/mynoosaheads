@@ -245,11 +245,21 @@ const INLINE = {
   ],
   fishingReports: [
     {
-      caption: "The Noosa River at low tide — the principal fishing water for bream, flathead, and whiting.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Noosa_Heads_beach_in_January_2015.JPG/1280px-Noosa_Heads_beach_in_January_2015.JPG",
+      // MSN-2970 Fix 3 (audit #20a): the previous /fishing-reports
+      // image was the Noosa_Heads_beach_in_January_2015.JPG hero —
+      // an ocean Main Beach shot, NOT the Noosa River. Vision-confirmed
+      // by Albert: the alt "Noosa River at low tide" was fabricated.
+      // Replaced with File:Boat_fishing_at_Noosa_River,_Noosa_North_Shore,
+      // _Queensland,_02.jpg — an actual boat-fishing scene on the
+      // Noosa River at Noosa North Shore, GPS-verified at -26.379483,
+      // 153.076233 (iPhone XS Max, 13 Oct 2019, heading 161.89°).
+      // Vision-confirmed: shows a small tinny with two people aboard
+      // on calm turquoise-green estuarine water.
+      caption: "Boat fishing on the Noosa River at Noosa North Shore — the principal bream, flathead, and whiting water for the shire.",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Boat_fishing_at_Noosa_River%2C_Noosa_North_Shore%2C_Queensland%2C_02.jpg/1280px-Boat_fishing_at_Noosa_River%2C_Noosa_North_Shore%2C_Queensland%2C_02.jpg",
       author: "Kgbo",
       licence: "CC BY-SA 4.0",
-      commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_in_January_2015.JPG",
+      commonsPage: "https://commons.wikimedia.org/wiki/File:Boat_fishing_at_Noosa_River,_Noosa_North_Shore,_Queensland,_02.jpg",
     },
     {
       caption: "Long beach panorama from the headland — the gutters on the southern end hold tailor and dart.",
