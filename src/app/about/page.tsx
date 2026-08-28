@@ -225,9 +225,10 @@ export default function AboutPage() {
                 <p>
                   The site is a Next.js 14 application, statically rendered
                   where possible and server-rendered for the live tiles.
-                  It is hosted on Vercel Hobby (free tier; we will upgrade
-                  to Pro at A$30/month only when traffic warrants). All
-                  source code is held in a private Git repository.
+                  It is hosted on Cloudflare Workers (free tier; we will
+                  upgrade to a paid Workers plan only when traffic
+                  warrants). All source code is held in a private Git
+                  repository.
                 </p>
               </div>
             </section>
@@ -255,7 +256,7 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <dt className="text-eyebrow">Hosting</dt>
-                    <dd>Vercel Hobby (free tier)</dd>
+                    <dd>Cloudflare Workers (free tier)</dd>
                   </div>
                   <div>
                     <dt className="text-eyebrow">Newsletter</dt>

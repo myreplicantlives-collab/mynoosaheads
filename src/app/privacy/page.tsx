@@ -25,7 +25,7 @@ export default function PrivacyPage() {
       <Hero
         eyebrow="Privacy Act 1988 (Cth) compliant"
         title="Privacy policy"
-        subtitle="MyNoosaHeads does not collect your email address, does not operate a login, and does not run analytics beyond the host-level metrics that come with hosting on Vercel. This page sets out what that means under the Privacy Act 1988 (Cth) and the Australian Privacy Principles."
+        subtitle="MyNoosaHeads does not collect your email address, does not operate a login, and does not run analytics beyond the host-level metrics that come with hosting on Cloudflare Workers. This page sets out what that means under the Privacy Act 1988 (Cth) and the Australian Privacy Principles."
         flourish="Less data is better data."
       />
 
@@ -42,22 +42,22 @@ export default function PrivacyPage() {
             archive it with the correspondence.
           </p>
 
-          <h2>What our host collects (Vercel)</h2>
+          <h2>What our host collects (Cloudflare Workers)</h2>
           <p>
-            Our hosting provider, Vercel, collects the standard set of
+            Our hosting provider, Cloudflare, collects the standard set of
             access logs (request IP, user agent, URL, response code) for the
-            purpose of operating the platform. Vercel publishes its own
+            purpose of operating the platform. Cloudflare publishes its own
             privacy policy; you can read it at{" "}
             <a
-              href="https://vercel.com/legal/privacy-policy"
+              href="https://www.cloudflare.com/privacypolicy/"
               className="link text-ocean-700"
               rel="noopener noreferrer"
               target="_blank"
             >
-              vercel.com/legal/privacy-policy
+              cloudflare.com/privacypolicy/
             </a>
             . We do not have visibility into your specific log entries;
-            we only see aggregate traffic in the Vercel dashboard.
+            we only see aggregate traffic in the Cloudflare dashboard.
           </p>
 
           <h2>Cookies</h2>
