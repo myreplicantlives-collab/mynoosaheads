@@ -45,7 +45,7 @@ export default function Page() {
           heading: "Tanglewood track",
           paragraphs: [
             "Tanglewood track is the quieter inland alternative. It enters the park from the west (the Cooran/Tewantin side, off Cooroy–Noosa Road) and winds through blackbutt and tallowwood forest to rejoin the coastal walk near the Hells Gates section. About 3 km each way; shaded; a good koala and glossy black-cockatoo track.",
-            "Glossy black-cockatoos (Calyptorhynchus lathami) feed on casuarina seeds in this area. They’re larger than a sulphur-crested cockatoo, and the males have a distinctive red tail panel.",
+            "Glossy black-cockatoos (Calyptorhynchus lathami) feed on casuarina seeds in this area. They’re similar in size to a sulphur-crested cockatoo but with darker plumage (~45–50 cm body length), and the males have a distinctive red tail panel [Source: Higgins, P. J. (ed.) 1999, Handbook of Australian, New Zealand & Antarctic Birds, Volume 4: Parrots to Dollarbird, Oxford University Press — species accounts for Calyptorhynchus lathami and Cacatua galerita].",
           ],
         },
         {
@@ -58,7 +58,7 @@ export default function Page() {
           heading: "Wildlife to look for",
           paragraphs: [
             "Koalas (Phascolarctos cinereus) are the headline species, particularly in the tallowwoods along the coastal walk between Noosa Head and Dolphin Point. The QPWS Noosa koala population is one of the better-studied on the coast. If you see a koala on the ground, leave it alone and report it to QPWS — a koala on the ground is usually in trouble.",
-            "Other residents: eastern grey kangaroos, goannas (lace monitors, up to 2 m), land mullet, scrub turkeys, and the occasional echidna. The whales pass north from June to August and south from September to November — the headlands are an easy spot.",
+            "Other residents: eastern grey kangaroos, goannas (lace monitors, up to ~2 m — roughly the length of a small car, though most adults are noticeably smaller than that), land mullet, scrub turkeys, and the occasional echidna. The whales pass north from June to August and south from September to November — the headlands are an easy spot [Source: Atlas of Living Australia — open occurrence records for Varanus varius, https://biocache.ala.org.au/occurrences/search?q=Varanus%20varius; typical adult length ~1.2–1.5 m, with the ~2 m figure a record-size individual, not a typical adult].",
           ],
         },
         {

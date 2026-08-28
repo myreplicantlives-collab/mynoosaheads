@@ -51,7 +51,7 @@ export default function Page() {
         {
           heading: "When to fish — tides and moon",
           paragraphs: [
-            "The old saw is that the change of the tide is the bite. In practice, on the Noosa River the last two hours of the outgoing tide and the first two hours of the incoming are the productive windows. The solunar table on this page (sun + moon) is the same data printed in the almanacs; treat it as a tiebreaker, not a guarantee.",
+            "The old saw is that the change of the tide is the bite. Many Noosa River anglers report that the last two hours of the outgoing tide and the first two hours of the incoming are the productive windows — but treat any tide rule as a tiebreaker, not a guarantee (anecdotal — confirm with the official QLD fisheries forecast and the day's tide tables) [Source: Queensland Department of Primary Industries — Recreational fishing rules and size/possession limits, https://www.qld.gov.au/recreation/activities/boating-fishing/rec-fishing; BOM Tewantin tide predictions, https://www.bom.gov.au/australia/tides/#!/qld-tewantin]. The solunar table on this page (sun + moon) is the same data printed in the almanacs; treat it as a tiebreaker, not a guarantee.",
           ],
         },
         {
