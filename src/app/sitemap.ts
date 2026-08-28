@@ -11,9 +11,15 @@ import type { MetadataRoute } from "next";
 // MSN-2964: SITE_URL now respects NEXT_PUBLIC_SITE_URL so we don't ship
 // stale references to the Vercel hostname. Default is the Cloudflare
 // Workers deployment that has been live since MSN-2962.
+//
+// MSN-2962 v2 (re-dispatched 2026-08-28 16:25 BST — re-attempt for
+// mynoosaheads.pages.dev): the Cloudflare Pages deploy is the new
+// canonical host. Default updated to pages.dev so the sitemap and
+// robots.txt point at the Pages URL by default. Override with
+// NEXT_PUBLIC_SITE_URL on any future environment.
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ||
-  "https://mynoosaheads.twainent.workers.dev";
+  "https://mynoosaheads.pages.dev";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

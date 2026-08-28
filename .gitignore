@@ -43,3 +43,5 @@ evidence/
 # backup files left by the MSN-2962 deployment work
 *.bak-msn2962.wrangler/
 .wrangler/state/
+.bak-preMSN2962v2/
+*.bak-preMSN2962v2-*

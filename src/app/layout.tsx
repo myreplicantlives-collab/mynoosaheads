@@ -86,15 +86,29 @@ export const metadata: Metadata = {
   },
 };
 
-// MSN-2962 (Tim directive 2026-08-28 09:25 BST — "put it on cloudfare"):
-// opt every route into the Node.js runtime so @opennextjs/cloudflare
-// can deploy to Cloudflare Workers (Workers Node runtime).
+// MSN-2962 v2 (re-dispatched 2026-08-28 16:25 BST — re-attempt for
+// mynoosaheads.pages.dev): opt every route into the Edge runtime so
+// @cloudflare/next-on-pages can deploy to Cloudflare Pages (Pages
+// Functions only run the V8 / Edge runtime, no Node APIs).
 //
-// On the existing Vercel build, this is the default runtime already,
-// so this is a no-op there. Node runtime remains required for any
-// future server-side fs/path usage (e.g. a planned /posts/[slug]
-// route will reuse lib/posts.ts at build time).
-export const runtime = "nodejs";
+// Trade-off vs the previous nodejs setting:
+//   - Vercel: still works — Vercel supports edge runtime on every
+//     route; behaviour for /api/sentry-example-error and the live-data
+//     fetch is identical (fetch + JSON.stringify only, no Node-only
+//     APIs). The static parts of the page are unaffected.
+//   - @opennextjs/cloudflare: still works — OpenNext supports both
+//     edge and nodejs runtimes; with the CF_PAGES=1 flag we deploy
+//     to Pages (this branch), not Workers.
+//   - Future server-side fs/path usage: cannot happen on edge. The
+//     planned /posts/[slug] route (if reintroduced) will need to use
+//     either (a) the build-time compilation path that @opennextjs
+//     provides, or (b) a separate API route in Pages Functions with
+//     build-time data ingestion.
+//
+// The original P0-B hello-noosa route is removed by commit b7e5c1c
+// (MSN-2964), so there is no longer any runtime-sensitive code path
+// that depends on Node APIs.
+export const runtime = "edge";
 
 export const viewport = {
   width: "device-width",

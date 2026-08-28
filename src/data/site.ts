@@ -21,10 +21,19 @@ export const SITE = {
   // URL is no longer authoritative (it returns 404 to external reviewers
   // and is being retired). Override via NEXT_PUBLIC_SITE_URL env var on
   // any future environment that needs a different canonical host.
+  //
+  // MSN-2962 v2 (re-dispatched 2026-08-28 16:25 BST — re-attempt for
+  // mynoosaheads.pages.dev): the canonical host for the Cloudflare
+  // Pages deploy is `mynoosaheads.pages.dev`. The Vercel deployment
+  // (noosa-site-v2.vercel.app + custom domain mynoosaheads.com) is
+  // still being served but is being retired in a follow-up mission.
+  // For this Pages build we want the canonical to point at the Pages
+  // URL so that Google picks the Pages host as the source of truth for
+  // any URL it has already indexed under `*.pages.dev` (or will).
   productionUrl:
     process.env.NEXT_PUBLIC_SITE_URL ||
-    "https://mynoosaheads.twainent.workers.dev",
-  stagingUrl: "https://mynoosaheads.twainent.workers.dev",
+    "https://mynoosaheads.pages.dev",
+  stagingUrl: "https://mynoosaheads.pages.dev",
   email: "hello@mynoosaheads.com",
   locale: "en-AU",
   region: "Queensland, Australia",

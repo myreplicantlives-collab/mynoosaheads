@@ -6,9 +6,12 @@ import type { MetadataRoute } from "next";
 
 // MSN-2964: respect NEXT_PUBLIC_SITE_URL so canonical URLs and the
 // declared sitemap host stay in sync with the deployed hostname.
+//
+// MSN-2962 v2 (re-dispatched 2026-08-28 16:25 BST — re-attempt for
+// mynoosaheads.pages.dev): default updated to the Pages host.
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ||
-  "https://mynoosaheads.twainent.workers.dev";
+  "https://mynoosaheads.pages.dev";
 
 export default function robots(): MetadataRoute.Robots {
   return {
