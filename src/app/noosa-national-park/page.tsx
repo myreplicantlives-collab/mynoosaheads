@@ -45,7 +45,7 @@ export default function Page() {
           heading: "Tanglewood track",
           paragraphs: [
             "Tanglewood track is the quieter inland alternative. It enters the park from the west (the Cooran/Tewantin side, off Cooroy–Noosa Road) and winds through blackbutt and tallowwood forest to rejoin the coastal walk near the Hells Gates section. About 3 km each way; shaded; a good koala and glossy black-cockatoo track.",
-            "Glossy black-cockatoos (Calyptorhynchus lathami) feed on casuarina seeds in this area. They’re larger than a sulphur-crested cockatoo, and the males have a distinctive red tail panel.",
+            "Glossy black-cockatoos (Calyptorhynchus lathami) feed on casuarina seeds in this area. They’re similar in size to a sulphur-crested cockatoo, and the males have a distinctive red tail panel.",
           ],
         },
         {

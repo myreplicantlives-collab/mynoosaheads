@@ -183,7 +183,7 @@ export default function StyleGuidePage() {
                 className={`text-${t.token} text-ink-900 text-balance flex-1 min-w-0`}
               >
                 {t.token === "accent-lg" || t.token === "accent-md"
-                  ? "by the headland, by the bar"
+                  ? "The quick brown fox jumps over the lazy dog"
                   : t.token === "eyebrow" || t.token === "caption"
                     ? "Small caps sample — Sprint 1.2"
                     : "Plan your Noosa trip well."}
@@ -270,12 +270,12 @@ export default function StyleGuidePage() {
           </Card>
           <Card variant="surface">
             <CardBody>
-              <p className="eyebrow">Editorial</p>
+              <p className="eyebrow">Content</p>
               <h3 className="mt-1 font-display text-headline-lg text-ink-900">
-                Editorial cards in a tinted band
+                Content cards in a tinted band
               </h3>
               <p className="mt-3 text-body-sm text-ink-700">
-                Card variant &ldquo;surface&rdquo; &mdash; used when stacking editorial cards in a tinted band so the
+                Card variant &ldquo;surface&rdquo; &mdash; used when stacking content cards in a tinted band so the
                 section reads as a single block.
               </p>
             </CardBody>
@@ -304,7 +304,7 @@ export default function StyleGuidePage() {
           eyebrow="Sample eyebrow"
           title="A full Noosa guide — surf, parks, places to eat."
           subtitle="Hero takes children for trailing slots. Backgrounds: paper, surface, or full-bleed image."
-          flourish="by the bar, by the headland"
+          flourish="Hero flourish text — Sprint 1.2"
           actions={
             <>
               <Button leadingIcon={<Icons.Wave size={16} />}>Surf report</Button>
