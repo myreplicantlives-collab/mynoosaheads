@@ -86,29 +86,24 @@ export const metadata: Metadata = {
   },
 };
 
-// MSN-2962 v2 (re-dispatched 2026-08-28 16:25 BST — re-attempt for
-// mynoosaheads.pages.dev): opt every route into the Edge runtime so
-// @cloudflare/next-on-pages can deploy to Cloudflare Pages (Pages
-// Functions only run the V8 / Edge runtime, no Node APIs).
+// MSN-2964 P1 pass (2026-08-28 16:40 BST — Sally's mechanical-pass
+// direction): the canonical live URL is `mynoosaheads.twainent.workers.dev`
+// (Cloudflare Workers, version 18ccfe59-...; this is what Victor's
+// final QA gate at rowid 80 (85/100) verified). We deploy via
+// `wrangler deploy` against the OpenNext Workers bundle, which
+// requires the Node.js runtime at the route level — OpenNext 1.14
+// cannot bundle the auto-generated `app/_not-found/page` when the
+// layout opts every route into the Edge runtime (the page inherits
+// the runtime from the layout, and OpenNext's edge-runtime function
+// bundling rule then fails). Reverting to `runtime = "nodejs"` here
+// is a build-prerequisite for shipping to Workers, not a content
+// change. The Pages branch (`feat/msn-2962-v2-pages-deploy`) keeps
+// this layout commit on `edge` for its own build; we revert on this
+// branch so the P1-pass deploy lands at the canonical live URL.
 //
-// Trade-off vs the previous nodejs setting:
-//   - Vercel: still works — Vercel supports edge runtime on every
-//     route; behaviour for /api/sentry-example-error and the live-data
-//     fetch is identical (fetch + JSON.stringify only, no Node-only
-//     APIs). The static parts of the page are unaffected.
-//   - @opennextjs/cloudflare: still works — OpenNext supports both
-//     edge and nodejs runtimes; with the CF_PAGES=1 flag we deploy
-//     to Pages (this branch), not Workers.
-//   - Future server-side fs/path usage: cannot happen on edge. The
-//     planned /posts/[slug] route (if reintroduced) will need to use
-//     either (a) the build-time compilation path that @opennextjs
-//     provides, or (b) a separate API route in Pages Functions with
-//     build-time data ingestion.
-//
-// The original P0-B hello-noosa route is removed by commit b7e5c1c
-// (MSN-2964), so there is no longer any runtime-sensitive code path
-// that depends on Node APIs.
-export const runtime = "edge";
+// Static parts of the page are unaffected by runtime; /api/sentry-
+// example-error continues to throw a verifiable error.
+export const runtime = "nodejs";
 
 export const viewport = {
   width: "device-width",
