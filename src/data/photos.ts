@@ -51,7 +51,15 @@ const HERO = {
     commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_on_Christmas_Day_2015_03.jpeg",
   },
   noosaNationalPark: {
-    caption: "The Noosa Headlands coastal walk — granite boulders, tallowwood forest, and the surf below.",
+    // MSN-2970 Fix 2 (audit #15a): the previous caption described the
+    // Noosa Headlands coastal walk (granite boulders, tallowwood
+    // forest) but the image is actually the Noosa Sound / Weyba Creek
+    // confluence — calm tidal waterway with waterfront homes. Albert's
+    // vision check flagged this as FAIL on /about and /noosa-national-park.
+    // Caption rewritten to describe what the photo actually shows. The
+    // coastal-walk subject is covered by the inline image #5 (Raffi
+    // Kojian, vision-verified in the audit).
+    caption: "The Weyba Creek confluence where Noosa Sound meets the upper river — calm tidal water with waterfront homes and pandanus.",
     url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Noosa_Heads_and_Weyba_Creek.JPG/1280px-Noosa_Heads_and_Weyba_Creek.JPG",
     author: "Kgbo",
     licence: "CC BY-SA 4.0",
@@ -288,7 +296,11 @@ const INLINE = {
       commonsPage: "https://commons.wikimedia.org/wiki/File:Boardwalk_along_Noosa_Heads%E2%80%99_main_beach,_Queensland.jpg",
     },
     {
-      caption: "The Noosa River at low tide, viewed from the headland.",
+      // MSN-2970 Fix 2 (audit #15a): previous caption "The Noosa River at
+      // low tide, viewed from the headland" did not match the image
+      // (which is the Noosa Sound / Weyba Creek confluence, not a
+      // headland view). Caption rewritten to describe the actual subject.
+      caption: "Weyba Creek and the Noosa Sound confluence — the calm tidal waterway north of Noosaville.",
       url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Noosa_Heads_and_Weyba_Creek.JPG/1280px-Noosa_Heads_and_Weyba_Creek.JPG",
       author: "Kgbo",
       licence: "CC BY-SA 4.0",
@@ -413,7 +425,14 @@ export const HOMEPAGE_HERO: WikimediaPhoto = {
  * -------------------------------------------------------------------- */
 
 export const ABOUT_BRAND_IMAGE: WikimediaPhoto = {
-  caption: "The granite headland and the Weyba Creek confluence, viewed from the coastal walk.",
+  // MSN-2970 Fix 2 (audit #15a): previous caption described a "granite
+  // headland and Weyba Creek confluence, viewed from the coastal walk"
+  // but the image is actually a calm tidal view of Noosa Sound /
+  // Weyba Creek at water level — no headland, no coastal walk framing.
+  // Caption rewritten to match what the photo shows. The granite coastal
+  // walk subject remains covered by inline image #5 (raffi_kojian,
+  // vision-verified PASS in the audit).
+  caption: "Noosa Sound and the Weyba Creek confluence — the calm tidal waterway on the inland side of the headland.",
   url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Noosa_Heads_and_Weyba_Creek.JPG/1280px-Noosa_Heads_and_Weyba_Creek.JPG",
   author: "Kgbo",
   licence: "CC BY-SA 4.0",
