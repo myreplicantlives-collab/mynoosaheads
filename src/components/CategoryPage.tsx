@@ -142,10 +142,18 @@ export async function CategoryPage({
     <div className="bg-paper-50">
       {effectiveJsonLd ? <JsonLd data={effectiveJsonLd} /> : null}
       {/* Sprint 1.5: full-bleed hero photo above the editorial hero,
-       * with the eyebrow+title+subtitle overlaid. */}
+       * with the eyebrow+title+subtitle overlaid.
+       *
+       * MSN-2975 perf chunk 2: hero photos now resolve to the
+       * self-hosted WebP variants under /photos/ (see photos.ts →
+       * heroWebpUrl/heroWebpSrcSet). HeroPhoto passes srcSet through
+       * to next/image verbatim; the browser picks the best width
+       * from the matching `sizes="100vw"` attribute. priority +
+       * fetchPriority="high" both fire for LCP. */}
       {photos?.hero ? (
         <HeroPhoto
           src={photos.hero.url}
+          srcSet={photos.hero.srcSet}
           alt={photos.hero.caption}
           credit={heroCredit ?? ""}
           caption={photos.hero.caption}
@@ -201,7 +209,13 @@ export async function CategoryPage({
                 {/* Sprint 1.5: inline image after this section. Distribute
                  * 4 inline images across the body sections cyclically.
                  * If a category has 4 sections we get one per section;
-                 * if 8 sections we still get one per section (mod 4). */}
+                 * if 8 sections we still get one per section (mod 4).
+                 *
+                 * MSN-2975 perf chunk 2: inline photos still resolve to
+                 * Wikimedia thumbnails (chunk 5 will switch the
+                 * things-to-do 9-card grid + the rest of the inline
+                 * grids to self-hosted WebPs). CaptionedPhoto will then
+                 * accept a srcSet prop and pass it through verbatim. */}
                 {photos?.inline?.[i % photos.inline.length] ? (
                   <CaptionedPhoto
                     src={photos.inline[i % photos.inline.length].url}

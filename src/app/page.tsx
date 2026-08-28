@@ -134,8 +134,12 @@ export default async function HomePage() {
     <div className="bg-paper-50">
       <JsonLd data={homeJsonLd} />
 
-      {/* ─── 1. Hero band (cinematic, atmospheric, ~88vh) ─── */}
-      <HomeHero src={HOMEPAGE_HERO.url} />
+      {/* ─── 1. Hero band (cinematic, atmospheric, ~88vh) ───
+       *
+       * MSN-2975 perf chunk 2: HOMEPAGE_HERO is now self-hosted under
+       * /photos/. srcSet is plumbed through HomeHero → next/image so
+       * the browser picks the best WebP variant from `sizes="100vw"`. */}
+      <HomeHero src={HOMEPAGE_HERO.url} srcSet={HOMEPAGE_HERO.srcSet} />
 
       {/* ─── 2. Six image-led choice tiles — no heading (KUBE) ─── */}
       <section

@@ -14,30 +14,54 @@
  * KUBE Saint-Tropez benchmark: their hero is "single poetic headline
  * + 1 short evocative paragraph, no supporting sentence". We mirror
  * that — one line of atmosphere, no functional description.
+ *
+ * MSN-2975 perf chunk 2: the underlying <img> now points at the
+ * self-hosted WebP variants under /photos/. src + srcSet are passed
+ * in by the homepage (HomeHero is the only consumer). The browser
+ * picks the best width from the srcSet matching sizes="100vw" (640w
+ * on phones, 1080w on tablets, 1920w on laptops, 3840w on 4K).
+ *
+ * Implementation note: we use a native <img> with the React 18.3
+ * fetchPriority prop instead of next/image. next/image computes its
+ * own srcSet via the image optimizer, and the optimizer is disabled
+ * on Cloudflare Pages (`images.unoptimized = true`) — so passing
+ * srcSet to next/image would be deleted by `delete rest.srcSet`
+ * (see get-img-props.js). Native <img> with explicit width/height
+ * (or fill + sized parent) gives CLS = 0 on both Vercel and
+ * Cloudflare without any extra /_next/image hops.
  */
 
-import Image from "next/image";
 import Link from "next/link";
 
 type Props = {
   src: string;
+  /** Optional responsive srcSet (the 4 self-hosted WebP widths). */
+  srcSet?: string;
 };
 
-export function HomeHero({ src }: Props) {
+export function HomeHero({ src, srcSet }: Props) {
   return (
     <section
       aria-label="Noosa Heads — homepage hero"
       className="relative w-full overflow-hidden bg-ink-900 h-[88vh] min-h-[640px] max-h-[1100px]"
     >
       {/* Image — focal point anchored top so the headline at the bottom
-       *  sits on the cooler bottom-band of the sunset image. */}
-      <Image
+       *  sits on the cooler bottom-band of the sunset image.
+       *  absolute inset-0 + object-cover inside an h-[88vh] parent =
+       *  CLS = 0 on both Vercel and Cloudflare. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         src={src}
-        alt="Sunset over Noosa Main Beach — headland silhouette, palm frond, the long beach."
-        fill
+        srcSet={srcSet ?? undefined}
         sizes="100vw"
-        priority
-        className="object-cover object-[center_30%]"
+        alt="Sunset over Noosa Main Beach — headland silhouette, palm frond, the long beach."
+        decoding="async"
+        fetchPriority="high"
+        // React 18.3 emits the lowercase `fetchpriority` HTML attribute.
+        // `loading="eager"` is implicit because the browser doesn't apply
+        // lazy-loading to images that are already above the fold and
+        // haven't declared `loading="lazy"`.
+        className="absolute inset-0 h-full w-full object-cover object-[center_30%]"
       />
 
       {/* Lighter across-the-frame veil — the image dominates. */}

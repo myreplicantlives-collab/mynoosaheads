@@ -8,6 +8,15 @@
  * Per Albert's `photo_inventory.md` every image on the site is from
  * Wikimedia Commons under CC BY-SA or CC BY. The credit line below
  * the image is non-optional under those licences.
+ *
+ * MSN-2975 perf chunk 2: inline photos still resolve to Wikimedia
+ * thumbnails (chunk 5 will switch the things-to-do 9-card grid + the
+ * remaining inline grids to self-hosted WebPs). When that lands,
+ * swap next/image for a native <img> with srcSet+src+sizes+fetchPriority
+ * — the same pattern as HomeHero/HeroPhoto — because next/image 14.2
+ * deletes any user-supplied srcSet (see get-img-props.js) and the
+ * optimizer is disabled on Cloudflare Pages. Explicit `width` +
+ * `height` (or 16:9 default) keep CLS = 0 in the meantime.
  */
 
 import Image from "next/image";

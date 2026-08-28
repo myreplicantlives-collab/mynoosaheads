@@ -92,6 +92,7 @@ export default function WebcamsPage() {
       {photos?.hero ? (
         <HeroPhoto
           src={photos.hero.url}
+          srcSet={photos.hero.srcSet}
           alt={photos.hero.caption}
           credit={heroCredit}
           caption={photos.hero.caption}
@@ -104,7 +105,11 @@ export default function WebcamsPage() {
         flourish="Check the cam before you check the car keys."
       />
 
-      {/* Sprint 1.5: inline images after the gallery */}
+      {/* Sprint 1.5: inline images after the gallery.
+       * MSN-2975 perf chunk 2: inline photos still resolve to Wikimedia
+       * thumbnails (chunk 5 will convert /things-to-do cards and other
+       * inline grids to self-hosted WebPs). Explicit width/height +
+       * sizes + loading="lazy" keep CLS = 0 here. */}
       {photos?.inline?.length ? (
         <section className="container-page pb-14 md:pb-20" aria-label="Webcam subject photos">
           <div className="grid gap-8 md:grid-cols-2">
