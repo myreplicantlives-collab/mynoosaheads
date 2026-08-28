@@ -116,11 +116,19 @@ const INLINE = {
       commonsPage: "https://commons.wikimedia.org/wiki/File:Children_learning_surfing_at_Noosa_Heads_beach,_Queensland.jpg",
     },
     {
-      caption: "Early-morning paddle-out at Noosa Main Beach.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Noosa_Heads_beach_on_Christmas_Day_2015_04.jpeg/1280px-Noosa_Heads_beach_on_Christmas_Day_2015_04.jpeg",
-      author: "Kgbo",
+      // MSN-2970 Fix 1 (audit #12): the previous "paddle-out" image was
+      // actually the orange IRB + swimmers (categories include
+      // `Lifeguard_watercraft`). Replaced with the 2011 Noosa Festival
+      // of Surfing photo at First Point — vision-confirmed: shows
+      // surfboards lined up under a sponsor canopy with a caravan of
+      // surfers paddling out into the lineup behind. CC BY-SA 4.0,
+      // First Point Noosa (Queensland, Australia). No GPS in EXIF but
+      // location is named in the file description.
+      caption: "Surfers paddling out at First Point Noosa — the caravan heading through the break during the 2011 Festival of Surfing.",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Noosa_Festival_of_Surfing.JPG/1280px-Noosa_Festival_of_Surfing.JPG",
+      author: "Globalsurfwiki",
       licence: "CC BY-SA 4.0",
-      commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_on_Christmas_Day_2015_04.jpeg",
+      commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Festival_of_Surfing.JPG",
     },
     {
       caption: "Stand-up paddleboarder in the bay — the calm-water alternative when the swell is too big.",
