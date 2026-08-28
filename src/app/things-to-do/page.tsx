@@ -6,9 +6,9 @@ import { ImageTile } from "@/components/ImageTile";
 /**
  * /things-to-do — MSN-2973 rebuild (Albert D3).
  *
- * Eight categories, image-led, click-out to detail pages. No
- * encyclopedic body, no "the long version" sections, no "A little
- * more context" heading. Three short anchor sections sit at the
+ * Nine categories, image-led, click-out to detail pages. No
+ * encyclopedic body, no "the long version" sections, no weak
+ * filler heading. Three short anchor sections sit at the
  * bottom for the cards that link to in-page anchors (#eat-and-drink,
  * #hinterland, #bookable) — each ≤60 words.
  *
@@ -21,19 +21,19 @@ import { ImageTile } from "@/components/ImageTile";
 export const metadata: Metadata = {
   title: "Things to do in Noosa",
   description:
-    "Eight ways to spend your days in Noosa.",
+    "Nine ways to spend your days in Noosa — coast, river, hinterland, markets, makers and the boutique strip.",
   alternates: { canonical: "/things-to-do" },
   openGraph: {
     title: "Things to do in Noosa · MyNoosaHeads",
     description:
-      "Eight ways to spend your days in Noosa.",
+      "Nine ways to spend your days in Noosa — coast, river, hinterland, markets, makers and the boutique strip.",
     url: "/things-to-do",
     type: "article",
   },
   twitter: {
     card: "summary",
     title: "Things to do in Noosa · MyNoosaHeads",
-    description: "Eight ways to spend your days in Noosa.",
+    description: "Nine ways to spend your days in Noosa.",
   },
 };
 
@@ -176,6 +176,24 @@ const CATEGORIES: CategoryCard[] = [
     },
     dataTrack: "ttd_card_bookable",
   },
+  // MSN-2974 — ninth card. Shop Noosa — boutiques, markets, makers.
+  // Per Tim's directive: NO new homepage tile, NO new primary nav item.
+  // Page lives at /shopping, reached from this card. Image is the
+  // existing verified Noosa Farmers Market photo (Wikimedia Commons).
+  {
+    key: "shopNoosa",
+    title: "Shop Noosa",
+    body: "Boutiques, markets and makers from Hastings Street to the hinterland villages.",
+    href: "/shopping",
+    image: {
+      caption: "Noosa Farmers Market — Saturday morning at the Noosaville showgrounds.",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Noosa_farmers_market.jpg/1280px-Noosa_farmers_market.jpg",
+      author: "Kgbo",
+      licence: "CC BY-SA 4.0",
+      commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_farmers_market.jpg",
+    },
+    dataTrack: "ttd_card_shopping",
+  },
 ];
 
 export default function ThingsToDoPage() {
@@ -186,7 +204,7 @@ export default function ThingsToDoPage() {
       "@id": `${SITE.productionUrl}/things-to-do#destination`,
       name: "Noosa Heads",
       description:
-        "Eight ways to spend your days in Noosa.",
+        "Nine ways to spend your days in Noosa.",
       url: `${SITE.productionUrl}/things-to-do`,
       touristType: ["Family", "Couple", "Solo", "Group", "Active"],
       address: {
@@ -227,10 +245,14 @@ export default function ThingsToDoPage() {
           <h1 className="mt-3 font-display text-display-xl md:text-display-xl text-ink-900 text-balance max-w-4xl">
             Things to do in Noosa.
           </h1>
+          <p className="mt-5 lead max-w-3xl text-pretty">
+            Nine categories across coast, river, hinterland and the
+            boutique strip. Pick a card.
+          </p>
         </div>
       </section>
 
-      {/* ─── 2. Eight categories (3×3 desktop, 2×4 tablet, 1×8 mobile) ─── */}
+      {/* ─── 2. Nine categories (3×3 desktop, 2×4 tablet, 1×9 mobile) ─── */}
       <section
         className="container-page py-12 md:py-16"
         aria-labelledby="ttd-grid-heading"
@@ -263,7 +285,7 @@ export default function ThingsToDoPage() {
             id="ttd-anchors-heading"
             className="font-display text-display-md text-ink-900 text-balance"
           >
-            A little more.
+            Three short reads.
           </h2>
 
           <div className="mt-8 grid gap-10 lg:grid-cols-3">

@@ -17,7 +17,7 @@ import {
  *   3. 10 curated property picks (not a 37-listing database)
  *   4. 5 property category chips (Family, Luxury, Beachfront, Value,
  *      Long-stay) — anchor links
- *   5. "How we choose" — one short paragraph
+ *   5. "What's in the list and what isn't" — one short paragraph
  *   6. Engine area-search catch-all — Booking.com / Stayz / Airbnb
  *
  * Removed (per Tim's directive):
@@ -313,18 +313,18 @@ export default async function AccommodationPage() {
         </div>
       </section>
 
-      {/* ─── 5. How we choose (one short paragraph) ─── */}
+      {/* ─── 5. What's in the list (one short paragraph) ─── */}
       <section
         className="border-t border-paper-200 bg-paper-100"
         aria-labelledby="how-h"
       >
         <div className="container-page py-14 md:py-20">
-          <p className="eyebrow">How we choose</p>
+          <p className="eyebrow">How the picks get made</p>
           <h2
             id="how-h"
             className="mt-1 font-display text-display-md text-ink-900 text-balance"
           >
-            Where this list comes from
+            What&apos;s in the list and what isn&apos;t.
           </h2>
           <p className="mt-4 max-w-3xl text-body-md text-ink-800 text-pretty">
             {disclosure}
