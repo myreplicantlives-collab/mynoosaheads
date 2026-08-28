@@ -88,12 +88,12 @@ export const metadata: Metadata = {
 
 // MSN-2962 (Tim directive 2026-08-28 09:25 BST — "put it on cloudfare"):
 // opt every route into the Node.js runtime so @opennextjs/cloudflare
-// can deploy to Cloudflare Workers (Workers Node runtime — supports
-// node:fs, node:path used in lib/posts.ts for /hello-noosa).
+// can deploy to Cloudflare Workers (Workers Node runtime).
 //
 // On the existing Vercel build, this is the default runtime already,
-// so this is a no-op there. The /hello-noosa page is `force-static`
-// so the fs calls happen at build time (not at request time).
+// so this is a no-op there. Node runtime remains required for any
+// future server-side fs/path usage (e.g. a planned /posts/[slug]
+// route will reuse lib/posts.ts at build time).
 export const runtime = "nodejs";
 
 export const viewport = {
