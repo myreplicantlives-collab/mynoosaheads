@@ -554,11 +554,20 @@ export const AREAS: Area[] = [
     whyThisArea:
       "Sunshine Beach is the first village south of the headland — a patrolled surf beach, a small row of shops on Duke Road, and a dedicated access into the southern end of Noosa National Park. The beach is a surf beach (waves are more reliable than Main Beach), the village is calmer than Hastings, and you'd drive five minutes to access Hastings Street when you want it. Dog-friendly cafés and a more residential feel across the suburb make this the preferred base for second-time visitors.",
     photo: {
-      caption: "The southern access into Noosa National Park, just north of Sunshine Beach village.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Noosa_Heads_beach_on_Christmas_Day_2015_01.jpeg/1280px-Noosa_Heads_beach_on_Christmas_Day_2015_01.jpeg",
+      // MSN-2970 Fix 4 (audit #19): previous photo was
+      // Noosa_Heads_beach_on_Christmas_Day_2015_01.jpeg with caption
+      // "The southern access into Noosa National Park, just north of
+      // Sunshine Beach village" — vision-checked FAIL: the actual
+      // image shows lifeguards under a Boost Juice canopy with a sand
+      // sculpture and a Welcome to Noosa sign on Main Beach (no park
+      // entrance, no Sunshine Beach). Replaced with a real Sunshine
+      // Beach scene from the Sunshine Beach Surf Life Saving Club,
+      // GPS-verified at -26.406864, 153.109694 (Kgbo, 8 May 2016).
+      caption: "Sunshine Beach, viewed from the surf club — the patrolled swimming area south of the headland.",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Sunshine_Beach_seen_from_the_Sunshine_Beach_Surf_Life_Saving_Club.jpeg/1280px-Sunshine_Beach_seen_from_the_Sunshine_Beach_Surf_Life_Saving_Club.jpeg",
       author: "Kgbo",
       licence: "CC BY-SA 4.0",
-      commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_on_Christmas_Day_2015_01.jpeg",
+      commonsPage: "https://commons.wikimedia.org/wiki/File:Sunshine_Beach_seen_from_the_Sunshine_Beach_Surf_Life_Saving_Club.jpeg",
     },
     matrix: {
       beachfront: 1,

@@ -169,11 +169,22 @@ const INLINE = {
       commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_(23720155369).jpg",
     },
     {
-      caption: "A palm-silhouette evening view of Main Beach from the headland.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Noosa_Heads_beach_on_Christmas_Day_2015_01.jpeg/1280px-Noosa_Heads_beach_on_Christmas_Day_2015_01.jpeg",
-      author: "Kgbo",
+      // MSN-2970 Fix 4 (audit #19a): the previous /noosa-national-park
+      // image was Noosa_Heads_beach_on_Christmas_Day_2015_01.jpeg with
+      // an alt claiming "southern access into Noosa National Park" —
+      // vision-checked FAIL: the image actually shows lifeguards under
+      // a Boost Juice canopy with a sand sculpture and a Welcome to
+      // Noosa sign on Main Beach. Replaced with File:Alexandria_Bay.jpg
+      // — a verified Noosa National Park scene (Alexandria Bay IS the
+      // destination at the end of the southern Noosa East → Peregian
+      // access track that the section narrative describes). Juan Jose
+      // Basagoiti Mancera, CC BY-SA 4.0, 30 November 2015. Vision-
+      // confirmed: sweeping sandy beach, vegetated headlands, surf.
+      caption: "Alexandria Bay — the surf beach at the southern end of the Noosa East → Peregian access track.",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Alexandria_Bay.jpg/1280px-Alexandria_Bay.jpg",
+      author: "Juan Jose Basagoiti Mancera",
       licence: "CC BY-SA 4.0",
-      commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_on_Christmas_Day_2015_01.jpeg",
+      commonsPage: "https://commons.wikimedia.org/wiki/File:Alexandria_Bay.jpg",
     },
     {
       caption: "The Dog Beach at the Noosa Botanic Gardens on Lake Macdonald — a calmer inland option.",
