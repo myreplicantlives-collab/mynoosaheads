@@ -71,10 +71,11 @@ export default function PrivacyPage() {
           <h2>Third-party services we link to</h2>
           <p>
             When you click an outbound link — for example, to the Bureau of
-            Meteorology, QPWS, or Booking.com — you leave our site. The
-            operator of that destination is responsible for any data they
-            collect under their own privacy policy. We link to operators
-            that publish a clear policy; if you spot one that doesn’t,{" "}
+            Meteorology, QPWS, or a third-party booking engine — you leave
+            our site. The operator of that destination is responsible for
+            any data they collect under their own privacy policy. We link
+            to operators that publish a clear policy; if you spot one that
+            doesn’t,{" "}
             <a href="/contact" className="link text-ocean-700">
               please tell us
             </a>
@@ -88,9 +89,10 @@ export default function PrivacyPage() {
             their own cookies on the
             destination site when you click through; we do not see the
             contents of those cookies, only whether a click resulted in a
-            conversion for our account. The major programmes we
-            participate in publish their own cookie and privacy statements
-            (Booking.com, Stayz, Expedia, Airbnb).
+            conversion for our account. We do not currently name
+            individual programme partners in this disclosure; a full
+            statement of methodology and editorial firewall is maintained
+            per the Competition and Consumer Act 2010 (Cth) Schedule 2.
           </p>
 
           <h2 id="spam-act-2003">Spam Act 2003</h2>

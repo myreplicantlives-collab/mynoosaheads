@@ -52,7 +52,7 @@ export const SPRINT = {
 export const NAV = [
   { label: "Surf & weather", href: "/surf-and-weather", description: "Live BOM + Open-Meteo tiles, tide, UV." },
   { label: "National Park", href: "/noosa-national-park", description: "Tracks, wildlife, QPWS alerts." },
-  { label: "Accommodation", href: "/accommodation", description: "Booking, Stayz, Airbnb, Expedia." },
+  { label: "Accommodation", href: "/accommodation", description: "Hotels, apartments, holiday houses." },
   { label: "Things to do", href: "/things-to-do", description: "Day-by-day ideas across the shire." },
   { label: "Fishing", href: "/fishing-reports", description: "Weekly report, tides, solunar." },
   { label: "Boats", href: "/boats-and-watercraft", description: "Hire, ramps, river bar crossings." },
@@ -99,14 +99,12 @@ export const CATEGORIES = [
     href: "/accommodation",
     navLabel: "Accommodation",
     icon: "Compass" as const,
-    pitch: "Hotels, apartments, holiday houses. Booking, Stayz, Airbnb, Expedia.",
+    pitch: "Hotels, apartments, holiday houses across the shire.",
     longDescription:
-      "We don't take inventory. Each booking option links out to Booking.com, Stayz, Expedia, or Airbnb with our affiliate tag. Per ACCC Schedule 2, every monetised link is labelled before you click; the full disclosure is in the footer.",
+      "We don't take inventory. Each booking option links out to a third-party booking engine. Where MyNoosaHeads participates in an affiliate programme and the link is monetised, it is marked Affiliate before you click, per the Competition and Consumer Act 2010 (Cth) Schedule 2. The full disclosure is in the footer.",
     primarySources: [
-      { label: "Booking.com affiliate disclosure", href: "https://www.booking.com/affiliate-program/v2/index.html" },
-      { label: "Stayz affiliate program", href: "https://www.stayz.com.au/affiliates" },
-      { label: "Airbnb affiliate program", href: "https://news.airbnb.com/en-us/airbnb-affiliate-program/" },
-      { label: "Expedia Partner Solutions", href: "https://www.expediapartnercentral.com/" },
+      { label: "Tourism Noosa — Where to stay", href: "https://www.tourismnoosa.com.au/accommodation" },
+      { label: "Noosa Shire Council — Visitor info", href: "https://www.noosa.qld.gov.au/Community-services/Visitor-information" },
     ],
   },
   {
@@ -249,7 +247,7 @@ export const FOOTER_DISCLOSURE = {
    * Spam Act 2003) sit in the Legal column above.
    */
   complianceBand:
-    "MyNoosaHeads is independent. We don’t run a newsletter, collect email addresses, or operate a login. Some links on this site are affiliate links — if you book or purchase through them, we may earn a small commission at no extra cost to you. We participate in the Booking.com, Stayz, Expedia, and Airbnb affiliate programmes; affiliate relationships do not influence our editorial copy. Full statement of which programmes and our editorial firewall: see the Affiliate disclosure item in the Legal column below, per the Competition and Consumer Act 2010 (Cth) Schedule 2.",
+    "MyNoosaHeads is independent. We don’t run a newsletter, collect email addresses, or operate a login. Some links on this site are affiliate links — if you book or purchase through them, we may earn a small commission at no extra cost to you. We participate in affiliate programmes that allow us to link to trusted booking platforms and recommend products relevant to visitors planning a Noosa trip. Affiliate relationships do not influence our editorial copy. We do not currently name individual programme partners in this disclosure; a full statement of methodology and editorial firewall is maintained per the Competition and Consumer Act 2010 (Cth) Schedule 2.",
   region: "AU · en-AU · Queensland, Australia",
   copyrightYear: 2026,
 } as const;
@@ -270,3 +268,13 @@ export const ACCC_DISCLOSURE = {
   body:
     "Some links on this page are affiliate links. If you book or purchase through them, MyNoosaHeads may earn a small commission at no extra cost to you. Affiliate relationships do not influence the editorial content. See the footer for the full statement, per the Competition and Consumer Act 2010 (Cth) Schedule 2.",
 } as const;
+
+/**
+ * MSN-2964 (rework, directive B) — empty until affiliate programme
+ * participation is verified. The `<AffiliateBadge>` component and any
+ * UI claiming a specific monetised relationship should gate rendering
+ * on this list. Per ACCC Schedule 2 (Australian Consumer Law) and the
+ * mission spec: "Do not claim participation in an affiliate programme
+ * unless participation is verified."
+ */
+export const VERIFIED_AFFILIATES: string[] = [];

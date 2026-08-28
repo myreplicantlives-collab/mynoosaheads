@@ -9,7 +9,6 @@ import {
   HeroPhoto,
   Button,
   Icons,
-  AffiliateBadge,
   JsonLd,
 } from "@/components/ui";
 import { fetchLiveBundle } from "@/lib/live-data";
@@ -19,7 +18,7 @@ import { SITE } from "@/data/site";
 export const metadata: Metadata = {
   title: "Accommodation",
   description:
-    "Where to stay in Noosa: hotels, holiday apartments, and houses. Booking, Stayz, Expedia, and Airbnb affiliate links with full ACCC disclosure.",
+    "Where to stay in Noosa: hotels, holiday apartments, and houses. Booking-engine deep links with full ACCC Schedule 2 disclosure.",
   alternates: { canonical: "/accommodation" },
   openGraph: {
     title: "Accommodation · MyNoosaHeads",
@@ -143,11 +142,11 @@ export default async function AccommodationPage() {
         subtitle={
           <>
             We don’t run a booking engine and we don’t take inventory. The
-            listings on this page link out to Booking.com, Stayz, Expedia, or
-            Airbnb — with our affiliate tag, where we have one. Every monetised
-            link is marked <span className="chip-ocean">Affiliate</span>{" "}
-            before you click, per the Competition and Consumer Act 2010 (Cth)
-            Schedule 2. The full statement is in the footer.
+            listings on this page link out to third-party booking engines
+            that operate across Noosa. Where a link is monetised, it is
+            marked <span className="chip-ocean">Affiliate</span> before you
+            click, per the Competition and Consumer Act 2010 (Cth) Schedule
+            2. The full statement is in the footer.
           </>
         }
         flourish="Right town, right price, right block."
@@ -210,11 +209,13 @@ export default async function AccommodationPage() {
               regardless of whether they participate.
             </p>
             <p className="text-body text-ink-800">
-              Our position is operator-agnostic: we list the booking engines we
-              trust (Booking.com, Stayz, Expedia, Airbnb), not the operators
+              Our position is operator-agnostic: we list the booking
+              engines visitors use to plan a Noosa trip, not the operators
               that pay the highest commission. We do not run a comparison
               engine, we do not have access to your search criteria, and we
-              do not see or store your booking details.
+              do not see or store your booking details. Where participation
+              in a specific programme is not yet confirmed, the link
+              renders without an Affiliate badge.
             </p>
           </div>
         </div>
@@ -237,17 +238,21 @@ export default async function AccommodationPage() {
                   {area.bestFor}
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2">
+                  {/* MSN-2964 (directive B) — affiliate programme
+                      participation not yet verified. Outbound links
+                      remain as useful deep-links to third-party booking
+                      engines, but the AffiliateBadge is intentionally
+                      suppressed until each programme is confirmed
+                      enrolled (see VERIFIED_AFFILIATES in
+                      src/data/site.ts). */}
                   <Button
                     href="https://www.booking.com/searchresults.html?ss=Noosa+Heads"
                     external
                     size="sm"
                     trailingIcon={<Icons.External size={12} />}
-                    // MSN-2964 — affiliate conversion event. Track per
-                    // operator so we can see Booking vs Stayz performance.
-                    data-track="affiliate_click_booking"
+                    data-track="accommodation_click_booking"
                   >
                     Booking.com
-                    <AffiliateBadge programme="Booking.com" mode="compact" />
                   </Button>
                   <Button
                     href="https://www.stayz.com.au/holiday-rental-search?query=Noosa+Heads"
@@ -255,10 +260,9 @@ export default async function AccommodationPage() {
                     size="sm"
                     variant="outline"
                     trailingIcon={<Icons.External size={12} />}
-                    data-track="affiliate_click_stayz"
+                    data-track="accommodation_click_stayz"
                   >
                     Stayz
-                    <AffiliateBadge programme="Stayz" mode="compact" />
                   </Button>
                   <Button
                     href="https://www.airbnb.com.au/s/Noosa-Heads--Australia/homes"
@@ -266,10 +270,9 @@ export default async function AccommodationPage() {
                     size="sm"
                     variant="outline"
                     trailingIcon={<Icons.External size={12} />}
-                    data-track="affiliate_click_airbnb"
+                    data-track="accommodation_click_airbnb"
                   >
                     Airbnb
-                    <AffiliateBadge programme="Airbnb" mode="compact" />
                   </Button>
                   <Button
                     href="https://www.expedia.com.au/Hotels?destination=Noosa+Heads"
@@ -277,10 +280,9 @@ export default async function AccommodationPage() {
                     size="sm"
                     variant="outline"
                     trailingIcon={<Icons.External size={12} />}
-                    data-track="affiliate_click_expedia"
+                    data-track="accommodation_click_expedia"
                   >
                     Expedia
-                    <AffiliateBadge programme="Expedia" mode="compact" />
                   </Button>
                 </div>
               </CardBody>
