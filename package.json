@@ -9,9 +9,9 @@
     "lint": "next lint",
     "preview": "npx @opennextjs/cloudflare build && wrangler dev",
     "deploy": "npx @opennextjs/cloudflare build && wrangler deploy",
-    "opennext:build": "npx @opennextjs/cloudflare build",
-    "opennext:dev": "npx @opennextjs/cloudflare build && wrangler dev",
-    "opennext:deploy": "npx @opennextjs/cloudflare build && wrangler deploy",
+    "opennext:build": "CF_PAGES=1 npx @opennextjs/cloudflare build",
+    "opennext:dev": "CF_PAGES=1 npx @opennextjs/cloudflare build && wrangler dev",
+    "opennext:deploy": "CF_PAGES=1 npx @opennextjs/cloudflare build && wrangler deploy",
     "pages:build": "npx @cloudflare/next-on-pages@1.13.0",
     "pages:deploy": "wrangler pages deploy .vercel/output/static --project-name mynoosaheads",
     "pages:dev": "wrangler pages dev .vercel/output/static"
