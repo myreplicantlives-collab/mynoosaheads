@@ -22,13 +22,12 @@ export const metadata: Metadata = {
     description: "Coastal webcams we link to, with attribution.",
     url: "/webcams",
     type: "article",
- ,
+  },
   twitter: {
     card: "summary",
     title: "Webcams · MyNoosaHeads",
     description: "Coastal webcams we link to, with attribution.",
   },
- },
 };
 
 const CAMS = [

@@ -75,7 +75,7 @@ export const CATEGORIES = [
     longDescription:
       "Live conditions for Noosa Heads: BOM Southeast Coast marine district and Open-Meteo's free marine API. Tiles refresh themselves every 30 minutes without a human pushing them.",
     primarySources: [
-      { label: "BOM Southeast Coast", href: "https://www.bom.gov.au/qld/forecasts/coastal.shtml" },
+      { label: "BOM Southeast Coast", href: "https://www.bom.gov.au/marine/forecast/QLD/QLD-Southeast-Coast.shtml" },
       { label: "MSQ — Noosa bar report", href: "https://www.msq.qld.gov.au/" },
       { label: "Open-Meteo Marine Weather API", href: "https://open-meteo.com/en/docs/marine-weather-api" },
       { label: "BOM Tewantin tide", href: "https://www.bom.gov.au/australia/tides/#!/qld-tewantin" },
@@ -203,7 +203,7 @@ export const FOOTER_DISCLOSURE = {
     {
       heading: "Live sources",
       links: [
-        { label: "BOM Southeast Coast", href: "https://www.bom.gov.au/qld/forecasts/coastal.shtml", external: true },
+        { label: "BOM Southeast Coast", href: "https://www.bom.gov.au/marine/forecast/QLD/QLD-Southeast-Coast.shtml", external: true },
         { label: "MSQ — Noosa bar report", href: "https://www.msq.qld.gov.au/", external: true },
         { label: "Open-Meteo", href: "https://open-meteo.com/", external: true },
         { label: "QLD Traffic", href: "https://qldtraffic.qld.gov.au/", external: true },

@@ -11,13 +11,12 @@ export const metadata: Metadata = {
     description: "Hire options, public ramps, and river bar rules.",
     url: "/boats-and-watercraft",
     type: "article",
- ,
+  },
   twitter: {
     card: "summary",
     title: "Boats & watercraft · MyNoosaHeads",
     description: "Hire options, public ramps, and river bar rules.",
   },
- },
 };
 
 export default function Page() {
@@ -31,7 +30,7 @@ export default function Page() {
       primarySources={[
         { label: "Marine Safety Queensland — bar crossings", href: "https://www.msq.qld.gov.au/Safety/Bar-crossings-and-coastal-conditions" },
         { label: "Noosa Council — Parks and Facilities", href: "https://www.noosa.qld.gov.au/Services-and-Facilities/Parks-and-Facilities" },
-        { label: "BOM — Southeast Coast", href: "https://www.bom.gov.au/qld/forecasts/coastal.shtml" },
+        { label: "BOM — Southeast Coast", href: "https://www.bom.gov.au/marine/forecast/QLD/QLD-Southeast-Coast.shtml" },
         { label: "MSQ — Noosa bar report", href: "https://www.msq.qld.gov.au/" },
         { label: "Transport and Main Roads — recreational boating", href: "https://www.tmr.qld.gov.au/Maritime/Recreational-boating" },
       ]}

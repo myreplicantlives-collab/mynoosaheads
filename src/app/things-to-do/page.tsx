@@ -11,13 +11,12 @@ export const metadata: Metadata = {
     description: "What locals do in Noosa, organised honestly.",
     url: "/things-to-do",
     type: "article",
- ,
+  },
   twitter: {
     card: "summary",
     title: "Things to do · MyNoosaHeads",
     description: "What locals do in Noosa, organised honestly.",
   },
- },
 };
 
 export default function Page() {
@@ -27,7 +26,7 @@ export default function Page() {
       eyebrow="What locals actually do"
       title="Things to do in Noosa"
       subtitle="The brochure leads with whale-watching and jet-skis. We organise around what residents actually do on a Tuesday morning: the headland walk, a coffee on Hastings Street, the river bar at slack tide, and an unhurried dinner."
-      flourish="Slow categories for a slow town."
+      flourish="Eight areas, one honest guide."
       primarySources={[
         { label: "Tourism Noosa (industry body)", href: "https://www.visitnoosa.com.au/" },
         { label: "Noosa Council — About Noosa", href: "https://www.noosa.qld.gov.au/Community/About-Noosa" },

@@ -11,13 +11,12 @@ export const metadata: Metadata = {
     description: "Tracks, wildlife, QPWS alerts, and the coastal walk.",
     url: "/noosa-national-park",
     type: "article",
- ,
+  },
   twitter: {
     card: "summary",
     title: "Noosa National Park · MyNoosaHeads",
     description: "Tracks, wildlife, QPWS alerts, and the coastal walk.",
   },
- },
 };
 
 export default function Page() {

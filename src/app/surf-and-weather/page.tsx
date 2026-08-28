@@ -12,13 +12,12 @@ export const metadata: Metadata = {
       "Live surf, wind, tide, and UV tiles for Noosa Heads, refreshed every 30 minutes.",
     url: "/surf-and-weather",
     type: "article",
- ,
+  },
   twitter: {
     card: "summary",
     title: "Surf & weather · MyNoosaHeads",
     description: "Live surf, wind, tide, and UV tiles for Noosa Heads, refreshed every 30 minutes.",
   },
- },
 };
 
 export default function Page() {
@@ -30,7 +29,7 @@ export default function Page() {
       subtitle="The BOM Southeast Coast marine forecast covers Noosa Heads, Sunshine Beach, and the river bar. The tiles on this page refresh themselves every 30 minutes — we don’t push them by hand. Bar crossings always defer to MSQ and the Noosa Coast Guard."
       flourish="When the wind turns south-east under 15, the points light up."
       primarySources={[
-        { label: "BOM — Southeast Coast coastal forecast", href: "https://www.bom.gov.au/qld/forecasts/coastal.shtml" },
+        { label: "BOM — Southeast Coast coastal forecast", href: "https://www.bom.gov.au/marine/forecast/QLD/QLD-Southeast-Coast.shtml" },
         { label: "MSQ — Noosa bar report (bar crossings)", href: "https://www.msq.qld.gov.au/" },
         { label: "BOM — Tewantin tide", href: "https://www.bom.gov.au/australia/tides/#!/qld-tewantin" },
         { label: "Open-Meteo Marine Weather API (free, no key)", href: "https://open-meteo.com/en/docs/marine-weather-api" },

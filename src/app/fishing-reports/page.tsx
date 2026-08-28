@@ -11,13 +11,12 @@ export const metadata: Metadata = {
     description: "Recreational fishing rules, tides, and the sources locals read.",
     url: "/fishing-reports",
     type: "article",
- ,
+  },
   twitter: {
     card: "summary",
     title: "Fishing reports · MyNoosaHeads",
     description: "Recreational fishing rules, tides, and the sources locals read.",
   },
- },
 };
 
 export default function Page() {

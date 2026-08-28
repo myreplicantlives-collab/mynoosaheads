@@ -200,8 +200,8 @@ export default async function HomePage() {
             />
             <LiveDataWidget
               kind="tide"
-              title="Tide — Tewantin"
-              value={live.tide.value}
+              title="Sea level (approx.)"
+              value={`~${live.tide.value.replace(/^~/, "")}`}
               secondary={live.tide.secondary}
               source={live.tide.source}
               asOf={live.asOf}

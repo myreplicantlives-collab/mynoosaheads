@@ -342,7 +342,7 @@ export default function StyleGuidePage() {
           />
           <LiveDataWidget
             kind="tide"
-            title="Tide — Tewantin"
+            title="Sea level (approx.)"
             value="0.8 m ↓"
             secondary="High 11:42, low 18:09"
             source="BOM"

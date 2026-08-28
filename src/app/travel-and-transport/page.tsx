@@ -11,13 +11,12 @@ export const metadata: Metadata = {
     description: "How to get to Noosa and how to get around once you’re there.",
     url: "/travel-and-transport",
     type: "article",
- ,
+  },
   twitter: {
     card: "summary",
     title: "Travel & transport · MyNoosaHeads",
     description: "How to get to Noosa and how to get around once you’re there.",
   },
- },
 };
 
 export default function Page() {
