@@ -4,7 +4,7 @@ import { CategoryPage } from "@/components/CategoryPage";
 export const metadata: Metadata = {
   title: "Surf & weather",
   description:
-    "Live surf, wind, tide, and UV tiles for Noosa Heads from the Bureau of Meteorology (Capricornia–Hervey Bay) and Open-Meteo. Noosa bar crossing rules, tide turns, and the BOM swell narrative.",
+    "Live surf, wind, tide, and UV tiles for Noosa Heads from BOM Southeast Coast and Open-Meteo. Bar crossings defer to MSQ and the Noosa Coast Guard.",
   alternates: { canonical: "/surf-and-weather" },
   openGraph: {
     title: "Surf & weather · MyNoosaHeads",
@@ -12,19 +12,26 @@ export const metadata: Metadata = {
       "Live surf, wind, tide, and UV tiles for Noosa Heads, refreshed every 30 minutes.",
     url: "/surf-and-weather",
     type: "article",
+ ,
+  twitter: {
+    card: "summary",
+    title: "Surf & weather · MyNoosaHeads",
+    description: "Live surf, wind, tide, and UV tiles for Noosa Heads, refreshed every 30 minutes.",
   },
+ },
 };
 
 export default function Page() {
   return (
     <CategoryPage
       slug="surf-and-weather"
-      eyebrow="Live · BOM Capricornia–Hervey Bay + Open-Meteo Marine"
+      eyebrow="Live · BOM Southeast Coast + Open-Meteo Marine"
       title="Surf & weather"
-      subtitle="The marine forecast for the Capricornia–Hervey Bay district covers Noosa Heads, Sunshine Beach, and the river bar. The tiles on this page refresh themselves every 30 minutes — we don’t push them by hand."
+      subtitle="The BOM Southeast Coast marine forecast covers Noosa Heads, Sunshine Beach, and the river bar. The tiles on this page refresh themselves every 30 minutes — we don’t push them by hand. Bar crossings always defer to MSQ and the Noosa Coast Guard."
       flourish="When the wind turns south-east under 15, the points light up."
       primarySources={[
-        { label: "BOM — Capricornia–Hervey Bay coastal forecast", href: "https://www.bom.gov.au/qld/forecasts/coastal.shtml" },
+        { label: "BOM — Southeast Coast coastal forecast", href: "https://www.bom.gov.au/qld/forecasts/coastal.shtml" },
+        { label: "MSQ — Noosa bar report (bar crossings)", href: "https://www.msq.qld.gov.au/" },
         { label: "BOM — Tewantin tide", href: "https://www.bom.gov.au/australia/tides/#!/qld-tewantin" },
         { label: "Open-Meteo Marine Weather API (free, no key)", href: "https://open-meteo.com/en/docs/marine-weather-api" },
         { label: "Cancer Council SunSmart (UV thresholds)", href: "https://www.sunsmart.com.au/" },
@@ -75,9 +82,10 @@ export default function Page() {
         title: "Bar crossing safety",
         body: (
           <>
-            The Noosa River bar is a bar — not a harbour entrance. If the BOM
-            Capricornia–Hervey Bay forecast calls southerly 20+ knots, swells
-            over 1.5 m, or a heavy rainfall event, defer.{" "}
+            The Noosa River bar is a bar — not a harbour entrance. Always defer
+            to the MSQ Noosa bar report and the Noosa Coast Guard
+            broadcast before crossing — conditions, swell direction, and
+            tide turn change by the hour.{" "}
             <a
               href="https://www.msq.qld.gov.au/Safety/Bar-crossings-and-coastal-conditions"
               className="link text-ocean-700"
@@ -95,6 +103,7 @@ export default function Page() {
         { label: "Noosa National Park", href: "/noosa-national-park", description: "Coastal walk and wildlife." },
         { label: "Boats & watercraft", href: "/boats-and-watercraft", description: "River bar, ramps, hire." },
         { label: "Webcams", href: "/webcams", description: "Council + SLSQ cams." },
+        { label: "Accommodation", href: "/accommodation", description: "Where to stay for early surfs." },
       ]}
     />
   );

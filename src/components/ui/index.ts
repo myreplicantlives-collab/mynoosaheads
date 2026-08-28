@@ -55,3 +55,5 @@ export type { IconProps, IconName } from "./Icon";
 
 export { AffiliateBadge } from "./AffiliateBadge";
 export type { AffiliateBadgeProps } from "./AffiliateBadge";
+
+export { JsonLd } from "./JsonLd";

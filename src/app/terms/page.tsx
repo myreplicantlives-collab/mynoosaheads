@@ -11,7 +11,13 @@ export const metadata: Metadata = {
     description: "ACCC-compliant terms of use.",
     url: "/terms",
     type: "article",
+ ,
+  twitter: {
+    card: "summary",
+    title: "Terms of use · MyNoosaHeads",
+    description: "ACCC-compliant terms of use.",
   },
+ },
 };
 
 export default function TermsPage() {
@@ -60,7 +66,7 @@ export default function TermsPage() {
               rel="noopener noreferrer"
               target="_blank"
             >
-              BOM Capricornia–Hervey Bay forecast
+              BOM Southeast Coast forecast
             </a>
             . For park closures, defer to{" "}
             <a

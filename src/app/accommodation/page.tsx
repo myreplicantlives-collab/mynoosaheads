@@ -10,9 +10,11 @@ import {
   Button,
   Icons,
   AffiliateBadge,
+  JsonLd,
 } from "@/components/ui";
 import { fetchLiveBundle } from "@/lib/live-data";
 import { CATEGORY_PHOTOS } from "@/data/photos";
+import { SITE } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Accommodation",
@@ -25,6 +27,12 @@ export const metadata: Metadata = {
       "Independent guide to staying in Noosa. Affiliate links with full ACCC disclosure.",
     url: "/accommodation",
     type: "article",
+  },
+  twitter: {
+    card: "summary",
+    title: "Accommodation · MyNoosaHeads",
+    description:
+      "Where to stay in Noosa. Affiliate links with full ACCC disclosure.",
   },
 };
 
@@ -67,8 +75,59 @@ export default async function AccommodationPage() {
   const heroCredit = photos
     ? `Photo: ${photos.hero.author} / Wikimedia Commons · ${photos.hero.licence}`
     : "";
+
+  // MSN-2964 — Accommodation schema. We do NOT own a real LodgingBusiness
+  // (we are a publisher, not a hotel). We declare a TouristDestination
+  // with a contained LodgingBusiness entry pointing at Noosa Heads as a
+  // destination, plus a BreadcrumbList for nav. Per Google's structured
+  // data policy, LodgingBusiness requires actual business attributes we
+  // don't have; TouristDestination with a description is the safest
+  // declaration for an editorial accommodation guide.
+  const accommodationJsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "TouristDestination",
+      "@id": `${SITE.productionUrl}/accommodation#destination`,
+      name: "Noosa Heads",
+      description:
+        "Noosa Heads is a coastal destination on the Sunshine Coast, Queensland. Accommodation ranges from Hastings Street hotels to Noosaville apartments and North Shore houseboats.",
+      url: `${SITE.productionUrl}/accommodation`,
+      touristType: ["Family", "Surfer", "Couple", "Group"],
+      address: {
+        "@type": "PostalAddress",
+        addressRegion: "Queensland",
+        addressCountry: "AU",
+        addressLocality: "Noosa Heads",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: -26.385,
+        longitude: 153.091,
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: SITE.brand,
+          item: SITE.productionUrl,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Accommodation",
+          item: `${SITE.productionUrl}/accommodation`,
+        },
+      ],
+    },
+  ];
+
   return (
     <div className="bg-paper-50">
+      <JsonLd data={accommodationJsonLd} />
       {/* Sprint 1.5: full-bleed hero photo (Hastings Street storefronts) */}
       {photos?.hero ? (
         <HeroPhoto
@@ -183,6 +242,9 @@ export default async function AccommodationPage() {
                     external
                     size="sm"
                     trailingIcon={<Icons.External size={12} />}
+                    // MSN-2964 — affiliate conversion event. Track per
+                    // operator so we can see Booking vs Stayz performance.
+                    data-track="affiliate_click_booking"
                   >
                     Booking.com
                     <AffiliateBadge programme="Booking.com" mode="compact" />
@@ -193,6 +255,7 @@ export default async function AccommodationPage() {
                     size="sm"
                     variant="outline"
                     trailingIcon={<Icons.External size={12} />}
+                    data-track="affiliate_click_stayz"
                   >
                     Stayz
                     <AffiliateBadge programme="Stayz" mode="compact" />
@@ -203,6 +266,7 @@ export default async function AccommodationPage() {
                     size="sm"
                     variant="outline"
                     trailingIcon={<Icons.External size={12} />}
+                    data-track="affiliate_click_airbnb"
                   >
                     Airbnb
                     <AffiliateBadge programme="Airbnb" mode="compact" />
@@ -213,6 +277,7 @@ export default async function AccommodationPage() {
                     size="sm"
                     variant="outline"
                     trailingIcon={<Icons.External size={12} />}
+                    data-track="affiliate_click_expedia"
                   >
                     Expedia
                     <AffiliateBadge programme="Expedia" mode="compact" />
@@ -283,7 +348,7 @@ export default async function AccommodationPage() {
             </Card>
           </div>
           <p className="mt-4 text-caption text-ink-600">
-            Tiles from BOM Capricornia–Hervey Bay + Open-Meteo. {live.sourceNote}
+            Tiles from BOM Southeast Coast + Open-Meteo. {live.sourceNote}
           </p>
         </div>
       </section>

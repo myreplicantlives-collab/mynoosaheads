@@ -10,6 +10,7 @@ import {
   CardBody,
   CardHeader,
   Icons,
+  JsonLd,
 } from "@/components/ui";
 import { CATEGORIES, SITE } from "@/data/site";
 import { HOMEPAGE_HERO } from "@/data/photos";
@@ -31,8 +32,63 @@ import { HOMEPAGE_HERO } from "@/data/photos";
 export default async function HomePage() {
   const live = await fetchLiveBundle();
 
+  // MSN-2964 — homepage schema.org JSON-LD. We declare:
+  //   - Organization (publisher / site identity)
+  //   - WebSite (with SearchAction potential target — kept minimal,
+  //     no search engine exposed on the public site)
+  // Both use SITE.productionUrl so search engines see the canonical
+  // https://mynoosaheads.twainent.workers.dev/ host.
+  const homeJsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": `${SITE.productionUrl}#organization`,
+      name: SITE.brand,
+      url: SITE.productionUrl,
+      logo: `${SITE.productionUrl}/brand/logo-2.svg`,
+      description:
+        "An independent, sourced guide to Noosa Heads, Queensland. Live surf and weather from BOM and Open-Meteo.",
+      email: SITE.email,
+      foundingDate: String(SITE.established),
+      areaServed: {
+        "@type": "Place",
+        name: "Noosa Heads, Queensland, Australia",
+      },
+      sameAs: [
+        "https://www.noosa.qld.gov.au/",
+        "https://www.visitnoosa.com.au/",
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": `${SITE.productionUrl}#website`,
+      url: SITE.productionUrl,
+      name: SITE.brand,
+      inLanguage: SITE.locale,
+      publisher: { "@id": `${SITE.productionUrl}#organization` },
+      potentialAction: {
+        "@type": "ReadAction",
+        target: SITE.productionUrl,
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: SITE.brand,
+          item: SITE.productionUrl,
+        },
+      ],
+    },
+  ];
+
   return (
     <div className="bg-paper-50">
+      <JsonLd data={homeJsonLd} />
       {/* Sprint 1.5 (MSN-2958): full-bleed homepage hero photo.
        * Per Albert's visual_audit.md §1, the homepage hero is ~60vh
        * full-bleed with the headline overlaid in the lower-left.
@@ -48,10 +104,10 @@ export default async function HomePage() {
         title="By the headland, by the bar."
         subtitle={
           <>
-            MyNoosaHeads is a slow-guide field manual for Noosa Heads — surf
-            and weather, the national park, accommodation, and the local
-            rules that keep everyone on the right side of a south-east
-            swell. Built slowly, sourced always, never fabricated.
+            An independent, sourced guide to Noosa Heads on the Sunshine
+            Coast. Surf and weather from BOM Southeast Coast and Open-Meteo,
+            national-park alerts from QPWS, and clear local rules so you
+            spend less time researching and more time on the coast.
           </>
         }
         flourish="Plan your Noosa trip well."
@@ -92,16 +148,19 @@ export default async function HomePage() {
                 What the coast is doing right now
               </h2>
               <p className="mt-2 text-body-sm text-ink-700 max-w-2xl">
-                Drawn from the Bureau of Meteorology’s Capricornia–Hervey
-                Bay marine district and Open-Meteo’s free marine API. Refresh
-                every 30 minutes; if a tile falls out, it shows an{" "}
+                Drawn from the Bureau of Meteorology’s{" "}
+                <strong>Southeast Coast</strong> marine district and
+                Open-Meteo’s free marine API. Tiles refresh every 30
+                minutes; if an upstream falls out it shows an{" "}
                 {/* MSN-2959 / TSK-2959-POLISH-C (extended): bumped from
                  * text-ocean-700 (#2F8074, contrast 4.39:1 on
                  * bg-paper-100) to text-ocean-900 (#0E4A41, ~10:1).
                  * This span lives inside a section with bg-paper-100
                  * so the .eyebrow class fix didn't reach it. */}
                 <span className="text-ocean-900">Unavailable</span> badge
-                rather than guessing.
+                rather than guessing. For bar crossings always defer to the
+                MSQ Noosa bar report and the Noosa Coast Guard broadcast —
+                this site is a planning tool, not a navigational authority.
               </p>
             </div>
             <p className="text-caption text-ink-600">
@@ -159,16 +218,10 @@ export default async function HomePage() {
               state={live.uv.state}
               href="/surf-and-weather"
             />
-            <LiveDataWidget
-              kind="sun-moon"
-              title="Sun &amp; moon"
-              value={live.sunMoon.value}
-              secondary={live.sunMoon.secondary}
-              source={live.sunMoon.source}
-              asOf={live.asOf}
-              state={live.sunMoon.state}
-              href="/surf-and-weather"
-            />
+            {/* MSN-2964 (safety): sun-moon widget removed from the
+             * homepage live strip — its times drift up to a minute and
+             * the page already links to /surf-and-weather where the
+             * detail lives. */}
             <LiveDataWidget
               kind="alerts"
               title="Park &amp; road alerts"

@@ -11,7 +11,13 @@ export const metadata: Metadata = {
     description: "What locals do in Noosa, organised honestly.",
     url: "/things-to-do",
     type: "article",
+ ,
+  twitter: {
+    card: "summary",
+    title: "Things to do · MyNoosaHeads",
+    description: "What locals do in Noosa, organised honestly.",
   },
+ },
 };
 
 export default function Page() {
@@ -84,6 +90,7 @@ export default function Page() {
         { label: "Surf & weather", href: "/surf-and-weather", description: "Read the wind before the river." },
         { label: "Boats & watercraft", href: "/boats-and-watercraft", description: "River bar, hire, ramps." },
         { label: "Noosa National Park", href: "/noosa-national-park", description: "The headland walk." },
+        { label: "Accommodation", href: "/accommodation", description: "Base yourself for the day-by-day." },
       ]}
     />
   );

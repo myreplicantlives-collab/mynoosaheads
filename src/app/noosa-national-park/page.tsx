@@ -11,7 +11,13 @@ export const metadata: Metadata = {
     description: "Tracks, wildlife, QPWS alerts, and the coastal walk.",
     url: "/noosa-national-park",
     type: "article",
+ ,
+  twitter: {
+    card: "summary",
+    title: "Noosa National Park · MyNoosaHeads",
+    description: "Tracks, wildlife, QPWS alerts, and the coastal walk.",
   },
+ },
 };
 
 export default function Page() {
@@ -88,6 +94,7 @@ export default function Page() {
         { label: "Surf & weather", href: "/surf-and-weather", description: "Live tiles for the headland walk." },
         { label: "Things to do", href: "/things-to-do", description: "Inland and coastal ideas." },
         { label: "Webcams", href: "/webcams", description: "Check the headland before you leave." },
+        { label: "Accommodation", href: "/accommodation", description: "Stay near the park entrance." },
       ]}
     />
   );

@@ -110,7 +110,7 @@ export default function StyleGuidePage() {
         eyebrow="Sprint 1.2"
         title="MyNoosaHeads design system"
         subtitle="Colours, typography, components, icons, accessibility — every token that ships to production, on one page."
-        flourish="Built slowly, on paper."
+        flourish="By the headland, by the bar."
       />
 
       <Section
@@ -329,7 +329,7 @@ export default function StyleGuidePage() {
             title="Surf — First Bay"
             value="1.4 m"
             secondary="SSE swell, period 9 s"
-            source="BOM Capricornia–Hervey Bay"
+            source="BOM Southeast Coast"
             asOf="06:40"
           />
           <LiveDataWidget

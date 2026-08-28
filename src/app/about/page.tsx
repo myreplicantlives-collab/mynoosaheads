@@ -1,12 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Hero, HeroPhoto, Card, CardBody, CardHeader } from "@/components/ui";
+import {
+  Hero,
+  HeroPhoto,
+  Card,
+  CardBody,
+  CardHeader,
+  JsonLd,
+} from "@/components/ui";
 import { ABOUT_BRAND_IMAGE } from "@/data/photos";
+import { SITE } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About MyNoosaHeads — what we cover, who writes it, and how the publication is set up.",
+    "About MyNoosaHeads — an independent, sourced guide to Noosa Heads. AU editorial team, monthly fact-check cadence, ACCC-compliant disclosure, no AI photography.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About · MyNoosaHeads",
@@ -14,11 +22,61 @@ export const metadata: Metadata = {
     url: "/about",
     type: "article",
   },
+  twitter: {
+    card: "summary",
+    title: "About · MyNoosaHeads",
+    description: "What we cover, who writes it, and how the publication is set up.",
+  },
 };
 
 export default function AboutPage() {
+  // MSN-2964 — About page schema: full Organization block + BreadcrumbList.
+  // About pages earn rich snippets for the publisher name and logo; we
+  // mirror the homepage Organization id so the two declarations merge in
+  // Google's knowledge graph.
+  const aboutJsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "@id": `${SITE.productionUrl}/about#page`,
+      url: `${SITE.productionUrl}/about`,
+      name: `About · ${SITE.brand}`,
+      inLanguage: SITE.locale,
+      isPartOf: { "@id": `${SITE.productionUrl}#website` },
+      about: { "@id": `${SITE.productionUrl}#organization` },
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: ABOUT_BRAND_IMAGE.url,
+        caption: ABOUT_BRAND_IMAGE.caption,
+        creditText: `${ABOUT_BRAND_IMAGE.author} / Wikimedia Commons`,
+        license: `https://creativecommons.org/licenses/${ABOUT_BRAND_IMAGE.licence
+          .replace("CC ", "")
+          .replace(" ", "-")
+          .toLowerCase()}/`,
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: SITE.brand,
+          item: SITE.productionUrl,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "About",
+          item: `${SITE.productionUrl}/about`,
+        },
+      ],
+    },
+  ];
   return (
     <div className="bg-paper-50">
+      <JsonLd data={aboutJsonLd} />
       {/* Sprint 1.5 (MSN-2958): full-bleed masthead photo. Quiet headland
        * view rather than the swimming beach — this is the editorial
        * "figure" under which the brand statement sits. */}
@@ -51,13 +109,13 @@ export default function AboutPage() {
               By the headland, by the bar.
             </p>
             <p className="mt-5 font-display not-italic text-display-sm md:text-display-md text-ink-800 leading-snug">
-              MyNoosaHeads is a slow-guide field manual for Noosa Heads —
+              MyNoosaHeads is an independent, sourced guide to Noosa Heads —
               surf and weather, the national park, accommodation, and the
               local rules that keep everyone on the right side of a
               south-east swell.
             </p>
             <p className="mt-3 font-display not-italic text-display-sm md:text-display-md text-ink-800 leading-snug">
-              Built slowly, sourced always, never fabricated
+              Sourced always, never fabricated
               {/*
                 * MSN-2959 / TSK-2959-FIX-3: brand-statement full-stop
                 * dot — the single place --accent-amber (#B8742A) appears
@@ -87,7 +145,7 @@ export default function AboutPage() {
       <Hero
         eyebrow="About"
         title="MyNoosaHeads"
-        subtitle="An independent, sourced, slow-guide field manual for Noosa Heads and the surrounding shire. Built slowly, on the Sunshine Coast."
+        subtitle="An independent, sourced guide to Noosa Heads and the surrounding shire on the Sunshine Coast. Primary sources linked on every page."
         flourish="By the headland, by the bar."
       />
 

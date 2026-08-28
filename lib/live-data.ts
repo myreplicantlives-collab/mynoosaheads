@@ -4,13 +4,20 @@
  * for the LiveDataWidget.
  *
  * Sources:
- *   - BOM (Bureau of Meteorology) — Australian federal agency; we use
- *     the public marine JSON endpoint for the Capricornia–Hervey Bay
- *     district, which covers Noosa Heads. Tides come from the Tewantin
- *     harmonic.
+ *   - BOM (Bureau of Meteorology) — Australian federal agency. We
+ *     reference the BOM Southeast Coast marine district, which covers
+ *     Noosa Heads. Tides come from the Tewantin harmonic.
  *   - Open-Meteo Marine — community free API. No key required; CORS-
  *     friendly; rate-limit generous. Docs:
  *     https://open-meteo.com/en/docs/marine-api
+ *
+ * MSN-2964 safety fixes:
+ *   - The tide tile is labelled "Open-Meteo sea level (mean)" — never
+ *     as the authoritative tide. The UI copy must always defer to the
+ *     BOM Tewantin tide tables and to MSQ / the Noosa Coast Guard for
+ *     any bar-crossing decision.
+ *   - No "bar opens on ..." copy is computed here. Bar safety is not
+ *     derivable from a single API.
  *
  * Architectural notes:
  *   - This module is server-only and is invoked from React Server
@@ -150,7 +157,8 @@ async function fetchOpenMeteoMarine(signal: AbortSignal): Promise<Marine> {
     },
     tide: {
       value: tideM != null ? `${tideM.toFixed(2)} m` : "—",
-      secondary: "Open-Meteo sea-level (mean). Cross-check BOM Tewantin before bar crossing.",
+      secondary:
+        "Open-Meteo sea-level (mean). For navigation, defer to BOM Tewantin tide tables and the MSQ Noosa bar report.",
       source: "Open-Meteo Marine + BOM Tewantin",
       state: "fresh",
     },
@@ -304,7 +312,7 @@ function fallbackBundle(reason: string): LiveBundle {
     state: "unavailable",
     surf: {
       value: "unavailable",
-      secondary: `Live tile unreachable (${reason}). Check BOM Capricornia–Hervey Bay.`,
+      secondary: `Live tile unreachable (${reason}). Check BOM Southeast Coast.`,
       source: "Open-Meteo Marine",
       state: "unavailable",
     },

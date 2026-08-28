@@ -8,7 +8,12 @@
 
 import type { MetadataRoute } from "next";
 
-const SITE_URL = "https://noosa-site-v2.vercel.app";
+// MSN-2964: SITE_URL now respects NEXT_PUBLIC_SITE_URL so we don't ship
+// stale references to the Vercel hostname. Default is the Cloudflare
+// Workers deployment that has been live since MSN-2962.
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  "https://mynoosaheads.twainent.workers.dev";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

@@ -17,8 +17,14 @@ export const SITE = {
   brandShort: "mynoosaheads",
   tagline: "By the headland, by the bar.",
   domain: "mynoosaheads.com",
-  productionUrl: "https://noosa-site-v2.vercel.app",
-  stagingUrl: "https://noosa-site-v2.vercel.app",
+  // MSN-2964: live URL is the Cloudflare Workers deployment. The Vercel
+  // URL is no longer authoritative (it returns 404 to external reviewers
+  // and is being retired). Override via NEXT_PUBLIC_SITE_URL env var on
+  // any future environment that needs a different canonical host.
+  productionUrl:
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    "https://mynoosaheads.twainent.workers.dev",
+  stagingUrl: "https://mynoosaheads.twainent.workers.dev",
   email: "hello@mynoosaheads.com",
   locale: "en-AU",
   region: "Queensland, Australia",
@@ -65,11 +71,12 @@ export const CATEGORIES = [
     href: "/surf-and-weather",
     navLabel: "Surf & weather",
     icon: "Wave" as const,
-    pitch: "Today's swell, wind, tide, and UV — from BOM Capricornia–Hervey Bay and Open-Meteo Marine.",
+    pitch: "Today's swell, wind, tide, and UV — from BOM Southeast Coast and Open-Meteo Marine.",
     longDescription:
-      "The Noosa bar opens on an outgoing tide with a south-east wind under 15 km/h. We pull the marine forecast from the Bureau of Meteorology's Capricornia–Hervey Bay district and Open-Meteo's free marine API, so the tiles on this page update themselves every 30 minutes without a human pushing them.",
+      "Live conditions for Noosa Heads: BOM Southeast Coast marine district and Open-Meteo's free marine API. Tiles refresh themselves every 30 minutes without a human pushing them.",
     primarySources: [
-      { label: "BOM Capricornia–Hervey Bay", href: "https://www.bom.gov.au/qld/forecasts/coastal.shtml" },
+      { label: "BOM Southeast Coast", href: "https://www.bom.gov.au/qld/forecasts/coastal.shtml" },
+      { label: "MSQ — Noosa bar report", href: "https://www.msq.qld.gov.au/" },
       { label: "Open-Meteo Marine Weather API", href: "https://open-meteo.com/en/docs/marine-weather-api" },
       { label: "BOM Tewantin tide", href: "https://www.bom.gov.au/australia/tides/#!/qld-tewantin" },
     ],
@@ -196,7 +203,8 @@ export const FOOTER_DISCLOSURE = {
     {
       heading: "Live sources",
       links: [
-        { label: "BOM Capricornia–Hervey Bay", href: "https://www.bom.gov.au/qld/forecasts/coastal.shtml", external: true },
+        { label: "BOM Southeast Coast", href: "https://www.bom.gov.au/qld/forecasts/coastal.shtml", external: true },
+        { label: "MSQ — Noosa bar report", href: "https://www.msq.qld.gov.au/", external: true },
         { label: "Open-Meteo", href: "https://open-meteo.com/", external: true },
         { label: "QLD Traffic", href: "https://qldtraffic.qld.gov.au/", external: true },
         { label: "Surf Life Saving QLD", href: "https://www.lifesaving.com.au/", external: true },

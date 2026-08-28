@@ -11,7 +11,13 @@ export const metadata: Metadata = {
     description: "Privacy Act 1988 (Cth) compliant policy.",
     url: "/privacy",
     type: "article",
+ ,
+  twitter: {
+    card: "summary",
+    title: "Privacy policy · MyNoosaHeads",
+    description: "Privacy Act 1988 (Cth) compliant policy.",
   },
+ },
 };
 
 export default function PrivacyPage() {

@@ -30,8 +30,10 @@ import {
   CardHeader,
   Button,
   Icons,
+  JsonLd,
 } from "@/components/ui";
 import { CATEGORY_PHOTOS, type WikimediaPhoto } from "@/data/photos";
+import { SITE } from "@/data/site";
 
 export type CategoryPageProps = {
   eyebrow: string;
@@ -54,6 +56,10 @@ export type CategoryPageProps = {
     variant?: "rainforest" | "ocean";
   };
   relatedLinks?: { label: string; href: string; description: string }[];
+  /** MSN-2964 — optional JSON-LD structured data block, rendered
+   *  once per category page. Used for TouristDestination / Article
+   *  / BreadcrumbList schemas on the 8 category routes. */
+  jsonLd?: object | object[];
 };
 
 const calloutClass: Record<NonNullable<CategoryPageProps["callout"]>["variant"] & string, string> = {
@@ -72,13 +78,56 @@ export async function CategoryPage({
   disclosure,
   callout,
   relatedLinks,
+  jsonLd,
 }: CategoryPageProps) {
   const photos = slug ? CATEGORY_PHOTOS[slug] : undefined;
 
   const creditLine = (p: WikimediaPhoto) => `Photo: ${p.author} / Wikimedia Commons · ${p.licence}`;
 
+  // MSN-2964 — Auto-generate a BreadcrumbList + Article schema when no
+  // explicit jsonLd is passed and we have a slug. This keeps the 8
+  // category routes SEO-complete without each page author having to
+  // hand-roll JSON-LD. Pages that need richer schemas (e.g.
+  // /accommodation) pass jsonLd explicitly.
+  const effectiveJsonLd = (() => {
+    if (jsonLd) return jsonLd;
+    if (!slug) return null;
+    return [
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "@id": `${SITE.productionUrl}/${slug}#article`,
+        url: `${SITE.productionUrl}/${slug}`,
+        headline: typeof title === "string" ? title : String(slug),
+        inLanguage: SITE.locale,
+        isPartOf: { "@id": `${SITE.productionUrl}#website` },
+        publisher: { "@id": `${SITE.productionUrl}#organization` },
+        mainEntityOfPage: `${SITE.productionUrl}/${slug}`,
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: SITE.brand,
+            item: SITE.productionUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: typeof title === "string" ? title : slug,
+            item: `${SITE.productionUrl}/${slug}`,
+          },
+        ],
+      },
+    ];
+  })();
+
   return (
     <div className="bg-paper-50">
+      {effectiveJsonLd ? <JsonLd data={effectiveJsonLd} /> : null}
       {/* Sprint 1.5: full-bleed hero photo above the editorial hero,
        * with the eyebrow+title+subtitle overlaid. */}
       {photos?.hero ? (
@@ -186,6 +235,14 @@ export async function CategoryPage({
                         className="link text-ocean-700"
                         rel="noopener noreferrer"
                         target="_blank"
+                        // MSN-2964 — outbound source link; fire a
+                        // custom Plausible event so we can see which
+                        // primary sources get the most clicks.
+                        data-track={`source_${slug ?? "page"}_${s.label
+                          .toLowerCase()
+                          .replace(/[^a-z0-9]+/g, "_")
+                          .replace(/^_|_$/g, "")
+                          .slice(0, 40)}`}
                       >
                         {s.label}
                       </Link>
