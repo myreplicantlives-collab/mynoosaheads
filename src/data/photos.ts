@@ -377,16 +377,26 @@ export const CATEGORY_PHOTOS: Record<string, CategoryPhotos> = {
 };
 
 /* ----------------------------------------------------------------------
- * Homepage hero — a single full-bleed image. Sprint 1.5 picks a quieter
- * drone shot of the headland; the homepage subtitle text wraps the photo.
+ * Homepage hero — MSN-2965 swap.
+ *
+ * Compared the previous drone-shot-of-township with three Wikimedia
+ * candidates (the original drone shot, a December 2022 Hastings
+ * Street Christmas roundabout, and a January 2015 golden-hour Main
+ * Beach scene with the headland beyond). The January 2015 beach scene
+ * wins on every tourism-marker: golden-hour light, lone wanderer
+ * providing a focal point and human scale, foreground beach activity,
+ * headland backdrop, and strong contrast against any overlay.
+ *
+ * Credits: Kgbo / Wikimedia Commons · CC BY-SA 4.0.
  * -------------------------------------------------------------------- */
 
 export const HOMEPAGE_HERO: WikimediaPhoto = {
-  caption: "Drone view of Noosa Heads township and the headland, Sunshine Coast.",
-  url: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Noosa_Heads_%28134205593%29.jpeg/1280px-Noosa_Heads_%28134205593%29.jpeg",
-  author: "dronepicr",
-  licence: "CC BY 3.0",
-  commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_(134205593).jpeg",
+  caption:
+    "Late afternoon on Main Beach — golden light, the headland beyond, and a walker heading toward the water.",
+  url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Noosa_Heads_beach_in_January_2015.JPG/1280px-Noosa_Heads_beach_in_January_2015.JPG",
+  author: "Kgbo",
+  licence: "CC BY-SA 4.0",
+  commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_in_January_2015.JPG",
 };
 
 /* ----------------------------------------------------------------------

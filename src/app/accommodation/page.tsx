@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import {
-  Card,
-  CardBody,
-  CardHeader,
-  Hero,
-  HeroPhoto,
   Button,
   Icons,
   JsonLd,
@@ -14,16 +8,45 @@ import {
 import { fetchLiveBundle } from "@/lib/live-data";
 import { CATEGORY_PHOTOS } from "@/data/photos";
 import { SITE } from "@/data/site";
+import {
+  ACCOMMODATION_DATA,
+  ON_PAGE_DISCLOSURE_TEXT,
+  DATA_GENERATED_AT,
+} from "@/data/accommodation";
+import { AreaSelector } from "@/components/accommodation/AreaSelector";
+import { AreaComparison } from "@/components/accommodation/AreaComparison";
+import { AreaDetail } from "@/components/accommodation/AreaDetail";
+import { PropertyGrid } from "@/components/accommodation/PropertyGrid";
+import { Itineraries } from "@/components/accommodation/Itineraries";
+import { DecisionHelper } from "@/components/accommodation/DecisionHelper";
+
+/**
+ * /accommodation — MSN-2965 rebuild.
+ *
+ * Page structure (visitor-first):
+ *   1. Hero band (small) — "Where to stay in Noosa" + 1-line promise
+ *   2. Area selector — 5 clickable cards
+ *   3. Comparison matrix — fit per profile (beachfront, family, ...)
+ *   4. Why each area (per-area detail blocks with photo + copy)
+ *   5. Property grid — filterable by area + booking engine
+ *   6. Decision helper — 3-question quiz → recommended area
+ *   7. Itineraries — 3-day, 5-day, 7-day
+ *   8. Disclosure — ACCC Schedule 2 statement
+ *   9. Footer (rendered by SiteFooter in root layout)
+ *
+ * Server-rendered page; client islands (AreaComparison is server,
+ * PropertyGrid / Itineraries / DecisionHelper are client for state).
+ */
 
 export const metadata: Metadata = {
-  title: "Accommodation",
+  title: "Where to stay in Noosa · Accommodation guide",
   description:
-    "Where to stay in Noosa: hotels, holiday apartments, and houses. Booking-engine deep links with full ACCC Schedule 2 disclosure.",
+    "Five areas, six-to-eight verified properties each. Pick the right base for your Noosa trip, then pick the property. Per-operator rationale and Booking.com, Stayz, Expedia, Airbnb link-outs.",
   alternates: { canonical: "/accommodation" },
   openGraph: {
     title: "Accommodation · MyNoosaHeads",
     description:
-      "Independent guide to staying in Noosa. Affiliate links with full ACCC disclosure.",
+      "Five areas, six-to-eight verified properties each. Pick the right base, then pick the property.",
     url: "/accommodation",
     type: "article",
   },
@@ -31,57 +54,19 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Accommodation · MyNoosaHeads",
     description:
-      "Where to stay in Noosa. Affiliate links with full ACCC disclosure.",
+      "Where to stay in Noosa: five areas, six-to-eight verified properties each.",
   },
 };
 
-const AREAS = [
-  {
-    name: "Hastings Street & Noosa Heads",
-    pitch:
-      "The walkable end of town. Cafés, restaurants, the headland, and Main Beach at your door. Most expensive; book early for school holidays.",
-    bestFor: "Visitors who don’t want to drive once they arrive.",
-  },
-  {
-    name: "Noosaville",
-    pitch:
-      "Across the river, along Gympie Terrace. Apartments, motels, holiday houses, and the river-front restaurants. Quieter than Hastings Street; cheaper parking.",
-    bestFor: "Families and longer stays.",
-  },
-  {
-    name: "Sunshine Beach",
-    pitch:
-      "South of the headland; surf club end of town, village shops, and the southern access to Noosa National Park. A more residential feel.",
-    bestFor: "Surfers and walkers.",
-  },
-  {
-    name: "Tewantin & Noosa North Shore",
-    pitch:
-      "On the river, ten minutes from Hastings Street by car or the ferry. The ferry runs between Tewantin, Noosaville, and Noosa Heads on the hour.",
-    bestFor: "Houseboats and quiet blocks of land.",
-  },
-  {
-    name: "Peregian & Marcus Beach",
-    pitch:
-      "South past Sunshine Beach. Quieter again; village-square feel; the start of the Coolum stretch.",
-    bestFor: "Slow stays and dog-friendly options (verify with each operator).",
-  },
-];
-
 export default async function AccommodationPage() {
   const live = await fetchLiveBundle();
-  const photos = CATEGORY_PHOTOS["accommodation"];
-  const heroCredit = photos
-    ? `Photo: ${photos.hero.author} / Wikimedia Commons · ${photos.hero.licence}`
-    : "";
 
-  // MSN-2964 — Accommodation schema. We do NOT own a real LodgingBusiness
-  // (we are a publisher, not a hotel). We declare a TouristDestination
-  // with a contained LodgingBusiness entry pointing at Noosa Heads as a
-  // destination, plus a BreadcrumbList for nav. Per Google's structured
-  // data policy, LodgingBusiness requires actual business attributes we
-  // don't have; TouristDestination with a description is the safest
-  // declaration for an editorial accommodation guide.
+  const { areas, itineraries, decisionHelper, disclosure } = ACCOMMODATION_DATA;
+
+  // Same TouristDestination + BreadcrumbList JSON-LD as MSN-2964. We
+  // do NOT own a real LodgingBusiness (we are a publisher, not a
+  // hotel). TouristDestination + description is the safest declaration
+  // for an editorial accommodation guide.
   const accommodationJsonLd = [
     {
       "@context": "https://schema.org",
@@ -127,176 +112,218 @@ export default async function AccommodationPage() {
   return (
     <div className="bg-paper-50">
       <JsonLd data={accommodationJsonLd} />
-      {/* Sprint 1.5: full-bleed hero photo (Hastings Street storefronts) */}
-      {photos?.hero ? (
-        <HeroPhoto
-          src={photos.hero.url}
-          alt={photos.hero.caption}
-          credit={heroCredit}
-          caption={photos.hero.caption}
-        />
-      ) : null}
-      <Hero
-        eyebrow="Where to stay · ACCC-compliant affiliate disclosure"
-        title="Accommodation in Noosa"
-        subtitle={
-          <>
-            We don’t run a booking engine and we don’t take inventory. The
-            listings on this page link out to third-party booking engines
-            that operate across Noosa. Where a link is monetised, it is
-            marked <span className="chip-ocean">Affiliate</span> before you
-            click, per the Competition and Consumer Act 2010 (Cth) Schedule
-            2. The full statement is in the footer.
-          </>
-        }
-        flourish="Right town, right price, right block."
-      />
 
-      {/* ─── Inline photo gallery ─── */}
-      {photos?.inline?.length ? (
-        <section className="container-page py-14 md:py-20" aria-label="Accommodation photo gallery">
-          <p className="eyebrow">A few of the properties</p>
-          <h2 className="mt-1 font-display text-display-md text-ink-900 text-balance">
-            Hastings Street, Main Beach, Noosaville
-          </h2>
-          <p className="mt-3 lead max-w-3xl">
-            We don’t take inventory. We don’t list every property in the
-            shire. The photo set below is the editorial cross-section we
-            use as the basis for the booking-engine links further down —
-            all CC-licensed photographs from Wikimedia Commons contributors
-            who shoot Noosa specifically.
+      {/* ─── 1. Hero band (small) ─── */}
+      <section
+        className="border-b border-paper-200 bg-paper-50"
+        aria-labelledby="accommodation-title"
+      >
+        <div className="container-page py-12 md:py-16">
+          <p className="eyebrow">Where to stay · Noosa Shire</p>
+          <h1
+            id="accommodation-title"
+            className="mt-3 font-display text-display-xl md:text-display-xl text-ink-900 text-balance max-w-4xl"
+          >
+            Where to stay in Noosa.
+          </h1>
+          <p className="mt-5 lead max-w-3xl text-pretty">
+            Five areas, six to eight verified properties each. Pick the
+            area that fits the trip, then pick the property. Every
+            property tile has a short reason for being listed and links
+            to the third-party booking engine (Booking.com, Stayz,
+            Expedia, or Airbnb) where you can check live availability.
           </p>
-          <div className="mt-10 grid gap-8 md:grid-cols-2">
-            {photos.inline.slice(0, 4).map((p, i) => (
-              <figure key={i}>
-                <div className="relative w-full overflow-hidden rounded-2xl border border-paper-200 bg-paper-100">
-                  <Image
-                    src={p.url}
-                    alt={p.caption}
-                    width={1280}
-                    height={720}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-auto"
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    // MSN-2959 / TSK-2959-POLISH-B: Vercel image opt (AVIF/WebP).
-                  />
-                </div>
-                <figcaption className="mt-3 text-caption text-ink-600">
-                  <span className="font-medium text-ink-700">{p.caption}</span>
-                  <br />
-                  <span className="text-ink-600">Photo: {p.author} / Wikimedia Commons · {p.licence}</span>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </section>
-      ) : null}
-
-      {/* ─── Disclosure band ─── */}
-      <section className="border-t border-paper-200 bg-paper-100" aria-labelledby="accc-disclosure-heading">
-        <div className="container-page py-10 md:py-14">
-          <p className="eyebrow">Disclosure (ACCC Sch 2)</p>
-          <h2 id="accc-disclosure-heading" className="mt-1 font-display text-display-sm text-ink-900 text-balance max-w-3xl">
-            Affiliate links earn us a small commission — at no cost to you.
-          </h2>
-          <div className="mt-5 grid gap-6 md:grid-cols-2 max-w-4xl">
-            <p className="text-body text-ink-800">
-              Some links on this page are affiliate links. If you book or
-              purchase through them, MyNoosaHeads may earn a small commission
-              at no extra cost to you. Affiliate relationships do not influence
-              the editorial copy on this page — we link to the same operators
-              regardless of whether they participate.
-            </p>
-            <p className="text-body text-ink-800">
-              Our position is operator-agnostic: we list the booking
-              engines visitors use to plan a Noosa trip, not the operators
-              that pay the highest commission. We do not run a comparison
-              engine, we do not have access to your search criteria, and we
-              do not see or store your booking details. Where participation
-              in a specific programme is not yet confirmed, the link
-              renders without an Affiliate badge.
-            </p>
+          <div className="mt-7 flex flex-wrap gap-3">
+            <Button
+              href="#area-selector"
+              variant="primary"
+              size="md"
+              trailingIcon={
+                <span className="rotate-90 inline-block" aria-hidden="true">
+                  <Icons.ChevronRight size={14} />
+                </span>
+              }
+              data-track="accommodation_hero_to_selector"
+            >
+              See the areas
+            </Button>
+            <Button
+              href="#decision-helper"
+              variant="outline"
+              size="md"
+              data-track="accommodation_hero_to_helper"
+            >
+              Still not sure? Take the quiz
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* ─── Areas of town ─── */}
-      <section className="container-page py-14 md:py-20" aria-labelledby="areas-h">
-        <p className="eyebrow">Five places to base yourself</p>
-        <h2 id="areas-h" className="mt-1 font-display text-display-md text-ink-900 text-balance">
+      {/* ─── 2. Area selector (5 cards) ─── */}
+      <section
+        id="area-selector"
+        className="container-page py-14 md:py-20"
+        aria-labelledby="area-selector-h"
+      >
+        <p className="eyebrow">Five areas, click to expand</p>
+        <h2
+          id="area-selector-h"
+          className="mt-1 font-display text-display-md text-ink-900 text-balance"
+        >
           Which part of Noosa fits the trip?
         </h2>
-        <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {AREAS.map((area) => (
-            <Card key={area.name} as="article">
-              <CardHeader eyebrow="Area" title={area.name} />
-              <CardBody>
-                <p className="text-body-sm text-ink-800">{area.pitch}</p>
-                <p className="mt-3 text-caption text-ink-700">
-                  <span className="font-semibold">Best for: </span>
-                  {area.bestFor}
-                </p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {/* MSN-2964 (directive B) — affiliate programme
-                      participation not yet verified. Outbound links
-                      remain as useful deep-links to third-party booking
-                      engines, but the AffiliateBadge is intentionally
-                      suppressed until each programme is confirmed
-                      enrolled (see VERIFIED_AFFILIATES in
-                      src/data/site.ts). */}
-                  <Button
-                    href="https://www.booking.com/searchresults.html?ss=Noosa+Heads"
-                    external
-                    size="sm"
-                    trailingIcon={<Icons.External size={12} />}
-                    data-track="accommodation_click_booking"
-                  >
-                    Booking.com
-                  </Button>
-                  <Button
-                    href="https://www.stayz.com.au/holiday-rental-search?query=Noosa+Heads"
-                    external
-                    size="sm"
-                    variant="outline"
-                    trailingIcon={<Icons.External size={12} />}
-                    data-track="accommodation_click_stayz"
-                  >
-                    Stayz
-                  </Button>
-                  <Button
-                    href="https://www.airbnb.com.au/s/Noosa-Heads--Australia/homes"
-                    external
-                    size="sm"
-                    variant="outline"
-                    trailingIcon={<Icons.External size={12} />}
-                    data-track="accommodation_click_airbnb"
-                  >
-                    Airbnb
-                  </Button>
-                  <Button
-                    href="https://www.expedia.com.au/Hotels?destination=Noosa+Heads"
-                    external
-                    size="sm"
-                    variant="outline"
-                    trailingIcon={<Icons.External size={12} />}
-                    data-track="accommodation_click_expedia"
-                  >
-                    Expedia
-                  </Button>
-                </div>
-              </CardBody>
-            </Card>
-          ))}
-        </div>
-        <p className="mt-6 text-caption text-ink-600 max-w-3xl">
-          Live tiles below refresh every 30 minutes — useful when you’re
-          timing a late check-in or a pre-storm walk on the headland.
+        <p className="mt-3 lead max-w-3xl">
+          The shire runs from beachside suburbs in the east to small
+          inland villages in the west. For accommodation, the five areas
+          that matter most for visitors are Hastings Street, Noosaville,
+          Noosa Sound, Sunshine Beach, and Peregian. Pick one to see
+          its profile, internal links, and the booking-engine options.
         </p>
+        <div className="mt-10">
+          <AreaSelector areas={areas} />
+        </div>
       </section>
 
-      {/* ─── Inline weather tile ─── */}
-      <section className="border-t border-paper-200 bg-paper-100" aria-labelledby="weather-h">
+      {/* ─── 3. Comparison matrix ─── */}
+      <section
+        className="border-y border-paper-200 bg-paper-100"
+        aria-labelledby="matrix-h"
+      >
+        <div className="container-page py-14 md:py-20">
+          <p className="eyebrow">Side-by-side fit</p>
+          <h2
+            id="matrix-h"
+            className="mt-1 font-display text-display-md text-ink-900 text-balance"
+          >
+            Which area matches the trip profile?
+          </h2>
+          <p className="mt-3 lead max-w-3xl">
+            A single fit score per trip profile. Two stars means a
+            strong fit; one star is a partial fit; an em-dash is not
+            the call. Click any area name to jump to its detail.
+          </p>
+          <div className="mt-8">
+            <AreaComparison areas={areas} />
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 4. Why each area (per-area detail blocks) ─── */}
+      <div>
+        {areas.map((a, i) => (
+          <div
+            key={a.id}
+            className={i % 2 === 1 ? "bg-paper-100" : ""}
+            id={a.anchor}
+          >
+            <AreaDetail area={a} index={i} />
+          </div>
+        ))}
+      </div>
+
+      {/* ─── 5. Property grid (filterable by area + engine) ─── */}
+      <section
+        id="property-grid"
+        className="border-t border-paper-200 bg-paper-50"
+        aria-labelledby="property-grid-h"
+      >
+        <div className="container-page py-14 md:py-20">
+          <p className="eyebrow">All properties across all areas</p>
+          <h2
+            id="property-grid-h"
+            className="mt-1 font-display text-display-md text-ink-900 text-balance"
+          >
+            Browse the full grid ({areas.reduce((n, a) => n + a.properties.length, 0)}{" "}
+            properties)
+          </h2>
+          <p className="mt-3 lead max-w-3xl">
+            Filter by area, by booking engine, or look at the whole
+            list. Each property carries a short reason for being listed;
+            the booking link goes to the engine where the property is
+            listed.
+          </p>
+          <div className="mt-10" id="property-grid-mount">
+            <PropertyGrid areas={areas} />
+          </div>
+          <p className="mt-8 text-caption text-ink-600">
+            Property data last reviewed {DATA_GENERATED_AT} ·{" "}
+            {disclosure.length < 1000
+              ? `Disclosure: ${disclosure.slice(0, 240)}…`
+              : null}
+          </p>
+        </div>
+      </section>
+
+      {/* ─── 6. Decision helper ─── */}
+      <section
+        id="decision-helper"
+        className="border-t border-paper-200 bg-paper-100"
+        aria-labelledby="decision-h"
+      >
+        <div className="container-page py-14 md:py-20">
+          <DecisionHelper areas={areas} questions={decisionHelper} />
+        </div>
+      </section>
+
+      {/* ─── 7. Itineraries ─── */}
+      <section
+        className="border-t border-paper-200 bg-paper-50"
+        aria-labelledby="itineraries-h"
+      >
+        <div className="container-page py-14 md:py-20">
+          <p className="eyebrow">How long are you here?</p>
+          <h2
+            id="itineraries-h"
+            className="mt-1 font-display text-display-md text-ink-900 text-balance"
+          >
+            Three-day, five-day, seven-day shapes
+          </h2>
+          <p className="mt-3 lead max-w-3xl">
+            Pick a length. The plan tells you where to stay on each
+            night and why.
+          </p>
+          <div className="mt-10">
+            <Itineraries itineraries={itineraries} areas={areas} />
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 8. Disclosure ─── */}
+      <section
+        className="border-t border-paper-200 bg-paper-100"
+        aria-labelledby="accc-disclosure-heading"
+      >
+        <div className="container-page py-12 md:py-16">
+          <p className="eyebrow">Disclosure (ACCC Sch 2)</p>
+          <h2
+            id="accc-disclosure-heading"
+            className="mt-1 font-display text-display-sm text-ink-900 text-balance max-w-3xl"
+          >
+            Affiliate links earn us a small commission — at no cost to you.
+          </h2>
+          <p className="mt-4 max-w-4xl text-body text-ink-800 text-pretty">
+            {disclosure}
+          </p>
+          <p className="mt-6 text-caption text-ink-600 max-w-4xl">
+            See the{" "}
+            <Link href="#affiliate-disclosure" className="link text-ocean-700">
+              Legal column in the footer
+            </Link>{" "}
+            for the full statement, including the verified affiliate
+            programme list, per the Competition and Consumer Act 2010 (Cth)
+            Schedule 2.
+          </p>
+        </div>
+      </section>
+
+      {/* ─── 9. Live data strip (kept for the MSN-2965 brief's
+       * accommodation-page weather tile; P0 safety fix from the same
+       * mission has strengthened the tide label to "Sea level (approx.)"
+       * and disallowed it as a navigational source). */}
+      <section
+        className="border-t border-paper-200 bg-paper-100"
+        aria-labelledby="weather-h"
+      >
         <div className="container-page py-12">
           <div className="flex items-end justify-between gap-4 mb-6">
             <div>
@@ -320,37 +347,42 @@ export default async function AccommodationPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Card variant="surface" as="article">
-              <CardHeader eyebrow="Surf" title="" />
-              <CardBody>
-                <p className="font-display text-display-sm text-ink-900">{live.surf.value}</p>
-                <p className="mt-1 text-caption text-ink-700">{live.surf.secondary}</p>
-              </CardBody>
-            </Card>
-            <Card variant="surface" as="article">
-              <CardHeader eyebrow="Wind" title="" />
-              <CardBody>
-                <p className="font-display text-display-sm text-ink-900">{live.wind.value}</p>
-                <p className="mt-1 text-caption text-ink-700">{live.wind.secondary}</p>
-              </CardBody>
-            </Card>
-            <Card variant="surface" as="article">
-              <CardHeader eyebrow="Sea level (approx.)" title="" />
-              <CardBody>
-                <p className="font-display text-display-sm text-ink-900">{live.tide.value}</p>
-                <p className="mt-1 text-caption text-ink-700">{live.tide.secondary}</p>
-              </CardBody>
-            </Card>
-            <Card variant="surface" as="article">
-              <CardHeader eyebrow="UV" title="" />
-              <CardBody>
-                <p className="font-display text-display-sm text-ink-900">{live.uv.value}</p>
-                <p className="mt-1 text-caption text-ink-700">{live.uv.secondary}</p>
-              </CardBody>
-            </Card>
+            <div className="card-surface p-5">
+              <p className="eyebrow">Surf</p>
+              <p className="font-display text-display-sm text-ink-900 mt-1">
+                {live.surf.value}
+              </p>
+              <p className="mt-1 text-caption text-ink-700">{live.surf.secondary}</p>
+            </div>
+            <div className="card-surface p-5">
+              <p className="eyebrow">Wind</p>
+              <p className="font-display text-display-sm text-ink-900 mt-1">
+                {live.wind.value}
+              </p>
+              <p className="mt-1 text-caption text-ink-700">{live.wind.secondary}</p>
+            </div>
+            <div className="card-surface p-5">
+              <p className="eyebrow">Sea level (approx.)</p>
+              <p className="font-display text-display-sm text-ink-900 mt-1">
+                {live.tide.value}
+              </p>
+              <p className="mt-1 text-caption text-ink-700">{live.tide.secondary}</p>
+            </div>
+            <div className="card-surface p-5">
+              <p className="eyebrow">UV</p>
+              <p className="font-display text-display-sm text-ink-900 mt-1">
+                {live.uv.value}
+              </p>
+              <p className="mt-1 text-caption text-ink-700">{live.uv.secondary}</p>
+            </div>
           </div>
           <p className="mt-4 text-caption text-ink-600">
-            Tiles from BOM Southeast Coast + Open-Meteo. {live.sourceNote}
+            Tiles from BOM Southeast Coast + Open-Meteo. {live.sourceNote}{" "}
+            <span className="font-medium text-ink-700">
+              For bar crossings always defer to the MSQ Noosa bar report
+              and the Noosa Coast Guard broadcast (VHF 16 / 67) — this
+              site is a planning tool, not a navigational authority.
+            </span>
           </p>
         </div>
       </section>

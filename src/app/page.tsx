@@ -1,11 +1,8 @@
 import Link from "next/link";
 import { fetchLiveBundle } from "@/lib/live-data";
 import {
-  Hero,
-  HeroPhoto,
   LiveDataWidget,
   LiveDataGrid,
-  Button,
   Card,
   CardBody,
   CardHeader,
@@ -14,6 +11,7 @@ import {
 } from "@/components/ui";
 import { CATEGORIES, SITE } from "@/data/site";
 import { HOMEPAGE_HERO } from "@/data/photos";
+import { HomeHero } from "@/components/HomeHero";
 
 /**
  * Homepage — Sprint 1.3 real copy.
@@ -89,47 +87,19 @@ export default async function HomePage() {
   return (
     <div className="bg-paper-50">
       <JsonLd data={homeJsonLd} />
-      {/* Sprint 1.5 (MSN-2958): full-bleed homepage hero photo.
-       * Per Albert's visual_audit.md §1, the homepage hero is ~60vh
-       * full-bleed with the headline overlaid in the lower-left.
-       */}
-      <HeroPhoto
+      {/* MSN-2965 — homepage hero swap + stronger overlay treatment.
+       * The hero is now a single full-bleed photo with the H1, sub,
+       * flourish, and CTAs overlaid. The photo file is the most
+       * aspirational Noosa candidate from the Wikimedia Commons set
+       * (golden-hour Main Beach with a lone wanderer + headland).
+       * See `src/data/photos.ts HOMEPAGE_HERO` and
+       * `src/components/HomeHero.tsx`. */}
+      <HomeHero
         src={HOMEPAGE_HERO.url}
-        alt={HOMEPAGE_HERO.caption}
-        credit={`Photo: ${HOMEPAGE_HERO.author} / Wikimedia Commons · ${HOMEPAGE_HERO.licence}`}
         caption={HOMEPAGE_HERO.caption}
-      />
-      <Hero
-        eyebrow={`${SITE.region} · independent editorial`}
-        title="By the headland, by the bar."
-        subtitle={
-          <>
-            An independent, sourced guide to Noosa Heads on the Sunshine
-            Coast. Surf and weather from BOM Southeast Coast and Open-Meteo,
-            national-park alerts from QPWS, and clear local rules so you
-            spend less time researching and more time on the coast.
-          </>
-        }
-        flourish="Plan your Noosa trip well."
-        actions={
-          <>
-            <Button
-              href="/surf-and-weather"
-              leadingIcon={<Icons.Wave size={16} />}
-              size="lg"
-            >
-              Today’s surf &amp; weather
-            </Button>
-            <Button
-              href="/noosa-national-park"
-              variant="outline"
-              size="lg"
-              trailingIcon={<Icons.ChevronRight size={16} />}
-            >
-              National Park alerts
-            </Button>
-          </>
-        }
+        photographer={HOMEPAGE_HERO.author}
+        licence={HOMEPAGE_HERO.licence}
+        commonsPage={HOMEPAGE_HERO.commonsPage}
       />
 
       {/* ─── Live data strip ─── */}
