@@ -55,9 +55,9 @@ export default function Page() {
             "Hire prices are operator-set and change seasonally. We don’t run a comparison engine — link out to the operators below and book direct.",
           ],
           bullets: [
-            "Noosa Houseboats — houseboats, multi-day, Tewantin base.",
+            "Multi-day houseboat operators — Tewantin base; most rent Sat–Sat in school holidays.",
             "Noosa Ferry — scheduled ferry Noosa Heads ↔ Noosaville ↔ Tewantin.",
-            "Sunshine Coast Afloat — kayak and SUP hire, Noosaville.",
+            "Kayak and stand-up paddleboard hire — Noosaville foreshore, walk-up bookings.",
           ],
         },
         {

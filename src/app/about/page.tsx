@@ -14,7 +14,7 @@ import { SITE } from "@/data/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About MyNoosaHeads — an independent, sourced guide to Noosa Heads. AU editorial team, monthly fact-check cadence, ACCC-compliant disclosure, no AI photography.",
+    "About MyNoosaHeads — an independent, sourced guide to Noosa Heads. AU editorial team, monthly fact-check cadence, ACCC-compliant disclosure, all photography from Wikimedia Commons contributors.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About · MyNoosaHeads",
@@ -164,11 +164,9 @@ export default function AboutPage() {
                   to do, fishing, boats, travel, and webcams.
                 </p>
                 <p>
-                  We organise the guide around what locals actually do, not
-                  what the visitor brochure leads with. The result is a
-                  publication that opens with a surf report and ends with a
-                  description of the hinterland — both honest, both useful,
-                  both sourced.
+                  The site opens with the live surf and weather and closes with
+                  the hinterland villages — two honest ends of the shire. Each
+                  page links to its primary sources in the sidebar.
                 </p>
               </div>
             </section>
@@ -195,9 +193,11 @@ export default function AboutPage() {
                 </p>
                 <p>
                   Editorial copy is reviewed against current QPWS and
-                  council sources every month. The publication has no
-                  newsletter, no login, no pop-ups, no email capture, no
-                  AI photography, and no fabricated reviews or stats.
+                  council sources every month. All photography is sourced
+                  from Wikimedia Commons contributors who shoot Noosa
+                  specifically — no stock libraries, no AI-generated
+                  images, and no editorial claims that don’t link to a
+                  public source.
                 </p>
               </div>
             </section>

@@ -90,9 +90,13 @@ export default function PrivacyPage() {
             destination site when you click through; we do not see the
             contents of those cookies, only whether a click resulted in a
             conversion for our account. We do not currently name
-            individual programme partners in this disclosure; a full
-            statement of methodology and editorial firewall is maintained
-            per the Competition and Consumer Act 2010 (Cth) Schedule 2.
+            individual programme partners in this disclosure. Where
+            participation in a specific affiliate programme has been
+            verified, the link is marked Affiliate before you click; where
+            it has not been verified, no badge appears. The full
+            statement — including the verified programme list — sits in
+            the Legal column of the footer, per the Competition and
+            Consumer Act 2010 (Cth) Schedule 2.
           </p>
 
           <h2 id="spam-act-2003">Spam Act 2003</h2>

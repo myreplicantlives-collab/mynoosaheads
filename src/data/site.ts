@@ -114,7 +114,7 @@ export const CATEGORIES = [
     icon: "Eucalyptus" as const,
     pitch: "Day-by-day ideas across the shire — coast, river, hinterland.",
     longDescription:
-      "Categories are organised around the things locals actually do, not what the visitor brochure leads with. Hastings Street, the Noosa River, the hinterland villages (Pomona, Cooran, Kin Kin), and the surf beaches — each with its own weather and tide cues.",
+      "Categories cover the four functional corners of the shire — Hastings Street, the Noosa River, the hinterland villages (Pomona, Cooran, Kin Kin), and the surf beaches — each with its own weather and tide cues.",
     primarySources: [
       { label: "Tourism Noosa (industry body)", href: "https://www.visitnoosa.com.au/" },
       { label: "Noosa Council — About Noosa", href: "https://www.noosa.qld.gov.au/Community/About-Noosa" },
@@ -247,7 +247,7 @@ export const FOOTER_DISCLOSURE = {
    * Spam Act 2003) sit in the Legal column above.
    */
   complianceBand:
-    "MyNoosaHeads is independent. We don’t run a newsletter, collect email addresses, or operate a login. Some links on this site are affiliate links — if you book or purchase through them, we may earn a small commission at no extra cost to you. We participate in affiliate programmes that allow us to link to trusted booking platforms and recommend products relevant to visitors planning a Noosa trip. Affiliate relationships do not influence our editorial copy. We do not currently name individual programme partners in this disclosure; a full statement of methodology and editorial firewall is maintained per the Competition and Consumer Act 2010 (Cth) Schedule 2.",
+    "MyNoosaHeads is independent and free to read. There is no newsletter, no email capture, and no login. Some links on this site are affiliate links — if you book or purchase through them, MyNoosaHeads may earn a small commission at no extra cost to you. Affiliate relationships do not influence what we write. Where participation in a specific affiliate programme has been verified, the link is marked Affiliate before you click; where it has not been verified, the link renders without that badge. The full statement — including the verified programme list — sits in the Legal column above, per the Competition and Consumer Act 2010 (Cth) Schedule 2.",
   region: "AU · en-AU · Queensland, Australia",
   copyrightYear: 2026,
 } as const;

@@ -4,18 +4,18 @@ import { CategoryPage } from "@/components/CategoryPage";
 export const metadata: Metadata = {
   title: "Fishing reports",
   description:
-    "Recreational fishing in Noosa — rules, tide turns, solunar times, and the public sources you should be reading. QLD DPI rules apply.",
+    "Weekly Noosa-region fishing insight, current QLD recreational fishing rules, BOM tide tables, and primary sources.",
   alternates: { canonical: "/fishing-reports" },
   openGraph: {
     title: "Fishing reports · MyNoosaHeads",
-    description: "Recreational fishing rules, tides, and the sources locals read.",
+    description: "Weekly Noosa-region fishing insight, current QLD recreational fishing rules, BOM tide tables, and primary sources.",
     url: "/fishing-reports",
     type: "article",
   },
   twitter: {
     card: "summary",
     title: "Fishing reports · MyNoosaHeads",
-    description: "Recreational fishing rules, tides, and the sources locals read.",
+    description: "Weekly Noosa-region fishing insight, current QLD recreational fishing rules, BOM tide tables, and primary sources.",
   },
 };
 

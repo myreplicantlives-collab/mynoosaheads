@@ -206,7 +206,7 @@ const INLINE = {
       commonsPage: "https://commons.wikimedia.org/wiki/File:Boardwalk_along_Noosa_Heads%E2%80%99_main_beach,_Queensland.jpg",
     },
     {
-      caption: "Aromas Noosa Heads — the Hastings Street cafe with the most-frequently photographed latte art in town.",
+      caption: "Latte art on a Hastings Street café table — the headland end of Noosa Main Beach in the background.",
       url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Aromas_Latte_art%2C_Noosa_Heads%2C_Queensland.jpg/1280px-Aromas_Latte_art%2C_Noosa_Heads%2C_Queensland.jpg",
       author: "Kgbo",
       licence: "CC BY-SA 4.0",

@@ -4,18 +4,18 @@ import { CategoryPage } from "@/components/CategoryPage";
 export const metadata: Metadata = {
   title: "Things to do",
   description:
-    "Things to do in Noosa, organised by what locals actually do — Hastings Street, the river, the hinterland, the surf beaches.",
+    "Things to do in Noosa — Hastings Street, the Noosa River, the hinterland villages, and the surf beaches. Live conditions and primary sources linked on every page.",
   alternates: { canonical: "/things-to-do" },
   openGraph: {
     title: "Things to do · MyNoosaHeads",
-    description: "What locals do in Noosa, organised honestly.",
+    description: "Things to do in Noosa — coast, river, hinterland. Live conditions and primary sources on every page.",
     url: "/things-to-do",
     type: "article",
   },
   twitter: {
     card: "summary",
     title: "Things to do · MyNoosaHeads",
-    description: "What locals do in Noosa, organised honestly.",
+    description: "Things to do in Noosa — coast, river, hinterland. Live conditions and primary sources on every page.",
   },
 };
 
@@ -23,9 +23,9 @@ export default function Page() {
   return (
     <CategoryPage
       slug="things-to-do"
-      eyebrow="What locals actually do"
+      eyebrow="Coast · river · hinterland"
       title="Things to do in Noosa"
-      subtitle="The brochure leads with whale-watching and jet-skis. We organise around what residents actually do on a Tuesday morning: the headland walk, a coffee on Hastings Street, the river bar at slack tide, and an unhurried dinner."
+      subtitle="Pick the day — coast, river, hinterland, or hinterland-walk — and the live conditions, alerts, and operator links are one tap away. Hastings Street reads better after a check of the BOM wind and the patrol flags."
       flourish="Eight areas, one honest guide."
       primarySources={[
         { label: "Tourism Noosa (industry body)", href: "https://www.visitnoosa.com.au/" },
@@ -40,9 +40,9 @@ export default function Page() {
             "The patrolled Main Beach sits at the bottom of the street. The flags move with the conditions; check Beachsafe.org.au for the current patrol hours before you set up.",
           ],
           bullets: [
-            "Betty’s Burgers for an easy lunch (no booking).",
-            "Bistro C on the river end for a sit-down dinner (book).",
-            "Berkeley Apparel and Sudio Noosa for a browse.",
+            "Hastings Street cafés and takeaways for an easy lunch (most are walk-in).",
+            "Sit-down restaurants on the river end of Gympie Terrace for dinner (most take bookings).",
+            "Boutiques and homewares shops along Hastings Street for a browse.",
           ],
         },
         {
@@ -56,7 +56,7 @@ export default function Page() {
           heading: "Hinterland villages",
           paragraphs: [
             "Pomona, Cooran, and Kin Kin sit in the hinterland about 25–30 minutes west of Noosa Heads. Each has a pub, a café or two, and a quiet main street. Pomona hosts the Noosa Country Music Festival and the famous Mount Cooroora climb (call ahead; it’s seasonal).",
-            "The hinterland is the place to go when the coast is under a southerly. Cooler, calmer, and the food scene is good (the Pomona Hotel kitchen is a regional destination).",
+            "The hinterland is the place to go when the coast is under a southerly. Cooler, calmer, and the food scene is good (Pomona pub kitchens are a regional dining destination).",
           ],
         },
         {
@@ -74,13 +74,13 @@ export default function Page() {
         },
       ]}
       callout={{
-        title: "Skip the brochure",
+        title: "A day that works",
         body: (
           <>
-            Noosa does not need a 12-activity itinerary to be enjoyed. Most
-            locals’ favourite Noosa days involve one outdoor thing, one slow
-            meal, and one walk. Skip the brochure waterfall; do less, more
-            slowly.
+            Most visitors’ favourite Noosa days involve one outdoor thing, one
+            sit-down meal, and one walk. Hastings Street breakfast, the
+            headland walk, a swim at Main Beach, dinner on Gympie Terrace —
+            pick three of the four and you’ve had a day.
           </>
         ),
         variant: "rainforest",

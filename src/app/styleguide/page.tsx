@@ -272,7 +272,7 @@ export default function StyleGuidePage() {
             <CardBody>
               <p className="eyebrow">Editorial</p>
               <h3 className="mt-1 font-display text-headline-lg text-ink-900">
-                Slow guides for Noosa locals
+                Editorial cards in a tinted band
               </h3>
               <p className="mt-3 text-body-sm text-ink-700">
                 Card variant &ldquo;surface&rdquo; &mdash; used when stacking editorial cards in a tinted band so the

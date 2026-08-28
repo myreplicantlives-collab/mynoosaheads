@@ -41,7 +41,7 @@ export default function Page() {
           heading: "How to read the live tiles",
           paragraphs: [
             "The five tiles at the top of the page are pulled directly from BOM and Open-Meteo. They are not forecasts of what is coming — they are the most recent observation or nowcast. The heading on each tile is the kind; the value is the headline number; the secondary line is the supporting detail (swell period, gust, tide direction); the footer is the source and the timestamp.",
-            "If a tile goes Unavailable, it means the upstream API did not respond within our 6-second budget. We refuse to invent a number. Cross-check BOM directly via the sources list to the right.",
+            "If a tile shows Unavailable, the upstream API didn’t respond in time. We don’t fall back to a guess — open the BOM forecast (linked in the sidebar) to see the current conditions directly.",
           ],
         },
         {

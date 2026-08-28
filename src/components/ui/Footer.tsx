@@ -179,7 +179,7 @@ export function Footer({
             © {year} MyNoosaHeads. {region}. All rights reserved.
           </p>
           <p className="text-caption text-ink-600">
-            Built honestly. Sources linked on every page.
+            Independent. Sources linked on every page.
           </p>
         </div>
       </div>

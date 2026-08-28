@@ -249,10 +249,11 @@ export default async function HomePage() {
           Pick where you want to start
         </h2>
         <p className="mt-3 lead max-w-3xl">
-          The shire is small enough to cover properly. We organise
-          MyNoosaHeads around eight functional areas so you don’t have to
-          wade through visitor-brochure categories that don’t reflect what
-          people actually do here.
+          Noosa Shire runs from the beachside suburbs in the east to the
+          hinterland villages in the west. Pick the area that matches your
+          trip — surf, river, national park, fishing, boats, travel, or
+          webcams — and the live conditions, alerts, and operator links are
+          one tap away.
         </p>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {CATEGORIES.map((cat) => {
@@ -295,33 +296,30 @@ export default async function HomePage() {
         <div className="container-page py-12 md:py-16">
           <div className="grid gap-8 md:grid-cols-3 items-start">
             <div className="md:col-span-2">
-              <p className="eyebrow">How we make money</p>
+              <p className="eyebrow">How this site makes money</p>
               <h2
                 id="disclosure-heading"
                 className="mt-1 font-display text-display-md text-ink-900 text-balance"
               >
-                Editorial first. Disclosure second.
+                How this site makes money.
               </h2>
               <p className="mt-3 lead max-w-2xl">
-                MyNoosaHeads is independent. We don’t run a newsletter, we
-                don’t collect email addresses, and we don’t operate a login.
-                Where a page contains a monetised link — typically
-                accommodation bookings — we mark it{" "}
-                <span className="chip-ocean">Affiliate</span>{" "}
-                before you click. The full statement, including which
-                affiliate programmes we participate in, sits in the
-                footer.
+                MyNoosaHeads is independent and free to read. There is no
+                paywall, no newsletter, and no email signup. Some links on
+                this page are affiliate links — if you book or purchase
+                through them, we may earn a small commission at no extra
+                cost to you; affiliate relationships do not influence what
+                we write. See the Legal column in the footer for the full
+                statement, per the Competition and Consumer Act 2010 (Cth)
+                Schedule 2.
               </p>
             </div>
             <Card variant="surface" as="aside">
               <CardBody>
-                <p className="eyebrow">What we don’t do</p>
-                <ul className="mt-3 space-y-2 text-body-sm text-ink-800 list-disc pl-5">
-                  <li>No newsletter, no email capture</li>
-                  <li>No AI-generated photography</li>
-                  <li>No fabricated reviews or stats</li>
-                  <li>No pop-ups, no login walls</li>
-                </ul>
+                <p className="text-body-sm text-ink-800 leading-relaxed">
+                  Live data refreshes every 30 minutes from BOM and Open-Meteo.
+                  Every editorial claim links to a public source.
+                </p>
               </CardBody>
             </Card>
           </div>
