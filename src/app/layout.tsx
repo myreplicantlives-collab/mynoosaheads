@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     template: `%s · ${SITE.brand}`,
   },
   description:
-    "An independent, sourced guide to Noosa Heads — surf, weather, the national park, accommodation, fishing, boats, travel and webcams. AU editorial. Live data linked to BOM and Open-Meteo.",
+    "Noosa Heads — surf, weather, the national park, accommodation, fishing, boats, travel and webcams. Live data linked to BOM and Open-Meteo.",
   applicationName: SITE.brand,
   authors: [{ name: SITE.brand }],
   generator: "Next.js",
@@ -67,12 +67,12 @@ export const metadata: Metadata = {
     siteName: SITE.brand,
     title: `${SITE.brand} — ${SITE.tagline}`,
     description:
-      "An independent, sourced guide to Noosa Heads — live data, primary sources, no fluff.",
+      "Noosa Heads — surf, weather, the national park, accommodation, fishing, boats, travel and webcams. Live data, primary sources.",
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE.brand} — ${SITE.tagline}`,
-    description: "An independent, sourced guide to Noosa Heads — live data, primary sources, no fluff.",
+    description: "Noosa Heads — surf, weather, the national park, accommodation, fishing, boats, travel and webcams. Live data, primary sources.",
   },
   robots: {
     index: true,

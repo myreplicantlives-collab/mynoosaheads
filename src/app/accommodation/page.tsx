@@ -319,12 +319,12 @@ export default async function AccommodationPage() {
         aria-labelledby="how-h"
       >
         <div className="container-page py-14 md:py-20">
-          <p className="eyebrow">How the picks get made</p>
+          <p className="eyebrow">How we choose</p>
           <h2
             id="how-h"
             className="mt-1 font-display text-display-md text-ink-900 text-balance"
           >
-            What&apos;s in the list and what isn&apos;t.
+            How we choose
           </h2>
           <p className="mt-4 max-w-3xl text-body-md text-ink-800 text-pretty">
             {disclosure}

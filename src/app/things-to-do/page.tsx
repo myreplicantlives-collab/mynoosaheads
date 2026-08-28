@@ -285,7 +285,7 @@ export default function ThingsToDoPage() {
             id="ttd-anchors-heading"
             className="font-display text-display-md text-ink-900 text-balance"
           >
-            Three short reads.
+            Read on.
           </h2>
 
           <div className="mt-8 grid gap-10 lg:grid-cols-3">
