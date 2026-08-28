@@ -55,13 +55,16 @@ export function HeroPhoto({
           // optimisation pipeline (AVIF/WebP) — previously bypassed
           // which dropped Lighthouse Best Practices & Mobile Perf.
         />
-        {/* Caption + credit on the photo (lower-left). */}
+        {/* Caption + credit on the photo (lower-left). MSN-2973 — credit
+         *  is hidden on main-journey pages (passed as empty string). */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute bottom-0 left-0 right-0 p-5 md:p-10 hero-overlay pointer-events-auto">
             <p className="font-display text-paper-50 text-display-sm md:text-display-md text-balance max-w-3xl">
               {caption ?? alt}
             </p>
-            <p className="mt-2 text-caption text-paper-100">{credit}</p>
+            {credit ? (
+              <p className="mt-2 text-caption text-paper-100">{credit}</p>
+            ) : null}
           </div>
         </div>
       </div>

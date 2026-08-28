@@ -52,10 +52,10 @@ export const SPRINT = {
  * No newsletter link, no login, no social. Per chairman directive 2026-08-27.
  */
 export const NAV = [
-  { label: "Stay", href: "/accommodation", description: "Where to stay — five areas, verified properties." },
-  { label: "Things to do", href: "/things-to-do", description: "Twelve ways to spend your days." },
+  { label: "Stay", href: "/accommodation", description: "Where to stay — five areas, ten curated properties." },
+  { label: "Things to do", href: "/things-to-do", description: "Eight ways to spend your days." },
   { label: "Beaches & nature", href: "/noosa-national-park", description: "Coastal walk, wildlife, QPWS alerts." },
-  { label: "Eat & drink", href: "/things-to-do#food-and-drink", description: "Hastings Street, riverfront cafés, markets." },
+  { label: "Eat & drink", href: "/things-to-do#eat-and-drink", description: "Hastings Street, riverfront cafés, markets." },
   { label: "Plan your trip", href: "/things-to-do#itineraries", description: "Itineraries, transport, maps." },
   { label: "Today in Noosa", href: "/surf-and-weather", description: "Live surf, weather, UV, park alerts." },
 ] as const;
@@ -214,6 +214,8 @@ export const FOOTER_DISCLOSURE = {
       links: [
         { label: "About", href: "/about" },
         { label: "Contact", href: "/contact" },
+        { label: "Photo credits", href: "/photo-credits" },
+        { label: "Terms", href: "/terms" },
       ],
     },
     {
@@ -235,19 +237,23 @@ export const FOOTER_DISCLOSURE = {
     },
   ],
   /**
-   * MSN-2959 / TSK-2959-FIX-3 — 97-word compliance band (replaces the
-   * deleted /how-we-make-money dedicated route). Rendered in the
-   * Footer on every page. Per Albert's spec §4.6: the new disclosure
-   * is more transparent than the old dedicated page because it shows
-   * on every page, not one route most visitors would never find.
+   * MSN-2973 — restrained one-sentence compliance note.
+   *
+   * Per Tim's directive, the footer must NOT carry methodology,
+   * source lists, or long disclaimers. The full 97-word statement
+   * lived here in MSN-2959 (replacing the deleted /how-we-make-money
+   * route). For MSN-2973 the band is reduced to a single
+   * clear sentence that satisfies ACCC Schedule 2 ("clear and
+   * prominent" disclosure of affiliate relationships) without
+   * crowding the footer.
    *
    * Carries the in-page anchor id="affiliate-disclosure" so the
-   * Footer's "Affiliate disclosure" link (#affiliate-disclosure)
-   * scrolls here. Statutory pills (Privacy Act 1988, ACCC Sch 2,
-   * Spam Act 2003) sit in the Legal column above.
+   * Footer's "Affiliate disclosure" link scrolls here. The full
+   * statement remains available at /terms and in the Legal
+   * column above (Privacy Act 1988, ACCC Sch 2, Spam Act 2003).
    */
   complianceBand:
-    "MyNoosaHeads is independent and free to read. There is no newsletter, no email capture, and no login. Some links on this site are affiliate links — if you book or purchase through them, MyNoosaHeads may earn a small commission at no extra cost to you. Affiliate relationships do not influence what we write. Where participation in a specific affiliate programme has been verified, the link is marked Affiliate before you click; where it has not been verified, the link renders without that badge. The full statement — including the verified programme list — sits in the Legal column above, per the Competition and Consumer Act 2010 (Cth) Schedule 2.",
+    "Some links on this site are affiliate links — we may earn a small commission at no extra cost to you. The full statement sits in the Legal column above.",
   region: "AU · en-AU · Queensland, Australia",
   copyrightYear: 2026,
 } as const;

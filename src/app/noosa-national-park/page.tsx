@@ -23,6 +23,7 @@ export default function Page() {
   return (
     <CategoryPage
       slug="noosa-national-park"
+      showCredits={false}
       eyebrow="Managed by QPWS · alerts checked before every visit"
       title="Noosa National Park"
       subtitle="About 4,000 hectares of wallum heath, eucalypt forest, and rocky headland between Noosa Heads and Peregian Beach. The coastal walk is the headline, but the inland tracks are quieter and just as good."

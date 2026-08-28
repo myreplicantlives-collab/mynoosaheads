@@ -60,6 +60,17 @@ export type CategoryPageProps = {
    *  once per category page. Used for TouristDestination / Article
    *  / BreadcrumbList schemas on the 8 category routes. */
   jsonLd?: object | object[];
+  /**
+   * MSN-2973 — strip photographer attribution from the hero photo and
+   * inline images. Set false on main-journey pages (/,
+   * /accommodation, /things-to-do, /noosa-national-park,
+   * /surf-and-weather) per Tim's directive. The full attribution
+   * table lives at /photo-credits, linked from the footer only.
+   * Defaults to true (legacy behaviour — keeps attribution on
+   * /about, /webcams, /boats-and-watercraft, /travel-and-transport,
+   * /fishing-reports).
+   */
+  showCredits?: boolean;
 };
 
 const calloutClass: Record<NonNullable<CategoryPageProps["callout"]>["variant"] & string, string> = {
@@ -79,10 +90,12 @@ export async function CategoryPage({
   callout,
   relatedLinks,
   jsonLd,
+  showCredits = true,
 }: CategoryPageProps) {
   const photos = slug ? CATEGORY_PHOTOS[slug] : undefined;
 
   const creditLine = (p: WikimediaPhoto) => `Photo: ${p.author} / Wikimedia Commons · ${p.licence}`;
+  const heroCredit = showCredits ? creditLine(photos!.hero) : undefined;
 
   // MSN-2964 — Auto-generate a BreadcrumbList + Article schema when no
   // explicit jsonLd is passed and we have a slug. This keeps the 8
@@ -134,7 +147,7 @@ export async function CategoryPage({
         <HeroPhoto
           src={photos.hero.url}
           alt={photos.hero.caption}
-          credit={creditLine(photos.hero)}
+          credit={heroCredit ?? ""}
           caption={photos.hero.caption}
         />
       ) : null}
@@ -193,7 +206,7 @@ export async function CategoryPage({
                   <CaptionedPhoto
                     src={photos.inline[i % photos.inline.length].url}
                     alt={photos.inline[i % photos.inline.length].caption}
-                    credit={creditLine(photos.inline[i % photos.inline.length])}
+                    credit={showCredits ? creditLine(photos.inline[i % photos.inline.length]) : ""}
                     caption={photos.inline[i % photos.inline.length].caption}
                   />
                 ) : null}

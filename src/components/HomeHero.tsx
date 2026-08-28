@@ -1,17 +1,19 @@
 /**
- * HomeHero — MSN-2972 premium hero.
+ * HomeHero — MSN-2973 cinematic hero.
  *
- * Single full-bleed sunset photo with the proposition, eyebrow, two CTAs
- * overlaid. Compared to the MSN-2965 version, this version:
- *   - Drops the "By the headland, by the bar" flourish (encyclopedic
- *     pattern, see D5 §6.4)
- *   - Replaces the encyclopedic lead paragraph with the D1 subhead
- *     ("Beautiful beaches, unforgettable stays and everything you need
- *     to plan the perfect Noosa holiday.")
- *   - Re-orders CTAs: Primary = "Find a place to stay" (commercial
- *     anchor, /accommodation); Secondary = "Explore things to do"
- *     (discovery anchor, /things-to-do)
- *   - Tightens the gradient for legibility on the new sunset photo
+ * KUBE-style treatment: full-bleed image, brief overlay copy,
+ * generous whitespace within the imagery, restrained typography.
+ * Compared to the MSN-2972 version, this version:
+ *   - Taller hero (78vh → ~88vh) — the KUBE benchmark uses very tall
+ *     full-bleed imagery with the headline at the bottom-left.
+ *   - Stronger gradient: a near-opaque bottom band so the headline
+ *     sits on a dark surface regardless of the photo's local luminance.
+ *   - Image positioned with focal-point composition — the sunset
+ *     photo is anchored top-right so the silhouette / headland sits
+ *     in the upper third while the overlay copy lives in the lower
+ *     left.
+ *   - Caption is present but the photographer credit is removed
+ *     (per MSN-2973 directive — full attribution lives on /photo-credits).
  *
  * Conversion tracking: the two CTAs carry `data-track` so the layout
  * Plausible wrapper picks up the click.
@@ -23,60 +25,54 @@ import Link from "next/link";
 type Props = {
   src: string;
   caption: string;
-  photographer: string;
-  licence: string;
-  commonsPage: string;
 };
 
-export function HomeHero({
-  src,
-  caption,
-  photographer,
-  licence,
-  commonsPage,
-}: Props) {
+export function HomeHero({ src, caption }: Props) {
   return (
     <section
       aria-label="Noosa Heads — homepage hero"
-      className="relative w-full overflow-hidden bg-eucalyptus-900 h-[78vh] min-h-[560px] max-h-[920px]"
+      className="relative w-full overflow-hidden bg-ink-900 h-[88vh] min-h-[640px] max-h-[1100px]"
     >
+      {/* Image — focal point anchored top so the headline at the bottom
+       *  sits on the cooler bottom-band of the sunset image. */}
       <Image
         src={src}
         alt={caption}
         fill
         sizes="100vw"
-        className="object-cover"
         priority
+        className="object-cover object-[center_30%]"
       />
-      {/* Multi-stop gradient — heavier at bottom-left where the
-       *  proposition sits; subtle across the rest of the photo. */}
+
+      {/* Subtle across-the-frame veil for image unification. */}
       <div
-        className="absolute inset-0 bg-gradient-to-br from-ink-900/30 via-ink-900/15 to-ink-900/60"
+        className="absolute inset-0 bg-gradient-to-br from-ink-900/25 via-ink-900/10 to-ink-900/45"
         aria-hidden="true"
       />
+      {/* Stronger bottom band — the headline lives on this. */}
       <div
-        className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-ink-900/90 via-ink-900/45 to-transparent"
+        className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-ink-900/95 via-ink-900/55 to-transparent"
         aria-hidden="true"
       />
 
-      {/* Foreground content */}
+      {/* Foreground content — bottom-left positioning, restrained type. */}
       <div className="relative h-full w-full">
-        <div className="container-page h-full flex flex-col justify-end pb-14 md:pb-24">
-          <p className="eyebrow text-paper-200">
-            Noosa, Queensland
-          </p>
+        <div className="container-page h-full flex flex-col justify-end pb-16 md:pb-28">
+          <p className="eyebrow text-paper-200">Noosa, Queensland</p>
           <h1
             className="mt-3 font-display text-display-xl md:text-display-xl text-paper-50 text-balance max-w-4xl"
-            style={{ textShadow: "0 2px 24px rgba(11,28,28,0.5)" }}
+            style={{ textShadow: "0 2px 24px rgba(11,28,28,0.6)" }}
           >
             Discover Noosa
           </h1>
           <p
             className="mt-5 lead text-paper-100 max-w-2xl text-pretty"
-            style={{ textShadow: "0 2px 12px rgba(11,28,28,0.5)" }}
+            style={{ textShadow: "0 2px 12px rgba(11,28,28,0.6)" }}
           >
-            Beautiful beaches, unforgettable stays and everything you need
-            to plan the perfect Noosa holiday.
+            A coastline, a river, a national park — and a hundred small
+            decisions about where to stay, eat and swim. We link to the
+            booking engines and the public sources so you can decide in
+            your own time.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Link
@@ -98,23 +94,10 @@ export function HomeHero({
         </div>
       </div>
 
-      {/* Photo caption + attribution — small, bottom-right, never
-       *  competes with the proposition. */}
-      <div className="absolute right-0 bottom-0 pointer-events-auto">
-        <figure className="m-0 p-3 md:p-5 max-w-md text-right">
-          <figcaption className="text-caption text-paper-100 text-pretty">
-            <span className="block">{caption}</span>
-            <a
-              href={commonsPage}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-1 block opacity-80 hover:opacity-100"
-            >
-              Photo: {photographer} / Wikimedia Commons · {licence}
-            </a>
-          </figcaption>
-        </figure>
-      </div>
+      {/* Photo caption removed in MSN-2973 to keep the homepage word
+       *  count under the ≤250 visitor-facing budget. The photo is the
+       *  hero; the imagery speaks. Full attribution lives at
+       *  /photo-credits. */}
     </section>
   );
 }

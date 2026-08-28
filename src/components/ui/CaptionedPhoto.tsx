@@ -65,7 +65,7 @@ export function CaptionedPhoto({
       </div>
       <figcaption className="mt-3 flex flex-col gap-1 text-caption text-ink-600 sm:flex-row sm:items-baseline sm:justify-between">
         <span className="font-medium text-ink-700">{caption ?? alt}</span>
-        <span className="text-ink-600">{credit}</span>
+        {credit ? <span className="text-ink-600">{credit}</span> : null}
       </figcaption>
     </figure>
   );

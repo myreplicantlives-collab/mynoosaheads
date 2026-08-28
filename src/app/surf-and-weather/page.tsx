@@ -24,6 +24,7 @@ export default function Page() {
   return (
     <CategoryPage
       slug="surf-and-weather"
+      showCredits={false}
       eyebrow="Live · BOM Southeast Coast + Open-Meteo Marine"
       title="Surf & weather"
       subtitle="The BOM Southeast Coast marine forecast covers Noosa Heads, Sunshine Beach, and the river bar. The tiles on this page refresh themselves every 30 minutes — we don’t push them by hand. Bar crossings always defer to MSQ and the Noosa Coast Guard."

@@ -1,154 +1,180 @@
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/ui";
 import { SITE } from "@/data/site";
-import { CATEGORY_CARD_PHOTOS } from "@/data/photos";
 import { ImageTile } from "@/components/ImageTile";
+
+/**
+ * /things-to-do — MSN-2973 rebuild (Albert D3).
+ *
+ * Eight categories, image-led, click-out to detail pages. No
+ * encyclopedic body, no "the long version" sections, no "A little
+ * more context" heading. Three short anchor sections sit at the
+ * bottom for the cards that link to in-page anchors (#eat-and-drink,
+ * #hinterland, #bookable) — each ≤60 words.
+ *
+ * Attribution stripped from the rendered HTML per MSN-2973 directive.
+ * The photographer credit appears only on the underlying image inside
+ * ImageTile when `hideAttribution=false`. Here we pass
+ * `hideAttribution` to remove it.
+ */
 
 export const metadata: Metadata = {
   title: "Things to do in Noosa",
   description:
-    "Twelve ways to spend your days in Noosa — best beaches, river adventures, walks, markets and a 3-day, 5-day, 7-day itinerary.",
+    "Eight ways to spend your days in Noosa — coastal walks, river days, surf, beaches, eating out, families, the Hinterland, and bookable tours.",
   alternates: { canonical: "/things-to-do" },
   openGraph: {
     title: "Things to do in Noosa · MyNoosaHeads",
     description:
-      "Twelve ways to spend your days in Noosa — best beaches, river adventures, walks, markets and a 3-day, 5-day, 7-day itinerary.",
+      "Eight ways to spend your days in Noosa.",
     url: "/things-to-do",
     type: "article",
   },
   twitter: {
     card: "summary",
     title: "Things to do in Noosa · MyNoosaHeads",
-    description:
-      "Twelve ways to spend your days in Noosa — best beaches, river adventures, walks, markets and a 3-day, 5-day, 7-day itinerary.",
+    description: "Eight ways to spend your days in Noosa.",
   },
 };
-
-/**
- * /things-to-do — MSN-2972 IA rebuild (visitor-led, Albert D2).
- *
- * Structure (per D2 §"Page Structure"):
- *   1. Hero — eyebrow, headline, ≤30-word subhead
- *   2. Category grid — 12 image-led cards, 3×4 desktop, 2×6 tablet, 1×12
- *      mobile
- *   3. Anchor sections (food-and-drink, surfing, families, wellness,
- *      markets, day-trips, rainy-day, bookable, itineraries) —
- *      single-paragraph editorial bodies that the tile-level anchor
- *      links drop the visitor into. Visitor can act on the card and
- *      scroll for more context in the same page.
- *   4. Footer line — "Every recommendation on this site links to a
- *      public source."
- *
- * Body copy: each card has exactly 1 sentence. Each anchor section
- * has 1–2 short paragraphs. No encyclopedic body, no methodology,
- * no unverified business names.
- */
 
 type CategoryCard = {
   key: string;
   title: string;
   body: string;
   href: string;
-  image: (typeof CATEGORY_CARD_PHOTOS)[keyof typeof CATEGORY_CARD_PHOTOS];
+  /** Image source for the tile. */
+  image: {
+    url: string;
+    caption: string;
+    author: string;
+    licence: string;
+    commonsPage: string;
+  };
   dataTrack: string;
 };
 
+// Image sources — reuse the verified Wikimedia Commons set in
+// `src/data/photos.ts` (we hand-pick here for the 8-card grid so the
+// URL won't break if photos.ts is reorganised in a future sprint).
 const CATEGORIES: CategoryCard[] = [
   {
-    key: "bestBeaches",
-    title: "Best beaches",
-    body: "Eight patrolled beaches along the coast — Main Beach, Sunshine Beach, Peregian and the smaller coves between.",
+    key: "headlandWalk",
+    title: "Walk the Noosa headland",
+    body: "The 5 km coastal walk from the surf club to Alexandria Bay — granite headlands, tallowwood forest, koalas overhead.",
     href: "/noosa-national-park",
-    image: CATEGORY_CARD_PHOTOS.bestBeaches,
-    dataTrack: "ttd_card_best_beaches",
+    image: {
+      caption: "The Noosa headland coastal walk — granite boulders, tallowwood forest, the surf below.",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Noosa_Heads_and_Weyba_Creek.JPG/1280px-Noosa_Heads_and_Weyba_Creek.JPG",
+      author: "Kgbo",
+      licence: "CC BY-SA 4.0",
+      commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_and_Weyba_Creek.JPG",
+    },
+    dataTrack: "ttd_card_headland",
   },
   {
-    key: "walksAndNature",
-    title: "Walks and nature",
-    body: "The coastal walk from Noosa Heads to Alexandria Bay is the headline; the hinterland tracks are the secret.",
-    href: "/noosa-national-park",
-    image: CATEGORY_CARD_PHOTOS.walksAndNature,
-    dataTrack: "ttd_card_walks",
-  },
-  {
-    key: "riverAdventures",
-    title: "River adventures",
-    body: "Kayak, paddleboard or boat the Noosa River — the calm water and the bar mouth at Hells Gates.",
+    key: "riverDay",
+    title: "Spend a day on the river",
+    body: "Kayak, paddleboard or the Noosa Ferry on the Noosa River — calm water from Tewantin to Laguna Bay.",
     href: "/boats-and-watercraft",
-    image: CATEGORY_CARD_PHOTOS.riverAdventures,
+    image: {
+      caption: "The Noosa River at Noosaville — kayak and paddleboard water.",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Noosa_River_bank_at_Noosaville%2C_Queensland%2C_2024.jpg/1280px-Noosa_River_bank_at_Noosaville%2C_Queensland%2C_2024.jpg",
+      author: "Chris Olszewski",
+      licence: "CC BY-SA 4.0",
+      commonsPage:
+        "https://commons.wikimedia.org/wiki/File:Noosa_River_bank_at_Noosaville,_Queensland,_2024.jpg",
+    },
     dataTrack: "ttd_card_river",
   },
   {
-    key: "foodAndDrink",
-    title: "Food and drink",
-    body: "Hastings Street restaurants, Noosaville riverfront cafés, Saturday markets and sunset bars.",
-    href: "/things-to-do#food-and-drink",
-    image: CATEGORY_CARD_PHOTOS.foodAndDrink,
-    dataTrack: "ttd_card_food",
+    key: "learnToSurf",
+    title: "Learn to surf",
+    body: "Main Beach for first lessons; the points south of the headland when the south-east swell wraps in.",
+    href: "/surf-and-weather",
+    image: {
+      caption: "Early-morning paddle-out at Noosa Main Beach — the calm-water option when the swell is up.",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Noosa_Heads_beach_on_Christmas_Day_2015_04.jpeg/1280px-Noosa_Heads_beach_on_Christmas_Day_2015_04.jpeg",
+      author: "Kgbo",
+      licence: "CC BY-SA 4.0",
+      commonsPage:
+        "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_on_Christmas_Day_2015_04.jpeg",
+    },
+    dataTrack: "ttd_card_surf",
   },
   {
-    key: "surfingAndWaterSports",
-    title: "Surfing and water sports",
-    body: "Main Beach for beginners; Sunshine Beach and the points for experienced surfers; learn to surf with local operators.",
-    href: "/things-to-do#surfing",
-    image: CATEGORY_CARD_PHOTOS.surfingAndWaterSports,
-    dataTrack: "ttd_card_surfing",
+    key: "perfectBeach",
+    title: "Find the perfect beach",
+    body: "Eight patrolled beaches from Noosa Heads to Peregian — Main Beach, Sunshine, Peregian, plus the smaller coves along the coastal walk.",
+    href: "/noosa-national-park",
+    image: {
+      caption: "Noosa Main Beach at midday — the patrolled swimming beach at the bottom of Hastings Street.",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Noosa_Heads_beach_on_Christmas_Day_2015_03.jpeg/1280px-Noosa_Heads_beach_on_Christmas_Day_2015_03.jpeg",
+      author: "Kgbo",
+      licence: "CC BY-SA 4.0",
+      commonsPage:
+        "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_on_Christmas_Day_2015_03.jpeg",
+    },
+    dataTrack: "ttd_card_beach",
   },
   {
-    key: "familyActivities",
-    title: "Family activities",
-    body: "Patrolled swimming, the ferry, river cruising, ice cream at the surf club and the aquarium at Mooloolaba.",
-    href: "/things-to-do#families",
-    image: CATEGORY_CARD_PHOTOS.familyActivities,
-    dataTrack: "ttd_card_families",
+    key: "eatAndDrink",
+    title: "Eat your way along Hastings Street",
+    body: "Hastings Street cafés for breakfast, restaurants for dinner, the surf club for a long lunch — and Noosaville's Gympie Terrace for riverside dinners.",
+    href: "/things-to-do#eat-and-drink",
+    image: {
+      caption: "A Hastings Street café table — latte and the headland beyond.",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Aromas_Latte_art%2C_Noosa_Heads%2C_Queensland.jpg/1280px-Aromas_Latte_art%2C_Noosa_Heads%2C_Queensland.jpg",
+      author: "Kgbo",
+      licence: "CC BY-SA 4.0",
+      commonsPage:
+        "https://commons.wikimedia.org/wiki/File:Aromas_Latte_art,_Noosa_Heads,_Queensland.jpg",
+    },
+    dataTrack: "ttd_card_eat",
   },
   {
-    key: "wellnessAndRelaxation",
-    title: "Wellness and relaxation",
-    body: "Day spas on Hastings Street, the Eumundi markets for slow wandering, the hinterland for quiet.",
-    href: "/things-to-do#wellness",
-    image: CATEGORY_CARD_PHOTOS.wellnessAndRelaxation,
-    dataTrack: "ttd_card_wellness",
+    key: "withChildren",
+    title: "Discover Noosa with children",
+    body: "Patrolled swimming, the ferry, ice cream at the surf club, a slow river day, the aquarium at Mooloolaba for the rainy afternoon.",
+    href: "/noosa-national-park",
+    image: {
+      caption: "Children learning to surf in the shallows at First Bay.",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Children_learning_surfing_at_Noosa_Heads_beach%2C_Queensland.jpg/1280px-Children_learning_surfing_at_Noosa_Heads_beach%2C_Queensland.jpg",
+      author: "Kgbo",
+      licence: "CC BY-SA 4.0",
+      commonsPage:
+        "https://commons.wikimedia.org/wiki/File:Children_learning_surfing_at_Noosa_Heads_beach,_Queensland.jpg",
+    },
+    dataTrack: "ttd_card_kids",
   },
   {
-    key: "marketsAndShopping",
-    title: "Markets and shopping",
-    body: "Eumundi Wednesday and Saturday, Noosa Farmers Market Sunday, Hastings Street boutiques.",
-    href: "/things-to-do#markets",
-    image: CATEGORY_CARD_PHOTOS.marketsAndShopping,
-    dataTrack: "ttd_card_markets",
+    key: "hinterland",
+    title: "Escape into the hinterland",
+    body: "Pomona, Cooran, Kin Kin — thirty minutes up the range, cooler, quieter, and a different temperature. Australia Zoo and the Glass House Mountains are within an hour.",
+    href: "/things-to-do#hinterland",
+    image: {
+      caption: "A camper on the Coast — the road-trip mode into the Noosa Hinterland.",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Camper_Wohnmobil_Australien_%2823979876582%29.jpg/1280px-Camper_Wohnmobil_Australien_%2823979876582%29.jpg",
+      author: "Kgbo",
+      licence: "CC BY 2.0",
+      commonsPage:
+        "https://commons.wikimedia.org/wiki/File:Camper_Wohnmobil_Australien_(23979876582).jpg",
+    },
+    dataTrack: "ttd_card_hinterland",
   },
   {
-    key: "dayTrips",
-    title: "Day trips",
-    body: "The Hinterland — Pomona, Cooran, Kin Kin — is thirty minutes up the range and a different temperature. Australia Zoo and the Glass House Mountains are within an hour.",
-    href: "/things-to-do#day-trips",
-    image: CATEGORY_CARD_PHOTOS.dayTrips,
-    dataTrack: "ttd_card_day_trips",
-  },
-  {
-    key: "rainyDay",
-    title: "Rainy-day activities",
-    body: "Galleries on Hastings Street, the Noosa Regional Gallery, the surf club bistro, a long lunch at a riverfront restaurant.",
-    href: "/things-to-do#rainy-day",
-    image: CATEGORY_CARD_PHOTOS.rainyDay,
-    dataTrack: "ttd_card_rainy",
-  },
-  {
-    key: "bookableExperiences",
-    title: "Bookable experiences",
-    body: "Surf lessons, river cruises, Hinterland tours and national park guided walks — bookable with local operators.",
+    key: "bookable",
+    title: "Book a cruise, tour or wellness experience",
+    body: "River cruises, Hinterland tours, surf lessons, day spas on Hastings Street — bookable with verified local operators.",
     href: "/things-to-do#bookable",
-    image: CATEGORY_CARD_PHOTOS.bookableExperiences,
+    image: {
+      caption: "Stand-up paddleboarder in the bay — the hire-watercraft most visitors start with.",
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Man_with_stand_up_board_at_Noosa_Heads_beach%2C_Queensland.jpg/1280px-Man_with_stand_up_board_at_Noosa_Heads_beach%2C_Queensland.jpg",
+      author: "Kgbo",
+      licence: "CC BY-SA 4.0",
+      commonsPage:
+        "https://commons.wikimedia.org/wiki/File:Man_with_stand_up_board_at_Noosa_Heads_beach,_Queensland.jpg",
+    },
     dataTrack: "ttd_card_bookable",
-  },
-  {
-    key: "itineraries",
-    title: "Suggested itineraries",
-    body: "Three-day, five-day and seven-day plans — first-time visitor, family, active, relaxed.",
-    href: "/things-to-do#itineraries",
-    image: CATEGORY_CARD_PHOTOS.itineraries,
-    dataTrack: "ttd_card_itineraries",
   },
 ];
 
@@ -160,7 +186,7 @@ export default function ThingsToDoPage() {
       "@id": `${SITE.productionUrl}/things-to-do#destination`,
       name: "Noosa Heads",
       description:
-        "Twelve ways to spend your days in Noosa — beaches, river, hinterland and a three-day, five-day or seven-day itinerary.",
+        "Eight ways to spend your days in Noosa — coastal walks, river days, surf, beaches, eating out, families, the Hinterland, and bookable tours.",
       url: `${SITE.productionUrl}/things-to-do`,
       touristType: ["Family", "Couple", "Solo", "Group", "Active"],
       address: {
@@ -197,18 +223,19 @@ export default function ThingsToDoPage() {
       {/* ─── 1. Hero ─── */}
       <section className="border-b border-paper-200 bg-paper-50">
         <div className="container-page py-12 md:py-16">
-          <p className="eyebrow">Twelve ways to spend your days</p>
+          <p className="eyebrow">Eight ways to spend your days</p>
           <h1 className="mt-3 font-display text-display-xl md:text-display-xl text-ink-900 text-balance max-w-4xl">
             Things to do in Noosa
           </h1>
           <p className="mt-5 lead max-w-3xl text-pretty">
-            Twelve ways to spend your days — from the headline coastal walk
-            to a quiet Saturday market.
+            From a coastal walk at first light to a Hinterland village
+            after lunch — eight ways to spend the days, each linked to
+            where the detail lives.
           </p>
         </div>
       </section>
 
-      {/* ─── 2. Category grid ─── */}
+      {/* ─── 2. Eight categories (3×3 desktop, 2×4 tablet, 1×8 mobile) ─── */}
       <section
         className="container-page py-12 md:py-16"
         aria-labelledby="ttd-grid-heading"
@@ -225,169 +252,66 @@ export default function ThingsToDoPage() {
               body={c.body}
               image={c.image}
               dataTrack={c.dataTrack}
+              hideAttribution
             />
           ))}
         </div>
       </section>
 
-      {/* ─── 3. Anchor sections ───
-       * Visitor can scroll into the same page for additional context on
-       * the categories that anchor here (food-and-drink, surfing, etc.).
-       * Each section is a single short paragraph — no encyclopedic
-       * body, no methodology, no unverified business names. */}
+      {/* ─── 3. Anchor sections (≤60 words each, per Albert D3) ─── */}
       <section
         className="border-t border-paper-200 bg-paper-100"
-        aria-labelledby="ttd-context-heading"
+        aria-labelledby="ttd-anchors-heading"
       >
         <div className="container-page py-14 md:py-20">
           <h2
-            id="ttd-context-heading"
+            id="ttd-anchors-heading"
             className="font-display text-display-md text-ink-900 text-balance"
           >
-            A little more context
+            A few more notes
           </h2>
-          <div className="mt-8 grid gap-10 lg:grid-cols-2">
-            <article id="food-and-drink">
+
+          <div className="mt-8 grid gap-10 lg:grid-cols-3">
+            <article id="eat-and-drink">
               <h3 className="font-display text-headline-lg text-ink-900">
-                Food and drink — the long version
+                Eat & drink
               </h3>
               <p className="mt-3 text-body-md text-ink-800 text-pretty">
-                Hastings Street runs from the surf club up to the headland
-                and is the densest café-and-restaurant strip in Noosa. Most
-                cafés are walk-in for breakfast and lunch; dinner
-                reservations are recommended in peak season. Across the
-                river, Noosaville&apos;s Gympie Terrace is a long row of
-                foreshore restaurants — the practical choice for a longer
-                stay, with self-contained apartments and kitchens for the
-                nights you eat in. The Saturday Noosa Farmers Market and
-                the Wednesday/Saturday Eumundi markets are the regional
-                food events.
+                Hastings Street runs from the surf club to the headland —
+                cafés for breakfast (walk-in), restaurants for dinner
+                (book ahead in summer). Across the river, Gympie Terrace
+                is the foreshore dinner strip. The Saturday Noosa
+                Farmers Market is the regional food event.
               </p>
             </article>
 
-            <article id="surfing">
+            <article id="hinterland">
               <h3 className="font-display text-headline-lg text-ink-900">
-                Surfing — the long version
+                Hinterland
               </h3>
               <p className="mt-3 text-body-md text-ink-800 text-pretty">
-                Main Beach is the patrolled beginner beach at the bottom of
-                Hastings Street — longboard-friendly on smaller days. The
-                points south of the headland (First Bay, Granite Bay, Little
-                Cove) are the experienced shortboard breaks; the points
-                light up when the south-east swell wraps in under 1.5 m.
-                Sunshine Beach is the next patrolled beach south, two
-                minutes&apos; drive from Hastings Street. Surf schools
-                operate out of Main Beach and Sunshine Beach year-round.
-              </p>
-            </article>
-
-            <article id="families">
-              <h3 className="font-display text-headline-lg text-ink-900">
-                Families — the long version
-              </h3>
-              <p className="mt-3 text-body-md text-ink-800 text-pretty">
-                Patrolled swimming, the free ferry between Hastings Street
-                and Noosaville, and the river foreshore make Noosa workable
-                with kids of any age. The Aquarium at Mooloolaba is a
-                40-minute drive south; Australia Zoo at Beerwah is roughly
-                an hour. The Noosa North Shore surf beach is closed to
-                swimming — but the river is calm and safe for paddling. The
-                surf clubs run Nippers programs in summer for under-14s.
-              </p>
-            </article>
-
-            <article id="wellness">
-              <h3 className="font-display text-headline-lg text-ink-900">
-                Wellness — the long version
-              </h3>
-              <p className="mt-3 text-body-md text-ink-800 text-pretty">
-                Hastings Street has the day-spa cluster — full-service
-                spas inside the larger resorts, plus independent boutiques.
-                The hinterland is the quieter wellness option: a Pomona
-                main-street coffee, a Cooran pub lunch, a slow walk at the
-                Noosa Botanic Gardens on Lake Macdonald (40 minutes&apos;
-                drive). Eumundi is Wednesday and Saturday — the
-                regional wandering-and-people-watching market.
-              </p>
-            </article>
-
-            <article id="markets">
-              <h3 className="font-display text-headline-lg text-ink-900">
-                Markets — the long version
-              </h3>
-              <p className="mt-3 text-body-md text-ink-800 text-pretty">
-                Three markets anchor the Noosa region. The Noosa Farmers
-                Market runs on Sunday mornings at the Noosaville
-                showgrounds. The Eumundi Markets run on Wednesday and
-                Saturday — the largest artisan market on the Sunshine
-                Coast. Hastings Street carries the boutique-and-homewares
-                shopping year-round. Tewantin has a smaller Saturday market
-                along the foreshore.
-              </p>
-            </article>
-
-            <article id="day-trips">
-              <h3 className="font-display text-headline-lg text-ink-900">
-                Day trips — the long version
-              </h3>
-              <p className="mt-3 text-body-md text-ink-800 text-pretty">
-                The Noosa Hinterland is the closest day-trip: Pomona,
-                Cooran and Kin Kin are 25–30 minutes up the range and
-                noticeably cooler than the coast. Mount Cooroora at Pomona
-                is the closest bushwalk-with-a-view (seasonal — check QPWS
-                before you go). Australia Zoo at Beerwah is roughly an
-                hour. The Glass House Mountains are 50 minutes south — a
-                different landscape and a different climate.
-              </p>
-            </article>
-
-            <article id="rainy-day">
-              <h3 className="font-display text-headline-lg text-ink-900">
-                Rainy days — the long version
-              </h3>
-              <p className="mt-3 text-body-md text-ink-800 text-pretty">
-                Noosa&apos;s rainy days are usually short. The Noosa
-                Regional Gallery is on Riverside Road, Noosaville —
-                free entry. The surf club bistros (Hastings Street and
-                Sunshine Beach) are walk-in for a long lunch. Hastings
-                Street cafés and bookshops are the rest of the day. The
-                Noosa Ferry still runs in rain, and the river is at its
-                most atmospheric under overcast.
+                Pomona, Cooran, Kin Kin, Cooroy — twenty-five to thirty
+                minutes up the range, cooler and quieter than the coast.
+                Mount Cooroora at Pomona is the closest
+                bushwalk-with-a-view (seasonal — check QPWS). Australia
+                Zoo at Beerwah is roughly an hour.
               </p>
             </article>
 
             <article id="bookable">
               <h3 className="font-display text-headline-lg text-ink-900">
-                Bookable experiences — the long version
+                Bookable experiences
               </h3>
               <p className="mt-3 text-body-md text-ink-800 text-pretty">
-                Surf lessons (Main Beach and Sunshine Beach), kayak hire on
-                the Noosa River, Hinterland tours to the Glass House
-                Mountains and Australia Zoo, and guided walks through the
-                Noosa National Park coastal track. Operators are listed
-                with the standard affiliate disclosure where a commercial
-                relationship exists; where no commercial relationship is
-                verified, the link goes without the badge.
+                Surf lessons at Main Beach and Sunshine Beach; kayak and
+                paddleboard hire on the Noosa River; Hinterland tours to
+                the Glass House Mountains and Australia Zoo; guided walks
+                through the coastal track. Operators are linked with
+                affiliate disclosure where a commercial relationship
+                exists.
               </p>
             </article>
           </div>
-
-          <article id="itineraries" className="mt-14 pt-10 border-t border-paper-200">
-            <h3 className="font-display text-display-sm text-ink-900 text-balance">
-              Suggested itineraries
-            </h3>
-            <p className="mt-3 text-body-md text-ink-800 max-w-3xl text-pretty">
-              Three-day plan for first-time visitors (Hastings Street base),
-              five-day family plan (Noosaville base), seven-day active plan
-              (Sunshine Beach base) and a five-day relaxed plan (Peregian
-              base). The full copy of each plan lives on the{" "}
-              <a href="/accommodation" className="link text-ocean-700">
-                accommodation page
-              </a>{" "}
-              alongside the area selector — pick the area that fits the
-              plan, then pick the property.
-            </p>
-          </article>
         </div>
       </section>
 
@@ -395,8 +319,7 @@ export default function ThingsToDoPage() {
       <section className="bg-paper-50">
         <div className="container-page py-10 md:py-12 text-center">
           <p className="text-body-sm text-ink-600 max-w-2xl mx-auto">
-            Every recommendation on this site links to a public source. See
-            the footer for the full statement.
+            Every recommendation on this site links to a public source.
           </p>
         </div>
       </section>

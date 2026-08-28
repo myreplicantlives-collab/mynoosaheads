@@ -1,52 +1,45 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  Button,
-  Icons,
-  JsonLd,
-} from "@/components/ui";
-import { fetchLiveBundle } from "@/lib/live-data";
-import { CATEGORY_PHOTOS } from "@/data/photos";
+import { JsonLd } from "@/components/ui";
 import { SITE } from "@/data/site";
 import {
   ACCOMMODATION_DATA,
   ON_PAGE_DISCLOSURE_TEXT,
-  DATA_GENERATED_AT,
 } from "@/data/accommodation";
-import { AreaSelector } from "@/components/accommodation/AreaSelector";
-import { AreaComparison } from "@/components/accommodation/AreaComparison";
-import { AreaDetail } from "@/components/accommodation/AreaDetail";
-import { PropertyGrid } from "@/components/accommodation/PropertyGrid";
-import { Itineraries } from "@/components/accommodation/Itineraries";
-import { DecisionHelper } from "@/components/accommodation/DecisionHelper";
 
 /**
- * /accommodation — MSN-2965 rebuild.
+ * /accommodation — MSN-2973 curated rebuild.
  *
- * Page structure (visitor-first):
- *   1. Hero band (small) — "Where to stay in Noosa" + 1-line promise
- *   2. Area selector — 5 clickable cards
- *   3. Comparison matrix — fit per profile (beachfront, family, ...)
- *   4. Why each area (per-area detail blocks with photo + copy)
- *   5. Property grid — filterable by area + booking engine
- *   6. Decision helper — 3-question quiz → recommended area
- *   7. Itineraries — 3-day, 5-day, 7-day
- *   8. Disclosure — ACCC Schedule 2 statement
- *   9. Footer (rendered by SiteFooter in root layout)
+ * Per Albert's D2 brief:
+ *   1. Hero with eyebrow + headline + subhead
+ *   2. 5 area cards (Hastings, Noosa Sound, Noosaville, Sunshine,
+ *      Peregian) — clickable, jump to area detail section
+ *   3. 10 curated property picks (not a 37-listing database)
+ *   4. 5 property category chips (Family, Luxury, Beachfront, Value,
+ *      Long-stay) — anchor links
+ *   5. "How we choose" — one short paragraph
+ *   6. Engine area-search catch-all — Booking.com / Stayz / Airbnb
  *
- * Server-rendered page; client islands (AreaComparison is server,
- * PropertyGrid / Itineraries / DecisionHelper are client for state).
+ * Removed (per Tim's directive):
+ *   - 3-question decision helper (over-engineered)
+ *   - 3-day / 5-day / 7-day itinerary section (moves to /things-to-do
+ *     under the "Plan your trip" feature)
+ *   - Weather / live-data section (moves to /surf-and-weather)
+ *   - Comparison matrix (5-card area selector replaces it)
+ *
+ * Attribution stripped from rendered HTML per MSN-2973 directive.
+ * Full credit table at /photo-credits, linked from the footer.
  */
 
 export const metadata: Metadata = {
   title: "Where to stay in Noosa · Accommodation guide",
   description:
-    "Links to Booking.com, Stayz, Airbnb and Expedia. Five areas, six-to-eight verified properties each.",
+    "Ten curated properties across five Noosa areas. Links to Booking.com, Stayz, Airbnb and Expedia.",
   alternates: { canonical: "/accommodation" },
   openGraph: {
     title: "Where to stay in Noosa · MyNoosaHeads",
     description:
-      "Links to Booking.com, Stayz, Airbnb and Expedia. Five areas, six-to-eight verified properties each.",
+      "Ten curated properties across five Noosa areas.",
     url: "/accommodation",
     type: "article",
   },
@@ -54,19 +47,13 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Where to stay in Noosa · MyNoosaHeads",
     description:
-      "Where to stay in Noosa: five areas, six-to-eight verified properties each.",
+      "Ten curated properties across five Noosa areas.",
   },
 };
 
 export default async function AccommodationPage() {
-  const live = await fetchLiveBundle();
+  const { areas, curatedProperties, categories, disclosure } = ACCOMMODATION_DATA;
 
-  const { areas, itineraries, decisionHelper, disclosure } = ACCOMMODATION_DATA;
-
-  // Same TouristDestination + BreadcrumbList JSON-LD as MSN-2964. We
-  // do NOT own a real LodgingBusiness (we are a publisher, not a
-  // hotel). TouristDestination + description is the safest declaration
-  // for an editorial accommodation guide.
   const accommodationJsonLd = [
     {
       "@context": "https://schema.org",
@@ -74,9 +61,9 @@ export default async function AccommodationPage() {
       "@id": `${SITE.productionUrl}/accommodation#destination`,
       name: "Noosa Heads",
       description:
-        "Noosa Heads is a coastal destination on the Sunshine Coast, Queensland. Accommodation ranges from Hastings Street hotels to Noosaville apartments and North Shore houseboats.",
+        "Ten curated properties across five Noosa areas — Hastings Street, Noosa Sound, Noosaville, Sunshine Beach and Peregian. Links to Booking.com, Stayz, Airbnb and Expedia.",
       url: `${SITE.productionUrl}/accommodation`,
-      touristType: ["Family", "Surfer", "Couple", "Group"],
+      touristType: ["Family", "Couple", "Surfer", "Group", "Long-stay"],
       address: {
         "@type": "PostalAddress",
         addressRegion: "Queensland",
@@ -113,7 +100,7 @@ export default async function AccommodationPage() {
     <div className="bg-paper-50">
       <JsonLd data={accommodationJsonLd} />
 
-      {/* ─── 1. Hero band (small) ─── */}
+      {/* ─── 1. Hero band ─── */}
       <section
         className="border-b border-paper-200 bg-paper-50"
         aria-labelledby="accommodation-title"
@@ -127,360 +114,294 @@ export default async function AccommodationPage() {
             Where to stay in Noosa.
           </h1>
           <p className="mt-5 lead max-w-3xl text-pretty">
-            Five areas, six to eight verified properties each. Pick the
-            area that fits the trip, then pick the property. Every
-            property tile has a short reason for being listed and links
-            to the third-party booking engine (Booking.com, Stayz,
-            Expedia, or Airbnb) where you can check live availability.
+            Five areas across the shire — Hastings Street, Noosa Sound,
+            Noosaville, Sunshine Beach, Peregian. Pick the area that
+            fits the trip, then find the property.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <Button
-              href="#area-selector"
-              variant="primary"
-              size="md"
-              trailingIcon={
-                <span className="rotate-90 inline-block" aria-hidden="true">
-                  <Icons.ChevronRight size={14} />
-                </span>
-              }
-              data-track="accommodation_hero_to_selector"
+            <Link
+              href="#six-areas"
+              className="btn-primary btn-md"
+              data-track="accommodation_hero_to_areas"
             >
               See the areas
-            </Button>
-            <Button
-              href="#decision-helper"
-              variant="outline"
-              size="md"
-              data-track="accommodation_hero_to_helper"
+            </Link>
+            <Link
+              href="#curated-picks"
+              className="btn-outline btn-md"
+              data-track="accommodation_hero_to_picks"
             >
-              Still not sure? Take the quiz
-            </Button>
+              See the curated picks
+            </Link>
           </div>
         </div>
       </section>
 
       {/* ─── 2. Area selector (5 cards) ─── */}
       <section
-        id="area-selector"
+        id="six-areas"
         className="container-page py-14 md:py-20"
-        aria-labelledby="area-selector-h"
+        aria-labelledby="areas-h"
       >
-        <p className="eyebrow">Five areas, click to expand</p>
+        <p className="eyebrow">Five areas across the shire</p>
         <h2
-          id="area-selector-h"
+          id="areas-h"
           className="mt-1 font-display text-display-md text-ink-900 text-balance"
         >
-          Five areas to choose from
+          Pick the area first
         </h2>
-        <p className="mt-3 lead max-w-3xl">
+        <p className="mt-3 lead max-w-3xl text-pretty">
           The shire runs from beachside suburbs in the east to small
-          inland villages in the west. For accommodation, the five areas
-          that matter most for visitors are Hastings Street, Noosaville,
-          Noosa Sound, Sunshine Beach, and Peregian. Pick one to see
-          its profile, internal links, and the booking-engine options.
+          inland villages in the west. For accommodation, the five
+          areas that matter most for visitors. Order is the order a
+          visitor thinks about it — walkability first, then river,
+          then surf, then quiet.
         </p>
-        <div className="mt-10">
-          <AreaSelector areas={areas} />
+
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {areas.map((a) => (
+            <a
+              key={a.id}
+              href={`#${a.anchor}` as `#${string}`}
+              data-track={`accommodation_area_${a.id}`}
+              className="group block overflow-hidden rounded-2xl border border-paper-200 bg-paper-50 transition-transform hover:scale-[1.01] focus:outline-none focus-visible:ring-2 focus-visible:ring-eucalyptus-700"
+            >
+              <div className="relative aspect-[4/3] w-full bg-eucalyptus-900">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={a.photo.url}
+                  alt={a.photo.caption}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover"
+                />
+                <div
+                  className="absolute inset-0 bg-gradient-to-t from-ink-900/70 via-ink-900/20 to-transparent"
+                  aria-hidden="true"
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-paper-50">
+                  <p className="font-display text-headline-lg text-paper-50 text-balance">
+                    {a.name}
+                  </p>
+                  <p className="mt-1 text-caption text-paper-100 line-clamp-3">
+                    {a.pitch}
+                  </p>
+                </div>
+              </div>
+              <div className="p-4">
+                <p className="text-body-sm text-ink-700">
+                  <span className="font-semibold text-ink-900">Best for:</span>{" "}
+                  {a.bestFor}
+                </p>
+                <p className="mt-3 text-body-sm font-medium text-eucalyptus-700 group-hover:underline">
+                  See the area →
+                </p>
+              </div>
+            </a>
+          ))}
         </div>
       </section>
 
-      {/* ─── 3. Comparison matrix ─── */}
+      {/* ─── 3. Curated property selection (10 picks) ─── */}
       <section
+        id="curated-picks"
         className="border-y border-paper-200 bg-paper-100"
-        aria-labelledby="matrix-h"
+        aria-labelledby="picks-h"
       >
         <div className="container-page py-14 md:py-20">
-          <p className="eyebrow">Side-by-side fit</p>
+          <p className="eyebrow">Ten curated picks</p>
           <h2
-            id="matrix-h"
+            id="picks-h"
             className="mt-1 font-display text-display-md text-ink-900 text-balance"
           >
-            Fit per trip profile
+            The properties visitors actually consider
           </h2>
-          <p className="mt-3 lead max-w-3xl">
-            A single fit score per trip profile. Two stars means a
-            strong fit; one star is a partial fit; an em-dash is not
-            the call. Click any area name to jump to its detail.
+          <p className="mt-3 lead max-w-3xl text-pretty">
+            Not 37 listings — a curated ten. Each card carries a
+            &quot;best for&quot; tag, the key benefits, an indicative
+            rating, and a single link to check live availability on
+            the operator&apos;s third-party booking engine.
           </p>
-          <div className="mt-8">
-            <AreaComparison areas={areas} />
+
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
+            {curatedProperties.map((p, idx) => (
+              <article
+                key={p.name}
+                id={`pick-${idx + 1}`}
+                className="card p-6 flex flex-col h-full"
+                data-track={`accommodation_pick_${idx + 1}`}
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="eyebrow">{p.bestFor}</p>
+                    <h3 className="mt-1 font-display text-headline-lg text-ink-900 text-balance">
+                      {p.name}
+                    </h3>
+                  </div>
+                  <span className="pill-disclosure shrink-0 mt-1">
+                    {p.rating.split(" · ")[0]}
+                  </span>
+                </div>
+                <p className="mt-3 text-body-md text-ink-800 text-pretty">
+                  {p.rationale}
+                </p>
+                <p className="mt-3 text-caption text-ink-700">
+                  <span className="font-semibold text-ink-900">Area:</span>{" "}
+                  {areas.find((a) => a.id === p.areaId)?.name ?? p.areaId} ·
+                  {" "}
+                  <span className="font-semibold text-ink-900">Rating:</span>{" "}
+                  {p.rating}
+                </p>
+                <div className="mt-5 flex flex-wrap gap-2 pt-4 mt-auto border-t border-paper-200">
+                  <a
+                    href={p.bookingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary btn-sm"
+                    data-track={`accommodation_pick_cta_${idx + 1}`}
+                  >
+                    Check availability
+                    <span aria-hidden="true"> →</span>
+                  </a>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ─── 4. Why each area (per-area detail blocks) ─── */}
-      <div>
-        {areas.map((a, i) => (
-          <div
-            key={a.id}
-            className={i % 2 === 1 ? "bg-paper-100" : ""}
-            id={a.anchor}
-          >
-            <AreaDetail area={a} index={i} />
-          </div>
-        ))}
-      </div>
-
-      {/* ─── 5. Property grid (filterable by area + engine) ─── */}
+      {/* ─── 4. Property categories (5 anchor chips) ─── */}
       <section
-        id="property-grid"
-        className="border-t border-paper-200 bg-paper-50"
-        aria-labelledby="property-grid-h"
-      >
-        <div className="container-page py-14 md:py-20">
-          <p className="eyebrow">All properties across all areas</p>
-          <h2
-            id="property-grid-h"
-            className="mt-1 font-display text-display-md text-ink-900 text-balance"
-          >
-            All properties ({areas.reduce((n, a) => n + a.properties.length, 0)}{" "}
-            properties)
-          </h2>
-          <p className="mt-3 lead max-w-3xl">
-            Filter by area, by booking engine, or look at the whole
-            list. Each property carries a short reason for being listed;
-            the booking link goes to the engine where the property is
-            listed.
-          </p>
-          <div className="mt-10" id="property-grid-mount">
-            <PropertyGrid areas={areas} />
-          </div>
-          <p className="mt-8 text-caption text-ink-600">
-            Property data last reviewed {DATA_GENERATED_AT} ·{" "}
-            {disclosure.length < 1000
-              ? `Disclosure: ${disclosure.slice(0, 240)}…`
-              : null}
-          </p>
-        </div>
-      </section>
-
-      {/* ─── 5b. Property categories — visitor mental models (MSN-2972 / D3 §2)
-       *  Five anchor sections: Family / Luxury / Beachfront / Budget /
-       *  Long-stay. Each anchors to a filter on the property grid above. */}
-      <section
-        className="border-t border-paper-200 bg-paper-100"
+        className="container-page py-14 md:py-20"
         aria-labelledby="categories-h"
       >
-        <div className="container-page py-14 md:py-20">
-          <p className="eyebrow">By property type</p>
-          <h2
-            id="categories-h"
-            className="mt-1 font-display text-display-md text-ink-900 text-balance"
-          >
-            Five ways to pick a property
-          </h2>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <p className="eyebrow">By property type</p>
+        <h2
+          id="categories-h"
+          className="mt-1 font-display text-display-md text-ink-900 text-balance"
+        >
+          Five ways to pick a property
+        </h2>
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {categories.map((cat) => (
             <a
-              href="#family"
+              key={cat.key}
+              href={`#pick-${cat.picks[0]}` as `#pick-${string}`}
               className="card p-6 transition-all hover:-translate-y-0.5 hover:shadow-md focus-visible:-translate-y-0.5 focus-visible:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ocean-500"
-              data-track="accommodation_category_family"
+              data-track={`accommodation_category_${cat.key}`}
             >
-              <h3 className="font-display text-headline-md text-ink-900">Family</h3>
+              <h3 className="font-display text-headline-md text-ink-900">
+                {cat.label}
+              </h3>
               <p className="mt-2 text-body-sm text-ink-700">
-                Apartments and resorts with pools, kitchens and room for everyone.
+                {cat.description}
+              </p>
+              <p className="mt-3 text-caption text-eucalyptus-700">
+                See picks {cat.picks.join(", ")} →
               </p>
             </a>
-            <a
-              href="#luxury"
-              className="card p-6 transition-all hover:-translate-y-0.5 hover:shadow-md focus-visible:-translate-y-0.5 focus-visible:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ocean-500"
-              data-track="accommodation_category_luxury"
-            >
-              <h3 className="font-display text-headline-md text-ink-900">Luxury</h3>
-              <p className="mt-2 text-body-sm text-ink-700">
-                Hastings Street and waterfront — full-service resorts and designer villas.
-              </p>
-            </a>
-            <a
-              href="#beachfront"
-              className="card p-6 transition-all hover:-translate-y-0.5 hover:shadow-md focus-visible:-translate-y-0.5 focus-visible:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ocean-500"
-              data-track="accommodation_category_beachfront"
-            >
-              <h3 className="font-display text-headline-md text-ink-900">Beachfront</h3>
-              <p className="mt-2 text-body-sm text-ink-700">
-                On the sand or across the road — Main Beach, Sunshine Beach and Peregian.
-              </p>
-            </a>
-            <a
-              href="#budget"
-              className="card p-6 transition-all hover:-translate-y-0.5 hover:shadow-md focus-visible:-translate-y-0.5 focus-visible:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ocean-500"
-              data-track="accommodation_category_budget"
-            >
-              <h3 className="font-display text-headline-md text-ink-900">Budget</h3>
-              <p className="mt-2 text-body-sm text-ink-700">
-                Motels on Gympie Terrace, holiday houses in Peregian, hostels near the headland.
-              </p>
-            </a>
-            <a
-              href="#long-stay"
-              className="card p-6 transition-all hover:-translate-y-0.5 hover:shadow-md focus-visible:-translate-y-0.5 focus-visible:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ocean-500"
-              data-track="accommodation_category_long_stay"
-            >
-              <h3 className="font-display text-headline-md text-ink-900">Long-stay</h3>
-              <p className="mt-2 text-body-sm text-ink-700">
-                Self-contained apartments and houses with kitchens — week-long rates available.
-              </p>
-            </a>
-            <div className="card p-6 bg-paper-200/40 border-dashed">
-              <h3 className="font-display text-headline-md text-ink-900">Where everything is</h3>
-              <p className="mt-2 text-body-sm text-ink-700">
-                Hastings Street at the north, Noosa Sound and Noosaville along
-                the river, Sunshine Beach to the south, Peregian and Marcus
-                Beach further south still. Tap a marker for the area guide.
-              </p>
-              <p className="mt-3 text-caption text-ink-600">
-                Map placeholder — interactive map lands in a follow-up release.
-              </p>
-            </div>
-          </div>
-
-          {/* ─── 5c. How we choose (D3 §3) ─── */}
-          <div className="mt-14 pt-10 border-t border-paper-200">
-            <p className="eyebrow">How we choose</p>
-            <h3 className="mt-1 font-display text-headline-lg text-ink-900 text-balance">
-              Where this list comes from
-            </h3>
-            <p className="mt-4 max-w-3xl text-body-md text-ink-800 text-pretty">
-              We list properties that are currently trading, in the areas where
-              visitors actually stay. We link to the booking engines that
-              carry them — Booking.com, Stayz, Airbnb and Expedia — rather
-              than taking inventory ourselves. Some links earn us a
-              commission; all are marked Affiliate before you click. The full
-              statement is in the footer.
-            </p>
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* ─── 6. Decision helper ─── */}
-      <section
-        id="decision-helper"
-        className="border-t border-paper-200 bg-paper-100"
-        aria-labelledby="decision-h"
-      >
-        <div className="container-page py-14 md:py-20">
-          <DecisionHelper areas={areas} questions={decisionHelper} />
-        </div>
-      </section>
-
-      {/* ─── 7. Itineraries ─── */}
-      <section
-        className="border-t border-paper-200 bg-paper-50"
-        aria-labelledby="itineraries-h"
-      >
-        <div className="container-page py-14 md:py-20">
-          <p className="eyebrow">How long are you here?</p>
-          <h2
-            id="itineraries-h"
-            className="mt-1 font-display text-display-md text-ink-900 text-balance"
-          >
-            Suggested itineraries
-          </h2>
-          <p className="mt-3 lead max-w-3xl">
-            Pick a length. The plan tells you where to stay on each
-            night and why.
-          </p>
-          <div className="mt-10">
-            <Itineraries itineraries={itineraries} areas={areas} />
-          </div>
-        </div>
-      </section>
-
-      {/* ─── 8. Disclosure ─── */}
+      {/* ─── 5. How we choose (one short paragraph) ─── */}
       <section
         className="border-t border-paper-200 bg-paper-100"
-        aria-labelledby="accc-disclosure-heading"
+        aria-labelledby="how-h"
       >
-        <div className="container-page py-12 md:py-16">
-          <p className="eyebrow">Disclosure (ACCC Sch 2)</p>
+        <div className="container-page py-14 md:py-20">
+          <p className="eyebrow">How we choose</p>
           <h2
-            id="accc-disclosure-heading"
-            className="mt-1 font-display text-display-sm text-ink-900 text-balance max-w-3xl"
+            id="how-h"
+            className="mt-1 font-display text-display-md text-ink-900 text-balance"
           >
-            Affiliate links earn us a small commission — at no cost to you.
+            Where this list comes from
           </h2>
-          <p className="mt-4 max-w-4xl text-body text-ink-800 text-pretty">
+          <p className="mt-4 max-w-3xl text-body-md text-ink-800 text-pretty">
             {disclosure}
           </p>
-          <p className="mt-6 text-caption text-ink-600 max-w-4xl">
-            See the{" "}
-            <Link href="#affiliate-disclosure" className="link text-ocean-700">
-              Legal column in the footer
-            </Link>{" "}
-            for the full statement, including the verified affiliate
-            programme list, per the Competition and Consumer Act 2010 (Cth)
-            Schedule 2.
-          </p>
         </div>
       </section>
 
-      {/* ─── 9. Live data strip (kept for the MSN-2965 brief's
-       * accommodation-page weather tile; P0 safety fix from the same
-       * mission has strengthened the tide label to "Sea level (approx.)"
-       * and disallowed it as a navigational source). */}
+      {/* ─── 6. Engine area-search (catch-all for undecided visitors) ─── */}
       <section
-        className="border-t border-paper-200 bg-paper-100"
-        aria-labelledby="weather-h"
+        className="container-page py-14 md:py-20"
+        aria-labelledby="engine-search-h"
       >
-        <div className="container-page py-12">
-          <div className="flex items-end justify-between gap-4 mb-6">
-            <div>
-              <p className="eyebrow">Today’s conditions</p>
-              <h2 id="weather-h" className="mt-1 font-display text-display-sm text-ink-900">
-                Useful if you’re checking in late
-              </h2>
-            </div>
-            <p className="text-caption text-ink-600">
-              as of{" "}
-              <time dateTime={live.asOf}>
-                {new Date(live.asOf).toLocaleString("en-AU", {
-                  timeZone: "Australia/Brisbane",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  day: "2-digit",
-                  month: "short",
-                })}
-              </time>{" "}
-              AEST
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="card-surface p-5">
-              <p className="eyebrow">Surf</p>
-              <p className="font-display text-display-sm text-ink-900 mt-1">
-                {live.surf.value}
-              </p>
-              <p className="mt-1 text-caption text-ink-700">{live.surf.secondary}</p>
-            </div>
-            <div className="card-surface p-5">
-              <p className="eyebrow">Wind</p>
-              <p className="font-display text-display-sm text-ink-900 mt-1">
-                {live.wind.value}
-              </p>
-              <p className="mt-1 text-caption text-ink-700">{live.wind.secondary}</p>
-            </div>
-            <div className="card-surface p-5">
-              <p className="eyebrow">Sea level (approx.)</p>
-              <p className="font-display text-display-sm text-ink-900 mt-1">
-                {live.tide.value}
-              </p>
-              <p className="mt-1 text-caption text-ink-700">{live.tide.secondary}</p>
-            </div>
-            <div className="card-surface p-5">
-              <p className="eyebrow">UV</p>
-              <p className="font-display text-display-sm text-ink-900 mt-1">
-                {live.uv.value}
-              </p>
-              <p className="mt-1 text-caption text-ink-700">{live.uv.secondary}</p>
-            </div>
-          </div>
-          <p className="mt-4 text-caption text-ink-600">
-            Tiles from BOM Southeast Coast + Open-Meteo. {live.sourceNote}{" "}
-            <span className="font-medium text-ink-700">
-              For bar crossings always defer to the MSQ Noosa bar report
-              and the Noosa Coast Guard broadcast (VHF 16 / 67) — this
-              site is a planning tool, not a navigational authority.
-            </span>
-          </p>
+        <p className="eyebrow">Browse by engine</p>
+        <h2
+          id="engine-search-h"
+          className="mt-1 font-display text-display-md text-ink-900 text-balance"
+        >
+          Search every area at once
+        </h2>
+        <p className="mt-3 lead max-w-3xl text-pretty">
+          For visitors who don&apos;t want a curated pick — area-search
+          links straight into the booking engines.
+        </p>
+        <div className="mt-10 overflow-x-auto">
+          <table className="w-full text-left text-body-sm">
+            <thead>
+              <tr className="border-b-2 border-paper-300">
+                <th scope="col" className="py-3 pr-4 font-display text-headline-md text-ink-900">
+                  Area
+                </th>
+                <th scope="col" className="py-3 pr-4 font-display text-headline-md text-ink-900">
+                  Booking.com
+                </th>
+                <th scope="col" className="py-3 pr-4 font-display text-headline-md text-ink-900">
+                  Stayz
+                </th>
+                <th scope="col" className="py-3 font-display text-headline-md text-ink-900">
+                  Airbnb
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {areas.map((a) => (
+                <tr key={a.id} className="border-b border-paper-200 align-top">
+                  <td className="py-3 pr-4 text-ink-900 font-medium">{a.name}</td>
+                  <td className="py-3 pr-4">
+                    <a
+                      href={`https://www.booking.com/searchresults.html?ss=${encodeURIComponent(a.name + " Noosa Hotels")}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="link text-ocean-700"
+                      data-track={`engine_booking_${a.id}`}
+                    >
+                      Search →
+                    </a>
+                  </td>
+                  <td className="py-3 pr-4">
+                    <a
+                      href={`https://www.stayz.com.au/holiday-rental-search?query=${encodeURIComponent(a.name + " holiday houses")}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="link text-ocean-700"
+                      data-track={`engine_stayz_${a.id}`}
+                    >
+                      Search →
+                    </a>
+                  </td>
+                  <td className="py-3">
+                    {a.id === "peregian" ? (
+                      <a
+                        href="https://www.airbnb.com.au/s/Peregian-Beach-Queensland-Australia/homes"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="link text-ocean-700"
+                        data-track={`engine_airbnb_${a.id}`}
+                      >
+                        Search →
+                      </a>
+                    ) : (
+                      <span className="text-ink-400">—</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
     </div>

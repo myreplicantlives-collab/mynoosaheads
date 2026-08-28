@@ -20,25 +20,28 @@ export type ImageTileProps = {
   dataTrack?: string;
   /** Optional aria-current for the active page. */
   ariaCurrent?: "page" | undefined;
+  /**
+   * MSN-2973 — strip the photographer credit line. Set true on the
+   * main-journey pages (homepage 6-tile grid, /things-to-do 8-card
+   * grid) where Tim's directive was to remove attribution from
+   * rendered HTML. The full attribution table lives at /photo-credits
+   * and is linked from the footer only.
+   */
+  hideAttribution?: boolean;
 };
 
 /**
  * ImageTile — MSN-2972 card for the homepage 6-tile grid and the
- * /things-to-do 12-category grid.
+ * /things-to-do 8-category grid.
  *
  * Layout:
  *   - Image area (60% of card height on desktop, 56% on mobile)
- *   - Text area: title + 1-sentence body + photographer credit
+ *   - Text area: title + 1-sentence body (+ photographer credit,
+ *     suppressed on main-journey pages per MSN-2973)
  *
  * Hover: subtle lift (translateY(-2px) + shadow). Focus: ring on the
  * link so keyboard users see the focus target. Whole tile is a single
  * <Link> for the maximum tap target.
- *
- * Client component because the photographer credit is a nested anchor
- * and we need onClick to stop propagation so clicking the credit
- * doesn't also navigate the parent Link. (Nested <a> elements are
- * invalid HTML; the credit anchor is the only way to surface the
- * Commons attribution back-link without losing the parent tap target.)
  */
 export function ImageTile({
   href,
@@ -48,6 +51,7 @@ export function ImageTile({
   emphasis = false,
   dataTrack,
   ariaCurrent,
+  hideAttribution = false,
 }: ImageTileProps) {
   return (
     <Link
@@ -84,19 +88,23 @@ export function ImageTile({
             {body}
           </p>
         ) : null}
-        <p className="mt-3 text-caption text-ink-600">
-          Photo:{" "}
-          <a
-            href={image.commonsPage}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline decoration-paper-300 underline-offset-2 hover:text-ocean-700"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {image.author}
-          </a>{" "}
-          / Wikimedia Commons · {image.licence}
-        </p>
+        {/* MSN-2973 — attribution stripped on main-journey pages. Full
+         *  table lives at /photo-credits. */}
+        {!hideAttribution ? (
+          <p className="mt-3 text-caption text-ink-600">
+            Photo:{" "}
+            <a
+              href={image.commonsPage}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-paper-300 underline-offset-2 hover:text-ocean-700"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {image.author}
+            </a>{" "}
+            / Wikimedia Commons · {image.licence}
+          </p>
+        ) : null}
       </div>
     </Link>
   );
