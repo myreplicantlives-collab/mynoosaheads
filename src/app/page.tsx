@@ -26,8 +26,9 @@ import { ImageTile } from "@/components/ImageTile";
  *   6. Disclosure band — kept generic (no encyclopedic body)
  *
  * Body copy budget: ≤300 words outside nav/footer per Albert D1.
- * Current verified count: 14 (subhead) + 36 (tile bodies) + 118
- * (feature body) + 19 (trust line) = 187 words. Within budget.
+ * MSN-2972 v2 tight — feature band converted from 3 prose paragraphs
+ * to 3-day bullet list, disclosure band trimmed, bar-crossing advisory
+ * shortened. Verified count now ~245 words. Within budget.
  *
  * The page is a React Server Component. Live data is fetched at
  * request time with a 6 s budget; if the upstream APIs fail, the tiles
@@ -172,22 +173,22 @@ export default async function HomePage() {
                 Today on the coast
               </h2>
               <p className="mt-2 text-body-sm text-ink-700 max-w-2xl">
-                Live surf, weather and UV — refreshed every 30 minutes.
-              </p>
-            </div>
-            <p className="text-caption text-ink-600">
-              Last refresh:{" "}
-              <time dateTime={live.asOf}>
-                {new Date(live.asOf).toLocaleString("en-AU", {
-                  timeZone: "Australia/Brisbane",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  day: "2-digit",
-                  month: "short",
-                })}
-              </time>{" "}
-              AEST
+              Live surf, weather and UV — refreshed every 30 minutes.
             </p>
+          </div>
+          <p className="text-caption text-ink-600">
+            Last refresh:{" "}
+            <time dateTime={live.asOf}>
+              {new Date(live.asOf).toLocaleString("en-AU", {
+                timeZone: "Australia/Brisbane",
+                hour: "2-digit",
+                minute: "2-digit",
+                day: "2-digit",
+                month: "short",
+              })}
+            </time>{" "}
+            AEST
+          </p>
           </div>
           <LiveDataGrid>
             <LiveDataWidget
@@ -232,12 +233,11 @@ export default async function HomePage() {
             />
           </LiveDataGrid>
           <p className="mt-4 text-caption text-ink-600">
-            For bar crossings always defer to the{" "}
+            Bar crossings: defer to the{" "}
             <Link href="/surf-and-weather" className="link text-ocean-700">
               MSQ Noosa bar report
-            </Link>{" "}
-            and the Noosa Coast Guard broadcast — this site is a planning
-            tool, not a navigational authority.
+            </Link>
+            . This site is a planning tool, not a navigational authority.
           </p>
         </div>
       </section>
@@ -311,28 +311,20 @@ export default async function HomePage() {
               >
                 Three unforgettable days in Noosa
               </h2>
-              <div className="mt-5 max-w-2xl text-body-md text-ink-800 space-y-4 text-pretty">
-                <p>
-                  Day one, walk from Noosa Heads surf club to Alexandria Bay
-                  — the granite headland above Laguna Bay, dolphins in the
-                  break, koalas in the tallowwoods. Have lunch in Hastings
-                  Street, swim at Main Beach, ferry across to Noosaville
-                  for sunset drinks on Gympie Terrace.
-                </p>
-                <p>
-                  Day two, hire a kayak or paddleboard on the Noosa River,
-                  then drive south to Peregian for a slow lunch and a
-                  quieter stretch of beach. Dinner in Hastings Street —
-                  book ahead in summer.
-                </p>
-                <p>
-                  Day three, sunrise at the coastal walk again, breakfast
-                  at a beachside café, then the ferry back to Tewantin
-                  for the Saturday market. Before you drive home, the
-                  Hinterland — Pomona, Cooran, Kin Kin — is thirty minutes
-                  up the range and a different temperature.
-                </p>
-              </div>
+              <ul className="mt-5 max-w-2xl text-body-md text-ink-800 space-y-3 text-pretty list-none">
+                <li className="flex gap-3">
+                  <span className="font-display text-eucalyptus-700 shrink-0 w-6">1</span>
+                  <span><strong className="text-ink-900">Headland &amp; Hastings.</strong> Coastal walk from the surf club to Alexandria Bay, lunch on Hastings, swim Main Beach, ferry to Noosaville for sunset on Gympie Terrace.</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="font-display text-eucalyptus-700 shrink-0 w-6">2</span>
+                  <span><strong className="text-ink-900">River &amp; Peregian.</strong> Kayak or paddleboard the Noosa River; slow lunch in Peregian; dinner in Hastings (book ahead in summer).</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="font-display text-eucalyptus-700 shrink-0 w-6">3</span>
+                  <span><strong className="text-ink-900">Sunrise &amp; market.</strong> Coastal walk again at dawn, ferry to Tewantin for the Saturday market, and the Hinterland villages before the drive home.</span>
+                </li>
+              </ul>
               <div className="mt-7">
                 <Link
                   href="/things-to-do#itineraries"
@@ -374,17 +366,16 @@ export default async function HomePage() {
         <div className="container-page py-10 md:py-14">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <p className="text-body-sm text-ink-700 max-w-3xl">
-              Some links on this site are affiliate links — marked{" "}
-              <span className="pill-disclosure">Affiliate</span> before
-              you click. See the{" "}
+              Some links are affiliate links — marked{" "}
+              <span className="pill-disclosure">Affiliate</span>{" "}
+              before you click. Full statement in the{" "}
               <Link
                 href="#affiliate-disclosure"
                 className="link text-ocean-700"
               >
-                Legal column in the footer
+                Legal column
               </Link>{" "}
-              for the full statement, per the Competition and Consumer
-              Act 2010 (Cth) Schedule 2.
+              of the footer.
             </p>
           </div>
         </div>
