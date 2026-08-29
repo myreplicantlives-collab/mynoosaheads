@@ -71,7 +71,7 @@ export const EXPERIENCES: ExperiencePage[] = [
       },
       {
         label: "Noosa Ocean Kayak Tours",
-        href: "https://www.noosaoceankayaktours.com.au/",
+        href: "https://www.noosakayaktours.com.au/",
         caption: "Guided kayak tours through the upper river and Lake Weyba.",
       },
     ],
