@@ -69,7 +69,12 @@ export default async function HomePage() {
       <JsonLd data={homeJsonLd} />
 
       {/* ─── 1. Hero — Noosa Main Beach, looking east (verified) ─── */}
-      <HomeHero src={HOMEPAGE_HERO.path} />
+      {/* MSN-2987 chunk 3: pass the responsive srcSet (avifSrcSet) so the
+       *  browser can pick 640w on phones / 1920w on desktops. */}
+      <HomeHero
+        src={HOMEPAGE_HERO.path}
+        srcSet={HOMEPAGE_HERO.avifSrcSet}
+      />
 
       {/* ─── 2. Atmospheric intro (verified Noosa photograph) ─── */}
       <section

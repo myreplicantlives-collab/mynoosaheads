@@ -46,9 +46,9 @@ const HEROES = {
   home: {
     caption:
       "Coastal road at golden hour — the kind of approach into Noosa that the hinterland road-trips pass through. Commercial-OK atmospheric substitute for the previous NC Hastings Street hero.",
-    path: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=2400&q=80",
-    avifSrcSet: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=2400&q=80",
-    webpSrcSet: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=2400&q=80",
+    path: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=1920&q=75&auto=format",
+    avifSrcSet: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=1280&q=75&auto=format 1280w, https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=1920&q=75&auto=format 1920w",
+    webpSrcSet: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=1280&q=75&auto=format 1280w, https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=1920&q=75&auto=format 1920w",
     sourcePage:
       "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a",
     author: "Jakob Owens — Unsplash",
@@ -58,9 +58,9 @@ const HEROES = {
   accommodation: {
     caption:
       "A walkable boutique-accommodation strip — generic atmospheric substitute for the previous NC Hastings Street hero.",
-    path: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=2400&q=80",
-    avifSrcSet: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=2400&q=80",
-    webpSrcSet: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=2400&q=80",
+    path: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1920&q=75&auto=format",
+    avifSrcSet: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1280&q=75&auto=format 1280w, https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1920&q=75&auto=format 1920w",
+    webpSrcSet: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1280&q=75&auto=format 1280w, https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1920&q=75&auto=format 1920w",
     sourcePage:
       "https://images.unsplash.com/photo-1505142468610-359e7d316be0",
     author: "Unsplash (commercial OK, no attribution required)",
@@ -82,9 +82,9 @@ const HEROES = {
   surfAndWeather: {
     caption:
       "Sky and sea at the south-east swell window — generic atmospheric substitute for the previous NC-ND Noosa storm photo.",
-    path: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=2400&q=80",
-    avifSrcSet: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=2400&q=80",
-    webpSrcSet: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=2400&q=80",
+    path: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1920&q=75&auto=format",
+    avifSrcSet: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1280&q=75&auto=format 1280w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1920&q=75&auto=format 1920w",
+    webpSrcSet: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1280&q=75&auto=format 1280w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1920&q=75&auto=format 1920w",
     sourcePage:
       "https://images.unsplash.com/photo-1502082553048-f009c37129b9",
     author: "Unsplash (commercial OK, no attribution required)",
@@ -94,9 +94,9 @@ const HEROES = {
   thingsToDo: {
     caption:
       "Calm water, ferry boats, gum trees — atmospheric substitute for the previous NC Noosa River hero.",
-    path: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=2400&q=80",
-    avifSrcSet: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=2400&q=80",
-    webpSrcSet: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=2400&q=80",
+    path: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1920&q=75&auto=format",
+    avifSrcSet: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1280&q=75&auto=format 1280w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1920&q=75&auto=format 1920w",
+    webpSrcSet: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1280&q=75&auto=format 1280w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1920&q=75&auto=format 1920w",
     sourcePage:
       "https://images.unsplash.com/photo-1502082553048-f009c37129b9",
     author: "Unsplash (commercial OK, no attribution required)",
@@ -142,9 +142,9 @@ const CARDS = {
   hastingsStreetWest: {
     caption:
       "Hastings Street atmosphere — generic commercial-OK substitute for the previous NC photo.",
-    path: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80",
-    avifSrcSet: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80",
-    webpSrcSet: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80",
+    path: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1280&q=75&auto=format",
+    avifSrcSet: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1280&q=75&auto=format 1280w",
+    webpSrcSet: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1280&q=75&auto=format 1280w",
     sourcePage:
       "https://images.unsplash.com/photo-1506905925346-21bda4d32df4",
     author: "Unsplash (commercial OK, no attribution required)",
@@ -156,9 +156,9 @@ const CARDS = {
   hastingsStreetEast: {
     caption:
       "Coastal headland atmosphere — generic commercial-OK substitute for the previous NC Hastings East photo.",
-    path: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80",
-    avifSrcSet: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80",
-    webpSrcSet: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80",
+    path: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1280&q=75&auto=format",
+    avifSrcSet: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1280&q=75&auto=format 1280w",
+    webpSrcSet: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1280&q=75&auto=format 1280w",
     sourcePage:
       "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
     author: "Unsplash (commercial OK, no attribution required)",
@@ -254,9 +254,9 @@ const CARDS = {
   noosaRiver: {
     caption:
       "River-edge calm — generic commercial-OK substitute for the previous NC Noosa River photo.",
-    path: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1600&q=80",
-    avifSrcSet: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1600&q=80",
-    webpSrcSet: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1600&q=80",
+    path: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1280&q=75&auto=format",
+    avifSrcSet: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1280&q=75&auto=format 1280w",
+    webpSrcSet: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1280&q=75&auto=format 1280w",
     sourcePage:
       "https://images.unsplash.com/photo-1559827260-dc66d52bef19",
     author: "Unsplash (commercial OK, no attribution required)",
@@ -282,9 +282,9 @@ const CARDS = {
   noosaFarmersMarket: {
     caption:
       "Farmers' market atmosphere — generic commercial-OK substitute for the previous NC NFM photo.",
-    path: "https://images.unsplash.com/photo-1488459716781-31db52582fe2?w=1600&q=80",
-    avifSrcSet: "https://images.unsplash.com/photo-1488459716781-31db52582fe2?w=1600&q=80",
-    webpSrcSet: "https://images.unsplash.com/photo-1488459716781-31db52582fe2?w=1600&q=80",
+    path: "https://images.unsplash.com/photo-1488459716781-31db52582fe2?w=1280&q=75&auto=format",
+    avifSrcSet: "https://images.unsplash.com/photo-1488459716781-31db52582fe2?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1488459716781-31db52582fe2?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1488459716781-31db52582fe2?w=1280&q=75&auto=format 1280w",
+    webpSrcSet: "https://images.unsplash.com/photo-1488459716781-31db52582fe2?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1488459716781-31db52582fe2?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1488459716781-31db52582fe2?w=1280&q=75&auto=format 1280w",
     sourcePage:
       "https://images.unsplash.com/photo-1488459716781-31db52582fe2",
     author: "Unsplash (commercial OK, no attribution required)",
@@ -310,9 +310,9 @@ const CARDS = {
   aromaHastings: {
     caption:
       "Outdoor dining atmosphere on Hastings Street — generic commercial-OK substitute for the previous NC Aroma café photo.",
-    path: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80",
-    avifSrcSet: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80",
-    webpSrcSet: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80",
+    path: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1280&q=75&auto=format",
+    avifSrcSet: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1280&q=75&auto=format 1280w",
+    webpSrcSet: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1280&q=75&auto=format 1280w",
     sourcePage:
       "https://images.unsplash.com/photo-1414235077428-338989a2e8c0",
     author: "Unsplash (commercial OK, no attribution required)",
@@ -366,9 +366,9 @@ const CARDS = {
   noosaRegionalGallery: {
     caption:
       "Gallery interior atmosphere — generic commercial-OK substitute for the previous NC NRG photo.",
-    path: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=1600&q=80",
-    avifSrcSet: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=1600&q=80",
-    webpSrcSet: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=1600&q=80",
+    path: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=1280&q=75&auto=format",
+    avifSrcSet: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=1280&q=75&auto=format 1280w",
+    webpSrcSet: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=1280&q=75&auto=format 1280w",
     sourcePage:
       "https://images.unsplash.com/photo-1518998053901-5348d3961a04",
     author: "Unsplash (commercial OK, no attribution required)",

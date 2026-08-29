@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 
 export type ImageTileProps = {
@@ -11,6 +10,12 @@ export type ImageTileProps = {
     /** MSN-2982: image URL/path. Accepts either {url} (legacy) or {path} (MSN-2982 verified set). */
     url?: string;
     path?: string;
+    /** MSN-2987 chunk 3: explicit responsive srcSet if the caller has one. */
+    srcSet?: string;
+    /** MSN-2987 chunk 3: avifSrcSet from the KubePhoto data file. */
+    avifSrcSet?: string;
+    /** MSN-2987 chunk 3: webpSrcSet from the KubePhoto data file. */
+    webpSrcSet?: string;
     caption: string;
     author?: string;
     licence?: string;
@@ -68,12 +73,24 @@ export function ImageTile({
       ].join(" ")}
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-paper-200">
-        <Image
+        {/* Native <img> instead of next/image so we can pass our own
+         *  srcSet — next/image on Cloudflare Pages has
+         *  `images.unoptimized = true` and deletes user-supplied
+         *  srcSet (get-img-props.js). Absolute inset-0 inside a sized
+         *  parent (aspect-[4/3]) = CLS = 0. fetchpriority="auto" lets
+         *  the browser lazy-load below-the-fold tiles by default. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src={image.path ?? image.url ?? ""}
           alt={image.caption}
-          fill
+          // MSN-2987 chunk 3: multi-width srcSet so the browser picks
+          // 640w on phones / 1280w on tablets / 1920w on desktops
+          // instead of always fetching the 1920w default.
+          srcSet={image.srcSet ?? image.avifSrcSet ?? image.webpSrcSet ?? undefined}
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
         />
         {emphasis ? (
           <span className="absolute top-3 left-3 inline-flex items-center rounded-full bg-paper-50/95 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-eucalyptus-700 shadow-sm">
