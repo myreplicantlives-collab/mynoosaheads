@@ -2,9 +2,11 @@
 // Sentry test endpoint — throws a server-side error on GET.
 //
 // Used by TSK-2957-04 to verify Sentry is wired correctly. Trigger:
-//   curl https://noosa-site-v2.vercel.app/api/sentry-example-error
+//   curl https://mynoosaheads.twainent.workers.dev/api/sentry-example-error
 //
 // Returns 500 (intentional). Captured by Sentry if SENTRY_DSN is set.
+// MSN-2964: disallowed in robots.txt so crawlers don't index this
+// intentional-500 endpoint.
 
 export const dynamic = "force-dynamic";
 

@@ -12,7 +12,7 @@
  *   - title     : short caption (e.g. "Surf — First Bay")
  *   - value     : primary metric (e.g. "1.4 m")
  *   - secondary : supporting metric (e.g. "period 9 s, SSE")
- *   - source    : attribution (e.g. "BOM Capricornia–Hervey Bay")
+ *   - source    : attribution (e.g. "BOM Southeast Coast")
  *   - asOf      : ISO timestamp of last refresh
  *   - on        : load this widget lazily? (true once data lands)
  */

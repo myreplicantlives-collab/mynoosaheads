@@ -15,10 +15,16 @@
 export const SITE = {
   brand: "My Noosa Heads",
   brandShort: "mynoosaheads",
-  tagline: "By the headland, by the bar.",
+  tagline: "Discover Noosa.",
   domain: "mynoosaheads.com",
-  productionUrl: "https://noosa-site-v2.vercel.app",
-  stagingUrl: "https://noosa-site-v2.vercel.app",
+  // MSN-2964: live URL is the Cloudflare Workers deployment. The Vercel
+  // URL is no longer authoritative (it returns 404 to external reviewers
+  // and is being retired). Override via NEXT_PUBLIC_SITE_URL env var on
+  // any future environment that needs a different canonical host.
+  productionUrl:
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    "https://mynoosaheads.twainent.workers.dev",
+  stagingUrl: "https://mynoosaheads.twainent.workers.dev",
   email: "hello@mynoosaheads.com",
   locale: "en-AU",
   region: "Queensland, Australia",
@@ -38,20 +44,20 @@ export const SPRINT = {
 } as const;
 
 /**
- * Primary navigation — order is editorial. Surf & weather first (the
- * highest-frequency page a local opens each morning), then National Park
- * (alerts + tracks), then the consumer categories. No newsletter link,
- * no login, no social. Per chairman directive 2026-08-27.
+ * Primary navigation — MSN-2972 IA rewrite.
+ * Order is visitor-first (per Albert's D4 brief): Stay first (commercial
+ * anchor), then Things to do, Beaches & nature, Eat & drink, Plan your
+ * trip, Today in Noosa. The old category routes (fishing, boats, travel,
+ * webcams) survive as direct URLs and as the "More" footer section.
+ * No newsletter link, no login, no social. Per chairman directive 2026-08-27.
  */
 export const NAV = [
-  { label: "Surf & weather", href: "/surf-and-weather", description: "Live BOM + Open-Meteo tiles, tide, UV." },
-  { label: "National Park", href: "/noosa-national-park", description: "Tracks, wildlife, QPWS alerts." },
-  { label: "Accommodation", href: "/accommodation", description: "Booking, Stayz, Airbnb, Expedia." },
-  { label: "Things to do", href: "/things-to-do", description: "Day-by-day ideas across the shire." },
-  { label: "Fishing", href: "/fishing-reports", description: "Weekly report, tides, solunar." },
-  { label: "Boats", href: "/boats-and-watercraft", description: "Hire, ramps, river bar crossings." },
-  { label: "Travel", href: "/travel-and-transport", description: "Bruce Highway, airport, ferry." },
-  { label: "Webcams", href: "/webcams", description: "Council cams + SLSQ flags." },
+  { label: "Stay", href: "/accommodation", description: "Where to stay — five areas, ten curated properties." },
+  { label: "Things to do", href: "/things-to-do", description: "Eight ways to spend your days." },
+  { label: "Beaches & nature", href: "/noosa-national-park", description: "Coastal walk, wildlife, QPWS alerts." },
+  { label: "Eat & drink", href: "/things-to-do#eat-and-drink", description: "Hastings Street, riverfront cafés, markets." },
+  { label: "Plan your trip", href: "/things-to-do#itineraries", description: "Itineraries, transport, maps." },
+  { label: "Today in Noosa", href: "/surf-and-weather", description: "Live surf, weather, UV, park alerts." },
 ] as const;
 
 /**
@@ -65,11 +71,12 @@ export const CATEGORIES = [
     href: "/surf-and-weather",
     navLabel: "Surf & weather",
     icon: "Wave" as const,
-    pitch: "Today's swell, wind, tide, and UV — from BOM Capricornia–Hervey Bay and Open-Meteo Marine.",
+    pitch: "Today's swell, wind, tide, and UV — from BOM Southeast Coast and Open-Meteo Marine.",
     longDescription:
-      "The Noosa bar opens on an outgoing tide with a south-east wind under 15 km/h. We pull the marine forecast from the Bureau of Meteorology's Capricornia–Hervey Bay district and Open-Meteo's free marine API, so the tiles on this page update themselves every 30 minutes without a human pushing them.",
+      "Live conditions for Noosa Heads: BOM Southeast Coast marine district and Open-Meteo's free marine API. Tiles refresh themselves every 30 minutes without a human pushing them.",
     primarySources: [
-      { label: "BOM Capricornia–Hervey Bay", href: "https://www.bom.gov.au/qld/forecasts/coastal.shtml" },
+      { label: "BOM Southeast Coast", href: "https://www.bom.gov.au/coastal-location/australia" },
+      { label: "MSQ — Noosa bar report", href: "https://www.msq.qld.gov.au/" },
       { label: "Open-Meteo Marine Weather API", href: "https://open-meteo.com/en/docs/marine-weather-api" },
       { label: "BOM Tewantin tide", href: "https://www.bom.gov.au/australia/tides/#!/qld-tewantin" },
     ],
@@ -81,7 +88,7 @@ export const CATEGORIES = [
     icon: "ParkGate" as const,
     pitch: "Coastal walk, Tanglewood track, wildlife sightings — QPWS alerts on top.",
     longDescription:
-      "Noosa National Park covers about 4,000 hectares between Noosa Heads and Peregian Beach. The park is managed by the Queensland Parks and Wildlife Service. We link directly to QPWS alerts and conditions pages so you can check before you drive.",
+      "Noosa National Park covers 2,883 hectares (28.83 km²) between Noosa Heads and Peregian Beach. The park is managed by the Queensland Parks and Wildlife Service. We link directly to QPWS alerts and conditions pages so you can check before you drive.",
     primarySources: [
       { label: "QPWS — Noosa National Park", href: "https://parks.qld.gov.au/find-a-park/national-parks/noosa-national-park" },
       { label: "QPWS park alerts", href: "https://parks.qld.gov.au/park-alerts" },
@@ -92,14 +99,12 @@ export const CATEGORIES = [
     href: "/accommodation",
     navLabel: "Accommodation",
     icon: "Compass" as const,
-    pitch: "Hotels, apartments, holiday houses. Booking, Stayz, Airbnb, Expedia.",
+    pitch: "Hotels, apartments, holiday houses across the shire.",
     longDescription:
-      "We don't take inventory. Each booking option links out to Booking.com, Stayz, Expedia, or Airbnb with our affiliate tag. Per ACCC Schedule 2, every monetised link is labelled before you click; the full disclosure is in the footer.",
+      "We don't take inventory. Each booking option links out to a third-party booking engine. Where MyNoosaHeads participates in an affiliate programme and the link is monetised, it is marked Affiliate before you click, per the Competition and Consumer Act 2010 (Cth) Schedule 2. The full disclosure is in the footer.",
     primarySources: [
-      { label: "Booking.com affiliate disclosure", href: "https://www.booking.com/affiliate-program/v2/index.html" },
-      { label: "Stayz affiliate program", href: "https://www.stayz.com.au/affiliates" },
-      { label: "Airbnb affiliate program", href: "https://news.airbnb.com/en-us/airbnb-affiliate-program/" },
-      { label: "Expedia Partner Solutions", href: "https://www.expediapartnercentral.com/" },
+      { label: "Visit Noosa — Where to stay", href: "https://www.visitnoosa.com.au/" },
+      { label: "Noosa Shire Council — Visitor info", href: "https://www.noosa.qld.gov.au/Community-services/Visitor-information" },
     ],
   },
   {
@@ -109,9 +114,9 @@ export const CATEGORIES = [
     icon: "Eucalyptus" as const,
     pitch: "Day-by-day ideas across the shire — coast, river, hinterland.",
     longDescription:
-      "Categories are organised around the things locals actually do, not what the visitor brochure leads with. Hastings Street, the Noosa River, the hinterland villages (Pomona, Cooran, Kin Kin), and the surf beaches — each with its own weather and tide cues.",
+      "Categories cover the four functional corners of the shire — Hastings Street, the Noosa River, the hinterland villages (Pomona, Cooran, Kin Kin), and the surf beaches — each with its own weather and tide cues.",
     primarySources: [
-      { label: "Tourism Noosa (industry body)", href: "https://www.visitnoosa.com.au/" },
+      { label: "Visit Noosa", href: "https://www.visitnoosa.com.au/" },
       { label: "Noosa Council — About Noosa", href: "https://www.noosa.qld.gov.au/Community/About-Noosa" },
     ],
   },
@@ -183,24 +188,10 @@ export const FOOTER_DISCLOSURE = {
     {
       heading: "Sitemap",
       links: [
-        { label: "Surf & weather", href: "/surf-and-weather" },
-        { label: "National Park", href: "/noosa-national-park" },
-        { label: "Accommodation", href: "/accommodation" },
+        { label: "Where to stay", href: "/accommodation" },
         { label: "Things to do", href: "/things-to-do" },
-        { label: "Fishing", href: "/fishing-reports" },
-        { label: "Boats", href: "/boats-and-watercraft" },
-        { label: "Travel", href: "/travel-and-transport" },
-        { label: "Webcams", href: "/webcams" },
-      ],
-    },
-    {
-      heading: "Live sources",
-      links: [
-        { label: "BOM Capricornia–Hervey Bay", href: "https://www.bom.gov.au/qld/forecasts/coastal.shtml", external: true },
-        { label: "Open-Meteo", href: "https://open-meteo.com/", external: true },
-        { label: "QLD Traffic", href: "https://qldtraffic.qld.gov.au/", external: true },
-        { label: "Surf Life Saving QLD", href: "https://www.lifesaving.com.au/", external: true },
-        { label: "Beachsafe.org.au", href: "https://beachsafe.org.au/", external: true },
+        { label: "National Park", href: "/noosa-national-park" },
+        { label: "Surf & weather", href: "/surf-and-weather" },
       ],
     },
     {
@@ -208,40 +199,36 @@ export const FOOTER_DISCLOSURE = {
       links: [
         { label: "About", href: "/about" },
         { label: "Contact", href: "/contact" },
+        { label: "Photo credits", href: "/photo-credits" },
       ],
     },
     {
       heading: "Legal",
       links: [
         { label: "Privacy", href: "/privacy", disclosure: "Privacy Act 1988 (Cth)" },
-        { label: "Affiliate disclosure", href: "#affiliate-disclosure", disclosure: "ACCC Sch 2" },
+        { label: "Affiliate disclosure", href: "/terms#affiliate-disclosure", disclosure: "ACCC Sch 2" },
         { label: "Spam Act statement", href: "/privacy#spam-act-2003", disclosure: "Spam Act 2003" },
-      ],
-    },
-    {
-      heading: "Local partners",
-      links: [
-        { label: "Noosa Council", href: "https://www.noosa.qld.gov.au/", external: true },
-        { label: "Tourism Noosa", href: "https://www.visitnoosa.com.au/", external: true },
-        { label: "Sunshine Coast Council", href: "https://www.sunshinecoast.qld.gov.au/", external: true },
-        { label: "QPWS", href: "https://www.qld.gov.au/environment/parks", external: true },
       ],
     },
   ],
   /**
-   * MSN-2959 / TSK-2959-FIX-3 — 97-word compliance band (replaces the
-   * deleted /how-we-make-money dedicated route). Rendered in the
-   * Footer on every page. Per Albert's spec §4.6: the new disclosure
-   * is more transparent than the old dedicated page because it shows
-   * on every page, not one route most visitors would never find.
+   * MSN-2973 — restrained one-sentence compliance note.
+   *
+   * Per Tim's directive, the footer must NOT carry methodology,
+   * source lists, or long disclaimers. The full 97-word statement
+   * lived here in MSN-2959 (replacing the deleted /how-we-make-money
+   * route). For MSN-2973 the band is reduced to a single
+   * clear sentence that satisfies ACCC Schedule 2 ("clear and
+   * prominent" disclosure of affiliate relationships) without
+   * crowding the footer.
    *
    * Carries the in-page anchor id="affiliate-disclosure" so the
-   * Footer's "Affiliate disclosure" link (#affiliate-disclosure)
-   * scrolls here. Statutory pills (Privacy Act 1988, ACCC Sch 2,
-   * Spam Act 2003) sit in the Legal column above.
+   * Footer's "Affiliate disclosure" link scrolls here. The full
+   * statement remains available at /terms and in the Legal
+   * column above (Privacy Act 1988, ACCC Sch 2, Spam Act 2003).
    */
   complianceBand:
-    "MyNoosaHeads is independent. We don’t run a newsletter, collect email addresses, or operate a login. Some links on this site are affiliate links — if you book or purchase through them, we may earn a small commission at no extra cost to you. We participate in the Booking.com, Stayz, Expedia, and Airbnb affiliate programmes; affiliate relationships do not influence our editorial copy. Full statement of which programmes and our editorial firewall: see the Affiliate disclosure item in the Legal column below, per the Competition and Consumer Act 2010 (Cth) Schedule 2.",
+    "Some links earn us a small commission.",
   region: "AU · en-AU · Queensland, Australia",
   copyrightYear: 2026,
 } as const;
@@ -262,3 +249,13 @@ export const ACCC_DISCLOSURE = {
   body:
     "Some links on this page are affiliate links. If you book or purchase through them, MyNoosaHeads may earn a small commission at no extra cost to you. Affiliate relationships do not influence the editorial content. See the footer for the full statement, per the Competition and Consumer Act 2010 (Cth) Schedule 2.",
 } as const;
+
+/**
+ * MSN-2964 (rework, directive B) — empty until affiliate programme
+ * participation is verified. The `<AffiliateBadge>` component and any
+ * UI claiming a specific monetised relationship should gate rendering
+ * on this list. Per ACCC Schedule 2 (Australian Consumer Law) and the
+ * mission spec: "Do not claim participation in an affiliate programme
+ * unless participation is verified."
+ */
+export const VERIFIED_AFFILIATES: string[] = [];

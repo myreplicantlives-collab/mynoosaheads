@@ -5,9 +5,15 @@
  * Sprint 1.5 (MSN-2958 / TSK-2958-02): every photo slot on every
  * category page uses this so attribution is consistent.
  *
- * Per Albert's `photo_inventory.md` every image on the site is from
- * Wikimedia Commons under CC BY-SA or CC BY. The credit line below
- * the image is non-optional under those licences.
+ * MSN-2980: every image on the site is from Flickr (via Openverse)
+ * under a CC licence, or from the Unsplash CDN under the Unsplash
+ * licence. The credit line below the image is non-optional under
+ * those licences.
+ *
+ * MSN-2975 perf chunk 2: inline photos hot-linked to Flickr/Unsplash
+ * via next/image (Wikimedia is forbidden per chairman mandate
+ * 2026-08-29). Explicit `width` + `height` (or 16:9 default) keep
+ * CLS = 0.
  */
 
 import Image from "next/image";
@@ -65,7 +71,7 @@ export function CaptionedPhoto({
       </div>
       <figcaption className="mt-3 flex flex-col gap-1 text-caption text-ink-600 sm:flex-row sm:items-baseline sm:justify-between">
         <span className="font-medium text-ink-700">{caption ?? alt}</span>
-        <span className="text-ink-600">{credit}</span>
+        {credit ? <span className="text-ink-600">{credit}</span> : null}
       </figcaption>
     </figure>
   );

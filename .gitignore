@@ -34,5 +34,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# @opennextjs/cloudflare build output (MSN-2962)
+.open-next/
+
 # evidence (lives outside repo at /Volumes/OpenClawLive/state/control/evidence/)
 evidence/
+
+# backup files left by the MSN-2962 deployment work
+*.bak-msn2962.wrangler/
+.wrangler/state/

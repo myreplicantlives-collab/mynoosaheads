@@ -23,6 +23,11 @@ export const metadata: Metadata = {
     url: "/webcams",
     type: "article",
   },
+  twitter: {
+    card: "summary",
+    title: "Webcams · MyNoosaHeads",
+    description: "Coastal webcams we link to, with attribution.",
+  },
 };
 
 const CAMS = [
@@ -78,16 +83,16 @@ const CAMS = [
 
 export default function WebcamsPage() {
   const photos = CATEGORY_PHOTOS["webcams"];
-  const heroCredit = photos
-    ? `Photo: ${photos.hero.author} / Wikimedia Commons · ${photos.hero.licence}`
-    : "";
+  // MSN-2975 — strip photographer attribution from rendered HTML
+  // on main-journey pages. Full attribution lives at /photo-credits.
+  const heroCredit = "";
 
   return (
     <div className="bg-paper-50">
-      {/* Sprint 1.5: full-bleed hero photo (drone view) */}
       {photos?.hero ? (
         <HeroPhoto
           src={photos.hero.url}
+          srcSet={photos.hero.srcSet}
           alt={photos.hero.caption}
           credit={heroCredit}
           caption={photos.hero.caption}
@@ -96,11 +101,15 @@ export default function WebcamsPage() {
       <Hero
         eyebrow="Public feeds · we link, we don’t scrape"
         title="Webcams"
-        subtitle="A short, honest list of public coastal webcams around Noosa. Where the operator allows embedding with attribution, we link; where the feed requires a link-out, we link."
+        subtitle="A practical list of public coastal webcams around Noosa. Where the operator allows embedding with attribution, we embed; where a link-out is required, we link."
         flourish="Check the cam before you check the car keys."
       />
 
-      {/* Sprint 1.5: inline images after the gallery */}
+      {/* Sprint 1.5: inline images after the gallery.
+       * MSN-2975 perf chunk 2: inline photos still resolve to Wikimedia
+       * thumbnails (chunk 5 will convert /things-to-do cards and other
+       * inline grids to self-hosted WebPs). Explicit width/height +
+       * sizes + loading="lazy" keep CLS = 0 here. */}
       {photos?.inline?.length ? (
         <section className="container-page pb-14 md:pb-20" aria-label="Webcam subject photos">
           <div className="grid gap-8 md:grid-cols-2">
@@ -119,8 +128,6 @@ export default function WebcamsPage() {
                 />
                 <figcaption className="px-4 py-3 text-caption text-ink-700 bg-paper-100 border-t border-paper-200">
                   <span className="font-medium text-ink-800">{p.caption}</span>
-                  <br />
-                  <span className="text-ink-600">Photo: {p.author} / Wikimedia Commons · {p.licence}</span>
                 </figcaption>
               </figure>
             ))}
@@ -137,10 +144,9 @@ export default function WebcamsPage() {
           Live webcam gallery
         </h2>
         <p className="mt-3 lead max-w-3xl">
-          Sprint 1.3 ships the editorial shell; Sprint 2 will wire live
-          embeds where the operators permit it. Until then, every tile
-          links out to the operator’s own page so you’re not seeing a stale
-          thumbnail pretending to be live.
+          Public coastal webcams around Noosa, operated by Sunshine Coast
+          Council, Surf Life Saving Queensland, and Beachsafe. All linked,
+          all free, all refreshed by their operators.
         </p>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">

@@ -12,6 +12,11 @@ export const metadata: Metadata = {
     url: "/privacy",
     type: "article",
   },
+  twitter: {
+    card: "summary",
+    title: "Privacy policy · MyNoosaHeads",
+    description: "Privacy Act 1988 (Cth) compliant policy.",
+  },
 };
 
 export default function PrivacyPage() {
@@ -20,7 +25,7 @@ export default function PrivacyPage() {
       <Hero
         eyebrow="Privacy Act 1988 (Cth) compliant"
         title="Privacy policy"
-        subtitle="MyNoosaHeads does not collect your email address, does not operate a login, and does not run analytics beyond the host-level metrics that come with hosting on Vercel. This page sets out what that means under the Privacy Act 1988 (Cth) and the Australian Privacy Principles."
+        subtitle="MyNoosaHeads does not collect your email address, does not operate a login, and does not run analytics beyond the host-level metrics that come with hosting on Cloudflare Workers. This page sets out what that means under the Privacy Act 1988 (Cth) and the Australian Privacy Principles."
         flourish="Less data is better data."
       />
 
@@ -37,22 +42,22 @@ export default function PrivacyPage() {
             archive it with the correspondence.
           </p>
 
-          <h2>What our host collects (Vercel)</h2>
+          <h2>What our host collects (Cloudflare Workers)</h2>
           <p>
-            Our hosting provider, Vercel, collects the standard set of
+            Our hosting provider, Cloudflare, collects the standard set of
             access logs (request IP, user agent, URL, response code) for the
-            purpose of operating the platform. Vercel publishes its own
+            purpose of operating the platform. Cloudflare publishes its own
             privacy policy; you can read it at{" "}
             <a
-              href="https://vercel.com/legal/privacy-policy"
+              href="https://www.cloudflare.com/privacypolicy/"
               className="link text-ocean-700"
               rel="noopener noreferrer"
               target="_blank"
             >
-              vercel.com/legal/privacy-policy
+              cloudflare.com/privacypolicy/
             </a>
             . We do not have visibility into your specific log entries;
-            we only see aggregate traffic in the Vercel dashboard.
+            we only see aggregate traffic in the Cloudflare dashboard.
           </p>
 
           <h2>Cookies</h2>
@@ -66,10 +71,11 @@ export default function PrivacyPage() {
           <h2>Third-party services we link to</h2>
           <p>
             When you click an outbound link — for example, to the Bureau of
-            Meteorology, QPWS, or Booking.com — you leave our site. The
-            operator of that destination is responsible for any data they
-            collect under their own privacy policy. We link to operators
-            that publish a clear policy; if you spot one that doesn’t,{" "}
+            Meteorology, QPWS, or a third-party booking engine — you leave
+            our site. The operator of that destination is responsible for
+            any data they collect under their own privacy policy. We link
+            to operators that publish a clear policy; if you spot one that
+            doesn’t,{" "}
             <a href="/contact" className="link text-ocean-700">
               please tell us
             </a>
@@ -83,9 +89,14 @@ export default function PrivacyPage() {
             their own cookies on the
             destination site when you click through; we do not see the
             contents of those cookies, only whether a click resulted in a
-            conversion for our account. The major programmes we
-            participate in publish their own cookie and privacy statements
-            (Booking.com, Stayz, Expedia, Airbnb).
+            conversion for our account. We do not currently name
+            individual programme partners in this disclosure. Where
+            participation in a specific affiliate programme has been
+            verified, the link is marked Affiliate before you click; where
+            it has not been verified, no badge appears. The full
+            statement — including the verified programme list — sits in
+            the Legal column of the footer, per the Competition and
+            Consumer Act 2010 (Cth) Schedule 2.
           </p>
 
           <h2 id="spam-act-2003">Spam Act 2003</h2>

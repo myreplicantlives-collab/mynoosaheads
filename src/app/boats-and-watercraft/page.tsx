@@ -12,6 +12,11 @@ export const metadata: Metadata = {
     url: "/boats-and-watercraft",
     type: "article",
   },
+  twitter: {
+    card: "summary",
+    title: "Boats & watercraft · MyNoosaHeads",
+    description: "Hire options, public ramps, and river bar rules.",
+  },
 };
 
 export default function Page() {
@@ -21,19 +26,20 @@ export default function Page() {
       eyebrow="MSQ bar crossings + Noosa Council ramps"
       title="Boats & watercraft"
       subtitle="Crossing the Noosa River bar is a forecast-driven decision. Hire options and public ramp maps live below; the BOM forecast and MSQ bulletin sit in the sidebar."
-      flourish="Slack water. Light wind. Outgoing tide."
+      flourish="MSQ + Noosa Coast Guard — every crossing, every time."
       primarySources={[
         { label: "Marine Safety Queensland — bar crossings", href: "https://www.msq.qld.gov.au/Safety/Bar-crossings-and-coastal-conditions" },
         { label: "Noosa Council — Parks and Facilities", href: "https://www.noosa.qld.gov.au/Services-and-Facilities/Parks-and-Facilities" },
-        { label: "BOM — Capricornia–Hervey Bay", href: "https://www.bom.gov.au/qld/forecasts/coastal.shtml" },
+        { label: "BOM — Southeast Coast", href: "https://www.bom.gov.au/coastal-location/australia" },
+        { label: "MSQ — Noosa bar report", href: "https://www.msq.qld.gov.au/" },
         { label: "Transport and Main Roads — recreational boating", href: "https://www.tmr.qld.gov.au/Maritime/Recreational-boating" },
       ]}
       bodySections={[
         {
           heading: "Crossing the bar",
           paragraphs: [
-            "The Noosa River bar is a trained entrance — it has been dredged and maintained, but it remains shallow and subject to swell. The general rule is to cross on the slack water or the outgoing tide with a south-east wind under 15 km/h. Crossings are discouraged in southerly conditions over 20 knots, on a heavy swell, or when MSQ has flagged a closed-bar condition.",
-            "If you don’t know the bar, go with a local operator for the first crossing. The VMR Noosa volunteers (channel 16) are a good fallback for a live reading.",
+            "The Noosa River bar is a trained entrance — it has been dredged and maintained, but it remains shallow and subject to swell, and conditions vary hour to hour. Always check the MSQ Noosa bar report and listen to the Noosa Coast Guard broadcast (VHF channel 16 or 67) before attempting a crossing. Marine Safety Queensland’s general guidance is to cross on an incoming tide when conditions allow. We do not publish a recommended crossing window — defer to MSQ.",
+            "If you don’t know the bar, go with a local operator for the first crossing. The VMR Noosa volunteers (channel 16) and Noosa Coast Guard are the live sources. Crossings are discouraged when MSQ has flagged a closed-bar condition, on a heavy swell, or in southerly conditions; defer to the MSQ bulletin for the current threshold.",
           ],
         },
         {
@@ -49,9 +55,9 @@ export default function Page() {
             "Hire prices are operator-set and change seasonally. We don’t run a comparison engine — link out to the operators below and book direct.",
           ],
           bullets: [
-            "Noosa Houseboats — houseboats, multi-day, Tewantin base.",
+            "Multi-day houseboat operators — Tewantin base; most rent Sat–Sat in school holidays.",
             "Noosa Ferry — scheduled ferry Noosa Heads ↔ Noosaville ↔ Tewantin.",
-            "Sunshine Coast Afloat — kayak and SUP hire, Noosaville.",
+            "Kayak and stand-up paddleboard hire — Noosaville foreshore, walk-up bookings.",
           ],
         },
         {

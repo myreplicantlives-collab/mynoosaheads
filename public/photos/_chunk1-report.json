@@ -1,0 +1,141 @@
+{
+  "startedAt": "2026-08-28T23:03:03.561Z",
+  "heroes": [
+    {
+      "slug": "home",
+      "caption": "Sunset over Noosa Main Beach, April 2020",
+      "licence": "CC BY-SA 4.0",
+      "author": "Kgbo",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/2/22/Sunset_over_Noosa_Beach%2C_Noosa_Heads%2C_Queensland_04.jpg",
+      "originalBytes": 4027181,
+      "webp": {
+        "640w": 46620,
+        "1080w": 117850,
+        "1920w": 295112,
+        "3840w": 895660
+      }
+    },
+    {
+      "slug": "surf-and-weather",
+      "caption": "Noosa Main Beach in late afternoon",
+      "licence": "CC BY-SA 4.0",
+      "author": "Kgbo",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Noosa_Heads_beach_on_Christmas_Day_2015_03.jpeg",
+      "originalBytes": 1772808,
+      "webp": {
+        "640w": 69754,
+        "1080w": 154078,
+        "1920w": 335276,
+        "3840w": 801062
+      }
+    },
+    {
+      "slug": "noosa-national-park",
+      "caption": "The Noosa Headlands coastal walk",
+      "licence": "CC BY-SA 4.0",
+      "author": "Kgbo",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/8/80/Noosa_Heads_and_Weyba_Creek.JPG",
+      "originalBytes": 2474219,
+      "webp": {
+        "640w": 36948,
+        "1080w": 98628,
+        "1920w": 261972,
+        "3840w": 673740
+      }
+    },
+    {
+      "slug": "accommodation",
+      "caption": "Hastings Street storefronts and palms",
+      "licence": "CC BY-SA 4.0",
+      "author": "Kgbo",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/9/97/Hastings_Street_Noosa_Heads%2C_Queensland.jpg",
+      "originalBytes": 4250950,
+      "webp": {
+        "640w": 78658,
+        "1080w": 200122,
+        "1920w": 520206,
+        "3840w": 1403598
+      }
+    },
+    {
+      "slug": "things-to-do",
+      "caption": "Noosa Main Beach in December 2022",
+      "licence": "CC BY-SA 4.0",
+      "author": "Kgbo",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Noosa_Beach%2C_Noosa_Heads%2C_Queensland%2C_2022.jpg",
+      "originalBytes": 4951080,
+      "webp": {
+        "640w": 70224,
+        "1080w": 183386,
+        "1920w": 465812,
+        "3840w": 1148530
+      }
+    },
+    {
+      "slug": "fishing-reports",
+      "caption": "The Noosa River mouth from the headland",
+      "licence": "CC BY 2.0",
+      "author": "dronepicr",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Noosa_Heads_%2823720155369%29.jpg",
+      "originalBytes": 2150407,
+      "webp": {
+        "640w": 48098,
+        "1080w": 110466,
+        "1920w": 234558,
+        "3840w": 542402
+      }
+    },
+    {
+      "slug": "boats-and-watercraft",
+      "caption": "Noosa Ferry at Sofitel wharf",
+      "licence": "CC BY-SA 4.0",
+      "author": "Kgbo",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Noosa_Ferry_outside_Sofitel_Noosa_Pacific_Resort%2C_Noosa_Heads%2C_Queensland.jpg",
+      "originalBytes": 3578674,
+      "webp": {
+        "640w": 68060,
+        "1080w": 169936,
+        "1920w": 393964,
+        "3840w": 948372
+      }
+    },
+    {
+      "slug": "travel-and-transport",
+      "caption": "Boardwalk along Noosa Main Beach",
+      "licence": "CC BY-SA 4.0",
+      "author": "Kgbo",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/5/55/Boardwalk_along_Noosa_Heads%E2%80%99_main_beach%2C_Queensland.jpg",
+      "originalBytes": 3057651,
+      "webp": {
+        "640w": 48076,
+        "1080w": 121450,
+        "1920w": 294576,
+        "3840w": 728070
+      }
+    },
+    {
+      "slug": "webcams",
+      "caption": "Noosa Heads township and the river mouth",
+      "licence": "CC BY 3.0",
+      "author": "dronepicr",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Noosa_Heads_%28134205593%29.jpeg",
+      "originalBytes": 780837,
+      "webp": {
+        "640w": 37086,
+        "1080w": 86570,
+        "1920w": 187646,
+        "3840w": 457424
+      }
+    }
+  ],
+  "errors": [],
+  "finishedAt": "2026-08-28T23:03:56.242Z",
+  "totalOrig": 27043807,
+  "totalsBySize": {
+    "640": 503524,
+    "1080": 1242486,
+    "1920": 2989122,
+    "3840": 7598858
+  },
+  "totalWebp": 12333990
+}

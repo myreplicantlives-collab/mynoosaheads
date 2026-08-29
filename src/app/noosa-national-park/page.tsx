@@ -4,7 +4,7 @@ import { CategoryPage } from "@/components/CategoryPage";
 export const metadata: Metadata = {
   title: "Noosa National Park",
   description:
-    "Noosa National Park covers ~4,000 hectares between Noosa Heads and Peregian Beach. Tracks, wildlife, QPWS alerts, and the coastal walk.",
+    "Noosa National Park covers 2,883 hectares (28.83 km²) between Noosa Heads and Peregian Beach. Tracks, wildlife, QPWS alerts, and the coastal walk.",
   alternates: { canonical: "/noosa-national-park" },
   openGraph: {
     title: "Noosa National Park · MyNoosaHeads",
@@ -12,15 +12,21 @@ export const metadata: Metadata = {
     url: "/noosa-national-park",
     type: "article",
   },
+  twitter: {
+    card: "summary",
+    title: "Noosa National Park · MyNoosaHeads",
+    description: "Tracks, wildlife, QPWS alerts, and the coastal walk.",
+  },
 };
 
 export default function Page() {
   return (
     <CategoryPage
       slug="noosa-national-park"
+      showCredits={false}
       eyebrow="Managed by QPWS · alerts checked before every visit"
       title="Noosa National Park"
-      subtitle="About 4,000 hectares of wallum heath, eucalypt forest, and rocky headland between Noosa Heads and Peregian Beach. The coastal walk is the headline, but the inland tracks are quieter and just as good."
+      subtitle="2,883 hectares (28.83 km²) of wallum heath, eucalypt forest, and rocky headland between Noosa Heads and Peregian Beach. The coastal walk is the headline, but the inland tracks are quieter and just as good."
       flourish="Koalas sleep in the tallowwoods. Walk softly."
       primarySources={[
         { label: "QPWS — Noosa National Park", href: "https://parks.qld.gov.au/find-a-park/national-parks/noosa-national-park" },
@@ -40,7 +46,7 @@ export default function Page() {
           heading: "Tanglewood track",
           paragraphs: [
             "Tanglewood track is the quieter inland alternative. It enters the park from the west (the Cooran/Tewantin side, off Cooroy–Noosa Road) and winds through blackbutt and tallowwood forest to rejoin the coastal walk near the Hells Gates section. About 3 km each way; shaded; a good koala and glossy black-cockatoo track.",
-            "Glossy black-cockatoos (Calyptorhynchus lathami) feed on casuarina seeds in this area. They’re larger than a sulphur-crested cockatoo, and the males have a distinctive red tail panel.",
+            "Glossy black-cockatoos (Calyptorhynchus lathami) feed on casuarina seeds in this area. They’re similar in size to a sulphur-crested cockatoo, and the males have a distinctive red tail panel.",
           ],
         },
         {
@@ -88,6 +94,7 @@ export default function Page() {
         { label: "Surf & weather", href: "/surf-and-weather", description: "Live tiles for the headland walk." },
         { label: "Things to do", href: "/things-to-do", description: "Inland and coastal ideas." },
         { label: "Webcams", href: "/webcams", description: "Check the headland before you leave." },
+        { label: "Accommodation", href: "/accommodation", description: "Stay near the park entrance." },
       ]}
     />
   );

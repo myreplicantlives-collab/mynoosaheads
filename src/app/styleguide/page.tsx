@@ -107,10 +107,10 @@ export default function StyleGuidePage() {
   return (
     <div className="bg-paper-50">
       <Hero
-        eyebrow="Sprint 1.2"
-        title="MyNoosaHeads design system"
+        eyebrow="Design system"
+        title="How the site looks."
         subtitle="Colours, typography, components, icons, accessibility — every token that ships to production, on one page."
-        flourish="Built slowly, on paper."
+        flourish="Discover Noosa."
       />
 
       <Section
@@ -183,9 +183,9 @@ export default function StyleGuidePage() {
                 className={`text-${t.token} text-ink-900 text-balance flex-1 min-w-0`}
               >
                 {t.token === "accent-lg" || t.token === "accent-md"
-                  ? "by the headland, by the bar"
+                  ? "The quick brown fox jumps over the lazy dog"
                   : t.token === "eyebrow" || t.token === "caption"
-                    ? "Small caps sample — Sprint 1.2"
+                    ? "Small caps sample"
                     : "Plan your Noosa trip well."}
               </p>
             </div>
@@ -270,12 +270,12 @@ export default function StyleGuidePage() {
           </Card>
           <Card variant="surface">
             <CardBody>
-              <p className="eyebrow">Editorial</p>
+              <p className="eyebrow">Content</p>
               <h3 className="mt-1 font-display text-headline-lg text-ink-900">
-                Slow guides for Noosa locals
+                Content cards in a tinted band
               </h3>
               <p className="mt-3 text-body-sm text-ink-700">
-                Card variant &ldquo;surface&rdquo; &mdash; used when stacking editorial cards in a tinted band so the
+                Card variant &ldquo;surface&rdquo; &mdash; used when stacking content cards in a tinted band so the
                 section reads as a single block.
               </p>
             </CardBody>
@@ -304,7 +304,7 @@ export default function StyleGuidePage() {
           eyebrow="Sample eyebrow"
           title="A full Noosa guide — surf, parks, places to eat."
           subtitle="Hero takes children for trailing slots. Backgrounds: paper, surface, or full-bleed image."
-          flourish="by the bar, by the headland"
+          flourish="Hero flourish text"
           actions={
             <>
               <Button leadingIcon={<Icons.Wave size={16} />}>Surf report</Button>
@@ -329,7 +329,7 @@ export default function StyleGuidePage() {
             title="Surf — First Bay"
             value="1.4 m"
             secondary="SSE swell, period 9 s"
-            source="BOM Capricornia–Hervey Bay"
+            source="BOM Southeast Coast"
             asOf="06:40"
           />
           <LiveDataWidget
@@ -342,7 +342,7 @@ export default function StyleGuidePage() {
           />
           <LiveDataWidget
             kind="tide"
-            title="Tide — Tewantin"
+            title="Sea level (approx.)"
             value="0.8 m ↓"
             secondary="High 11:42, low 18:09"
             source="BOM"
@@ -423,8 +423,8 @@ export default function StyleGuidePage() {
           <div className="flex items-start gap-2">
             <Checkbox id="newsletter" />
             <Label htmlFor="newsletter" className="font-normal">
-              Note: per chairman directive, MyNoosaHeads has no newsletter — this checkbox is
-              intentionally absent from production.
+              Note: MyNoosaHeads has no newsletter — this checkbox is
+              for documentation only.
             </Label>
           </div>
           <div className="flex gap-3">

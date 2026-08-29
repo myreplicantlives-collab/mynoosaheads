@@ -2,10 +2,14 @@
  * AffiliateBadge — inline "Affiliate" disclosure marker.
  *
  * MSN-2959 chairman directive: every monetised outbound link to an
- * affiliate programme (Booking.com, Stayz, Expedia, Airbnb, Viator,
- * World Nomads, etc.) must carry an inline visual marker before the
+ * affiliate programme must carry an inline visual marker before the
  * user clicks. Per ACCC Schedule 2 (Australian Consumer Law), material
  * connections must be disclosed prior to the consumer's action.
+ *
+ * MSN-2964 (directive B): rendering is gated by VERIFIED_AFFILIATES
+ * in src/data/site.ts. Until a programme's participation is verified,
+ * the badge must not render. Do not claim participation in a specific
+ * programme unless participation is verified.
  *
  * Two display modes:
  *   - "inline"  (default)  small italic label that sits next to the
@@ -27,7 +31,7 @@
 import type { CSSProperties } from "react";
 
 export type AffiliateBadgeProps = {
-  /** Programme name (e.g. "Booking.com"). Optional — falls back to "Affiliate". */
+  /** Programme name (only used for accessibility metadata when supplied). Optional — falls back to "Affiliate". */
   programme?: string;
   /** Visual mode. "inline" = italic note; "compact" = uppercase pill. */
   mode?: "inline" | "compact";

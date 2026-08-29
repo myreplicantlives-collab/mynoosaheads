@@ -9,9 +9,21 @@
  * the legibility problems of overlay-on-photo. The image carries a
  * gentle dark gradient at the foot so the headline drop still has
  * contrast on bright photos.
+ *
+ * MSN-2975 perf chunk 2: when `srcSet` is provided (the common case
+ * on category pages — CategoryPage passes `photos.hero.srcSet`), the
+ * underlying <img> tag gets the matching srcset + sizes so the
+ * browser picks the best width (640w / 1080w / 1920w / 3840w) for the
+ * viewport. fetchPriority="high" fires for LCP on hero images.
+ *
+ * Implementation note: we use a native <img> + absolute inset-0 inside
+ * a sized parent (h-[55vh] / md:h-[60vh]) instead of next/image.
+ * next/image deletes any user-supplied srcSet (`delete rest.srcSet` in
+ * get-img-props.js) and the optimizer is disabled on Cloudflare Pages
+ * (`images.unoptimized = true`) — so responsive srcSet is only
+ * reachable via a native <img>. Absolute positioning + parent sizing
+ * gives CLS = 0 on both Vercel and Cloudflare.
  */
-
-import Image from "next/image";
 
 export type HeroPhotoProps = {
   src: string;
@@ -27,6 +39,10 @@ export type HeroPhotoProps = {
   };
   /** Tiny inline base64 placeholder (1×1 or 4×4 px). */
   blurDataURL?: string;
+  /** Optional responsive srcSet (the 4 self-hosted WebP widths). */
+  srcSet?: string;
+  /** LCP hint. Defaults to true (hero images are above the fold). */
+  priority?: boolean;
 };
 
 export function HeroPhoto({
@@ -36,32 +52,43 @@ export function HeroPhoto({
   caption,
   height = { mobile: "h-[55vh]", desktop: "md:h-[60vh]" },
   blurDataURL,
+  srcSet,
+  priority = true,
 }: HeroPhotoProps) {
   return (
     <figure className="relative w-full">
       <div
         className={`relative w-full overflow-hidden bg-eucalyptus-900 ${height.mobile ?? "h-[55vh]"} ${height.desktop ?? "md:h-[60vh]"}`}
       >
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src={src}
-          alt={alt}
-          fill
+          srcSet={srcSet ?? undefined}
           sizes="100vw"
-          className="object-cover"
-          placeholder={blurDataURL ? "blur" : "empty"}
-          blurDataURL={blurDataURL}
-          priority
-          // MSN-2959 / TSK-2959-POLISH-B: route through Vercel image
-          // optimisation pipeline (AVIF/WebP) — previously bypassed
-          // which dropped Lighthouse Best Practices & Mobile Perf.
+          alt={alt}
+          decoding="async"
+          fetchPriority={priority ? "high" : undefined}
+          className="absolute inset-0 h-full w-full object-cover"
+          style={
+            blurDataURL
+              ? {
+                  backgroundImage: `url(${blurDataURL})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }
+              : undefined
+          }
         />
-        {/* Caption + credit on the photo (lower-left). */}
+        {/* Caption + credit on the photo (lower-left). MSN-2973 — credit
+         *  is hidden on main-journey pages (passed as empty string). */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute bottom-0 left-0 right-0 p-5 md:p-10 hero-overlay pointer-events-auto">
             <p className="font-display text-paper-50 text-display-sm md:text-display-md text-balance max-w-3xl">
               {caption ?? alt}
             </p>
-            <p className="mt-2 text-caption text-paper-100">{credit}</p>
+            {credit ? (
+              <p className="mt-2 text-caption text-paper-100">{credit}</p>
+            ) : null}
           </div>
         </div>
       </div>

@@ -12,6 +12,11 @@ export const metadata: Metadata = {
     url: "/terms",
     type: "article",
   },
+  twitter: {
+    card: "summary",
+    title: "Terms of use · MyNoosaHeads",
+    description: "ACCC-compliant terms of use.",
+  },
 };
 
 export default function TermsPage() {
@@ -55,12 +60,12 @@ export default function TermsPage() {
             </a>
             . For coastal conditions, defer to the{" "}
             <a
-              href="https://www.bom.gov.au/qld/forecasts/coastal.shtml"
+              href="https://www.bom.gov.au/coastal-location/australia"
               className="link text-ocean-700"
               rel="noopener noreferrer"
               target="_blank"
             >
-              BOM Capricornia–Hervey Bay forecast
+              BOM Southeast Coast forecast
             </a>
             . For park closures, defer to{" "}
             <a

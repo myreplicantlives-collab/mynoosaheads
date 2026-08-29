@@ -125,8 +125,7 @@ export function Footer({
           <div className="col-span-2 sm:col-span-3 lg:col-span-1">
             <Logo mark="2" size="md" />
             <p className="mt-3 text-body-sm text-ink-700 max-w-xs">
-              An honest, sourced guide to Noosa Heads. Built slowly, on the
-              Sunshine Coast.
+              A guide to Noosa Heads on the Sunshine Coast.
             </p>
           </div>
           {columns.map((col) => (
@@ -180,7 +179,7 @@ export function Footer({
             © {year} MyNoosaHeads. {region}. All rights reserved.
           </p>
           <p className="text-caption text-ink-600">
-            Built honestly. Sources linked on every page.
+            Independent. Sources linked on every page.
           </p>
         </div>
       </div>
