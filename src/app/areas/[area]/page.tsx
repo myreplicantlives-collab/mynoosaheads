@@ -25,68 +25,76 @@ import { VENUES_BY_AREA } from "@/data/venues";
  */
 
 export function generateStaticParams() {
-  // Chairman mandate is 4 areas: Noosa Heads (hastings), Noosaville,
-  // Sunshine Beach, Peregian Beach. We expose all 4 even though
-  // /accommodation has 5 (we exclude noosa-sound from the public
-  // areas index — it's a quieter in-between precinct without its
-  // own curated V2 coverage).
-  return ["hastings", "noosaville", "sunshine", "peregian"].map((id) => ({
+  // Chairman mandate is 4 areas: Noosa Heads (hastings-street),
+  // Noosaville, Sunshine Beach, Peregian Beach. We expose all 4
+  // even though /accommodation has 5 (we exclude noosa-sound from
+  // the public areas index — it's a quieter in-between precinct
+  // without its own curated V2 coverage).
+  return ["hastings-street", "noosaville", "sunshine-beach", "peregian-beach"].map((id) => ({
     area: id,
   }));
 }
 
 type PageProps = { params: { area: string } };
 
+// Slug → AREAS.id mapping (chairman-mandated route names).
+const SLUG_TO_AREA_ID: Record<string, string> = {
+  "hastings-street": "hastings",
+  "noosaville": "noosaville",
+  "sunshine-beach": "sunshine",
+  "peregian-beach": "peregian",
+};
+
 const AREA_PHOTOS: Record<string, { url: string; caption: string; author: string; licence: string }> = {
-  hastings: {
-    url: "https://live.staticflickr.com/8514/8532929182_a1ea8ef7be.jpg",
-    caption: "Hastings Street storefronts and palms, looking toward Main Beach.",
-    author: "Flickr (Openverse) — 'Noosa Main Beach / Hastings Street looking east'",
-    licence: "CC BY-NC-SA",
+  "hastings-street": {
+    url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=2400&q=80",
+    caption: "Hastings Street atmosphere — boutique-accommodation strip commercial-OK Unsplash substitute.",
+    author: "Unsplash (commercial OK, no attribution required)",
+    licence: "Unsplash License",
   },
-  noosaville: {
-    url: "https://live.staticflickr.com/3696/12046547304_e4e4449777_b.jpg",
-    caption: "Noosa River at Noosaville — paddleboard water and the ferry wharf.",
-    author: "Flickr (Openverse) — 'Noosa Everglades, Australia'",
-    licence: "CC0",
+  "noosaville": {
+    url: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=2400&q=80",
+    caption: "Noosa River at Noosaville — harbour/ferry atmospheric commercial-OK Unsplash substitute.",
+    author: "Unsplash (commercial OK, no attribution required)",
+    licence: "Unsplash License",
   },
-  sunshine: {
-    url: "https://live.staticflickr.com/1408/705933988_e7ab226bb2.jpg",
-    caption: "Sunshine Beach, looking north toward the headland.",
+  "sunshine-beach": {
+    url: "https://live.staticflickr.com/1408/705933988_e7ab226bb2.jpg?w=1920&q=85",
+    caption: "Sunshine Beach, Noosa — the patrolled sand south of the headland.",
     author: "Flickr (Openverse) — 'Sunshine Beach, Noosa'",
-    licence: "CC BY",
+    licence: "CC BY (commercial OK, attribution required)",
   },
-  peregian: {
-    url: "https://live.staticflickr.com/8240/8531818425_4f7d65d9e6.jpg",
-    caption: "Peregian Beach village, looking back along the patrolled frontage.",
-    author: "Flickr (Openverse) — 'Noosa Main Beach / Hastings Street looking west'",
-    licence: "CC BY-NC-SA",
+  "peregian-beach": {
+    url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=2400&q=80",
+    caption: "Peregian Beach atmosphere — wide-sand-beach commercial-OK Unsplash substitute.",
+    author: "Unsplash (commercial OK, no attribution required)",
+    licence: "Unsplash License",
   },
 };
 
 const AREA_BODY: Record<string, { tagline: string; bestFor: string; distance: string; description: string }> = {
-  hastings: {
+  "hastings-street": {
     tagline: "The walkable one.",
     bestFor: "Visitors who would rather walk than drive once they arrive.",
     distance: "Eight hundred metres of Hastings Street between Main Beach and the headland. Walk to every restaurant, surf club, the national park entrance, and the ferry wharf.",
     description:
       "Hastings Street is the hotel-and-restaurant strip at the southern end of Noosa Heads. The beach is at the bottom of the street; the Noosa National Park coastal walk starts at the top. Most of the Noosa action — restaurants, the surf club, the ferry, the headland — is walkable. The downside: parking is tight and expensive. The upside: you don't need a car once you're here.",
   },
-  noosaville: {
+  "noosaville": {
     tagline: "Across the river.",
     bestFor: "Families, longer stays, anyone with a hire car.",
     distance: "About 4 km west of Hastings Street, across the Noosa River. Drive in 8 minutes, or take the Noosa Ferry from the Hastings wharf (30 minutes, scenic).",
     description:
       "Noosaville is the apartment-and-motel side of Noosa — quieter than Hastings Street, more space, easier parking, and the river as the front yard. Gympie Terrace runs along the foreshore with a row of cafés and restaurants. The Noosa Farmers Market sets up at the showgrounds on Sunday mornings. Most Noosaville guests have a hire car and use the ferry for dinner on Hastings Street.",
   },
-  sunshine: {
+  "sunshine-beach": {
     tagline: "South of the headland.",
     bestFor: "Surfers, walkers, families with a car who don't want Hastings Street crowds.",
     distance: "About 5 km south of Hastings Street, 8 minutes' drive. The southern entry to Noosa National Park is a ten-minute walk north along the beach.",
     description:
       "Sunshine Beach is the surf suburb south of Noosa Heads — a long, patrolled beach with a village cluster of cafés and a small surf club on Duke Street. The vibe is calmer than Hastings; the beach is the point, and the beachfront apartments line the esplanade. Less walking, more driving — you'll want a hire car if you stay here. The Peregian village is ten minutes south.",
   },
-  peregian: {
+  "peregian-beach": {
     tagline: "Ten minutes south of Sunshine.",
     bestFor: "Extended stays, dog-friendly options (verify per operator), surfers.",
     distance: "About 14 km south of Hastings Street, 16 minutes' drive. The southern access to Noosa National Park is ten minutes north.",
@@ -96,7 +104,8 @@ const AREA_BODY: Record<string, { tagline: string; bestFor: string; distance: st
 };
 
 export function generateMetadata({ params }: PageProps): Metadata {
-  const a = AREAS.find((x) => x.id === params.area);
+  const areaId = SLUG_TO_AREA_ID[params.area] ?? params.area;
+  const a = AREAS.find((x) => x.id === areaId);
   if (!a) return { title: "Not found" };
   return {
     title: `${a.name} · Noosa area guide`,
@@ -117,7 +126,8 @@ export function generateMetadata({ params }: PageProps): Metadata {
 }
 
 export default function AreaPage({ params }: PageProps) {
-  const a = AREAS.find((x) => x.id === params.area);
+  const areaId = SLUG_TO_AREA_ID[params.area] ?? params.area;
+  const a = AREAS.find((x) => x.id === areaId);
   if (!a) notFound();
 
   const body = AREA_BODY[params.area];
@@ -125,11 +135,11 @@ export default function AreaPage({ params }: PageProps) {
 
   // Properties in this area
   const propertiesInArea = Object.values(PROPERTIES_BY_SLUG).filter(
-    (p) => p.areaId === params.area,
+    (p) => p.areaId === areaId,
   );
 
   // Venues in this area
-  const venuesInArea = VENUES_BY_AREA[params.area] ?? [];
+  const venuesInArea = VENUES_BY_AREA[areaId] ?? [];
 
   const jsonLd = [
     {

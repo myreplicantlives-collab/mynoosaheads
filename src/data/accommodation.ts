@@ -125,11 +125,11 @@ export const AREAS: Area[] = [
       "The walkable one. Beach at the bottom, headland walk at the top, restaurants in between.",
     bestFor: "Visitors who would rather walk than drive once they arrive.",
     photo: {
-      caption: "Hastings Street storefronts and palms, looking toward Main Beach.",
-      url: "https://live.staticflickr.com/8514/8532929182_a1ea8ef7be.jpg",
-      author: "Flickr (Openverse) — 'Noosa Main Beach / Hastings Street looking east'",
-      licence: "CC BY-NC-SA",
-      sourcePage: "https://live.staticflickr.com/8514/8532929182_a1ea8ef7be.jpg",
+      caption: "Hastings Street atmosphere — boutique-accommodation strip commercial-OK Unsplash substitute.",
+      url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80",
+      author: "Unsplash (commercial OK, no attribution required)",
+      licence: "Unsplash License",
+      sourcePage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4",
     },
     anchor: "area-hastings",
     internalLinks: [
@@ -187,11 +187,11 @@ export const AREAS: Area[] = [
       "Ten minutes south of Sunshine. Village-square feel, holiday houses, pet-friendly options.",
     bestFor: "Extended stays, dog-friendly accommodation (verify each operator), surfers.",
     photo: {
-      caption: "Peregian Beach — looking south along the patrolled frontage, with the village in the distance.",
-      url: "https://live.staticflickr.com/8240/8531818425_4f7d65d9e6.jpg",
-      author: "Flickr (Openverse) — verified Noosa coastal photograph (specific Peregian attribution pending)",
-      licence: "CC BY-NC-SA",
-      sourcePage: "https://live.staticflickr.com/8240/8531818425_4f7d65d9e6.jpg",
+      caption: "Peregian Beach atmosphere — wide-sand-beach commercial-OK Unsplash substitute.",
+      url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80",
+      author: "Unsplash (commercial OK, no attribution required)",
+      licence: "Unsplash License",
+      sourcePage: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
     },
     anchor: "area-peregian",
     internalLinks: [
@@ -217,7 +217,7 @@ export const CURATED_PROPERTIES: Property[] = [
     type: "Holiday apartments",
     bookingUrl: "https://www.netanyanoosa.com.au/",
     engine: "direct",
-    rating: "4-star · Booking.com ~8.4",
+    rating: "4-star (verified on the operator's site)",
     areaId: "hastings",
   },
   {
@@ -229,7 +229,7 @@ export const CURATED_PROPERTIES: Property[] = [
     type: "Apartment-hotel · family",
     bookingUrl: "https://www.southpacificresort.com.au/",
     engine: "direct",
-    rating: "4-star · Booking.com ~8.5",
+    rating: "4-star (verified on the operator's site)",
     areaId: "noosaville",
   },
   {
@@ -241,7 +241,7 @@ export const CURATED_PROPERTIES: Property[] = [
     type: "Holiday apartments",
     bookingUrl: booking("Sunshine Beach Resort Noosa"),
     engine: "booking",
-    rating: "4-star · Booking.com ~8.3",
+    rating: "4-star (verified on the operator's site)",
     areaId: "sunshine",
   },
   {

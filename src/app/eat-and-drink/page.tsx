@@ -28,7 +28,10 @@ export const metadata: Metadata = {
 function photoFor(slug: string): { path: string; caption: string } {
   if (slug.includes("aroma")) return { path: VERIFIED.cards.aromaHastings.path, caption: VERIFIED.cards.aromaHastings.caption };
   if (slug.includes("riverdeck")) return { path: VERIFIED.cards.morningRiver.path, caption: VERIFIED.cards.morningRiver.caption };
-  if (slug.includes("peregian")) return { path: VERIFIED.cards.sunshineBeach.path, caption: VERIFIED.cards.sunshineBeach.caption };
+  if (slug.includes("peregian")) return { path: "https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=1600&q=80", caption: "A village-square beer garden at twilight — commercial-OK Unsplash substitute for the previous location-mismatched Sunshine Beach photo." };
+  if (slug.includes("season")) return { path: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&q=80", caption: "Fine-dining presentation — commercial-OK Unsplash substitute." };
+  if (slug.includes("boathouse")) return { path: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80", caption: "River-edge dining — boats at the dock — commercial-OK Unsplash substitute." };
+  if (slug.includes("sante")) return { path: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1600&q=80", caption: "Counter-side brunch prep — commercial-OK Unsplash substitute." };
   return { path: VERIFIED.cards.hastingsStreetEast.path, caption: VERIFIED.cards.hastingsStreetEast.caption };
 }
 
@@ -55,15 +58,15 @@ export default function EatAndDrinkPage() {
         ]}
       />
 
-      {/* ─── 1. Hero — Aroma Hastings Street (verified) ─── */}
+      {/* ─── 1. Hero — Outdoor dining atmosphere (commercial-OK Unsplash) ─── */}
       <section
         aria-label="Eat and drink in Noosa"
         className="relative w-full overflow-hidden bg-ink-900 h-[80vh] min-h-[560px] max-h-[1000px]"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/img/cards/aroma-hastings.jpg"
-          alt="A café crowd on Hastings Street, Noosa — outdoor dining under the tropical canopy."
+          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=2400&q=80"
+          alt="Outdoor dining at golden hour — commercial-OK Unsplash atmospheric substitute for the previous NC Aroma café hero."
           decoding="async"
           fetchPriority="high"
           className="absolute inset-0 h-full w-full object-cover object-[center_30%]"
@@ -86,7 +89,7 @@ export default function EatAndDrinkPage() {
               Where Noosa eats.
             </h1>
             <p className="mt-4 lead text-paper-200 max-w-3xl text-pretty">
-              Three anchor venues across the three precincts.
+              Six anchor venues across the three precincts.
             </p>
           </div>
         </div>
@@ -103,7 +106,7 @@ export default function EatAndDrinkPage() {
             id="eat-intro-heading"
             className="mt-3 font-display text-display-md md:text-display-lg text-ink-900 text-balance max-w-3xl"
           >
-            Hastings morning coffee, Noosaville river-edge, Peregian village-square.
+            Hastings morning coffee, Noosaville river-edge, Peregian village-square — six anchor venues across three precincts.
           </h2>
           <p className="mt-5 lead max-w-2xl text-pretty">
             Each card opens the operator&apos;s reservation page.

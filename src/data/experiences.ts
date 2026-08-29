@@ -319,6 +319,139 @@ export const EXPERIENCES: ExperiencePage[] = [
       { label: "QFMA bag and size limits", href: "https://www.qfma.qld.gov.au/" },
     ],
   },
+  {
+    slug: "noosa-with-children",
+    title: "Noosa with children",
+    headline: "Patrolled sand, easy mornings, family-friendly operators.",
+    hook:
+      "Noosa is well set up for families — patrolled beaches, calm river water, short walks, and operators who run daily kids' sessions.",
+    whatItLooksLike:
+      "Mornings work best: arrive at the patrolled section of Main Beach before 9 am, build sandcastles in the shade of the headland, and let the kids have a paddle in the flagged area. Late mornings are for the surf school (most Noosa surf schools run daily kids' sessions from age 7), or for the river at Noosaville where the water is shallow and the foreshore is grassed. Late afternoons are for the deck of the Noosa Heads Surf Club — kids' menu, ocean view, parents get a coffee.",
+    bestFor: "Family · toddlers · school-age kids",
+    whatToBring: [
+      "Reef-safe sunscreen and zinc stick (UV on the beach is the strongest of the day)",
+      "Wide-brim hat and long-sleeve swim shirt for the kids",
+      "Water bottle — refill at the surf club",
+      "Bucket and spade (or buy at the surf club)",
+      "Stinger suit in the warm months (November–May on the Sunshine Coast)",
+    ],
+    howLong: "Full day at a relaxed pace — morning beach, lunch at the surf club, afternoon river.",
+    difficulty: "Easy",
+    options: [
+      {
+        label: "Noosa Beach Surf School",
+        href: "https://noosabeachsurfschool.com/",
+        caption: "Daily kids' surf lessons from age 7 at Noosa Main Beach — boards and rash vests provided.",
+      },
+      {
+        label: "Noosa Mini Golf",
+        href: "https://noosaminigolf.com.au/",
+        caption: "Family mini golf in the Noosaville precinct — bookable, walkable from the river.",
+      },
+      {
+        label: "Australia Zoo (Beerwah)",
+        href: "https://www.australiazoo.com.au/",
+        caption: "Australia Zoo at Beerwah — about an hour's drive north of Noosa for a full-day wildlife experience.",
+      },
+    ],
+    safety: [
+      "Always swim between the red and yellow flags at Main Beach and Sunshine Beach — the SLSQ lifeguards patrol the flagged area.",
+      "Stingers (marine stingers) are possible on the Sunshine Coast from November to May. Wear a stinger suit in the surf during these months.",
+      "Sun — UV on the beach is intense. Cover up between 10 am and 3 pm; reef-safe sunscreen and a hat are essential.",
+      "If you're heading out of Noosa (Australia Zoo, the Glass House Mountains, or the hinterland), carry water — the inland roads are hotter and drier than the coast.",
+    ],
+    whereToCheck: [
+      { label: "SLSQ patrol status", href: "https://www.lifesaving.com.au/" },
+      { label: "Beachsafe — Noosa beaches", href: "https://beachsafe.org.au/" },
+      { label: "BOM coastal forecast (Southeast Coast)", href: "https://www.bom.gov.au/coastal-location/australia" },
+    ],
+  },
+  {
+    slug: "fairy-pools",
+    title: "The Fairy Pools, Noosa",
+    headline: "Coastal rock pools on sandstone platforms — not freshwater.",
+    hook:
+      "The Noosa Fairy Pools are coastal rock pools along the headland — sandstone platforms that fill with seawater at high tide. Reached via the Tanglewood track or as a side trip from the coastal walk.",
+    whatItLooksLike:
+      "The pools sit on sandstone platforms at the base of the headland between Noosa Head and Hells Gates. They fill with seawater at high tide; at low tide the platforms are exposed and the pools become shallow rock pools with marine life. The walk-in is via the Tanglewood day-use area (about 10 minutes from Noosaville, then a 1.5 km walk along the Tanglewood track to the rocks). The same pools are also reached from the coastal walk between Noosa Head and Alexandria Bay. There is no freshwater stream feeding these pools — they are entirely coastal.",
+    bestFor: "A different morning · photographers · experienced swimmers",
+    whatToBring: [
+      "Reef-safe sunscreen and a hat — the sandstone reflects UV back up",
+      "Water shoes — the rocks are sharp and slippery when wet",
+      "Water bottle — there are no taps at the pools",
+      "Bin bag — there are no bins in the national park",
+      "Phone in a waterproof pouch if you're swimming",
+    ],
+    howLong: "Half a day including the walk in (Tanglewood track return is about 8 km; coastal walk side trip adds 5 km each way from the Surf Club).",
+    difficulty: "Moderate (rocky terrain; slippery when wet; no patrol)",
+    options: [
+      {
+        label: "QPWS — Walking tracks summary",
+        href: "https://parks.qld.gov.au/parks/noosa/journeys/walking-tracks-summary",
+        caption: "Queensland Parks and Wildlife Service summary for the Noosa headland walks — Tanglewood, coastal walk, and the access points to the Fairy Pools.",
+      },
+    ],
+    safety: [
+      "There is no lifeguard patrol at the Fairy Pools — you swim at your own risk.",
+      "The rocks are slippery when wet and sharp in places. Water shoes are essential.",
+      "Rips — the channels between the rocks drain quickly at low tide and can pull swimmers offshore. Check conditions before entering.",
+      "Stingers (marine stingers) are possible on the Sunshine Coast from November to May. Wear a stinger suit in the surf during these months.",
+      "If you see a koala on the ground, leave it alone and report it to QPWS on 13 74 68.",
+    ],
+    whereToCheck: [
+      { label: "QPWS — Walking tracks summary", href: "https://parks.qld.gov.au/parks/noosa/journeys/walking-tracks-summary" },
+      { label: "QPWS park alerts", href: "https://parks.qld.gov.au/park-alerts" },
+      { label: "BOM coastal forecast (Southeast Coast)", href: "https://www.bom.gov.au/coastal-location/australia" },
+      { label: "SLSQ stinger report", href: "https://www.lifesaving.com.au/" },
+    ],
+  },
+  {
+    slug: "first-day-itinerary",
+    title: "Your first day in Noosa",
+    headline: "A morning-to-evening rhythm that works on the first visit.",
+    hook:
+      "If you've never been to Noosa, this is the day. Coffee at the southern end of Hastings, the first three kilometres of the coastal walk, lunch on the river, and dinner on Hastings.",
+    whatItLooksLike:
+      "Start at 7 am with a flat-white and the paper at Aroma or another Hastings Street café at the southern end of the strip — the tables on the footpath face the morning sun. Walk north to the headland, into Noosa National Park, and do the first three kilometres of the coastal walk to the first headland lookout. Back on Main Beach by 11 am, swim between the flags, then lunch at the Noosa Heads Surf Club deck or take the ferry across the river to Gympie Terrace. Late afternoon: paddleboard or kayak hire from the Noosaville foreshore (or a sunset cruise from the marina). Dinner on Hastings Street — book ahead for the small restaurants, walk in for the surf club bistro.",
+    bestFor: "First-time visitors · couples · a one-day orientation",
+    whatToBring: [
+      "Reef-safe sunscreen and a hat — the morning sun on the beach is the strongest of the day",
+      "Walking shoes for the coastal walk (the headland steps are uneven)",
+      "Swimwear and a change of clothes for after the beach",
+      "Water bottle — refill at the surf club",
+      "A dinner reservation (book ahead for the small restaurants)",
+    ],
+    howLong: "Sunrise to late evening. Pace it; Noosa is best at a slow rhythm.",
+    difficulty: "Easy to moderate (the coastal walk's first 3 km is the easiest section).",
+    options: [
+      {
+        label: "Aroma Noosa",
+        href: "https://www.aromanoosa.com.au/",
+        caption: "Counter-side coffee and breakfast at the southern end of Hastings Street.",
+      },
+      {
+        label: "Noosa Heads Surf Life Saving Club",
+        href: "https://www.noosasurfclub.com.au/",
+        caption: "Lunch on the deck overlooking Main Beach — walk-in bistro, kids' menu, ocean view.",
+      },
+      {
+        label: "Noosa Ferry & Cruise Co",
+        href: "https://www.noosaferry.com/",
+        caption: "The river ferry from the Hastings wharf to Noosaville and Tewantin — scheduled service, day passes available.",
+      },
+    ],
+    safety: [
+      "Always swim between the red and yellow flags at Main Beach. The first bay south of the Surf Club is the patrolled area.",
+      "Sun — UV on the beach is intense. Cover up between 10 am and 3 pm; reef-safe sunscreen and a hat are essential.",
+      "Stingers (marine stingers) are possible on the Sunshine Coast from November to May. Wear a stinger suit in the surf during these months.",
+      "Book dinner ahead in summer and school holidays — the smaller Hastings restaurants fill 1–2 weeks ahead in peak season.",
+    ],
+    whereToCheck: [
+      { label: "SLSQ patrol status", href: "https://www.lifesaving.com.au/" },
+      { label: "BOM coastal forecast (Southeast Coast)", href: "https://www.bom.gov.au/coastal-location/australia" },
+      { label: "QPWS — Coastal Walk journey", href: "https://parks.qld.gov.au/parks/noosa/journeys/coastal-walk" },
+    ],
+  },
 ];
 
 export const EXPERIENCES_BY_SLUG: Record<string, ExperiencePage> =

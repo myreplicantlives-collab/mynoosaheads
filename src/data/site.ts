@@ -52,12 +52,12 @@ export const SPRINT = {
  * No newsletter link, no login, no social. Per chairman directive 2026-08-27.
  */
 export const NAV = [
-  { label: "Stay", href: "/accommodation", description: "Where to stay — four areas, ten curated properties." },
+  { label: "Stay", href: "/accommodation", description: "Where to stay — four areas, three curated properties." },
   { label: "Areas", href: "/areas", description: "Hastings Street, Noosaville, Sunshine, Peregian." },
-  { label: "Things to do", href: "/things-to-do", description: "Eight ways to spend your days." },
-  { label: "Beaches & nature", href: "/noosa-national-park", description: "Coastal walk, wildlife, QPWS alerts." },
-  { label: "Eat & drink", href: "/eat-and-drink", description: "Six anchor venues across the four precincts." },
-  { label: "Today in Noosa", href: "/surf-and-weather", description: "Live surf, weather, UV, park alerts." },
+  { label: "Things to do", href: "/things-to-do", description: "Ten ways to spend your days." },
+  { label: "Beaches & nature", href: "/beaches-and-nature", description: "Beaches, national park, nature precincts." },
+  { label: "Eat & drink", href: "/eat-and-drink", description: "Six anchor venues across three precincts." },
+  { label: "Live", href: "/live", description: "Live conditions — surf, weather, tide, UV." },
 ] as const;
 
 /**

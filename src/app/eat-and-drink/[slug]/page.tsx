@@ -53,22 +53,40 @@ export function generateMetadata({ params }: PageProps): Metadata {
 
 const HERO_PHOTOS: Record<string, { url: string; caption: string; author: string; licence: string }> = {
   "aroma-noosa": {
-    url: "https://live.staticflickr.com/615/31910895645_d321ec9068_b.jpg",
-    caption: "People watching people at Aroma, Hastings Street.",
-    author: "Flickr (Openverse) — 'Aroma, Hastings Street, Noosa'",
-    licence: "CC BY-NC",
+    url: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=2400&q=80",
+    caption: "A Hastings Street café atmosphere — commercial-OK Unsplash substitute for the previous NC Aroma café hero.",
+    author: "Unsplash (commercial OK, no attribution required)",
+    licence: "Unsplash License",
   },
   "riverdeck-noosa": {
-    url: "https://live.staticflickr.com/65535/54849508625_d3595b783b_b.jpg",
-    caption: "Noosa River and Gympie Terrace, Noosaville, mid-century calm.",
-    author: "Flickr (Openverse) — Public Domain Mark",
-    licence: "Public Domain Mark",
+    url: "https://live.staticflickr.com/65535/9572462197_6879fe750b_b.jpg?w=2400",
+    caption: "Noosa River at Noosaville — commercial-OK CC0 substitute.",
+    author: "Flickr (Openverse) — 'Morning on the Noosa River'",
+    licence: "CC0 (commercial OK, no attribution required)",
   },
   "peregian-beach-hotel": {
-    url: "https://live.staticflickr.com/8240/8531818425_4f7d65d9e6.jpg",
-    caption: "Peregian Beach village, looking back along the patrolled frontage.",
-    author: "Flickr (Openverse) — Hastings Street atmospheric",
-    licence: "CC BY-NC-SA",
+    url: "https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=2400&q=80",
+    caption: "A village-square beer garden at twilight — commercial-OK Unsplash substitute for the previous location-mismatched Sunshine Beach photo.",
+    author: "Unsplash (commercial OK, no attribution required)",
+    licence: "Unsplash License",
+  },
+  "season-noosa": {
+    url: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=2400&q=80",
+    caption: "Fine-dining presentation, contemporary Australian — commercial-OK Unsplash atmospheric.",
+    author: "Unsplash (commercial OK, no attribution required)",
+    licence: "Unsplash License",
+  },
+  "noosa-boathouse": {
+    url: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=2400&q=80",
+    caption: "River-edge dining — boats at the dock — commercial-OK Unsplash atmospheric.",
+    author: "Unsplash (commercial OK, no attribution required)",
+    licence: "Unsplash License",
+  },
+  "sante-noosa": {
+    url: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=2400&q=80",
+    caption: "Counter-side brunch prep — commercial-OK Unsplash atmospheric.",
+    author: "Unsplash (commercial OK, no attribution required)",
+    licence: "Unsplash License",
   },
 };
 
@@ -151,9 +169,9 @@ export default function VenuePage({ params }: PageProps) {
                 rel="noopener noreferrer"
                 target="_blank"
                 className="btn-primary btn-lg"
-                data-track={`venue_${v.slug}_reserve`}
+                data-track={`venue_${v.slug}_open`}
               >
-                Reserve a table
+                Open the operator&apos;s site
               </a>
               <Link
                 href="/eat-and-drink"
@@ -229,9 +247,9 @@ export default function VenuePage({ params }: PageProps) {
                     external
                     variant="primary"
                     size="md"
-                    data-track={`venue_${v.slug}_sidebar_reserve`}
+                    data-track={`venue_${v.slug}_sidebar_open`}
                   >
-                    Open reservation
+                    Open the operator&apos;s site
                   </Button>
                 </div>
               </CardBody>

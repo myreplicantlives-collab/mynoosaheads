@@ -60,6 +60,14 @@ const nextConfig = {
   },
   trailingSlash: false,
   poweredByHeader: false,
+  // MSN-2987 — chairman test-script slugs (shorter aliases) redirect
+  // to the canonical slug.
+  async redirects() {
+    return [
+      { source: "/things-to-do/eat-along-hastings", destination: "/things-to-do/eat-your-way-along-hastings-street", permanent: true },
+      { source: "/things-to-do/book-a-cruise", destination: "/things-to-do/book-a-cruise-tour-or-wellness-experience", permanent: true },
+    ];
+  },
 };
 
 // Sentry build-time config is only applied when SENTRY_DSN is set; this

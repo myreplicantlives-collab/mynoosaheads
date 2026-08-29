@@ -87,8 +87,8 @@ export const WALKS: WalkPage[] = [
       "The coastal walk runs along the eastern edge of Noosa Headland — granite boulders, tallowwood forest, surf below. You walk on a formed track that climbs up and over each headland before dropping back to the next beach. The granite sections are exposed to the sun; the tallowwood sections are shaded and the most likely place to spot a koala.",
     whyPeopleWalkIt: [
       "The only national-park coastal walk on the Sunshine Coast that's reached by walking from a beachside town",
-      "Reliable koala sightings — the tallowwoods between Noosa Head and Dolphin Point hold one of the better-studied koala populations on the coast",
-      "Whale watching in season (northbound June–August, southbound September–November) from the headland lookouts",
+      "Koalas live in the park — the tallowwoods between Noosa Head and Dolphin Point are a known habitat (the park holds one of the better-studied koala populations on the coast)",
+      "Whale watching in season (June–November, humpback migration) from the headland lookouts",
       "Sunrise is the magic hour; by 9 am in summer the carpark is full and the exposed granite is hot",
     ],
     whatToBring: [
@@ -184,14 +184,14 @@ export const WALKS: WalkPage[] = [
       "8 km return (or 7.1 km circuit via Hells Gates + Coastal Walk return)",
     grade: "Grade 4 (formed track; some uneven sections; climbs; can be muddy after rain)",
     duration: "Allow 2–3 hours return",
-    startPoint: "Tanglewood day-use area, off Cooroy–Noosa Road (about 10 minutes' drive west of Noosaville)",
+    startPoint: "Tanglewood day-use area, off Cooroy–Noosa Road (about 10 minutes' drive from Noosaville — check your route on the day)",
     endPoint: "Junction with the coastal walk, near Hells Gates (one-way) — or continue via Hell's Gates to the Coastal Walk and return (7.1 km circuit)",
     surface: "Formed gravel and dirt; can be muddy after rain",
     elevation: "Gradual climb through blackbutt and tallowwood forest",
     whatItsLike:
       "Tanglewood runs west-to-east through the forested ridge that connects the Noosa hinterland to the coastal headlands. Where the coastal walk is granite and tallowwood with the ocean as your companion, Tanglewood is blackbutt and rainforest — cooler, shadier, and almost always empty. The track opens onto the coastal walk near Hells Gates, so you can combine the two for a half-day loop or a longer day walk.",
     whyPeopleWalkIt: [
-      "Wildlife: glossy black-cockatoos feed on casuarina seeds in this area — uncommon on the coast. They're about the size of a sulphur-crested cockatoo; males have a distinctive red tail panel.",
+      "Wildlife: glossy black-cockatoos feed on casuarina seeds in the park's forested ridges. They're about the size of a sulphur-crested cockatoo; males have a distinctive red tail panel.",
       "Cooler and quieter than the coastal walk — good for a summer morning when the granite is hot",
       "Combines well with the coastal walk as a half-day loop",
     ],
