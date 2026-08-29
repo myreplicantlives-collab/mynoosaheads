@@ -9,7 +9,7 @@
  *   - 1 holiday-houses fallback ("Noosa-area holiday houses") with
  *     a Stayz property-name search
  *   - 4 area cards (Hastings, Noosaville, Sunshine, Peregian);
- *     the 5th — Noosa Sound — is removed for lack of a verified
+ *     Noosa Sound was removed for lack of a verified
  *     Noosa-Sound-specific photo
  *
  * Sofitel, RACV, The Sebel, Noosa Quays, Ramada, Peregian Court
@@ -203,7 +203,8 @@ export const AREAS: Area[] = [
 ];
 
 /* ----------------------------------------------------------------------
- * Curated property selection (Albert's 10 picks).
+ * Curated property selection — three properties + one holiday-houses
+ * fallback.
  * -------------------------------------------------------------------- */
 
 export const CURATED_PROPERTIES: Property[] = [

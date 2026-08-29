@@ -95,7 +95,6 @@ export default function VenuePage({ params }: PageProps) {
         addressRegion: "QLD",
         addressCountry: "AU",
       },
-      priceRange: v.priceGuide,
       acceptsReservations: "True",
       hasMenu: v.reservationUrl,
     },
@@ -197,25 +196,14 @@ export default function VenuePage({ params }: PageProps) {
             </div>
 
             <div>
-              <p className="eyebrow">When &amp; where</p>
+              <p className="eyebrow">Where</p>
               <p className="mt-3 text-body-md text-ink-800">
-                <span className="font-semibold text-ink-900">Hours: </span>
-                {v.hours}
-              </p>
-              <p className="mt-2 text-body-md text-ink-800">
                 <span className="font-semibold text-ink-900">Address: </span>
                 {v.address}
               </p>
-              <p className="mt-2 text-body-md text-ink-800">
-                <span className="font-semibold text-ink-900">Price guide: </span>
-                {v.priceGuide}
+              <p className="mt-4 text-body-sm text-ink-600">
+                For hours and pricing, see the operator&rsquo;s page — the link in the sidebar goes directly to it.
               </p>
-              {v.dogs ? (
-                <p className="mt-2 text-body-md text-ink-800">
-                  <span className="font-semibold text-ink-900">Dogs: </span>
-                  {v.dogs}
-                </p>
-              ) : null}
             </div>
 
             {v.whatsNotHere ? (
@@ -255,7 +243,7 @@ export default function VenuePage({ params }: PageProps) {
                 <ul className="space-y-2 text-body-sm">
                   <li>
                     <Link href="/eat-and-drink" className="link text-ocean-700">
-                      All six anchor venues
+                      All venues
                     </Link>
                   </li>
                   <li>

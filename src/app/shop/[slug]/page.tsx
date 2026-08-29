@@ -110,27 +110,14 @@ export default function RetailerPage({ params }: PageProps) {
             </div>
 
             <div>
-              <p className="eyebrow">When &amp; where</p>
+              <p className="eyebrow">Where</p>
               <p className="mt-3 text-body-md text-ink-800">
-                <span className="font-semibold text-ink-900">When: </span>
-                {r.whenAndWhere.when}
-              </p>
-              <p className="mt-2 text-body-md text-ink-800">
                 <span className="font-semibold text-ink-900">Address: </span>
                 {r.whenAndWhere.address}
               </p>
-              {r.parking ? (
-                <p className="mt-2 text-body-md text-ink-800">
-                  <span className="font-semibold text-ink-900">Parking: </span>
-                  {r.parking}
-                </p>
-              ) : null}
-              {r.dogs ? (
-                <p className="mt-2 text-body-md text-ink-800">
-                  <span className="font-semibold text-ink-900">Dogs: </span>
-                  {r.dogs}
-                </p>
-              ) : null}
+              <p className="mt-4 text-body-sm text-ink-600">
+                For hours, parking and access, see the operator&rsquo;s page — the link in the sidebar goes directly to it.
+              </p>
             </div>
 
             {r.howToMakeAMorningOfIt.length > 0 ? (

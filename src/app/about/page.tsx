@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  Hero,
   HeroPhoto,
   Card,
   CardBody,
@@ -11,6 +10,19 @@ import {
 import { ABOUT_BRAND_IMAGE } from "@/data/photos";
 import { SITE } from "@/data/site";
 
+/**
+ * /about — MSN-2987 V2 chunk 1 (chairman mandate 2026-08-29).
+ *
+ * Visitor-facing page. Removed:
+ *   - Hosting/architecture/stack language (Next.js, Cloudflare, Git).
+ *   - Fictional coverage claims ("fishing, boats, travel, webcams"
+ *     are not all full deep pages with verified content).
+ * Kept:
+ *   - Editorial voice (brand statement).
+ *   - Mission (live data, primary sources).
+ *   - Disclosure (affiliate + corrections).
+ */
+
 export const metadata: Metadata = {
   title: "About",
   description:
@@ -18,22 +30,20 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About · MyNoosaHeads",
-    description: "What we cover, who writes it, and how the publication is set up.",
+    description:
+      "What we cover, who writes it, and how the publication is set up.",
     url: "/about",
     type: "article",
   },
   twitter: {
     card: "summary",
     title: "About · MyNoosaHeads",
-    description: "What we cover, who writes it, and how the publication is set up.",
+    description:
+      "What we cover, who writes it, and how the publication is set up.",
   },
 };
 
 export default function AboutPage() {
-  // MSN-2964 — About page schema: full Organization block + BreadcrumbList.
-  // About pages earn rich snippets for the publisher name and logo; we
-  // mirror the homepage Organization id so the two declarations merge in
-  // Google's knowledge graph.
   const aboutJsonLd = [
     {
       "@context": "https://schema.org",
@@ -77,19 +87,12 @@ export default function AboutPage() {
   return (
     <div className="bg-paper-50">
       <JsonLd data={aboutJsonLd} />
-      {/* Sprint 1.5 (MSN-2958): full-bleed masthead photo. Quiet headland
-       * view rather than the swimming beach — this is the editorial
-       * "figure" under which the brand statement sits. */}
       <HeroPhoto
         src={ABOUT_BRAND_IMAGE.url}
         alt={ABOUT_BRAND_IMAGE.caption}
         caption={ABOUT_BRAND_IMAGE.caption}
         credit=""
       />
-      {/* Sprint 1.5 (MSN-2958) — brand-statement masthead.
-       * Tim's north-star quote as a `<Section>` at the top of /about,
-       * styled as Fraunces italic display with an ocean accent.
-       */}
       <section
         className="border-b border-paper-200 bg-paper-100"
         aria-labelledby="brand-statement-h"
@@ -97,9 +100,6 @@ export default function AboutPage() {
         <div className="container-page py-14 md:py-20">
           <p
             id="brand-statement-h"
-            // MSN-2959 / TSK-2959-POLISH-C: dropped explicit `text-ocean-700`
-            // override so the bumped `.eyebrow` class (text-ocean-900) wins
-            // and the eyebrow contrast on white is WCAG AA-compliant.
             className="eyebrow"
           >
             Brand statement
@@ -116,13 +116,6 @@ export default function AboutPage() {
             </p>
             <p className="mt-3 font-display not-italic text-display-sm md:text-display-md text-ink-800 leading-snug">
               Every claim links to a public source.
-              {/*
-                * MSN-2959 / TSK-2959-FIX-3: brand-statement full-stop
-                * dot — the single place --accent-amber (#B8742A) appears
-                * on the site. Per Albert's spec §3.3, amber is the ONE
-                * warm hue; it punctuates the brand statement, not the
-                * rest of the palette.
-                */}
               <span
                 className="ml-2 inline-block h-2.5 w-2.5 rounded-full bg-amber-500 align-middle"
                 aria-hidden="true"
@@ -138,37 +131,34 @@ export default function AboutPage() {
           </p>
         </div>
       </section>
-      <Hero
-        eyebrow="About this guide"
-        title="MyNoosaHeads"
-        subtitle="An independent guide to Noosa Heads, Queensland. Every page links to a public source."
-      />
-
-      <section className="container-page py-14 md:py-20" aria-labelledby="what-h">
+      <section
+        className="container-page py-14 md:py-20"
+        aria-labelledby="about-body-h"
+      >
+        <h1 id="about-body-h" className="sr-only">About this guide</h1>
         <div className="grid gap-10 lg:grid-cols-3">
           <div className="lg:col-span-2 space-y-8">
-            <h2 id="what-h" className="sr-only">What we cover</h2>
             <section>
-              <h3 className="font-display text-display-sm text-ink-900">What we cover</h3>
+              <h2 className="font-display text-display-sm text-ink-900">What we cover</h2>
               <div className="prose-mdx mt-4">
                 <p>
                   MyNoosaHeads covers Noosa Heads, Noosaville, Tewantin,
                   Sunshine Beach, Peregian, and the western shire villages
-                  (Pomona, Cooran, Kin Kin, Cooroy). Eight functional areas:
-                  surf and weather, the national park, accommodation, things
-                  to do, fishing, boats, travel, and webcams.
+                  (Pomona, Cooran, Kin Kin, Cooroy). The editorial scope
+                  is the coast, the river, the national park, and the
+                  things visitors actually book — accommodation, the
+                  market mornings, the headland walks.
                 </p>
                 <p>
-                  The site opens with the live surf and weather and closes
-                  with the hinterland villages — the two functional ends of
-                  the shire. Each page links to its primary sources in the
-                  sidebar.
+                  The site opens with the live surf and weather and runs
+                  through the things to do. Each page links to its
+                  primary sources in the sidebar.
                 </p>
               </div>
             </section>
 
             <section>
-              <h3 className="font-display text-display-sm text-ink-900">How we work</h3>
+              <h2 className="font-display text-display-sm text-ink-900">How we work</h2>
               <div className="prose-mdx mt-4">
                 <p>
                   Every claim on this site links to a public source —
@@ -178,7 +168,7 @@ export default function AboutPage() {
                   SLSQ). Affiliate links are marked{" "}
                   <span className="chip-ocean">Affiliate</span>{" "}
                   before you click, and the full statement lives at{" "}
-                  the footer (full disclosure).
+                  the footer.
                 </p>
                 <p>
                   The live data tiles on the site refresh themselves every 30
@@ -195,13 +185,13 @@ export default function AboutPage() {
                   <Link href="/photo-credits" className="link text-ocean-700">
                     /photo-credits
                   </Link>
-                  . Every claim links to a public source.
+                  .
                 </p>
               </div>
             </section>
 
             <section>
-              <h3 className="font-display text-display-sm text-ink-900">Who writes it</h3>
+              <h2 className="font-display text-display-sm text-ink-900">Who writes it</h2>
               <div className="prose-mdx mt-4">
                 <p>
                   MyNoosaHeads is published by a small Sunshine Coast
@@ -216,20 +206,6 @@ export default function AboutPage() {
                 </p>
               </div>
             </section>
-
-            <section>
-              <h3 className="font-display text-display-sm text-ink-900">Hosting and stack</h3>
-              <div className="prose-mdx mt-4">
-                <p>
-                  The site is a Next.js 14 application, statically rendered
-                  where possible and server-rendered for the live tiles.
-                  It is hosted on Cloudflare Workers (free tier; we will
-                  upgrade to a paid Workers plan only when traffic
-                  warrants). All source code is held in a private Git
-                  repository.
-                </p>
-              </div>
-            </section>
           </div>
 
           <aside className="space-y-6">
@@ -237,9 +213,6 @@ export default function AboutPage() {
               <CardHeader eyebrow="At a glance" title="" />
               <CardBody>
                 <dl className="text-body-sm space-y-3 text-ink-800">
-                  {/* MSN-2959 / TSK-2959-POLISH-C: explicit `text-ocean-700`
-                   * dropped from each `<dt>` so the eyebrow register
-                   * resolves to text-ocean-900 (#0E4A41, ~10:1 on white). */}
                   <div>
                     <dt className="text-eyebrow">Region</dt>
                     <dd>Noosa Shire, Queensland, Australia</dd>
@@ -251,10 +224,6 @@ export default function AboutPage() {
                   <div>
                     <dt className="text-eyebrow">Established</dt>
                     <dd>2026</dd>
-                  </div>
-                  <div>
-                    <dt className="text-eyebrow">Hosting</dt>
-                    <dd>Cloudflare Workers (free tier)</dd>
                   </div>
                   <div>
                     <dt className="text-eyebrow">Newsletter</dt>

@@ -74,12 +74,6 @@ export default function PropertyPage({ params }: PageProps) {
         addressRegion: "QLD",
         addressCountry: "AU",
       },
-      starRating: property.type === "Hotel" || property.type === "Resort"
-        ? {
-            "@type": "Rating",
-            ratingValue: property.rating.includes("5-star") ? "5" : "4",
-          }
-        : undefined,
       amenityFeature: property.amenities.map((a) => ({
         "@type": "LocationFeatureSpecification",
         name: a,
@@ -109,9 +103,6 @@ export default function PropertyPage({ params }: PageProps) {
             {property.headline}
           </h1>
           <p className="mt-5 lead max-w-3xl text-pretty">{property.why}</p>
-          <p className="mt-4 text-caption text-ink-700 italic font-display">
-            {property.rating}
-          </p>
         </div>
       </section>
 
@@ -205,7 +196,7 @@ export default function PropertyPage({ params }: PageProps) {
                 <ul className="space-y-2 text-body-sm">
                   <li>
                     <Link href="/accommodation" className="link text-ocean-700">
-                      All ten curated properties
+                      All accommodation
                     </Link>
                   </li>
                   <li>

@@ -75,7 +75,7 @@ export const WALKS: WalkPage[] = [
   {
     slug: "coastal-walk",
     name: "Noosa Headland coastal walk",
-    headline: "The most walked short trail in Queensland.",
+    headline: "The coastal walk on the Noosa headland.",
     distance: "10.8 km return (Noosa Heads Surf Club to Sunshine Beach)",
     grade: "Grade 4 (formed but uneven; short steps and climbs; some sections narrow along the headlands)",
     duration: "Allow 4 hours return",

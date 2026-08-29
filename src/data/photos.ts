@@ -191,7 +191,7 @@ const INLINE = {
   ],
   noosaNationalPark: [
     {
-      caption: "Fairy Pool — the freshwater swim spot reached via the Tanglewood track.",
+      caption: "Fairy Pool — coastal rock pools on the Noosa shoreline.",
       url: "https://live.staticflickr.com/7902/46389696594_be050f6b5a_b.jpg",
       author: "Flickr (Openverse) — 'Noosa National Park Fairy Pool'",
       licence: "CC BY",

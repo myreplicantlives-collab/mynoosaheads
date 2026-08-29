@@ -121,9 +121,9 @@ export default async function HomePage() {
                 Where to sleep.
               </h2>
               <p className="mt-4 text-body-md text-paper-200 max-w-2xl text-pretty">
-                Ten properties across five areas — Hastings Street,
-                Noosaville, Sunshine Beach, Peregian, and Noosa Sound. Each
-                card links to the operator&apos;s booking engine.
+                Three properties across four areas — Hastings Street,
+                Noosaville, Sunshine Beach, and Peregian. Each card links
+                to the operator&apos;s booking page.
               </p>
               <div className="mt-7">
                 <Link
@@ -247,7 +247,7 @@ export default async function HomePage() {
               key: "eat",
               href: "/eat-and-drink",
               title: "Eat & drink",
-              body: "Six venues, four precincts.",
+              body: "Three venues, four precincts.",
               image: HOME_TILES.eatAndDrink,
               emphasis: false,
               dataTrack: "home_tile_eat",
@@ -274,7 +274,7 @@ export default async function HomePage() {
               key: "stay",
               href: "/accommodation",
               title: "Where to stay",
-              body: "Ten properties, five areas.",
+              body: "Three properties, four areas.",
               image: HOME_TILES.whereToStay,
               emphasis: false,
               dataTrack: "home_tile_stay",

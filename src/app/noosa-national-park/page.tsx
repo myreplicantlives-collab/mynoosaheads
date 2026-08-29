@@ -11,8 +11,7 @@ import { VERIFIED } from "@/data/photos-msn2982";
  *   - All walk cards use QPWS-verified distance, grade, duration
  *     (Coastal: 10.8 km / Grade 4 / 4 h; Tanglewood: 8 km return /
  *     Grade 4 / 2–3 h; Palm Grove: 1.1 km / Grade 3 / 15–30 min)
- *   - The 4 walk cards include the NEW Palm Grove Walk (added
- *     2026-08-29; image pending per chairman instruction)
+ *   - The 4 walk cards include the NEW Palm Grove Walk
  *   - H2 cut: "Check before you go." → "The alerts page is the
  *     only source that's current on the morning." (echoes the
  *     existing body copy)
@@ -152,9 +151,8 @@ export default function NationalParkPage() {
               slug: "palm-grove",
               title: "Palm Grove Walk",
               body: "1.1 km return, Grade 3, allow 15–30 minutes.",
-              image: null,
-              caption: "Image pending — verified Noosa photograph required.",
-              imagePending: true,
+              image: VERIFIED.cards.noosaRainforest.path,
+              caption: VERIFIED.cards.noosaRainforest.caption,
             },
           ].map((w) => (
             <Link
@@ -163,33 +161,17 @@ export default function NationalParkPage() {
               className="group relative block overflow-hidden rounded-xl aspect-[4/5] bg-ink-700"
               data-track={`np_walk_${w.slug}`}
             >
-              {w.imagePending ? (
-                <>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-ink-800">
-                    <div className="text-center px-6">
-                      <p className="eyebrow text-paper-400">Noosa National Park</p>
-                      <p className="mt-3 font-display text-display-sm text-paper-200 text-balance">
-                        {w.title}
-                      </p>
-                      <p className="mt-2 text-body-sm text-paper-300 text-pretty">
-                        Image pending<br />
-                        <span className="text-caption uppercase tracking-wider text-paper-400">Verified Noosa photograph required</span>
-                      </p>
-                    </div>
-                  </div>
-                </>
-              ) : (
+              {w.image ? (
                 <>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={w.image!}
+                    src={w.image}
                     alt={w.caption}
                     loading="lazy"
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                   />
                 </>
-              )}
+              ) : null}
               <div
                 className="absolute inset-0 bg-gradient-to-t from-ink-900/85 via-ink-900/30 to-transparent"
                 aria-hidden="true"

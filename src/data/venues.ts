@@ -1,10 +1,10 @@
 /**
  * Venue data — MSN-2980 V2 build (KUBE Spec §B.4).
  *
- * Six anchor venues for the new `/eat-and-drink` route. Two Hastings
- * Street restaurants, two Noosaville riverfront venues, one Sunshine
- * Beach village venue, one Peregian Beach hotel/restaurant — covers
- * the four Noosa precincts that visitors actually eat in.
+ * Three anchor venues for the new `/eat-and-drink` route. One Hastings
+ * Street café, one Noosaville riverfront restaurant, one Peregian Beach
+ * hotel/restaurant — covers three of the four Noosa precincts that
+ * visitors actually eat in.
  *
  * Per D8 voice guide + KUBE §A.3 restaurant pattern:
  *   - Headline leads with location / era / distinction
@@ -16,8 +16,6 @@
  * Vancouver Chinatown), generic CC0 Unsplash photos are used with
  * a clear "atmospheric" caption in the photo credit table at
  * /photo-credits.
- *
- * Six venues was the chairman-mandated minimum for MSN-2980.
  */
 
 export type VenueCuisine =

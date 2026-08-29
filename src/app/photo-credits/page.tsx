@@ -165,7 +165,7 @@ const CREDITS: CreditRow[] = [
     sourcePage: "https://live.staticflickr.com/3757/11681350584_c78a09d814_b.jpg",
   },
   {
-    caption: "Fairy Pool — Tanglewood track freshwater swim spot.",
+    caption: "Fairy Pool — coastal rock pools on the Noosa shoreline.",
     author: "Flickr (Openverse) — 'Noosa National Park Fairy Pool'",
     licence: "CC BY",
     sourcePage: "https://live.staticflickr.com/7902/46389696594_be050f6b5a_b.jpg",

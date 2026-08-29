@@ -136,10 +136,13 @@ export default async function SurfAndWeatherPage() {
         aria-labelledby="surf-tiles-heading"
       >
         <div className="container-page py-12 md:py-16">
-          <p className="eyebrow">Live · updated {new Date(live.updated).toLocaleString("en-AU", { hour: "numeric", minute: "2-digit", day: "numeric", month: "short", timeZone: "Australia/Brisbane" })}</p>
+          <p className="eyebrow">Live · updated {new Date(live.updated).toLocaleString("en-AU", { hour: "2-digit", minute: "2-digit", day: "numeric", month: "short", timeZone: "Australia/Brisbane", timeZoneName: "short" })} AEST/AEDT</p>
           <h2 id="surf-tiles-heading" className="mt-3 font-display text-display-md md:text-display-lg text-ink-900 text-balance">
             The numbers.
           </h2>
+          <p className="mt-3 text-body-sm text-ink-600 max-w-3xl text-pretty">
+            Refreshed automatically every 30 minutes from BOM and Open-Meteo. The badge on each tile names its source; tile data is not edited by hand.
+          </p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
               { label: "Wind", value: live.windKmh, sub: live.windDir, src: "Open-Meteo" },

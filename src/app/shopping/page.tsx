@@ -174,10 +174,7 @@ export default function ShoppingPage() {
               <strong className="text-ink-900">Wednesday &amp; Saturday:</strong> The Original Eumundi Markets, Memorial Drive, 7:30 am–2 pm. The makers&rsquo; market — ceramics, textiles, leatherwork, jewellery, body care.
             </li>
             <li>
-              <strong className="text-ink-900">Tuesday–Sunday:</strong> Noosa Regional Gallery, Riverside Drive, Tewantin. 10 am–4 pm weekdays, 10 am–3 pm weekends, closed Mondays. Free entry.
-            </li>
-            <li>
-              <strong className="text-ink-900">Dogs:</strong> On-leash at all three locations. Noosa Farmers Market and Eumundi have food samples at stall height — keep dogs close.
+              <strong className="text-ink-900">Daily:</strong> Noosa Regional Gallery, Riverside Drive, Tewantin. Free entry — confirm current hours on the gallery&rsquo;s site.
             </li>
           </ul>
         </div>

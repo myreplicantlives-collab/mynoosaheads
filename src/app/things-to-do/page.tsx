@@ -116,7 +116,7 @@ const CATEGORIES: CategoryCard[] = [
   {
     key: "wellness",
     title: "Swim the Fairy Pools",
-    body: "Freshwater pools in Noosa National Park.",
+    body: "Coastal rock pools on the Noosa shoreline.",
     href: "/things-to-do/fairy-pools",
     image: {
       path: CATEGORY_CARD_PHOTOS.wellnessAndRelaxation.path,
