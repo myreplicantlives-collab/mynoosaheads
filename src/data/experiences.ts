@@ -201,6 +201,123 @@ export const EXPERIENCES: ExperiencePage[] = [
       { label: "MSQ — recreational boating", href: "https://www.msq.qld.gov.au/" },
     ],
   },
+  {
+    slug: "everglades-day-trip",
+    title: "Everglades day trip",
+    headline: "Still water, paperbark, two hours up the river.",
+    hook:
+      "The Noosa Everglades are 25 km of still, tea-coloured water upriver from Noosaville, in the Cooloola section of the Great Sandy National Park.",
+    whatItLooksLike:
+      "The Everglades are not the river you paddle from Hastings — they're the upper catchment, accessible only by guided kayak tour or by self-skipper hire boat. The water is tea-coloured from the tea-tree tannins, the paperbarks arch over the channel, and you'll see a fraction of the visitors you see on the lower river. Most tours depart from the Noosaville wharf and run four to six hours, including the transfer.",
+    bestFor: "Nature-lovers · kayakers · a different morning from the beach",
+    whatToBring: [
+      "Reef-safe sunscreen (the tannin water reflects UV)",
+      "Hat and long-sleeve shirt",
+      "Water bottle — most operators carry water on the boat",
+      "Phone in a waterproof pouch",
+      "Binoculars if you have them (the bird life is the point)",
+    ],
+    howLong: "Half-day (4–6 hours including transfer from Noosaville). Full-day kayak tours available.",
+    difficulty: "Easy (motorised cruise) — Easy to moderate (guided kayak)",
+    options: [
+      {
+        label: "Noosa Ocean Kayak Tours",
+        href: "https://www.noosakayaktours.com.au/",
+        caption: "Half-day guided kayak tours up the Everglades.",
+      },
+      {
+        label: "Visit Noosa — Tours directory",
+        href: "https://www.visitnoosa.com.au/",
+        caption: "Full directory of Everglades operators.",
+      },
+    ],
+    safety: [
+      "Wear a lifejacket. Standard on guided tours; the hire operators enforce this for self-skippered boats.",
+      "Carry water. The tannin-coloured water is drinkable in an emergency but not great-tasting; the boat operators carry fresh water.",
+      "Sun protection — half a day on tannin water is a lot of UV.",
+    ],
+    whereToCheck: [
+      { label: "QPWS — Cooloola Recreation Area", href: "https://parks.qld.gov.au/find-a-park/national-parks/cooloola-recreation-area" },
+      { label: "Visit Noosa", href: "https://www.visitnoosa.com.au/" },
+    ],
+  },
+  {
+    slug: "hinterland-day-trip",
+    title: "Hinterland day trip",
+    headline: "Pomona, Cooran, Kin Kin — thirty minutes up the range.",
+    hook:
+      "The Noosa Hinterland is a thirty-minute drive west into the Blackall Range — Pomona, Cooran, Kin Kin, and Cooroy are the four villages; each has a Saturday market, a country pub, and a different temperature.",
+    whatItLooksLike:
+      "Drive twenty-five minutes up the range from Noosaville and the temperature drops three to five degrees. Pomona has Mt Cooroora at its back (the ring-bark walk up the peak is two hours return); Cooran is the smallest village, with a single pub and a community garden; Kin Kin is the furthest and quietest, with the Noosa Trail Network radiating out from the village. Each village has a country pub doing counter meals, and the Pomona Saturday market is the regional makers' market before Eumundi.",
+    bestFor: "A different morning · foodies wanting to escape the coast · walkers",
+    whatToBring: [
+      "Walking shoes (Pomona ring-bark is steep in places)",
+      "Water bottle — the hinterland cafes run on tank water",
+      "Hat (the sun is sharper up the range)",
+      "Spending money for the Saturday market",
+      "A hire car or guided tour",
+    ],
+    howLong: "Half-day to full-day. Allow 4 hours for a Pomona morning; a full day for the trail network.",
+    difficulty: "Easy (driving tour) — Moderate (Pomona peak walk)",
+    options: [
+      {
+        label: "Visit Noosa — Hinterland",
+        href: "https://www.visitnoosa.com.au/",
+        caption: "Full directory of hinterland operators and trail maps.",
+      },
+    ],
+    safety: [
+      "Drive carefully — the range roads are winding and have wildlife at dawn and dusk.",
+      "Pomona peak walk — start early. By 10 am in summer the exposed rock sections are hot.",
+      "Carry water on the trail network — the hinterland is hotter and drier than the coast.",
+    ],
+    whereToCheck: [
+      { label: "Noosa Trail Network map", href: "https://www.noosatrails.com.au/" },
+      { label: "Visit Noosa", href: "https://www.visitnoosa.com.au/" },
+    ],
+  },
+  {
+    slug: "fishing-charter",
+    title: "Book a fishing charter",
+    headline: "River, estuary, inshore — pick the boat.",
+    hook:
+      "Noosa has the full fishing stack — calm-water river and estuary, beach and surf, and offshore reef and game fish within an hour's run from the Noosa bar.",
+    whatItLooksLike:
+      "Half-day estuary charters leave from the Noosa Marina and target flathead, bream, and the occasional threadfin salmon in the lower river and Weyba Creek. Full-day offshore charters leave before dawn and target spotted mackerel, mahi-mahi, and the occasional tuna. Beach fishing at sunrise — early mornings at the river mouth and along Sunshine Beach — is free, no licence required in Queensland for recreational fishing from the beach (verify with QFMA).",
+    bestFor: "Anglers · families · anyone who wants to catch dinner",
+    whatToBring: [
+      "Hat and long-sleeve shirt (UV on the water is intense)",
+      "Reef-safe sunscreen and zinc for the face",
+      "Soft-soled shoes (no black-soled boots on most charter boats)",
+      "Camera for the catch (the deckhand will photograph the big ones)",
+      "Sea-sickness pills if you're prone — half an hour before you board",
+    ],
+    howLong: "Half-day estuary: 4 hours. Full-day offshore: 8 hours. Beach fishing: 2–4 hours.",
+    difficulty: "Easy (estuary and beach) — Moderate (offshore; susceptible to weather and swell)",
+    options: [
+      {
+        label: "Noosa Fishing & Adventure Charters",
+        href: "https://www.noosafishingcharters.com.au/",
+        caption: "Half-day estuary and full-day offshore charters from Noosa Marina.",
+      },
+      {
+        label: "QFMA — recreational fishing rules",
+        href: "https://www.qfma.qld.gov.au/",
+        caption: "Queensland recreational fishing rules and bag limits.",
+      },
+    ],
+    safety: [
+      "Lifejackets — supplied and required on charter boats.",
+      "Offshore weather — the charter operators check BOM before departure; if the swell is over the limit, the trip is rescheduled.",
+      "Sun protection — 8 hours on offshore water is brutal. Cover up between 10 am and 3 pm.",
+      "Bar crossings — if your charter heads out through the Noosa bar, the skipper will check the MSQ bar report. The bar is closed when conditions exceed MSQ limits.",
+    ],
+    whereToCheck: [
+      { label: "BOM coastal forecast (Southeast Coast)", href: "https://www.bom.gov.au/coastal-location/australia" },
+      { label: "MSQ bar report", href: "https://www.msq.qld.gov.au/" },
+      { label: "QFMA bag and size limits", href: "https://www.qfma.qld.gov.au/" },
+    ],
+  },
 ];
 
 export const EXPERIENCES_BY_SLUG: Record<string, ExperiencePage> =

@@ -181,15 +181,13 @@ export async function CategoryPage({
        * a distinct surface. */}
 
       {/* ─── Editorial body ─── */}
+      {/* MSN-2982: removed the "Page body" sr-only heading (chairman
+       *  mandate #10 — no Wikipedia-style / developer-facing headings). */}
       <section
         className="container-page py-14 md:py-20"
-        aria-labelledby="cat-body-heading"
       >
         <div className="grid gap-10 lg:grid-cols-3">
           <div className="lg:col-span-2 space-y-10">
-            <h2 id="cat-body-heading" className="sr-only">
-              Page body
-            </h2>
             {bodySections.map((section, i) => (
               <section key={i} aria-labelledby={`section-${i}-h`}>
                 <h3

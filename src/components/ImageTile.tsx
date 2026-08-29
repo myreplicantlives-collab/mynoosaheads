@@ -8,11 +8,13 @@ export type ImageTileProps = {
   title: string;
   body?: string;
   image: {
-    url: string;
+    /** MSN-2982: image URL/path. Accepts either {url} (legacy) or {path} (MSN-2982 verified set). */
+    url?: string;
+    path?: string;
     caption: string;
-    author: string;
-    licence: string;
-    sourcePage: string;
+    author?: string;
+    licence?: string;
+    sourcePage?: string;
   };
   /** Stronger visual treatment — bigger image area, primary CTA styling. */
   emphasis?: boolean;
@@ -67,7 +69,7 @@ export function ImageTile({
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-paper-200">
         <Image
-          src={image.url}
+          src={image.path ?? image.url ?? ""}
           alt={image.caption}
           fill
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
