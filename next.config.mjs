@@ -38,13 +38,23 @@ const nextConfig = {
     // so next/image still renders the correct <img> tag with width/height
     // attributes, just without runtime resizing. The Wikimedia thumbnails
     // are already served at the right size by Commons, so this is safe.
+    //
+    // MSN-2980: Wikimedia is forbidden (chairman mandate). Allow Flickr
+    // (staticflickr.com) for inline / card photos and Unsplash CDN
+    // (images.unsplash.com) for placeholder photos.
     unoptimized: isCloudflare,
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "upload.wikimedia.org",
+        hostname: "live.staticflickr.com",
         port: "",
-        pathname: "/wikipedia/commons/**",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        port: "",
+        pathname: "/**",
       },
     ],
   },

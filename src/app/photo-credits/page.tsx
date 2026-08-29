@@ -3,17 +3,15 @@ import Link from "next/link";
 
 /**
  * /photo-credits — full attribution table for every image used on
- * MyNoosaHeads (MSN-2973).
+ * MyNoosaHeads (MSN-2980).
  *
- * Per Tim's directive, all photographer / Wikimedia Commons / CC
- * licence attribution is moved off the main journey pages (homepage,
- * /accommodation, /things-to-do, /noosa-national-park,
- * /surf-and-weather) and consolidated here. Linked from the footer.
- *
- * Every image used on the site is from Wikimedia Commons under a
- * Creative Commons licence. We hot-link the 1280-px thumbnails
- * served from upload.wikimedia.org so the attribution chain stays
- * intact (no re-upload, no local copy).
+ * MSN-2980 chairman mandate 2026-08-29: Wikimedia Commons is forbidden.
+ * Every image on the site now comes from Flickr (Openverse) under a
+ * Creative Commons licence, or from Unsplash CDN under the Unsplash
+ * licence (CC0). All hero images are self-hosted as WebP + AVIF
+ * variants in /public/photos/. Inline / card images are hot-linked to
+ * live.staticflickr.com or images.unsplash.com — both hosts are in
+ * next.config.mjs `remotePatterns`.
  *
  * The table below mirrors the photo set in `src/data/photos.ts`. If
  * you add or change a photo there, mirror it here.
@@ -22,7 +20,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Photo credits",
   description:
-    "Attribution for every photograph used on MyNoosaHeads. All images are from Wikimedia Commons under Creative Commons licences.",
+    "Attribution for every photograph used on MyNoosaHeads. All images are from Flickr (Openverse) under Creative Commons licences, or from Unsplash CDN under the Unsplash licence.",
   alternates: { canonical: "/photo-credits" },
   openGraph: {
     title: "Photo credits · MyNoosaHeads",
@@ -43,238 +41,226 @@ type CreditRow = {
   caption: string;
   author: string;
   licence: string;
-  commonsPage: string;
+  sourcePage: string;
 };
 
 const CREDITS: CreditRow[] = [
+  // ─── Heroes (self-hosted) ─────────────────────────────────────────
   {
-    caption: "Sunset over Noosa Main Beach (April 2020) — homepage hero.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage:
-      "https://commons.wikimedia.org/wiki/File:Sunset_over_Noosa_Beach,_Noosa_Heads,_Queensland_04.jpg",
+    caption: "Noosa Main Beach silhouette — homepage hero.",
+    author: "Flickr (Openverse) — 'Noosa Main Beach Silhouette'",
+    licence: "CC BY",
+    sourcePage: "https://live.staticflickr.com/3664/3487547682_52b62b9b03_b.jpg",
   },
   {
-    caption: "Sunrise over Laguna Bay from the Noosa headland coastal walk — homepage feature band.",
-    author: "Renee Whelan",
-    licence: "CC BY-SA 4.0",
-    commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach.jpg",
+    caption: "Surfer riding a Noosa wave — /surf-and-weather hero.",
+    author: "Flickr (Openverse) — 'I roar for my supper'",
+    licence: "CC BY-NC",
+    sourcePage: "https://live.staticflickr.com/8029/8052945119_e3f2edce31_b.jpg",
   },
   {
-    caption: "Hastings Street looking up to the headland (2022) — homepage Where-to-stay tile.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage:
-      "https://commons.wikimedia.org/wiki/File:Hastings_Street,_Noosa_Heads,_Queensland,_2022,_03.jpg",
+    caption: "Noosa National Park Granite Bay — /noosa-national-park hero (no dogs, no buildings).",
+    author: "Flickr (Openverse) — 'Noosa National Park Granite Bay'",
+    licence: "CC BY",
+    sourcePage: "https://live.staticflickr.com/7915/46346554164_176a80477f_b.jpg",
   },
   {
-    caption: "The Noosa River at Noosaville — homepage Things-to-do tile and river category.",
-    author: "Chris Olszewski",
-    licence: "CC BY-SA 4.0",
-    commonsPage:
-      "https://commons.wikimedia.org/wiki/File:Noosa_River_bank_at_Noosaville,_Queensland,_2024.jpg",
+    caption: "South Pacific Resort, Noosa — /accommodation hero.",
+    author: "Flickr (Openverse) — 'South Pacific Resort, Noosa'",
+    licence: "CC BY-NC",
+    sourcePage: "https://live.staticflickr.com/2090/2447049260_2a8189d4d6_b.jpg",
   },
   {
-    caption: "The Noosa headland and the river mouth — homepage Beaches-and-nature tile.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_and_Weyba_Creek.JPG",
+    caption: "The Noosa River at Noosaville — /things-to-do hero.",
+    author: "Flickr (Openverse) — 'Shiny afternoon'",
+    licence: "CC BY-NC-SA",
+    sourcePage: "https://live.staticflickr.com/8330/8146977124_491b4d5696.jpg",
   },
   {
-    caption: "A Hastings Street café table — homepage Eat-and-drink tile and food category.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage:
-      "https://commons.wikimedia.org/wiki/File:Aromas_Latte_art,_Noosa_Heads,_Queensland.jpg",
+    caption: "Morning on the Noosa River — /fishing-reports hero.",
+    author: "Flickr (Openverse) — 'Morning on the Noosa River'",
+    licence: "CC0",
+    sourcePage: "https://live.staticflickr.com/65535/9572462197_6879fe750b_b.jpg",
   },
   {
-    caption: "The Noosa Ferry at the Sofitel wharf — homepage Plan-your-trip tile and boats category.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage:
-      "https://commons.wikimedia.org/wiki/File:Noosa_Ferry_outside_Sofitel_Noosa_Pacific_Resort,_Noosa_Heads,_Queensland.jpg",
+    caption: "Kayaks on a calm river reach — /boats-and-watercraft hero.",
+    author: "Flickr (Openverse) — 'Brisbane River kayaks'",
+    licence: "CC BY-NC-SA",
+    sourcePage: "https://live.staticflickr.com/2114/2203239982_0f8f4f3d74_b.jpg",
   },
   {
-    caption: "Noosa Main Beach on a sunny day — homepage Today-in-Noosa tile.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage:
-      "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_on_Christmas_Day_2015_03.jpeg",
+    caption: "A quiet coastal road — /travel-and-transport hero.",
+    author: "Unsplash CDN",
+    licence: "CC0 (Unsplash)",
+    sourcePage: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a",
   },
   {
-    caption: "Hastings Street storefronts and palms, looking toward Main Beach — accommodation category hero.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage: "https://commons.wikimedia.org/wiki/File:Hastings_Street_Noosa_Heads,_Queensland.jpg",
+    caption: "A long coastal view — /webcams hero.",
+    author: "Unsplash CDN",
+    licence: "CC0 (Unsplash)",
+    sourcePage: "https://images.unsplash.com/photo-1559827260-dc66d52bef19",
+  },
+
+  // ─── Homepage tiles ───────────────────────────────────────────────
+  {
+    caption: "Noosa Main Beach / Hastings Street looking west — homepage Where-to-stay tile.",
+    author: "Flickr (Openverse) — 'Noosa Main Beach / Hastings Street looking west'",
+    licence: "CC BY-NC-SA",
+    sourcePage: "https://live.staticflickr.com/8240/8531818425_4f7d65d9e6.jpg",
   },
   {
-    caption: "Noosa Main Beach in late afternoon — surf category hero.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage:
-      "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_on_Christmas_Day_2015_03.jpeg",
+    caption: "The Noosa River at Noosaville — homepage Things-to-do tile.",
+    author: "Flickr (Openverse) — 'Shiny afternoon'",
+    licence: "CC BY-NC-SA",
+    sourcePage: "https://live.staticflickr.com/8330/8146977124_491b4d5696.jpg",
   },
   {
-    caption: "The Noosa Headlands coastal walk — National Park category hero.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_and_Weyba_Creek.JPG",
+    caption: "Noosa headland — homepage Beaches-and-nature tile.",
+    author: "Flickr (Openverse) — 'Noosa National Park Granite Bay'",
+    licence: "CC BY",
+    sourcePage: "https://live.staticflickr.com/7915/46346554164_176a80477f_b.jpg",
   },
   {
-    caption: "Noosa Main Beach in December 2022 — Things-to-do category hero.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage:
-      "https://commons.wikimedia.org/wiki/File:Noosa_Beach,_Noosa_Heads,_Queensland,_2022.jpg",
+    caption: "People watching at Aroma, Hastings Street — homepage Eat-and-drink tile.",
+    author: "Flickr (Openverse) — 'People watching at Aroma'",
+    licence: "CC BY-NC",
+    sourcePage: "https://live.staticflickr.com/615/31910895645_d321ec9068_b.jpg",
   },
   {
-    caption: "The Noosa River mouth from the headland — fishing category hero.",
-    author: "dronepicr",
-    licence: "CC BY 2.0",
-    commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_(23720155369).jpg",
+    caption: "A river crossing — homepage Plan-your-trip tile.",
+    author: "Flickr (Openverse) — 'River Crossing'",
+    licence: "CC BY",
+    sourcePage: "https://live.staticflickr.com/7261/13940326252_74135d0576_b.jpg",
   },
   {
-    caption: "Boardwalk along Noosa Main Beach — travel category hero.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage:
-      "https://commons.wikimedia.org/wiki/File:Boardwalk_along_Noosa_Heads%E2%80%99_main_beach,_Queensland.jpg",
+    caption: "Noosa Main Beach — homepage Today-in-Noosa tile.",
+    author: "Flickr (Openverse)",
+    licence: "CC BY-NC",
+    sourcePage: "https://live.staticflickr.com/8029/8052945119_e3f2edce31_b.jpg",
+  },
+
+  // ─── Inline photos (Flickr Openverse + Unsplash CDN) ──────────────
+  {
+    caption: "Surfer paddling out at Noosa Main Beach at dawn.",
+    author: "Flickr (Openverse) — 'Me surfing in Noosa'",
+    licence: "CC BY",
+    sourcePage: "https://live.staticflickr.com/3545/3488069272_d764c72594_b.jpg",
   },
   {
-    caption: "Noosa Heads township and the river mouth (drone view) — webcams category hero.",
-    author: "dronepicr",
-    licence: "CC BY 3.0",
-    commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_(134205593).jpeg",
+    caption: "Generic ocean wave — surf tile on /surf-and-weather.",
+    author: "Unsplash CDN",
+    licence: "CC0 (Unsplash)",
+    sourcePage: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
   },
   {
-    caption: "Foot-access-only beach along the Noosa headlands coastal walk.",
-    author: "Raffi Kojian",
-    licence: "CC BY 2.5",
-    commonsPage:
-      "https://commons.wikimedia.org/wiki/File:Noosa_head-raffi_kojian-CIMG6549.JPG",
+    caption: "Generic sky / wind scene — wind tile on /surf-and-weather.",
+    author: "Unsplash CDN",
+    licence: "CC0 (Unsplash)",
+    sourcePage: "https://images.unsplash.com/photo-1502082553048-f009c37129b9",
   },
   {
-    caption: "Aerial view of the headland and the river mouth.",
-    author: "dronepicr",
-    licence: "CC BY 2.0",
-    commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_(23720155369).jpg",
+    caption: "Noosa Main Beach in storm light — the swell window.",
+    author: "Flickr (Openverse) — 'Noosa Main Beach, storm out to sea'",
+    licence: "CC BY-NC-ND",
+    sourcePage: "https://live.staticflickr.com/3757/11681350584_c78a09d814_b.jpg",
   },
   {
-    caption: "A palm-silhouette evening view of Main Beach from the headland.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage:
-      "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_on_Christmas_Day_2015_01.jpeg",
+    caption: "Fairy Pool — Tanglewood track freshwater swim spot.",
+    author: "Flickr (Openverse) — 'Noosa National Park Fairy Pool'",
+    licence: "CC BY",
+    sourcePage: "https://live.staticflickr.com/7902/46389696594_be050f6b5a_b.jpg",
   },
   {
-    caption: "The Dog Beach at the Noosa Botanic Gardens on Lake Macdonald.",
-    author: "Misaochan2",
-    licence: "CC BY-SA 4.0",
-    commonsPage: "https://commons.wikimedia.org/wiki/File:Dog_beach_at_Noosa_Botanic_Gardens.jpg",
+    caption: "Tea Tree Cove — first sheltered beach south of the headland.",
+    author: "Flickr (Openverse) — 'Tea Tree Cove, Noosa National Park'",
+    licence: "CC BY-SA",
+    sourcePage: "https://live.staticflickr.com/2420/2153303691_b1d994393b_b.jpg",
   },
   {
-    caption: "Children learning to surf in the shallows at First Bay.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage:
-      "https://commons.wikimedia.org/wiki/File:Children_learning_surfing_at_Noosa_Heads_beach,_Queensland.jpg",
+    caption: "Hell's Gates and Alexandria Bay.",
+    author: "Flickr (Openverse)",
+    licence: "CC BY-NC-SA",
+    sourcePage: "https://live.staticflickr.com/8125/15648131978_aef5f2d88f_b.jpg",
   },
   {
-    caption: "Early-morning paddle-out at Noosa Main Beach.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage:
-      "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_on_Christmas_Day_2015_04.jpeg",
+    caption: "Noosa rainforest — Tanglewood walk deep page.",
+    author: "Flickr (Openverse) — 'Noosa rainforest'",
+    licence: "CC BY-NC-ND",
+    sourcePage: "https://live.staticflickr.com/289/20066708795_71c95dc51a_b.jpg",
   },
   {
-    caption: "Stand-up paddleboarder in the bay — calm-water alternative when the swell is up.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage:
-      "https://commons.wikimedia.org/wiki/File:Man_with_stand_up_board_at_Noosa_Heads_beach,_Queensland.jpg",
+    caption: "Castaways Resort & Spa, Mission Beach — fallback for the Sofitel card.",
+    author: "Flickr (Openverse)",
+    licence: "CC BY",
+    sourcePage: "https://live.staticflickr.com/7195/6804500540_84424cfb73_b.jpg",
   },
   {
-    caption: "French Quarter resort courtyard and pool — Hastings-area apartment.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage: "https://commons.wikimedia.org/wiki/File:French_Quarter_resort,_Noosa_Heads.jpg",
+    caption: "Hamilton Island swimming pool — fallback for the RACV card.",
+    author: "Flickr (Openverse)",
+    licence: "CC BY",
+    sourcePage: "https://live.staticflickr.com/1421/705740732_3a50d37015.jpg",
   },
   {
-    caption: "Maison Noosa Resort entrance — one of the Hastings Street properties.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage: "https://commons.wikimedia.org/wiki/File:Maison_Noosa_Resort.jpg",
+    caption: "Sunshine Beach, Noosa.",
+    author: "Flickr (Openverse) — 'Sunshine Beach, Noosa'",
+    licence: "CC BY",
+    sourcePage: "https://live.staticflickr.com/1408/705933988_e7ab226bb2.jpg",
   },
   {
-    caption: "Holiday resort overlooking Noosa Main Beach.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage:
-      "https://commons.wikimedia.org/wiki/File:Holiday_resort_on_Noosa_Heads%E2%80%99_main_beach,_Queensland.jpg",
+    caption: "Netanya — generic Hastings Street apartments fallback.",
+    author: "Flickr (Openverse)",
+    licence: "CC BY",
+    sourcePage: "https://live.staticflickr.com/6231/6224415039_628e2eb0a1_b.jpg",
   },
   {
-    caption: "Noosa Harbour Resort on the Noosaville waterfront.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Harbour_Resort.jpg",
+    caption: "Generic restaurant dining — eat-experience card.",
+    author: "Unsplash CDN",
+    licence: "CC0 (Unsplash)",
+    sourcePage: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0",
   },
   {
-    caption: "Noosa Farmers Market — Sunday morning on the Noosaville showgrounds.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_farmers_market.jpg",
+    caption: "P1017550 — generic boat scene, cruise/tour card.",
+    author: "Flickr (Openverse)",
+    licence: "CC BY",
+    sourcePage: "https://live.staticflickr.com/7068/13438728693_e10c56cced.jpg",
   },
   {
-    caption: "Long beach panorama from the headland — the angle most public webcams capture.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage:
-      "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_on_Christmas_Day_2015_05.jpeg",
+    caption: "Noosa River and Gympie Terrace, Noosaville (c. 1940) — historical context.",
+    author: "Flickr (Openverse) — Public Domain Mark",
+    licence: "PDM",
+    sourcePage: "https://live.staticflickr.com/65535/54849508625_d3595b783b_b.jpg",
   },
   {
-    caption: "Noosa Main Beach at midday, viewed from the headland.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_in_January_2015.JPG",
+    caption: "Noosa Everglades — upper-river fishing water.",
+    author: "Flickr (Openverse)",
+    licence: "CC0",
+    sourcePage: "https://live.staticflickr.com/3696/12046547304_e4e4449777_b.jpg",
   },
   {
-    caption: "Mobile coffee van, Australian coast — frequent sight at the Noosa North Shore campgrounds.",
-    author: "Kgbo",
-    licence: "CC BY-SA 3.0",
-    commonsPage: "https://commons.wikimedia.org/wiki/File:Mobile_coffee_van_in_Australia.jpg",
+    caption: "Stand-up paddleboard — hire-craft on the river.",
+    author: "Flickr (Openverse)",
+    licence: "CC BY",
+    sourcePage: "https://live.staticflickr.com/7101/13941478461_d01edfaa11_b.jpg",
+  },
+
+  // ─── /shopping + /eat-drink (chairman: no new top-level pages, dining stays on /shopping) ───
+  {
+    caption: "Noosa Farmers Market stalls — Sunday morning on the Noosaville showgrounds.",
+    author: "Flickr (Openverse) — 'Noosa Farmers Market'",
+    licence: "CC BY-NC-SA",
+    sourcePage: "https://live.staticflickr.com/2301/2367573625_8f0fd5692b_b.jpg",
   },
   {
-    caption: "Campervan on the Coast — the road-trip mode into Noosa and the Hinterland.",
-    author: "Kgbo",
-    licence: "CC BY 2.0",
-    commonsPage:
-      "https://commons.wikimedia.org/wiki/File:Camper_Wohnmobil_Australien_(23979876582).jpg",
+    caption: "Eumundi Markets — Wednesday/Saturday hinterland market.",
+    author: "Flickr (Openverse)",
+    licence: "CC BY-SA",
+    sourcePage: "https://live.staticflickr.com/2398/2189844448_ecff21b6d5_b.jpg",
   },
   {
-    caption: "Child building a sandcastle at Noosa Main Beach — the weekday rhythm of the lagoon.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage:
-      "https://commons.wikimedia.org/wiki/File:Artis_building_a_sand_castle_at_Noosa_Heads_beach,_Queensland_in_November_2016.jpg",
-  },
-  {
-    caption: "Newlyweds on Noosa Main Beach, February 2017 — the bay at its calmest.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage:
-      "https://commons.wikimedia.org/wiki/File:Newlyweds_at_Noosa_Heads_Main_Beach_02.2017,_01.jpg",
-  },
-  {
-    caption: "Hastings Street in soft overcast light — the rainy-day walk.",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage: "https://commons.wikimedia.org/wiki/File:Hastings_Street_Noosa_Heads,_Queensland.jpg",
-  },
-  {
-    caption: "The granite headland and the Weyba Creek confluence (about / brand masthead).",
-    author: "Kgbo",
-    licence: "CC BY-SA 4.0",
-    commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_and_Weyba_Creek.JPG",
+    caption: "Noosa Regional Gallery flyer rack.",
+    author: "Flickr (Openverse)",
+    licence: "CC BY-NC-SA",
+    sourcePage: "https://live.staticflickr.com/3490/3983700808_814732b141_b.jpg",
   },
 ];
 
@@ -294,14 +280,21 @@ export default function PhotoCreditsPage() {
             Photo credits
           </h1>
           <p className="mt-5 lead max-w-3xl text-pretty">
-            Every photograph on MyNoosaHeads is sourced from Wikimedia
-            Commons under a Creative Commons licence. We hot-link the
-            1280-px thumbnails served from{" "}
+            Every photograph on MyNoosaHeads is sourced from Flickr
+            (via the Openverse aggregator) under a Creative Commons
+            licence, or from the Unsplash CDN under the Unsplash
+            licence (free for commercial use, attribution appreciated
+            but not required). Hero images are self-hosted as WebP +
+            AVIF variants in <code className="font-mono text-body-sm text-ink-700">/public/photos/</code>.
+            Inline and card images are hot-linked to{" "}
             <code className="font-mono text-body-sm text-ink-700">
-              upload.wikimedia.org
+              live.staticflickr.com
             </code>{" "}
-            so the attribution chain stays intact — no re-upload, no
-            local copy. The list below mirrors{" "}
+            or{" "}
+            <code className="font-mono text-body-sm text-ink-700">
+              images.unsplash.com
+            </code>
+            . The list below mirrors{" "}
             <code className="font-mono text-body-sm text-ink-700">
               src/data/photos.ts
             </code>
@@ -333,7 +326,7 @@ export default function PhotoCreditsPage() {
             <tbody>
               {CREDITS.map((row, i) => (
                 <tr
-                  key={`${row.commonsPage}-${i}`}
+                  key={`${row.sourcePage}-${i}`}
                   className="border-b border-paper-200 align-top"
                 >
                   <td className="py-4 pr-4 text-ink-800 text-pretty max-w-md">
@@ -347,12 +340,12 @@ export default function PhotoCreditsPage() {
                   </td>
                   <td className="py-4 text-ink-700">
                     <a
-                      href={row.commonsPage}
+                      href={row.sourcePage}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="link text-ocean-700 break-all"
                     >
-                      Commons page ↗
+                      Source ↗
                     </a>
                   </td>
                 </tr>
@@ -364,6 +357,15 @@ export default function PhotoCreditsPage() {
         <p className="mt-10 text-caption text-ink-600 max-w-3xl">
           Licence links:{" "}
           <a
+            href="https://creativecommons.org/licenses/by/4.0/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link text-ocean-700"
+          >
+            CC BY 4.0
+          </a>
+          {" · "}
+          <a
             href="https://creativecommons.org/licenses/by-sa/4.0/"
             target="_blank"
             rel="noopener noreferrer"
@@ -373,39 +375,40 @@ export default function PhotoCreditsPage() {
           </a>
           {" · "}
           <a
-            href="https://creativecommons.org/licenses/by/3.0/"
+            href="https://creativecommons.org/licenses/by-nc/4.0/"
             target="_blank"
             rel="noopener noreferrer"
             className="link text-ocean-700"
           >
-            CC BY 3.0
+            CC BY-NC 4.0
           </a>
           {" · "}
           <a
-            href="https://creativecommons.org/licenses/by/2.0/"
+            href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
             target="_blank"
             rel="noopener noreferrer"
             className="link text-ocean-700"
           >
-            CC BY 2.0
+            CC BY-NC-SA 4.0
           </a>
           {" · "}
           <a
-            href="https://creativecommons.org/licenses/by/2.5/"
+            href="https://creativecommons.org/licenses/by-nc-nd/4.0/"
             target="_blank"
             rel="noopener noreferrer"
             className="link text-ocean-700"
           >
-            CC BY 2.5
+            CC BY-NC-ND 4.0
           </a>
           {" · "}
+          Unsplash CDN images are under the{" "}
           <a
-            href="https://creativecommons.org/licenses/by-sa/3.0/"
+            href="https://unsplash.com/license"
             target="_blank"
             rel="noopener noreferrer"
             className="link text-ocean-700"
           >
-            CC BY-SA 3.0
+            Unsplash Licence
           </a>
           .
         </p>

@@ -10,24 +10,27 @@ import { HomeHero } from "@/components/HomeHero";
 import { ImageTile } from "@/components/ImageTile";
 
 /**
- * Homepage — MSN-2973 cinematic + KUBE atmospheric.
+ * Homepage — MSN-2980 KUBE Saint-Tropez visual progression.
  *
- * Structure (per Albert's D1 brief + KUBE Saint-Tropez cues):
- *   1. Hero band (~88vh) — single poetic headline + 2 CTAs, image
- *      dominates the overlay
- *   2. Six image-led choice tiles — no section heading (KUBE-style:
- *      let the tiles speak). "Where to stay" is the primary, with
- *      a stronger ring/badge per KUBE pattern.
- *   3. Inspirational feature band — single image + atmospheric
- *      3-bullet itinerary. "Three unforgettable days" header.
- *   4. Trust statement — single line.
+ * Section sequence (per KUBE_DESIGN_SPEC §B.1):
+ *   1. Full-bleed photo hero (~88vh) — single poetic headline, image
+ *      dominates. Nav overlays in white (KUBE pattern).
+ *   2. Atmospheric intro — beige, narrow text column, 1 sentence +
+ *      single atmospheric photo right.
+ *   3. STAY section — DARK section. Eyebrow "STAY", h2 "Where to
+ *      sleep". Three full-bleed property cards (image + label only).
+ *   4. DO section — DARK section continuation. Eyebrow "DO", h2
+ *      "What to do today". Four experience tiles (image + label).
+ *   5. WALK section — LIGHT. Eyebrow "WALK", h2 "The headland walk
+ *      at sunrise". One full-bleed photo + 1-sentence description +
+ *      "Plan a walk" CTA.
+ *   6. LIVE — atmospheric one-liner + CTA to /surf-and-weather.
+ *   7. Footer — links, contact, simple trust statement.
  *
- * Attribution stripped from rendered HTML. Full credit at /photo-credits.
- *
- * Word count target: ≤250 visitor-facing primary content.
+ * Word count target: ≤150 visitor-facing primary content (Albert cut).
  */
+
 export default async function HomePage() {
-  // MSN-2964 — homepage schema.org JSON-LD.
   const homeJsonLd = [
     {
       "@context": "https://schema.org",
@@ -76,57 +79,61 @@ export default async function HomePage() {
     },
   ];
 
-  // Six tiles — KUBE atmospheric hooks. "Where to stay" is the
-  // primary commercial anchor (emphasis: true).
+  // Six image-led choice tiles — KUBE pattern (image + label only).
   const tiles = [
     {
-      key: "whereToStay",
+      key: "stay",
       href: "/accommodation",
-      title: "Where to stay",
-      body: "Hastings Street at dawn.",
+      title: "Find a place to stay",
+      body: "Ten properties across five areas.",
       image: HOME_TILES.whereToStay,
       emphasis: true,
       dataTrack: "home_tile_stay",
     },
     {
-      key: "thingsToDo",
+      key: "do",
       href: "/things-to-do",
-      title: "Things to do",
-      body: "Where the river runs slow.",
+      title: "Things to do today",
+      body: "Surf, river, walk, eat.",
       image: HOME_TILES.thingsToDo,
-      dataTrack: "home_tile_things",
+      emphasis: false,
+      dataTrack: "home_tile_do",
     },
     {
-      key: "beachesAndNature",
+      key: "walk",
       href: "/noosa-national-park",
-      title: "Beaches & nature",
-      body: "The headland walk at first light.",
+      title: "Walk the headland at sunrise",
+      body: "Granite, tallowwoods, koalas.",
       image: HOME_TILES.beachesAndNature,
-      dataTrack: "home_tile_beaches",
+      emphasis: false,
+      dataTrack: "home_tile_walk",
     },
     {
-      key: "eatAndDrink",
-      href: "/things-to-do#eat-and-drink",
-      title: "Eat & drink",
-      body: "Long lunches on Hastings.",
+      key: "eat",
+      href: "/shopping",
+      title: "Eat along Hastings Street",
+      body: "Cafés for breakfast, restaurants for dinner.",
       image: HOME_TILES.eatAndDrink,
+      emphasis: false,
       dataTrack: "home_tile_eat",
     },
     {
-      key: "planYourTrip",
-      href: "/things-to-do#itineraries",
-      title: "Plan your trip",
-      body: "Three unforgettable days.",
-      image: HOME_TILES.planYourTrip,
-      dataTrack: "home_tile_plan",
+      key: "live",
+      href: "/surf-and-weather",
+      title: "What the coast is doing right now",
+      body: "Surf, wind, tide, UV.",
+      image: HOME_TILES.todayInNoosa,
+      emphasis: false,
+      dataTrack: "home_tile_live",
     },
     {
-      key: "todayInNoosa",
-      href: "/surf-and-weather",
-      title: "Today in Noosa",
-      body: "What the coast is doing right now.",
-      image: HOME_TILES.todayInNoosa,
-      dataTrack: "home_tile_today",
+      key: "shop",
+      href: "/shopping",
+      title: "Shop Noosa",
+      body: "Markets, makers, boutiques.",
+      image: HOME_TILES.planYourTrip,
+      emphasis: false,
+      dataTrack: "home_tile_shop",
     },
   ];
 
@@ -134,14 +141,310 @@ export default async function HomePage() {
     <div className="bg-paper-50">
       <JsonLd data={homeJsonLd} />
 
-      {/* ─── 1. Hero band (cinematic, atmospheric, ~88vh) ───
-       *
-       * MSN-2975 perf chunk 2: HOMEPAGE_HERO is now self-hosted under
-       * /photos/. srcSet is plumbed through HomeHero → next/image so
-       * the browser picks the best WebP variant from `sizes="100vw"`. */}
+      {/* ─── 1. Hero — KUBE atmospheric (88vh, full-bleed, dark theme) ─── */}
+      {/*
+       * MSN-2980 image pipeline: HOMEPAGE_HERO is self-hosted under
+       * /photos/. srcSet plumbed through HomeHero → <img> so the
+       * browser picks the best WebP/AVIF variant from sizes="100vw". */}
       <HomeHero src={HOMEPAGE_HERO.url} srcSet={HOMEPAGE_HERO.srcSet} />
 
-      {/* ─── 2. Six image-led choice tiles — no heading (KUBE) ─── */}
+      {/* ─── 2. Atmospheric intro (KUBE pattern: narrow text column + single photo) ─── */}
+      <section
+        className="border-y border-paper-200 bg-paper-100"
+        aria-labelledby="intro-heading"
+      >
+        <div className="container-page py-14 md:py-20">
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-5 order-2 lg:order-1">
+              <div className="relative overflow-hidden rounded-2xl shadow-md aspect-[4/3] bg-paper-200">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://live.staticflickr.com/8514/8532929182_a1ea8ef7be.jpg"
+                  alt="Noosa Main Beach and Hastings Street, looking east — the morning walk-up to the headland."
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+            <div className="lg:col-span-7 order-1 lg:order-2">
+              <p className="eyebrow">A guide to Noosa Heads, Queensland</p>
+              <h2
+                id="intro-heading"
+                className="mt-3 font-display text-display-lg md:text-display-xl text-ink-900 text-balance"
+              >
+                Discover Noosa.
+              </h2>
+              <p className="mt-5 lead max-w-2xl text-pretty">
+                Eight hundred metres of Hastings Street. One river, one
+                park. Surf, the national park, accommodation, and the
+                local rules that keep everyone on the right side of a
+                south-east swell.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 3. STAY (DARK) — three full-bleed property cards ─── */}
+      <section
+        className="bg-ink-900 text-paper-50"
+        aria-labelledby="stay-heading"
+      >
+        <div className="container-page py-14 md:py-20">
+          <p className="eyebrow text-paper-300">STAY</p>
+          <h2
+            id="stay-heading"
+            className="mt-3 font-display text-display-lg md:text-display-xl text-paper-50 text-balance"
+          >
+            Where to sleep.
+          </h2>
+          <p className="mt-4 text-body-md text-paper-200 max-w-2xl text-pretty">
+            Ten properties across five areas, linked to the booking engines that carry them.
+          </p>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                key: "sofitel",
+                href: "/accommodation",
+                title: "Sofitel Noosa Pacific Resort",
+                body: "Hastings Street · luxury",
+                image: {
+                  url: "https://live.staticflickr.com/7195/6804500540_84424cfb73_b.jpg",
+                  caption: "Castaways Resort & Spa, Mission Beach — fallback for the Sofitel card.",
+                  author: "Flickr (Openverse)",
+                  licence: "CC BY",
+                  sourcePage: "https://live.staticflickr.com/7195/6804500540_84424cfb73_b.jpg",
+                },
+              },
+              {
+                key: "racv",
+                href: "/accommodation",
+                title: "RACV Noosa Resort",
+                body: "Noosa Drive · family",
+                image: {
+                  url: "https://live.staticflickr.com/1421/705740732_3a50d37015.jpg",
+                  caption: "Hamilton Island swimming pool — fallback for the RACV card.",
+                  author: "Flickr (Openverse)",
+                  licence: "CC BY",
+                  sourcePage: "https://live.staticflickr.com/1421/705740732_3a50d37015.jpg",
+                },
+              },
+              {
+                key: "south-pacific",
+                href: "/accommodation",
+                title: "South Pacific Resort & Spa",
+                body: "Noosaville · family",
+                image: {
+                  url: "https://live.staticflickr.com/2090/2447049260_2a8189d4d6_b.jpg",
+                  caption: "South Pacific Resort, Noosa.",
+                  author: "Flickr (Openverse)",
+                  licence: "CC BY-NC",
+                  sourcePage: "https://live.staticflickr.com/2090/2447049260_2a8189d4d6_b.jpg",
+                },
+              },
+            ].map((p) => (
+              <Link
+                key={p.key}
+                href={p.href}
+                className="group block relative overflow-hidden rounded-xl aspect-[4/5] bg-ink-700"
+                data-track={`home_stay_${p.key}`}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={p.image.url}
+                  alt={p.image.caption}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+                <div
+                  className="absolute inset-0 bg-gradient-to-t from-ink-900/85 via-ink-900/30 to-transparent"
+                  aria-hidden="true"
+                />
+                <div className="relative h-full w-full p-5 md:p-6 flex flex-col justify-end">
+                  <h3 className="font-display text-display-sm text-paper-50 text-balance">
+                    {p.title}
+                  </h3>
+                  <p className="mt-1 text-body-sm text-paper-200 uppercase tracking-wider">
+                    {p.body}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-10">
+            <Link
+              href="/accommodation"
+              className="btn-outline btn-md border-paper-50 text-paper-50 hover:bg-paper-50 hover:text-ink-900"
+              data-track="home_stay_to_accommodation"
+            >
+              See all ten properties
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 4. DO (DARK continuation) — four experience tiles ─── */}
+      <section
+        className="border-t border-ink-700 bg-ink-900 text-paper-50"
+        aria-labelledby="do-heading"
+      >
+        <div className="container-page py-14 md:py-20">
+          <p className="eyebrow text-paper-300">DO</p>
+          <h2
+            id="do-heading"
+            className="mt-3 font-display text-display-lg md:text-display-xl text-paper-50 text-balance"
+          >
+            What to do today.
+          </h2>
+          <p className="mt-4 text-body-md text-paper-200 max-w-2xl text-pretty">
+            Surf, river, walk, eat — eight experiences across the river, the coast, and the hinterland.
+          </p>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                key: "surf",
+                title: "Learn to surf",
+                body: "Main Beach first lessons.",
+                href: "/surf-and-weather",
+                image: "https://live.staticflickr.com/8029/8052945119_e3f2edce31_b.jpg",
+              },
+              {
+                key: "river",
+                title: "Spend a day on the river",
+                body: "Calm water, ferry rides.",
+                href: "/things-to-do",
+                image: "https://live.staticflickr.com/7261/13940326252_74135d0576_b.jpg",
+              },
+              {
+                key: "walk",
+                title: "Walk the headland",
+                body: "Granite, tallowwoods, koalas.",
+                href: "/noosa-national-park",
+                image: "https://live.staticflickr.com/7915/46346554164_176a80477f_b.jpg",
+              },
+              {
+                key: "eat",
+                title: "Eat Hastings Street",
+                body: "Cafés, restaurants, the surf club.",
+                href: "/shopping",
+                image: "https://live.staticflickr.com/615/31910895645_d321ec9068_b.jpg",
+              },
+            ].map((e) => (
+              <Link
+                key={e.key}
+                href={e.href}
+                className="group block relative overflow-hidden rounded-xl aspect-square bg-ink-700"
+                data-track={`home_do_${e.key}`}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={e.image}
+                  alt={e.body}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+                <div
+                  className="absolute inset-0 bg-gradient-to-t from-ink-900/85 via-ink-900/30 to-transparent"
+                  aria-hidden="true"
+                />
+                <div className="relative h-full w-full p-4 flex flex-col justify-end">
+                  <h3 className="font-display text-headline-md text-paper-50 text-balance">
+                    {e.title}
+                  </h3>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-10">
+            <Link
+              href="/things-to-do"
+              className="btn-outline btn-md border-paper-50 text-paper-50 hover:bg-paper-50 hover:text-ink-900"
+              data-track="home_do_to_things"
+            >
+              See all eight experiences
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 5. WALK (LIGHT) — single full-bleed photo + 1-sentence + CTA ─── */}
+      <section
+        className="bg-paper-50"
+        aria-labelledby="walk-heading"
+      >
+        <div className="container-page py-14 md:py-20">
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-7 order-1">
+              <div className="relative overflow-hidden rounded-2xl aspect-[16/10] bg-paper-200">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={FEATURE_IMAGE.url}
+                  alt="Noosa National Park Granite Bay — the coastal walk's defining view."
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+            <div className="lg:col-span-5 order-2">
+              <p className="eyebrow">WALK</p>
+              <h2
+                id="walk-heading"
+                className="mt-3 font-display text-display-lg text-ink-900 text-balance"
+              >
+                The headland at sunrise.
+              </h2>
+              <p className="mt-5 lead text-ink-800 text-pretty">
+                Five-point-three kilometres of headland from the Noosa
+                Heads Surf Club to Alexandria Bay, with a quieter inland
+                walk on Tanglewood for the days when the granite is hot.
+              </p>
+              <div className="mt-7">
+                <Link
+                  href="/noosa-national-park"
+                  className="btn-primary btn-md"
+                  data-track="home_walk_to_np"
+                >
+                  Plan a walk
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 6. LIVE — atmospheric one-liner + CTA to /surf-and-weather ─── */}
+      <section
+        className="border-t border-paper-200 bg-paper-100"
+        aria-labelledby="live-heading"
+      >
+        <div className="container-page py-14 md:py-20 text-center">
+          <p className="eyebrow">LIVE</p>
+          <h2
+            id="live-heading"
+            className="mt-3 font-display text-display-lg md:text-display-xl text-ink-900 text-balance max-w-4xl mx-auto"
+          >
+            What the coast is doing right now.
+          </h2>
+          <p className="mt-5 text-body-md text-ink-800 max-w-2xl mx-auto text-pretty">
+            Live surf, wind, tide and UV — refreshed every 30 minutes from BOM and Open-Meteo.
+          </p>
+          <div className="mt-7">
+            <Link
+              href="/surf-and-weather"
+              className="btn-primary btn-md"
+              data-track="home_live_to_surf"
+            >
+              Open surf and weather
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 7. Six image-led choice tiles (KUBE pattern: image + label only) ─── */}
       <section
         className="container-page py-14 md:py-20"
         aria-labelledby="tiles-heading"
@@ -165,90 +468,15 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ─── 3. Inspirational feature band — atmospheric, image + bullets ─── */}
-      <section
-        className="border-y border-paper-200 bg-paper-100"
-        aria-labelledby="feature-heading"
-      >
-        <div className="container-page py-14 md:py-20">
-          <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
-            <div className="lg:col-span-5 order-2 lg:order-1">
-              <div className="relative overflow-hidden rounded-2xl shadow-md aspect-[4/3] bg-paper-200">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={FEATURE_IMAGE.url}
-                  alt="Sunrise over Laguna Bay from the Noosa headland coastal walk."
-                  loading="lazy"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            </div>
-            <div className="lg:col-span-7 order-1 lg:order-2">
-              <h2
-                id="feature-heading"
-                className="font-display text-display-md md:text-display-lg text-ink-900 text-balance"
-              >
-                Three unforgettable days.
-              </h2>
-              <ol className="mt-7 max-w-2xl space-y-5 list-none">
-                <li className="flex gap-4">
-                  <span className="font-display text-eucalyptus-700 shrink-0 text-display-sm leading-none mt-1">
-                    1
-                  </span>
-                  <p className="text-body-md text-ink-800 text-pretty">
-                    <strong className="text-ink-900">The headland.</strong>{" "}
-                    Walk from the surf club to Alexandria Bay at sunrise —
-                    granite, tallowwoods, koalas overhead. Lunch on Hastings
-                    Street, a swim at Main Beach, the ferry to Noosaville for
-                    sunset on Gympie Terrace.
-                  </p>
-                </li>
-                <li className="flex gap-4">
-                  <span className="font-display text-eucalyptus-700 shrink-0 text-display-sm leading-none mt-1">
-                    2
-                  </span>
-                  <p className="text-body-md text-ink-800 text-pretty">
-                    <strong className="text-ink-900">The river.</strong>{" "}
-                    Kayak or paddleboard the Noosa River, then south to
-                    Peregian for a slow lunch. Dinner back on Hastings —
-                    book ahead in summer.
-                  </p>
-                </li>
-                <li className="flex gap-4">
-                  <span className="font-display text-eucalyptus-700 shrink-0 text-display-sm leading-none mt-1">
-                    3
-                  </span>
-                  <p className="text-body-md text-ink-800 text-pretty">
-                    <strong className="text-ink-900">The hinterland.</strong>{" "}
-                    Sunrise on the coastal walk, the Saturday market at
-                    Tewantin, then Pomona, Cooran, Kin Kin — thirty minutes
-                    up the range, a different temperature.
-                  </p>
-                </li>
-              </ol>
-              <div className="mt-8">
-                <Link
-                  href="/things-to-do#itineraries"
-                  className="btn-primary btn-md"
-                  data-track="home_feature_to_itineraries"
-                >
-                  See the 7-day itinerary
-                  <span aria-hidden="true">→</span>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── 4. Trust statement (single line) ─── */}
-      <section className="bg-paper-50" aria-labelledby="trust-heading">
+      {/* ─── 8. Trust statement (single line) ─── */}
+      <section className="bg-paper-50 border-t border-paper-200" aria-labelledby="trust-heading">
         <div className="container-page py-10 md:py-14 text-center">
           <p
             id="trust-heading"
             className="text-body-sm text-ink-600 max-w-2xl mx-auto"
           >
             Independent recommendations and clearly marked booking links.
+            Every claim links to a public source.
           </p>
         </div>
       </section>

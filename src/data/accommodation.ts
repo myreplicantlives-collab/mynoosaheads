@@ -62,13 +62,13 @@ export type Area = {
   pitch: string;
   /** "Best for" line. */
   bestFor: string;
-  /** Photo (Wikimedia Commons, attribution in /photo-credits). */
+  /** Photo (Flickr Openverse / Unsplash, attribution in /photo-credits). */
   photo: {
     caption: string;
     url: string;
     author: string;
     licence: string;
-    commonsPage: string;
+    sourcePage: string;
   };
   /** Internal links for IA discovery. */
   internalLinks: InternalLink[];
@@ -118,11 +118,10 @@ export const AREAS: Area[] = [
     bestFor: "Visitors who would rather walk than drive once they arrive.",
     photo: {
       caption: "Hastings Street storefronts and palms, looking toward Main Beach.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Hastings_Street_Noosa_Heads%2C_Queensland.jpg/1280px-Hastings_Street_Noosa_Heads%2C_Queensland.jpg",
-      author: "Kgbo",
-      licence: "CC BY-SA 4.0",
-      commonsPage:
-        "https://commons.wikimedia.org/wiki/File:Hastings_Street_Noosa_Heads,_Queensland.jpg",
+      url: "https://live.staticflickr.com/8514/8532929182_a1ea8ef7be.jpg",
+      author: "Flickr (Openverse) — 'Noosa Main Beach / Hastings Street looking east'",
+      licence: "CC BY-NC-SA",
+      sourcePage: "https://live.staticflickr.com/8514/8532929182_a1ea8ef7be.jpg",
     },
     anchor: "area-hastings",
     internalLinks: [
@@ -140,11 +139,10 @@ export const AREAS: Area[] = [
     bestFor: "Families, longer stays, anyone with a hire car.",
     photo: {
       caption: "Noosa Harbour Resort, on the Noosaville waterfront.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Noosa_Harbour_Resort.jpg/1280px-Noosa_Harbour_Resort.jpg",
-      author: "Kgbo",
-      licence: "CC BY-SA 4.0",
-      commonsPage:
-        "https://commons.wikimedia.org/wiki/File:Noosa_Harbour_Resort.jpg",
+      url: "https://live.staticflickr.com/3696/12046547304_e4e4449777_b.jpg",
+      author: "Flickr (Openverse) — 'Noosa Everglades, Australia'",
+      licence: "CC0",
+      sourcePage: "https://live.staticflickr.com/3696/12046547304_e4e4449777_b.jpg",
     },
     anchor: "area-noosaville",
     internalLinks: [
@@ -162,11 +160,10 @@ export const AREAS: Area[] = [
     bestFor: "Couples and small groups wanting a quiet river-side base near both precincts.",
     photo: {
       caption: "Noosa Sound waterways — quieter side of Noosa, between the two main precincts.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Noosa_Heads_and_Weyba_Creek.JPG/1280px-Noosa_Heads_and_Weyba_Creek.JPG",
-      author: "Kgbo",
-      licence: "CC BY-SA 4.0",
-      commonsPage:
-        "https://commons.wikimedia.org/wiki/File:Noosa_Heads_and_Weyba_Creek.JPG",
+      url: "https://live.staticflickr.com/7915/46346554164_176a80477f_b.jpg",
+      author: "Flickr (Openverse) — 'Noosa National Park Granite Bay'",
+      licence: "CC BY",
+      sourcePage: "https://live.staticflickr.com/7915/46346554164_176a80477f_b.jpg",
     },
     anchor: "area-noosa-sound",
     internalLinks: [
@@ -183,11 +180,10 @@ export const AREAS: Area[] = [
     bestFor: "Surfers, walkers, families with a car who don't want Hastings Street crowds.",
     photo: {
       caption: "The southern access into Noosa National Park, just north of Sunshine Beach village.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Noosa_Heads_beach_on_Christmas_Day_2015_01.jpeg/1280px-Noosa_Heads_beach_on_Christmas_Day_2015_01.jpeg",
-      author: "Kgbo",
-      licence: "CC BY-SA 4.0",
-      commonsPage:
-        "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_on_Christmas_Day_2015_01.jpeg",
+      url: "https://live.staticflickr.com/1408/705933988_e7ab226bb2.jpg",
+      author: "Flickr (Openverse) — 'Sunshine Beach, Noosa'",
+      licence: "CC BY",
+      sourcePage: "https://live.staticflickr.com/1408/705933988_e7ab226bb2.jpg",
     },
     anchor: "area-sunshine",
     internalLinks: [
@@ -204,11 +200,10 @@ export const AREAS: Area[] = [
     bestFor: "Extended stays, dog-friendly accommodation (verify each operator), surfers.",
     photo: {
       caption: "The village-square feel of Peregian Beach — looking back along the patrolled frontage.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Noosa_Heads_beach_in_January_2015.JPG/1280px-Noosa_Heads_beach_in_January_2015.JPG",
-      author: "Kgbo",
-      licence: "CC BY-SA 4.0",
-      commonsPage:
-        "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_in_January_2015.JPG",
+      url: "https://live.staticflickr.com/8240/8531818425_4f7d65d9e6.jpg",
+      author: "Flickr (Openverse) — 'Noosa Main Beach / Hastings Street looking west'",
+      licence: "CC BY-NC-SA",
+      sourcePage: "https://live.staticflickr.com/8240/8531818425_4f7d65d9e6.jpg",
     },
     anchor: "area-peregian",
     internalLinks: [

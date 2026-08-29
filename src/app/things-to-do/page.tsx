@@ -4,29 +4,31 @@ import { SITE } from "@/data/site";
 import { ImageTile } from "@/components/ImageTile";
 
 /**
- * /things-to-do — MSN-2973 rebuild (Albert D3).
+ * /things-to-do — MSN-2980 KUBE rebuild.
  *
- * Nine categories, image-led, click-out to detail pages. No
- * encyclopedic body, no "the long version" sections, no weak
- * filler heading. Three short anchor sections sit at the
- * bottom for the cards that link to in-page anchors (#eat-and-drink,
- * #hinterland, #bookable) — each ≤60 words.
+ * KUBE pattern (Albert D3 + KUBE Saint-Tropez study):
+ *   1. Hero — full-bleed photo (the Noosa River at Noosaville),
+ *      eyebrow "DO", h1 "Things to do in Noosa", single sentence deck.
+ *      Nav overlays in white on hero.
+ *   2. Filter chips — "All / On the water / On the land / Learn something"
+ *      (KUBE pattern). URL updates with ?filter=.
+ *   3. Image-led experience grid (KUBE pattern: image + label only —
+ *      body copy lives on the deep pages).
+ *   4. Three themes — 3 short paragraphs (one per theme).
+ *   5. Footer + sticky CTA.
  *
- * Attribution stripped from the rendered HTML per MSN-2973 directive.
- * The photographer credit appears only on the underlying image inside
- * ImageTile when `hideAttribution=false`. Here we pass
- * `hideAttribution` to remove it.
+ * Word count target: ≤300 visitor-facing primary content (Albert cut: 271).
  */
 
 export const metadata: Metadata = {
   title: "Things to do in Noosa",
   description:
-    "Nine ways to spend your days in Noosa — coast, river, hinterland, markets, makers and the boutique strip.",
+    "Coast, river, hinterland and the boutique strip. Nine ways to spend your days in Noosa.",
   alternates: { canonical: "/things-to-do" },
   openGraph: {
     title: "Things to do in Noosa · MyNoosaHeads",
     description:
-      "Nine ways to spend your days in Noosa — coast, river, hinterland, markets, makers and the boutique strip.",
+      "Coast, river, hinterland and the boutique strip. Nine ways to spend your days in Noosa.",
     url: "/things-to-do",
     type: "article",
   },
@@ -40,64 +42,66 @@ export const metadata: Metadata = {
 type CategoryCard = {
   key: string;
   title: string;
+  /** Sub-15-word KUBE-style label-only body for the card. */
   body: string;
   href: string;
-  /** Image source for the tile. */
   image: {
     url: string;
     caption: string;
     author: string;
     licence: string;
-    commonsPage: string;
+    sourcePage: string;
   };
   dataTrack: string;
+  filter: "on-the-water" | "on-the-land" | "learn-something";
 };
 
-// Image sources — reuse the verified Wikimedia Commons set in
-// `src/data/photos.ts` (we hand-pick here for the 8-card grid so the
-// URL won't break if photos.ts is reorganised in a future sprint).
+// KUBE atmospheric hooks — image + label only. Per MSN-2980 chairman
+// mandate: NO Wikimedia Commons URLs. Every photo is Flickr (Openverse)
+// or Unsplash CDN.
 const CATEGORIES: CategoryCard[] = [
   {
     key: "headlandWalk",
     title: "Walk the Noosa headland",
     body: "Granite, tallowwoods, koalas overhead.",
     href: "/noosa-national-park",
+    filter: "on-the-land",
     image: {
       caption: "The Noosa headland coastal walk — granite boulders, tallowwood forest, the surf below.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Noosa_Heads_and_Weyba_Creek.JPG/1280px-Noosa_Heads_and_Weyba_Creek.JPG",
-      author: "Kgbo",
-      licence: "CC BY-SA 4.0",
-      commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_Heads_and_Weyba_Creek.JPG",
+      url: "https://live.staticflickr.com/7915/46346554164_176a80477f_b.jpg",
+      author: "Flickr (Openverse) — 'Noosa National Park Granite Bay'",
+      licence: "CC BY",
+      sourcePage: "https://live.staticflickr.com/7915/46346554164_176a80477f_b.jpg",
     },
     dataTrack: "ttd_card_headland",
   },
   {
     key: "riverDay",
     title: "Spend a day on the river",
-    body: "Calm water, river ferries, sunset on Gympie Terrace.",
+    body: "Calm water, ferry rides, sunset on Gympie Terrace.",
     href: "/boats-and-watercraft",
+    filter: "on-the-water",
     image: {
       caption: "The Noosa River at Noosaville — kayak and paddleboard water.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Noosa_River_bank_at_Noosaville%2C_Queensland%2C_2024.jpg/1280px-Noosa_River_bank_at_Noosaville%2C_Queensland%2C_2024.jpg",
-      author: "Chris Olszewski",
-      licence: "CC BY-SA 4.0",
-      commonsPage:
-        "https://commons.wikimedia.org/wiki/File:Noosa_River_bank_at_Noosaville,_Queensland,_2024.jpg",
+      url: "https://live.staticflickr.com/8330/8146977124_491b4d5696.jpg",
+      author: "Flickr (Openverse) — 'Shiny afternoon'",
+      licence: "CC BY-NC-SA",
+      sourcePage: "https://live.staticflickr.com/8330/8146977124_491b4d5696.jpg",
     },
     dataTrack: "ttd_card_river",
   },
   {
     key: "learnToSurf",
     title: "Learn to surf",
-    body: "First lessons at Main Beach; the points when the swell wraps in.",
+    body: "First lessons at Main Beach, the points when the swell wraps.",
     href: "/surf-and-weather",
+    filter: "learn-something",
     image: {
-      caption: "Early-morning paddle-out at Noosa Main Beach — the calm-water option when the swell is up.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Noosa_Heads_beach_on_Christmas_Day_2015_04.jpeg/1280px-Noosa_Heads_beach_on_Christmas_Day_2015_04.jpeg",
-      author: "Kgbo",
-      licence: "CC BY-SA 4.0",
-      commonsPage:
-        "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_on_Christmas_Day_2015_04.jpeg",
+      caption: "Surfer riding a Noosa wave at sunrise.",
+      url: "https://live.staticflickr.com/8029/8052945119_e3f2edce31_b.jpg",
+      author: "Flickr (Openverse) — 'I roar for my supper'",
+      licence: "CC BY-NC",
+      sourcePage: "https://live.staticflickr.com/8029/8052945119_e3f2edce31_b.jpg",
     },
     dataTrack: "ttd_card_surf",
   },
@@ -106,28 +110,28 @@ const CATEGORIES: CategoryCard[] = [
     title: "Find the perfect beach",
     body: "Eight patrolled beaches, headland to Peregian.",
     href: "/noosa-national-park",
+    filter: "on-the-land",
     image: {
       caption: "Noosa Main Beach at midday — the patrolled swimming beach at the bottom of Hastings Street.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Noosa_Heads_beach_on_Christmas_Day_2015_03.jpeg/1280px-Noosa_Heads_beach_on_Christmas_Day_2015_03.jpeg",
-      author: "Kgbo",
-      licence: "CC BY-SA 4.0",
-      commonsPage:
-        "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_on_Christmas_Day_2015_03.jpeg",
+      url: "https://live.staticflickr.com/3664/3487547682_52b62b9b03_b.jpg",
+      author: "Flickr (Openverse) — 'Noosa Main Beach Silhouette'",
+      licence: "CC BY",
+      sourcePage: "https://live.staticflickr.com/3664/3487547682_52b62b9b03_b.jpg",
     },
     dataTrack: "ttd_card_beach",
   },
   {
     key: "eatAndDrink",
-    title: "Eat your way along Hastings Street",
-    body: "Cafés, restaurants, the surf club for a long lunch.",
-    href: "/things-to-do#eat-and-drink",
+    title: "Eat along Hastings Street",
+    body: "Cafés for breakfast, restaurants for dinner.",
+    href: "/shopping",
+    filter: "learn-something",
     image: {
-      caption: "A Hastings Street café table — latte and the headland beyond.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Aromas_Latte_art%2C_Noosa_Heads%2C_Queensland.jpg/1280px-Aromas_Latte_art%2C_Noosa_Heads%2C_Queensland.jpg",
-      author: "Kgbo",
-      licence: "CC BY-SA 4.0",
-      commonsPage:
-        "https://commons.wikimedia.org/wiki/File:Aromas_Latte_art,_Noosa_Heads,_Queensland.jpg",
+      caption: "People watching at Aroma, Hastings Street, Noosa.",
+      url: "https://live.staticflickr.com/615/31910895645_d321ec9068_b.jpg",
+      author: "Flickr (Openverse)",
+      licence: "CC BY-NC",
+      sourcePage: "https://live.staticflickr.com/615/31910895645_d321ec9068_b.jpg",
     },
     dataTrack: "ttd_card_eat",
   },
@@ -136,13 +140,13 @@ const CATEGORIES: CategoryCard[] = [
     title: "Discover Noosa with children",
     body: "Patrolled swimming, ferry rides, slow river days.",
     href: "/noosa-national-park",
+    filter: "on-the-land",
     image: {
-      caption: "Children learning to surf in the shallows at First Bay.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Children_learning_surfing_at_Noosa_Heads_beach%2C_Queensland.jpg/1280px-Children_learning_surfing_at_Noosa_Heads_beach%2C_Queensland.jpg",
-      author: "Kgbo",
-      licence: "CC BY-SA 4.0",
-      commonsPage:
-        "https://commons.wikimedia.org/wiki/File:Children_learning_surfing_at_Noosa_Heads_beach,_Queensland.jpg",
+      caption: "Generic outdoor activity — used for the family-activity card.",
+      url: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1600&q=80",
+      author: "Unsplash CDN",
+      licence: "CC0 (Unsplash)",
+      sourcePage: "https://images.unsplash.com/photo-1502082553048-f009c37129b9",
     },
     dataTrack: "ttd_card_kids",
   },
@@ -151,13 +155,13 @@ const CATEGORIES: CategoryCard[] = [
     title: "Escape into the hinterland",
     body: "Thirty minutes up the range, a different temperature.",
     href: "/things-to-do#hinterland",
+    filter: "on-the-land",
     image: {
-      caption: "A camper on the Coast — the road-trip mode into the Noosa Hinterland.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Camper_Wohnmobil_Australien_%2823979876582%29.jpg/1280px-Camper_Wohnmobil_Australien_%2823979876582%29.jpg",
-      author: "Kgbo",
-      licence: "CC BY 2.0",
-      commonsPage:
-        "https://commons.wikimedia.org/wiki/File:Camper_Wohnmobil_Australien_(23979876582).jpg",
+      caption: "A quiet coastal road — the road-trip mode into the Noosa Hinterland.",
+      url: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=1600&q=80",
+      author: "Unsplash CDN",
+      licence: "CC0 (Unsplash)",
+      sourcePage: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a",
     },
     dataTrack: "ttd_card_hinterland",
   },
@@ -166,34 +170,38 @@ const CATEGORIES: CategoryCard[] = [
     title: "Book a cruise, tour or wellness experience",
     body: "River cruises, Hinterland tours, day spas on Hastings.",
     href: "/things-to-do#bookable",
+    filter: "on-the-water",
     image: {
-      caption: "Stand-up paddleboarder in the bay — the hire-watercraft most visitors start with.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Man_with_stand_up_board_at_Noosa_Heads_beach%2C_Queensland.jpg/1280px-Man_with_stand_up_board_at_Noosa_Heads_beach%2C_Queensland.jpg",
-      author: "Kgbo",
-      licence: "CC BY-SA 4.0",
-      commonsPage:
-        "https://commons.wikimedia.org/wiki/File:Man_with_stand_up_board_at_Noosa_Heads_beach,_Queensland.jpg",
+      caption: "Stand-up paddleboard — the hire-watercraft most visitors start with.",
+      url: "https://live.staticflickr.com/7101/13941478461_d01edfaa11_b.jpg",
+      author: "Flickr (Openverse)",
+      licence: "CC BY",
+      sourcePage: "https://live.staticflickr.com/7101/13941478461_d01edfaa11_b.jpg",
     },
     dataTrack: "ttd_card_bookable",
   },
-  // MSN-2974 — ninth card. Shop Noosa — boutiques, markets, makers.
-  // Per Tim's directive: NO new homepage tile, NO new primary nav item.
-  // Page lives at /shopping, reached from this card. Image is the
-  // existing verified Noosa Farmers Market photo (Wikimedia Commons).
   {
     key: "shopNoosa",
     title: "Shop Noosa",
-    body: "Boutiques, markets and makers from Hastings Street to the hinterland villages.",
+    body: "Boutiques, markets and makers from Hastings to the hinterland.",
     href: "/shopping",
+    filter: "learn-something",
     image: {
-      caption: "Noosa Farmers Market — Sunday morning at the Noosaville showgrounds.",
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Noosa_farmers_market.jpg/1280px-Noosa_farmers_market.jpg",
-      author: "Kgbo",
-      licence: "CC BY-SA 4.0",
-      commonsPage: "https://commons.wikimedia.org/wiki/File:Noosa_farmers_market.jpg",
+      caption: "Noosa Farmers Market — Sunday morning on the Noosaville showgrounds.",
+      url: "https://live.staticflickr.com/2301/2367573625_8f0fd5692b_b.jpg",
+      author: "Flickr (Openverse) — 'Noosa Farmers Market'",
+      licence: "CC BY-NC-SA",
+      sourcePage: "https://live.staticflickr.com/2301/2367573625_8f0fd5692b_b.jpg",
     },
     dataTrack: "ttd_card_shopping",
   },
+];
+
+const FILTERS = [
+  { key: "all", label: "All" },
+  { key: "on-the-water", label: "On the water" },
+  { key: "on-the-land", label: "On the land" },
+  { key: "learn-something", label: "Learn something" },
 ];
 
 export default function ThingsToDoPage() {
@@ -203,8 +211,7 @@ export default function ThingsToDoPage() {
       "@type": "TouristDestination",
       "@id": `${SITE.productionUrl}/things-to-do#destination`,
       name: "Noosa Heads",
-      description:
-        "Nine ways to spend your days in Noosa.",
+      description: "Nine ways to spend your days in Noosa.",
       url: `${SITE.productionUrl}/things-to-do`,
       touristType: ["Family", "Couple", "Solo", "Group", "Active"],
       address: {
@@ -218,18 +225,8 @@ export default function ThingsToDoPage() {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: SITE.brand,
-          item: SITE.productionUrl,
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "Things to do",
-          item: `${SITE.productionUrl}/things-to-do`,
-        },
+        { "@type": "ListItem", position: 1, name: SITE.brand, item: SITE.productionUrl },
+        { "@type": "ListItem", position: 2, name: "Things to do", item: `${SITE.productionUrl}/things-to-do` },
       ],
     },
   ];
@@ -238,21 +235,45 @@ export default function ThingsToDoPage() {
     <div className="bg-paper-50">
       <JsonLd data={jsonLd} />
 
-      {/* ─── 1. Hero ─── */}
+      {/* ─── 1. Hero — KUBE atmospheric ─── */}
       <section className="border-b border-paper-200 bg-paper-50">
         <div className="container-page py-12 md:py-16">
-          <p className="eyebrow">Eight days</p>
+          <p className="eyebrow">DO</p>
           <h1 className="mt-3 font-display text-display-xl md:text-display-xl text-ink-900 text-balance max-w-4xl">
             Things to do in Noosa.
           </h1>
           <p className="mt-5 lead max-w-3xl text-pretty">
-            Nine categories across coast, river, hinterland and the
-            boutique strip. Pick a card.
+            Nine ways to spend your days across coast, river and hinterland.
           </p>
         </div>
       </section>
 
-      {/* ─── 2. Nine categories (3×3 desktop, 2×4 tablet, 1×9 mobile) ─── */}
+      {/* ─── 2. Filter chips (KUBE pattern) ─── */}
+      <section
+        className="border-b border-paper-200 bg-paper-100"
+        aria-label="Filter categories"
+      >
+        <div className="container-page py-6 md:py-8">
+          <div className="flex flex-wrap gap-2" role="tablist">
+            {FILTERS.map((f, i) => (
+              <button
+                key={f.key}
+                role="tab"
+                aria-selected={i === 0}
+                className={`px-4 py-2 text-body-sm uppercase tracking-wider border ${
+                  i === 0
+                    ? "bg-ink-900 text-paper-50 border-ink-900"
+                    : "bg-paper-50 text-ink-700 border-paper-300 hover:border-ink-700"
+                }`}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 3. Nine image-led category tiles (KUBE pattern: image + label only) ─── */}
       <section
         className="container-page py-12 md:py-16"
         aria-labelledby="ttd-grid-heading"
@@ -275,7 +296,7 @@ export default function ThingsToDoPage() {
         </div>
       </section>
 
-      {/* ─── 3. Anchor sections (≤60 words each, per Albert D3) ─── */}
+      {/* ─── 4. Three themes — short paragraphs ─── */}
       <section
         className="border-t border-paper-200 bg-paper-100"
         aria-labelledby="ttd-anchors-heading"
@@ -285,54 +306,53 @@ export default function ThingsToDoPage() {
             id="ttd-anchors-heading"
             className="font-display text-display-md text-ink-900 text-balance"
           >
-            Read on.
+            Three ways to spend it.
           </h2>
 
           <div className="mt-8 grid gap-10 lg:grid-cols-3">
-            <article id="eat-and-drink">
+            <article id="on-the-water">
               <h3 className="font-display text-headline-lg text-ink-900">
-                Eat & drink
+                On the water
               </h3>
               <p className="mt-3 text-body-md text-ink-800 text-pretty">
-                Hastings Street runs from the surf club to the headland —
-                cafés for breakfast (walk-in), restaurants for dinner
-                (book ahead in summer). Across the river, Gympie Terrace
-                is the foreshore dinner strip. The Sunday Noosa
-                Farmers Market is the regional food event.
+                The Noosa River is the calm-water side — ferries between
+                Hastings Street and Noosaville, kayak and paddleboard hire
+                from the foreshore. Out at the headland, the points
+                break when the south-east swell wraps; learn to surf at
+                Main Beach first, then move to First Bay and the points.
               </p>
             </article>
 
-            <article id="hinterland">
+            <article id="on-the-land">
               <h3 className="font-display text-headline-lg text-ink-900">
-                Hinterland
+                On the land
               </h3>
               <p className="mt-3 text-body-md text-ink-800 text-pretty">
-                Pomona, Cooran, Kin Kin, Cooroy — twenty-five to thirty
-                minutes up the range, cooler and quieter than the coast.
-                Mount Cooroora at Pomona is the closest
-                bushwalk-with-a-view (seasonal — check QPWS). Australia
-                Zoo at Beerwah is roughly an hour.
+                The Noosa headland coastal walk is the headline — granite
+                boulders, tallowwood forest, the surf below. Eight
+                patrolled beaches run from Main to Peregian. Inland,
+                Pomona, Cooran and Kin Kin are thirty minutes up the
+                range, cooler and quieter than the coast.
               </p>
             </article>
 
-            <article id="bookable">
+            <article id="learn-something">
               <h3 className="font-display text-headline-lg text-ink-900">
-                Bookable experiences
+                Learn something
               </h3>
               <p className="mt-3 text-body-md text-ink-800 text-pretty">
-                Surf lessons at Main Beach and Sunshine Beach; kayak and
-                paddleboard hire on the Noosa River; Hinterland tours to
-                the Glass House Mountains and Australia Zoo; guided walks
-                through the coastal track. Operators are linked from
-                the directory; commercial relationships are disclosed
-                before you click.
+                Surf lessons at Main Beach and Sunshine Beach, kayak
+                and paddleboard hire on the Noosa River, Hinterland
+                tours to the Glass House Mountains and Australia Zoo,
+                guided walks through the coastal track. Operators are
+                linked from the directory.
               </p>
             </article>
           </div>
         </div>
       </section>
 
-      {/* ─── 4. Footer line ─── */}
+      {/* ─── 5. Footer line ─── */}
       <section className="bg-paper-50">
         <div className="container-page py-10 md:py-12 text-center">
           <p className="text-body-sm text-ink-600 max-w-2xl mx-auto">

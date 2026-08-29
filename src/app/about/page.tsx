@@ -48,7 +48,7 @@ export default function AboutPage() {
         "@type": "ImageObject",
         url: ABOUT_BRAND_IMAGE.url,
         caption: ABOUT_BRAND_IMAGE.caption,
-        creditText: `${ABOUT_BRAND_IMAGE.author} / Wikimedia Commons`,
+        creditText: `${ABOUT_BRAND_IMAGE.author}`,
         license: `https://creativecommons.org/licenses/${ABOUT_BRAND_IMAGE.licence
           .replace("CC ", "")
           .replace(" ", "-")
@@ -190,8 +190,12 @@ export default function AboutPage() {
                 <p>
                   Copy on every page is reviewed against current QPWS
                   and council sources. All photography is sourced from
-                  Wikimedia Commons contributors who shoot Noosa
-                  specifically. Every claim links to a public source.
+                  Flickr (via Openverse) and the Unsplash CDN — the
+                  full attribution table lives at{" "}
+                  <Link href="/photo-credits" className="link text-ocean-700">
+                    /photo-credits
+                  </Link>
+                  . Every claim links to a public source.
                 </p>
               </div>
             </section>

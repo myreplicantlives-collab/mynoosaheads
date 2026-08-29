@@ -5,18 +5,15 @@
  * Sprint 1.5 (MSN-2958 / TSK-2958-02): every photo slot on every
  * category page uses this so attribution is consistent.
  *
- * Per Albert's `photo_inventory.md` every image on the site is from
- * Wikimedia Commons under CC BY-SA or CC BY. The credit line below
- * the image is non-optional under those licences.
+ * MSN-2980: every image on the site is from Flickr (via Openverse)
+ * under a CC licence, or from the Unsplash CDN under the Unsplash
+ * licence. The credit line below the image is non-optional under
+ * those licences.
  *
- * MSN-2975 perf chunk 2: inline photos still resolve to Wikimedia
- * thumbnails (chunk 5 will switch the things-to-do 9-card grid + the
- * remaining inline grids to self-hosted WebPs). When that lands,
- * swap next/image for a native <img> with srcSet+src+sizes+fetchPriority
- * — the same pattern as HomeHero/HeroPhoto — because next/image 14.2
- * deletes any user-supplied srcSet (see get-img-props.js) and the
- * optimizer is disabled on Cloudflare Pages. Explicit `width` +
- * `height` (or 16:9 default) keep CLS = 0 in the meantime.
+ * MSN-2975 perf chunk 2: inline photos hot-linked to Flickr/Unsplash
+ * via next/image (Wikimedia is forbidden per chairman mandate
+ * 2026-08-29). Explicit `width` + `height` (or 16:9 default) keep
+ * CLS = 0.
  */
 
 import Image from "next/image";

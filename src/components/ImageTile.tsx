@@ -12,7 +12,7 @@ export type ImageTileProps = {
     caption: string;
     author: string;
     licence: string;
-    commonsPage: string;
+    sourcePage: string;
   };
   /** Stronger visual treatment — bigger image area, primary CTA styling. */
   emphasis?: boolean;
@@ -89,12 +89,14 @@ export function ImageTile({
           </p>
         ) : null}
         {/* MSN-2973 — attribution stripped on main-journey pages. Full
-         *  table lives at /photo-credits. */}
+         *  table lives at /photo-credits.
+         *  MSN-2980 — renamed commonsPage → sourcePage (Wikimedia is
+         *  forbidden per chairman mandate 2026-08-29). */}
         {!hideAttribution ? (
           <p className="mt-3 text-caption text-ink-600">
             Photo:{" "}
             <a
-              href={image.commonsPage}
+              href={image.sourcePage}
               target="_blank"
               rel="noopener noreferrer"
               className="underline decoration-paper-300 underline-offset-2 hover:text-ocean-700"
@@ -102,7 +104,7 @@ export function ImageTile({
             >
               {image.author}
             </a>{" "}
-            / Wikimedia Commons · {image.licence}
+            · {image.licence}
           </p>
         ) : null}
       </div>

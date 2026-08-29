@@ -56,7 +56,7 @@ export type Place = {
     url: string;
     author: string;
     licence: string;
-    commonsPage: string;
+    sourcePage: string;
   };
 };
 
@@ -77,7 +77,7 @@ export type ShoppingCategory = {
     url: string;
     author: string;
     licence: string;
-    commonsPage: string;
+    sourcePage: string;
   };
   /** Featured places (3–5 per category per Albert D1). */
   places: Place[];
@@ -87,92 +87,84 @@ export type ShoppingCategory = {
  * Shared verified photo set (mirrored from src/data/photos.ts).
  * -------------------------------------------------------------------- */
 
-/** Hastings Street storefronts (Kgbo, CC BY-SA 4.0). */
+/** Hastings Street — atmospheric long-shot (Flickr Openverse). */
 const IMG_HASTINGS_STREET = {
   caption:
     "Hastings Street storefronts and palms — the dense retail pocket between the surf club and the headland.",
-  url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Hastings_Street_Noosa_Heads%2C_Queensland.jpg/1280px-Hastings_Street_Noosa_Heads%2C_Queensland.jpg",
-  author: "Kgbo",
-  licence: "CC BY-SA 4.0",
-  commonsPage:
-    "https://commons.wikimedia.org/wiki/File:Hastings_Street_Noosa_Heads,_Queensland.jpg",
+  url: "https://live.staticflickr.com/8514/8532929182_a1ea8ef7be.jpg",
+  author: "Flickr (Openverse) — 'Noosa Main Beach / Hastings Street looking east'",
+  licence: "CC BY-NC-SA",
+  sourcePage: "https://live.staticflickr.com/8514/8532929182_a1ea8ef7be.jpg",
 };
 
-/** Noosa River bank at Noosaville (Chris Olszewski, CC BY-SA 4.0). */
+/** Noosa River bank at Noosaville (Flickr Openverse). */
 const IMG_NOOSAVILLE = {
   caption:
     "Noosa River bank at Noosaville — the foreshore strip five minutes inland from Hastings.",
-  url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Noosa_River_bank_at_Noosaville%2C_Queensland%2C_2024.jpg/1280px-Noosa_River_bank_at_Noosaville%2C_Queensland%2C_2024.jpg",
-  author: "Chris Olszewski",
-  licence: "CC BY-SA 4.0",
-  commonsPage:
-    "https://commons.wikimedia.org/wiki/File:Noosa_River_bank_at_Noosaville,_Queensland,_2024.jpg",
+  url: "https://live.staticflickr.com/8330/8146977124_491b4d5696.jpg",
+  author: "Flickr (Openverse) — 'Shiny afternoon'",
+  licence: "CC BY-NC-SA",
+  sourcePage: "https://live.staticflickr.com/8330/8146977124_491b4d5696.jpg",
 };
 
-/** Peregian-style beach (Kgbo, CC BY-SA 4.0). */
+/** Peregian-style beach (Flickr Openverse). */
 const IMG_PEREGIAN = {
   caption:
     "A south-coast Noosa beach — the village-square feel of Peregian.",
-  url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Noosa_Heads_beach_in_January_2015.JPG/1280px-Noosa_Heads_beach_in_January_2015.JPG",
-  author: "Kgbo",
-  licence: "CC BY-SA 4.0",
-  commonsPage:
-    "https://commons.wikimedia.org/wiki/File:Noosa_Heads_beach_in_January_2015.JPG",
+  url: "https://live.staticflickr.com/8240/8531818425_4f7d65d9e6.jpg",
+  author: "Flickr (Openverse) — 'Noosa Main Beach / Hastings Street looking west'",
+  licence: "CC BY-NC-SA",
+  sourcePage: "https://live.staticflickr.com/8240/8531818425_4f7d65d9e6.jpg",
 };
 
-/** Noosa Farmers Market (Kgbo, CC BY-SA 4.0). */
+/** Noosa Farmers Market (Flickr Openverse). */
 const IMG_FARMERS_MARKET = {
   caption:
     "Noosa Farmers Market — Sunday morning at the Noosaville showgrounds.",
-  url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Noosa_farmers_market.jpg/1280px-Noosa_farmers_market.jpg",
-  author: "Kgbo",
-  licence: "CC BY-SA 4.0",
-  commonsPage:
-    "https://commons.wikimedia.org/wiki/File:Noosa_farmers_market.jpg",
+  url: "https://live.staticflickr.com/2301/2367573625_8f0fd5692b_b.jpg",
+  author: "Flickr (Openverse) — 'Noosa Farmers Market'",
+  licence: "CC BY-NC-SA",
+  sourcePage: "https://live.staticflickr.com/2301/2367573625_8f0fd5692b_b.jpg",
 };
 
-/** Aromas latte art — atmospheric interior (Kgbo, CC BY-SA 4.0). */
+/** Aromas / Hastings Street café scene (Flickr Openverse). */
 const IMG_AROMAS = {
   caption:
     "A Hastings Street café table — the boutique-strip atmosphere that runs the length of the street.",
-  url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Aromas_Latte_art%2C_Noosa_Heads%2C_Queensland.jpg/1280px-Aromas_Latte_art%2C_Noosa_Heads%2C_Queensland.jpg",
-  author: "Kgbo",
-  licence: "CC BY-SA 4.0",
-  commonsPage:
-    "https://commons.wikimedia.org/wiki/File:Aromas_Latte_art,_Noosa_Heads,_Queensland.jpg",
+  url: "https://live.staticflickr.com/615/31910895645_d321ec9068_b.jpg",
+  author: "Flickr (Openverse)",
+  licence: "CC BY-NC",
+  sourcePage: "https://live.staticflickr.com/615/31910895645_d321ec9068_b.jpg",
 };
 
-/** Main Beach boardwalk — beachwear / resort context (Kgbo, CC BY-SA 4.0). */
+/** Main Beach boardwalk — beachwear / resort context (Unsplash CDN). */
 const IMG_BOARDWALK = {
   caption:
     "The Boardwalk along Main Beach — the short walk between Hastings Street and the Surf Club.",
-  url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Boardwalk_along_Noosa_Heads%E2%80%99_main_beach%2C_Queensland.jpg/1280px-Boardwalk_along_Noosa_Heads%E2%80%99_main_beach%2C_Queensland.jpg",
-  author: "Kgbo",
-  licence: "CC BY-SA 4.0",
-  commonsPage:
-    "https://commons.wikimedia.org/wiki/File:Boardwalk_along_Noosa_Heads%E2%80%99_main_beach,_Queensland.jpg",
+  url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80",
+  author: "Unsplash CDN",
+  licence: "CC0 (Unsplash)",
+  sourcePage: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
 };
 
-/** Hastings Street 2022 — premium long-shot (Kgbo, CC BY-SA 4.0). */
+/** Hastings Street 2022 — premium long-shot (Flickr Openverse). */
 const IMG_HASTINGS_2022 = {
   caption:
     "Hastings Street looking up to the headland — the walk from a Hastings Street shop to Main Beach.",
-  url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Hastings_Street%2C_Noosa_Heads%2C_Queensland%2C_2022%2C_03.jpg/1280px-Hastings_Street%2C_Noosa_Heads%2C_Queensland%2C_2022%2C_03.jpg",
-  author: "Kgbo",
-  licence: "CC BY-SA 4.0",
-  commonsPage:
-    "https://commons.wikimedia.org/wiki/File:Hastings_Street,_Noosa_Heads,_Queensland,_2022,_03.jpg",
+  url: "https://live.staticflickr.com/8240/8531818425_4f7d65d9e6.jpg",
+  author: "Flickr (Openverse)",
+  licence: "CC BY-NC-SA",
+  sourcePage: "https://live.staticflickr.com/8240/8531818425_4f7d65d9e6.jpg",
 };
 
-/** Noosa Ferry at Hastings — everyday Noosa street scene (Kgbo, CC BY-SA 4.0). */
+/** Noosa Ferry at Hastings — everyday Noosa street scene (Flickr Openverse). */
 const IMG_NOOSA_FERRY = {
   caption:
     "The Noosa ferry at Hastings — the everyday movement of the shire.",
-  url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Noosa_Ferry_outside_Sofitel_Noosa_Pacific_Resort%2C_Noosa_Heads%2C_Queensland.jpg/1280px-Noosa_Ferry_outside_Sofitel_Noosa_Pacific_Resort%2C_Noosa_Heads%2C_Queensland.jpg",
-  author: "Kgbo",
-  licence: "CC BY-SA 4.0",
-  commonsPage:
-    "https://commons.wikimedia.org/wiki/File:Noosa_Ferry_outside_Sofitel_Noosa_Pacific_Resort,_Noosa_Heads,_Queensland.jpg",
+  url: "https://live.staticflickr.com/7261/13940326252_74135d0576_b.jpg",
+  author: "Flickr (Openverse) — 'River Crossing'",
+  licence: "CC BY",
+  sourcePage: "https://live.staticflickr.com/7261/13940326252_74135d0576_b.jpg",
 };
 
 /* ----------------------------------------------------------------------

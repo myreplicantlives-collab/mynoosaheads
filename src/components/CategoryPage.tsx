@@ -7,7 +7,11 @@
  * Sprint 1.5 (MSN-2958 / TSK-2958-02): now also renders the category
  * hero photo (full-bleed, ~60vh) and inline images distributed
  * through the body. Both come from `src/data/photos.ts` which maps
- * Albert's verified Wikimedia inventory to each category slug.
+ * Albert's verified Flickr/Unsplash inventory to each category slug.
+ *
+ * MSN-2980: Wikimedia Commons is FORBIDDEN per chairman mandate
+ * 2026-08-29. The photo type was renamed from WikimediaPhoto to
+ * KubePhoto and the field renamed from commonsPage to sourcePage.
  *
  * MSN-2959 / TSK-2959-FIX-3: the live-data strip section was removed
  * site-wide. The coast-time live tiles belong on /surf-and-weather
@@ -32,7 +36,7 @@ import {
   Icons,
   JsonLd,
 } from "@/components/ui";
-import { CATEGORY_PHOTOS, type WikimediaPhoto } from "@/data/photos";
+import { CATEGORY_PHOTOS, type KubePhoto } from "@/data/photos";
 import { SITE } from "@/data/site";
 
 export type CategoryPageProps = {
@@ -94,7 +98,7 @@ export async function CategoryPage({
 }: CategoryPageProps) {
   const photos = slug ? CATEGORY_PHOTOS[slug] : undefined;
 
-  const creditLine = (p: WikimediaPhoto) => `Photo: ${p.author} / Wikimedia Commons · ${p.licence}`;
+  const creditLine = (p: KubePhoto) => `Photo: ${p.author} · ${p.licence}`;
   const heroCredit = showCredits ? creditLine(photos!.hero) : undefined;
 
   // MSN-2964 — Auto-generate a BreadcrumbList + Article schema when no
@@ -215,7 +219,11 @@ export async function CategoryPage({
                  * Wikimedia thumbnails (chunk 5 will switch the
                  * things-to-do 9-card grid + the rest of the inline
                  * grids to self-hosted WebPs). CaptionedPhoto will then
-                 * accept a srcSet prop and pass it through verbatim. */}
+                 * accept a srcSet prop and pass it through verbatim.
+                 *
+                 * MSN-2980: Wikimedia is forbidden — inline images now
+                 * hot-link to live.staticflickr.com / images.unsplash.com
+                 * via next/image (see next.config.mjs remotePatterns). */}
                 {photos?.inline?.[i % photos.inline.length] ? (
                   <CaptionedPhoto
                     src={photos.inline[i % photos.inline.length].url}
