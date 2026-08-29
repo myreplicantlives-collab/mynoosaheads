@@ -292,6 +292,20 @@ const CARDS = {
     landmark: "Noosa Farmers Market, Noosaville showgrounds",
   },
 
+  /* Eumundi Markets — verified (MSN-2986 — Dexter re-verified) */
+  eumundiMarkets: {
+    caption:
+      "The Original Eumundi Markets — stalls and shoppers under the tropical canopy, Memorial Drive, Eumundi.",
+    path: "/img/cards/eumundi-markets.jpg",
+    avifSrcSet: "/img/cards/eumundi-markets-640w.avif 640w, /img/cards/eumundi-markets-960w.avif 960w, /img/cards/eumundi-markets-1280w.avif 1280w",
+    webpSrcSet: "/img/cards/eumundi-markets-640w.webp 640w, /img/cards/eumundi-markets-960w.webp 960w, /img/cards/eumundi-markets-1280w.webp 1280w",
+    sourcePage:
+      "https://live.staticflickr.com/3203/2918149742_4e278671f1_b.jpg",
+    author: "Flickr (Openverse) — eGuide Travel, 'Eumundi market'",
+    licence: "CC BY 2.0",
+    landmark: "The Original Eumundi Markets, Memorial Drive, Eumundi",
+  },
+
   /* Aroma Hastings Street — verified (atmospheric) */
   aromaHastings: {
     caption:
@@ -436,6 +450,7 @@ export const CATEGORY_CARD_PHOTOS = {
 export const SHOPPING_PHOTOS = {
   hero: CARDS.noosaFarmersMarket,
   noosaFarmersMarket: CARDS.noosaFarmersMarket,
+  eumundiMarkets: CARDS.eumundiMarkets,
   noosaRegionalGallery: CARDS.noosaRegionalGallery,
   hastingsStreet: CARDS.hastingsStreetEast,
 };

@@ -21,14 +21,13 @@ import { VERIFIED } from "@/data/photos-msn2982";
 export const metadata: Metadata = {
   title: "Where to eat in Noosa",
   description:
-    "Six anchor venues across Hastings Street, Noosaville, Sunshine Beach and Peregian.",
+    "Three anchor venues across Hastings Street, Noosaville, and Peregian Beach.",
   alternates: { canonical: "/eat-and-drink" },
 };
 
 function photoFor(slug: string): { path: string; caption: string } {
   if (slug.includes("aroma")) return { path: VERIFIED.cards.aromaHastings.path, caption: VERIFIED.cards.aromaHastings.caption };
-  if (slug.includes("riverdeck") || slug.includes("gympie") || slug.includes("noosa-boathouse")) return { path: VERIFIED.cards.morningRiver.path, caption: VERIFIED.cards.morningRiver.caption };
-  if (slug.includes("sunshine")) return { path: VERIFIED.cards.sunshineBeach.path, caption: VERIFIED.cards.sunshineBeach.caption };
+  if (slug.includes("riverdeck")) return { path: VERIFIED.cards.morningRiver.path, caption: VERIFIED.cards.morningRiver.caption };
   if (slug.includes("peregian")) return { path: VERIFIED.cards.sunshineBeach.path, caption: VERIFIED.cards.sunshineBeach.caption };
   return { path: VERIFIED.cards.hastingsStreetEast.path, caption: VERIFIED.cards.hastingsStreetEast.caption };
 }
@@ -44,7 +43,7 @@ export default function EatAndDrinkPage() {
             "@id": `${SITE.productionUrl}/eat-and-drink#directory`,
             name: "Eat & drink in Noosa",
             description:
-              "Six anchor venues across Hastings Street, Noosaville, Sunshine Beach and Peregian.",
+              "Three anchor venues across Hastings Street, Noosaville, and Peregian Beach.",
             url: `${SITE.productionUrl}/eat-and-drink`,
             address: {
               "@type": "PostalAddress",
@@ -87,7 +86,7 @@ export default function EatAndDrinkPage() {
               Where Noosa eats.
             </h1>
             <p className="mt-4 lead text-paper-200 max-w-3xl text-pretty">
-              Six anchor venues across the four precincts.
+              Three anchor venues across the three precincts.
             </p>
           </div>
         </div>
@@ -99,12 +98,12 @@ export default function EatAndDrinkPage() {
         aria-labelledby="eat-intro-heading"
       >
         <div className="container-page py-12 md:py-16">
-          <p className="eyebrow">Six venues · four precincts</p>
+          <p className="eyebrow">Three venues · three precincts</p>
           <h2
             id="eat-intro-heading"
             className="mt-3 font-display text-display-md md:text-display-lg text-ink-900 text-balance max-w-3xl"
           >
-            Hastings fine-dining, Noosaville river-edge, Sunshine counter, Peregian beer garden.
+            Hastings morning coffee, Noosaville river-edge, Peregian village-square.
           </h2>
           <p className="mt-5 lead max-w-2xl text-pretty">
             Each card opens the operator&apos;s reservation page.
@@ -112,7 +111,7 @@ export default function EatAndDrinkPage() {
         </div>
       </section>
 
-      {/* ─── 3. Six anchor venue cards (image + label only) ─── */}
+      {/* ─── 3. Three anchor venue cards (image + label only) ─── */}
       <section
         className="container-page py-14 md:py-20"
         aria-labelledby="eat-venues-heading"
@@ -160,12 +159,11 @@ export default function EatAndDrinkPage() {
       <section className="bg-paper-100 border-y border-paper-200">
         <div className="container-page py-14 md:py-20 space-y-12">
           <h2 className="font-display text-display-md md:text-display-lg text-ink-900 text-balance">
-            Hastings fine-dining, Noosaville river-edge, Sunshine counter, Peregian beer garden.
+            Hastings morning coffee, Noosaville river-edge, Peregian village-square.
           </h2>
           {([
-            { id: "hastings", label: "Hastings Street", tagline: "Fine-dining and morning coffee under the fig trees." },
-            { id: "noosaville", label: "Noosaville", tagline: "River-edge seafood and long lunches on Gympie Terrace." },
-            { id: "sunshine", label: "Sunshine Beach", tagline: "Surf club balcony, counter meal over the patrolled sand." },
+            { id: "hastings", label: "Hastings Street", tagline: "Morning coffee and people-watching under the fig trees." },
+            { id: "noosaville", label: "Noosaville", tagline: "River-edge long lunches and gardens on Gympie Terrace." },
             { id: "peregian", label: "Peregian Beach", tagline: "Village square, beer garden, ten minutes south." },
           ] as const).map((area) => {
             const venuesInArea = VENUES_BY_AREA[area.id] ?? [];

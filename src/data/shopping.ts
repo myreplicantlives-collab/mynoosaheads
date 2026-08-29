@@ -53,7 +53,7 @@ export type Place = {
    */
   badge?: ShoppingBadge | null;
   /** Photo (Wikimedia Commons, attribution in /photo-credits). */
-  image: {
+  image?: {
     caption: string;
     url: string;
     author: string;

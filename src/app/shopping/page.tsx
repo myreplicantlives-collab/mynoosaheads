@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 function photoFor(slug: string): { path: string; caption: string } {
   if (slug.includes("farmers")) return { path: VERIFIED.cards.noosaFarmersMarket.path, caption: VERIFIED.cards.noosaFarmersMarket.caption };
-  if (slug.includes("eumundi")) return { path: VERIFIED.cards.noosaFarmersMarket.path, caption: VERIFIED.cards.noosaFarmersMarket.caption };
+  if (slug.includes("eumundi")) return { path: VERIFIED.cards.eumundiMarkets.path, caption: VERIFIED.cards.eumundiMarkets.caption };
   if (slug.includes("gallery")) return { path: VERIFIED.cards.noosaRegionalGallery.path, caption: VERIFIED.cards.noosaRegionalGallery.caption };
   return { path: VERIFIED.cards.hastingsStreetEast.path, caption: VERIFIED.cards.hastingsStreetEast.caption };
 }
@@ -171,7 +171,7 @@ export default function ShoppingPage() {
               <strong className="text-ink-900">Sunday:</strong> Noosa Farmers Market, Noosaville showgrounds, 7 am–midday. Over 100 stallholders, mostly primary producers from within an hour of Noosa.
             </li>
             <li>
-              <strong className="text-ink-900">Wednesday &amp; Saturday:</strong> The Original Eumundi Markets, Memorial Drive, 7:30 am–2 pm. The makers' market — ceramics, textiles, leatherwork, jewellery, body care.
+              <strong className="text-ink-900">Wednesday &amp; Saturday:</strong> The Original Eumundi Markets, Memorial Drive, 7:30 am–2 pm. The makers&rsquo; market — ceramics, textiles, leatherwork, jewellery, body care.
             </li>
             <li>
               <strong className="text-ink-900">Tuesday–Sunday:</strong> Noosa Regional Gallery, Riverside Drive, Tewantin. 10 am–4 pm weekdays, 10 am–3 pm weekends, closed Mondays. Free entry.

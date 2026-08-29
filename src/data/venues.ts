@@ -51,27 +51,6 @@ export type VenuePage = {
 
 export const VENUES: VenuePage[] = [
   {
-    slug: "season-restaurant",
-    name: "Season Restaurant",
-    areaId: "hastings",
-    cuisine: "Modern Australian",
-    headline: "Peter Kuruvita's flagship on Hastings Street.",
-    whyWorthVisiting:
-      "Season has held the same Hastings Street address for over a decade and remains the most consistent fine-dining room on the strip. Peter Kuruvita's menu tracks the South-East Queensland growing season — single-page, four courses, with one fish, one pork or lamb, one duck or chicken, and a vegetarian main that always works. The wine list is Australian-leaning with a serious pinot section. Book ahead for dinner in summer.",
-    bestFor: "Special occasion · couples · foodies",
-    signatureDishes: [
-      "Sunshine Coast yellowfin tuna, palm heart, native lime",
-      "Local pork belly, master stock, apple, fennel",
-      "Citrus curd, brown butter, macadamia",
-    ],
-    priceGuide: "A$120–150 per person for the four-course menu; wine pairing A$85 extra.",
-    hours: "Dinner Tuesday–Saturday, 6:00 pm – late. Closed Sunday and Monday. Verify hours before visiting.",
-    address: "Hastings Street, Noosa Heads QLD 4567",
-    reservationUrl: "https://www.seasonrestaurant.com.au/",
-    dogs: "Inside dining only — well-behaved dogs on Hastings Street footpath outside is at the operator's discretion.",
-    whatsNotHere: "Not a breakfast venue. Not casual — the dress code is smart-casual and the room is small.",
-  },
-  {
     slug: "aroma-noosa",
     name: "Aroma Noosa",
     areaId: "hastings",
@@ -94,27 +73,6 @@ export const VENUES: VenuePage[] = [
     whatsNotHere: "Not a dinner venue. Aroma closes at 3:00 pm.",
   },
   {
-    slug: "gympie-terrace-fish",
-    name: "The Noosa Boathouse",
-    areaId: "noosaville",
-    cuisine: "Seafood",
-    headline: "River-edge seafood on Gympie Terrace.",
-    whyWorthVisiting:
-      "The Boathouse sits at the south end of Gympie Terrace, with a deck that overhangs the river. Sunset is the table to book — the light on the water is the show, and the kitchen leans toward seafood: local prawns, oysters from the river mouth, line-caught fish. Casual enough for shorts and thongs; smart enough for a date night. Family-friendly before 7 pm.",
-    bestFor: "Couples · families · sunset",
-    signatureDishes: [
-      "Local prawns, mango, chilli, lime",
-      "River-mouth oysters, natural or kilpatrick",
-      "Pan-fried Noosa whiting, fries, house tartare",
-      "Char-grilled Sunshine Coast sirloin, frites",
-    ],
-    priceGuide: "A$45–75 per person for mains; seafood platters A$120 to share.",
-    hours: "Daily, 11:30 am – late. Reservations recommended for sunset (book a week ahead in summer).",
-    address: "194 Gympie Terrace, Noosaville QLD 4566",
-    reservationUrl: "https://www.noosaboathouse.com.au/",
-    dogs: "Outside deck welcomes dogs on leash; inside dining is dog-free.",
-  },
-  {
     slug: "riverdeck-noosa",
     name: "Riverdeck Restaurant",
     areaId: "noosaville",
@@ -133,28 +91,6 @@ export const VENUES: VenuePage[] = [
     address: "248 Gympie Terrace, Noosaville QLD 4566",
     reservationUrl: "https://www.riverdeck.com.au/",
     dogs: "Garden tables welcome dogs on leash.",
-  },
-  {
-    slug: "sunshine-beach-bistro",
-    name: "Sunshine Beach Surf Club Bistro",
-    areaId: "sunshine",
-    cuisine: "Pub & bistro",
-    headline: "Counter meal over the patrolled sand.",
-    whyWorthVisiting:
-      "The bistro at the Sunshine Beach Surf Life Saving Club sits one floor up over the flagged sand — counter meals, kids' menu, an Australian-leaning wine list, and a balcony that catches the afternoon sea breeze. It's the easiest lunch within an hour's drive of Noosa: park, walk up, order, eat with the view. Open for lunch and dinner; family-friendly.",
-    bestFor: "Family · lunch with a view · easy meal",
-    signatureDishes: [
-      "Beer-battered local flathead, chips, salad",
-      "300g rump, pepper sauce, mash",
-      "Caesar salad with grilled chicken",
-      "Kids' chicken schnitzel and chips",
-    ],
-    priceGuide: "A$25–40 per person for counter meals; A$15–20 for kids.",
-    hours: "Daily, 11:30 am – 9:00 pm. No reservations — walk in.",
-    address: "Duke Street, Sunshine Beach QLD 4567 (above the surf club)",
-    reservationUrl: "https://www.sunshinebeachslsc.com.au/",
-    dogs: "Outside balcony welcomes dogs on leash; inside dining is dog-free.",
-    whatsNotHere: "Not a fine-dining venue. The bistro is a counter-meal room — pour your own wine, no tablecloths.",
   },
   {
     slug: "peregian-beach-hotel",

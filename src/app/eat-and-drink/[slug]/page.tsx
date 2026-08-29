@@ -52,35 +52,17 @@ export function generateMetadata({ params }: PageProps): Metadata {
 }
 
 const HERO_PHOTOS: Record<string, { url: string; caption: string; author: string; licence: string }> = {
-  "season-restaurant": {
-    url: "https://live.staticflickr.com/8240/8531818425_4f7d65d9e6.jpg",
-    caption: "Hastings Street evening — restaurant lights under the fig trees.",
-    author: "Flickr (Openverse) — 'Noosa Main Beach / Hastings Street looking west'",
-    licence: "CC BY-NC-SA",
-  },
   "aroma-noosa": {
     url: "https://live.staticflickr.com/615/31910895645_d321ec9068_b.jpg",
     caption: "People watching people at Aroma, Hastings Street.",
     author: "Flickr (Openverse) — 'Aroma, Hastings Street, Noosa'",
     licence: "CC BY-NC",
   },
-  "gympie-terrace-fish": {
-    url: "https://live.staticflickr.com/3696/12046547304_e4e4449777_b.jpg",
-    caption: "The Noosa River at Noosaville — sunset over Gympie Terrace.",
-    author: "Flickr (Openverse) — 'Noosa Everglades, Australia'",
-    licence: "CC0",
-  },
   "riverdeck-noosa": {
     url: "https://live.staticflickr.com/65535/54849508625_d3595b783b_b.jpg",
     caption: "Noosa River and Gympie Terrace, Noosaville, mid-century calm.",
     author: "Flickr (Openverse) — Public Domain Mark",
     licence: "Public Domain Mark",
-  },
-  "sunshine-beach-bistro": {
-    url: "https://live.staticflickr.com/1408/705933988_e7ab226bb2.jpg",
-    caption: "Sunshine Beach from the surf club balcony.",
-    author: "Flickr (Openverse) — 'Sunshine Beach, Noosa'",
-    licence: "CC BY",
   },
   "peregian-beach-hotel": {
     url: "https://live.staticflickr.com/8240/8531818425_4f7d65d9e6.jpg",
