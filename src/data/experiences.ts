@@ -106,8 +106,8 @@ export const EXPERIENCES: ExperiencePage[] = [
     options: [
       {
         label: "Noosa Main Beach surf schools",
-        href: "https://beachsafe.org.au/",
-        caption: "Multiple operators run daily two-hour group lessons from the beach in front of the Surf Life Saving Club. Look for an SLSQ-affiliated school.",
+        href: "https://noosabeachsurfschool.com/",
+        caption: "Learn to surf at Noosa Main Beach with a Noosa-based surf school — daily two-hour group lessons from the beach in front of the Surf Life Saving Club.",
       },
     ],
     safety: [
@@ -120,7 +120,7 @@ export const EXPERIENCES: ExperiencePage[] = [
     whereToCheck: [
       { label: "BOM coastal forecast (Southeast Coast)", href: "https://www.bom.gov.au/coastal-location/australia" },
       { label: "SLSQ patrol status", href: "https://www.lifesaving.com.au/" },
-      { label: "Beachsafe — Noosa Main Beach", href: "https://beachsafe.org.au/" },
+      { label: "Noosa Beach Surf School", href: "https://noosabeachsurfschool.com/" },
     ],
   },
   {
@@ -141,9 +141,9 @@ export const EXPERIENCES: ExperiencePage[] = [
     difficulty: "None. Just walk.",
     options: [
       {
-        label: "Visit Noosa — Eat & Drink directory",
-        href: "https://www.visitnoosa.com.au/",
-        caption: "Full directory of Hastings Street and riverfront restaurants.",
+        label: "Season Restaurant",
+        href: "https://seasonrestaurant.com.au/",
+        caption: "For a representative fine-dining Hastings Street booking — or pick the restaurant that suits from the /eat-and-drink venue list.",
       },
     ],
     safety: [
@@ -153,7 +153,8 @@ export const EXPERIENCES: ExperiencePage[] = [
       "Sunday: many restaurants close or run a reduced service. Check before you walk over.",
     ],
     whereToCheck: [
-      { label: "Visit Noosa", href: "https://www.visitnoosa.com.au/" },
+      { label: "Season Restaurant", href: "https://seasonrestaurant.com.au/" },
+      { label: "Aroma Noosa", href: "https://aromanoosa.com.au/" },
     ],
   },
   {
@@ -181,9 +182,9 @@ export const EXPERIENCES: ExperiencePage[] = [
         caption: "Scheduled river cruises plus themed sunset cruises.",
       },
       {
-        label: "Visit Noosa — Tours & Sights directory",
-        href: "https://www.visitnoosa.com.au/",
-        caption: "Full directory of bookable operators.",
+        label: "Noosa Trail Network",
+        href: "https://www.noosatrails.com.au/",
+        caption: "Self-guided hinterland trail network — maps, distances, and difficulty grades for the Noosa Trail Network.",
       },
       {
         label: "MSQ — recreational boating",
@@ -197,7 +198,7 @@ export const EXPERIENCES: ExperiencePage[] = [
       "Day spas: standard health-and-safety protocols; tell the therapist about any conditions at booking.",
     ],
     whereToCheck: [
-      { label: "Visit Noosa", href: "https://www.visitnoosa.com.au/" },
+      { label: "Noosa Ferry & Cruise Co", href: "https://www.noosaferry.com/" },
       { label: "MSQ — recreational boating", href: "https://www.msq.qld.gov.au/" },
     ],
   },
@@ -226,9 +227,9 @@ export const EXPERIENCES: ExperiencePage[] = [
         caption: "Half-day guided kayak tours up the Everglades.",
       },
       {
-        label: "Visit Noosa — Tours directory",
-        href: "https://www.visitnoosa.com.au/",
-        caption: "Full directory of Everglades operators.",
+        label: "Noosa Ocean Kayak Tours",
+        href: "https://www.noosakayaktours.com.au/",
+        caption: "Half-day guided kayak tours up the Noosa Everglades — tannin-coloured water, paperbark forest, wildlife.",
       },
     ],
     safety: [
@@ -238,7 +239,7 @@ export const EXPERIENCES: ExperiencePage[] = [
     ],
     whereToCheck: [
       { label: "QPWS — Cooloola Recreation Area", href: "https://parks.qld.gov.au/find-a-park/national-parks/cooloola-recreation-area" },
-      { label: "Visit Noosa", href: "https://www.visitnoosa.com.au/" },
+      { label: "Noosa Ocean Kayak Tours", href: "https://www.noosakayaktours.com.au/" },
     ],
   },
   {
@@ -261,9 +262,9 @@ export const EXPERIENCES: ExperiencePage[] = [
     difficulty: "Easy (driving tour) — Moderate (Pomona peak walk)",
     options: [
       {
-        label: "Visit Noosa — Hinterland",
-        href: "https://www.visitnoosa.com.au/",
-        caption: "Full directory of hinterland operators and trail maps.",
+        label: "Noosa Trail Network",
+        href: "https://www.noosatrails.com.au/",
+        caption: "Hinterland trail network with maps, distances, and village-by-village route notes.",
       },
     ],
     safety: [
@@ -273,7 +274,7 @@ export const EXPERIENCES: ExperiencePage[] = [
     ],
     whereToCheck: [
       { label: "Noosa Trail Network map", href: "https://www.noosatrails.com.au/" },
-      { label: "Visit Noosa", href: "https://www.visitnoosa.com.au/" },
+      { label: "Noosa Trail Network", href: "https://www.noosatrails.com.au/" },
     ],
   },
   {

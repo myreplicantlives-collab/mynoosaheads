@@ -5,7 +5,17 @@ import { SITE } from "@/data/site";
 import { VERIFIED } from "@/data/photos-msn2982";
 
 /**
- * /noosa-national-park — MSN-2982 chairman-mandated rework.
+ * /noosa-national-park — MSN-2985 V2 release correction pass.
+ *
+ * Per chairman mandate 2026-08-29:
+ *   - All walk cards use QPWS-verified distance, grade, duration
+ *     (Coastal: 10.8 km / Grade 4 / 4 h; Tanglewood: 8 km return /
+ *     Grade 4 / 2–3 h; Palm Grove: 1.1 km / Grade 3 / 15–30 min)
+ *   - The 4 walk cards include the NEW Palm Grove Walk (added
+ *     2026-08-29; image pending per chairman instruction)
+ *   - H2 cut: "Check before you go." → "The alerts page is the
+ *     only source that's current on the morning." (echoes the
+ *     existing body copy)
  *
  * KUBE progression: hero → emotional headline → visual choices →
  * concise detail → essential practical info → clear action.
@@ -15,6 +25,8 @@ import { VERIFIED } from "@/data/photos-msn2982";
  * Chairman mandate #11: distances, track grades, and safety from the
  * official Queensland Parks & Wildlife Service source. Each claim
  * carries a QPWS link inline.
+ *
+ * @see /Volumes/OpenClawLive/state/control/evidence/MSN-2985/QPWS_FACTS.md
  */
 
 export const metadata: Metadata = {
@@ -98,8 +110,8 @@ export default function NationalParkPage() {
             Granite Bay at sunrise, koalas in the tallowwoods.
           </h2>
           <p className="mt-5 lead max-w-2xl text-pretty">
-            The headland section runs five-point-three kilometres from
-            Noosa Main Beach to Alexandria Bay. Koalas sleep in the
+            The headland section runs ten-point-eight kilometres return
+            from Noosa Main Beach to Sunshine Beach. Koalas sleep in the
             tallowwoods. Walk softly.
           </p>
         </div>
@@ -111,30 +123,38 @@ export default function NationalParkPage() {
         aria-labelledby="np-walks-heading"
       >
         <h2 id="np-walks-heading" className="font-display text-display-md md:text-display-lg text-ink-900 text-balance mb-10">
-          Three walks.
+          Four walks.
         </h2>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {[
             {
               slug: "coastal-walk",
               title: "The coastal walk",
-              body: "5.3 km, Class 2, three hours return.",
+              body: "10.8 km return, Grade 4, allow 4 hours.",
               image: "/img/heroes/granite-bay-1920w.jpg",
               caption: "Granite Bay, Noosa National Park.",
             },
             {
-              slug: "tanglewood",
+              slug: "tanglewood-track",
               title: "Tanglewood track",
-              body: "3 km, Class 3, two hours return.",
+              body: "8 km return, Grade 4, allow 2–3 hours.",
               image: "/img/cards/noosa-rainforest.jpg",
               caption: "Inland rainforest track, Noosa National Park.",
             },
             {
+              slug: "alexandria-bay",
+              title: "Alexandria Bay",
+              body: "3.3 km one-way, Grade 4, halfway on the coastal walk.",
+              image: "/img/cards/alexandria-bay.jpg",
+              caption: "Alexandria Bay, Noosa National Park.",
+            },
+            {
               slug: "palm-grove",
-              title: "Palm Grove circuit",
-              body: "1 km, Class 1, twenty minutes.",
-              image: "/img/cards/fairy-pool.jpg",
-              caption: "Fairy Pools and palm grove, Noosa National Park.",
+              title: "Palm Grove Walk",
+              body: "1.1 km return, Grade 3, allow 15–30 minutes.",
+              image: null,
+              caption: "Image pending — verified Noosa photograph required.",
+              imagePending: true,
             },
           ].map((w) => (
             <Link
@@ -143,13 +163,33 @@ export default function NationalParkPage() {
               className="group relative block overflow-hidden rounded-xl aspect-[4/5] bg-ink-700"
               data-track={`np_walk_${w.slug}`}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={w.image}
-                alt={w.caption}
-                loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-              />
+              {w.imagePending ? (
+                <>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-ink-800">
+                    <div className="text-center px-6">
+                      <p className="eyebrow text-paper-400">Noosa National Park</p>
+                      <p className="mt-3 font-display text-display-sm text-paper-200 text-balance">
+                        {w.title}
+                      </p>
+                      <p className="mt-2 text-body-sm text-paper-300 text-pretty">
+                        Image pending<br />
+                        <span className="text-caption uppercase tracking-wider text-paper-400">Verified Noosa photograph required</span>
+                      </p>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={w.image!}
+                    alt={w.caption}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                  />
+                </>
+              )}
               <div
                 className="absolute inset-0 bg-gradient-to-t from-ink-900/85 via-ink-900/30 to-transparent"
                 aria-hidden="true"
@@ -165,6 +205,18 @@ export default function NationalParkPage() {
             </Link>
           ))}
         </div>
+        <p className="mt-6 text-caption text-ink-600 text-pretty">
+          Distance, grade, and time per Queensland Parks and Wildlife Service —{" "}
+          <a
+            href="https://parks.qld.gov.au/parks/noosa/journeys/walking-tracks-summary"
+            className="link text-ocean-700"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Walking tracks summary
+          </a>
+          .
+        </p>
       </section>
 
       {/* ─── 4. Concise detail ─── */}
@@ -211,7 +263,7 @@ export default function NationalParkPage() {
         aria-labelledby="np-practical-heading"
       >
         <h2 id="np-practical-heading" className="font-display text-display-md text-ink-900 text-balance">
-          Check before you go.
+          The alerts page is the only source that&apos;s current on the morning.
         </h2>
         <p className="mt-4 text-body-md text-ink-800 max-w-prose text-pretty">
           QPWS closes tracks from time to time: high fire danger, the odd

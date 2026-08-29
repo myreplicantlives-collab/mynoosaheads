@@ -6,27 +6,33 @@ import { ACCOMMODATION_DATA, CURATED_PROPERTIES } from "@/data/accommodation";
 import { VERIFIED } from "@/data/photos-msn2982";
 
 /**
- * /accommodation — MSN-2982 chairman-mandated rework.
+ * /accommodation — MSN-2985 V2 release correction pass.
+ *
+ * Per chairman mandate 2026-08-29:
+ *   - Property grid: 10 → 3 (Netanya, South Pacific, Sunshine Beach)
+ *   - Area grid: 5 → 4 (Hastings, Noosaville, Sunshine, Peregian)
+ *     — Noosa Sound removed for lack of a verified Noosa-Sound photo
+ *   - H2 cuts: "By area." → "Hastings for the beach. Noosaville for
+ *     the river. Sunshine for the surf."; "The ten." → "Three we
+ *     can verify."; "Practical." → "A few things worth knowing."
+ *   - Removed: "Booking engine: We do not take inventory..." +
+ *     "Disclosure: ... ACCC Schedule 2 statement." (methodology/
+ *     compliance language; footer + legal pages carry the ACCC
+ *     statement; CTA disclosure on /stay/[slug] per ACCC Sch 2)
+ *   - Each property card: image + label + descriptor (≤18 words)
+ *   - Each card links to operator-direct URL or property-name
+ *     search (no generic Noosa searches)
+ *
+ * KUBE progression: hero → atmospheric intro → area cards →
+ * property cards → practical info.
  *
  * Word budget: 350 words.
- *
- * Photography: chairman flagged that the previous Sofitel (Mission
- * Beach) and RACV (Hamilton Island) cards were wrong-location
- * substitutes. The deep /stay/[slug] pages still exist, but this
- * page does NOT promote them with the wrong photos. The hero uses
- * Hastings Street (verified). Each property card points to its
- * operator's direct booking URL where one exists, otherwise to a
- * property-name search on Booking.com / Stayz (chairman mandate #12).
- *
- * KUBE progression: hero → atmospheric intro → area cards → property
- * cards (no body copy, image + label + direct booking link) →
- * practical info → footer.
  */
 
 export const metadata: Metadata = {
   title: "Where to stay in Noosa",
   description:
-    "Ten curated properties across five Noosa areas — direct booking links to operators.",
+    "Three verified properties across four Noosa areas — direct booking links to operators.",
   alternates: { canonical: "/accommodation" },
 };
 
@@ -34,20 +40,29 @@ export const metadata: Metadata = {
 // direct URL, we link to a property-name search on Booking.com (the
 // chairman-mandated fallback for #12 — never to a generic homepage).
 const DIRECT_BOOKING_URLS: Record<string, string> = {
-  "Sofitel Noosa Pacific Resort": "https://www.booking.com/searchresults.html?ss=Sofitel+Noosa+Pacific+Resort+Queensland",
-  "RACV Noosa Resort": "https://www.racv.com.au/holidays/resorts/noosa.html",
-  "The Sebel Noosa": "https://www.booking.com/searchresults.html?ss=Sebel+Noosa",
   "Netanya Noosa": "https://www.netanyanoosa.com.au/",
   "South Pacific Resort & Spa Noosa": "https://www.southpacificresort.com.au/",
-  "Noosa Quays": "https://www.noosaquays.com.au/",
   "Sunshine Beach Resort": "https://www.booking.com/searchresults.html?ss=Sunshine+Beach+Resort+Noosa",
-  "Ramada by Wyndham Noosa": "https://www.wyndhamhotels.com/en-US/ramada/noosa-australia/ramada-noosa/overview",
-  "Peregian Court": "https://www.booking.com/searchresults.html?ss=Peregian+Court+holiday+apartments",
-  "Noosa-area holiday houses": "https://www.stayz.com.au/search?query=noosa+heads",
+  "Noosa-area holiday houses": "https://www.stayz.com.au/holiday-rental-search?query=Noosa+Heads+holiday+house+pet+friendly",
 };
 
 function bookingHref(name: string): string {
   return DIRECT_BOOKING_URLS[name] ?? "https://www.booking.com/searchresults.html?ss=Noosa+Heads";
+}
+
+// Per-property card photos — only KEEP-listed verified photos
+// (per MSN-2985 PHOTO_AUDIT.md).
+const PHOTO_BY_PROPERTY: Record<string, { path: string; caption: string }> = {
+  "Netanya Noosa": { path: VERIFIED.cards.netanyaApartments.path, caption: VERIFIED.cards.netanyaApartments.caption },
+  "South Pacific Resort & Spa Noosa": { path: VERIFIED.cards.southPacificResort.path, caption: VERIFIED.cards.southPacificResort.caption },
+  "Sunshine Beach Resort": { path: VERIFIED.cards.sunshineBeach.path, caption: VERIFIED.cards.sunshineBeach.caption },
+  "Noosa-area holiday houses": { path: VERIFIED.cards.hastingsStreetWest.path, caption: VERIFIED.cards.hastingsStreetWest.caption },
+};
+
+// Per-area card photos.
+function photoForArea(areaId: string): { path: string; caption: string } {
+  if (areaId === "hastings") return { path: VERIFIED.cards.hastingsStreetWest.path, caption: VERIFIED.cards.hastingsStreetWest.caption };
+  return { path: VERIFIED.cards.noosaRiver.path, caption: VERIFIED.cards.noosaRiver.caption };
 }
 
 export default function AccommodationPage() {
@@ -63,7 +78,7 @@ export default function AccommodationPage() {
             "@id": `${SITE.productionUrl}/accommodation#destination`,
             name: "Noosa Heads",
             description:
-              "Ten curated properties across five Noosa areas — Hastings Street, Noosa Sound, Noosaville, Sunshine Beach and Peregian.",
+              "Three verified properties across four Noosa areas — Hastings Street, Noosaville, Sunshine Beach and Peregian.",
             url: `${SITE.productionUrl}/accommodation`,
             touristType: ["Family", "Couple", "Group", "Long-stay"],
             address: {
@@ -107,7 +122,7 @@ export default function AccommodationPage() {
               Where to stay.
             </h1>
             <p className="mt-4 lead text-paper-200 max-w-3xl text-pretty">
-              Ten properties, five areas, direct booking links.
+              Three properties, four areas. Direct booking links.
             </p>
           </div>
         </div>
@@ -119,7 +134,7 @@ export default function AccommodationPage() {
         aria-labelledby="accomm-intro-heading"
       >
         <div className="container-page py-12 md:py-16">
-          <p className="eyebrow">Five areas · ten properties</p>
+          <p className="eyebrow">Three properties · four areas</p>
           <h2
             id="accomm-intro-heading"
             className="mt-3 font-display text-display-md md:text-display-lg text-ink-900 text-balance max-w-3xl"
@@ -127,8 +142,8 @@ export default function AccommodationPage() {
             Pick the precinct, then the property.
           </h2>
           <p className="mt-5 lead max-w-2xl text-pretty">
-            Hastings Street for beachfront; Noosaville for the river;
-            Sunshine for the surf; Peregian for the village. Each
+            Hastings Street for beachfront. Noosaville for the river.
+            Sunshine for the surf. Peregian for the village. Each
             property links to its operator&apos;s booking page.
           </p>
         </div>
@@ -139,38 +154,41 @@ export default function AccommodationPage() {
         className="container-page py-14 md:py-20"
         aria-labelledby="accomm-areas-heading"
       >
-        <h2 id="accomm-areas-heading" className="font-display text-display-md text-ink-900 text-balance mb-8">
-          By area.
+        <h2 id="accomm-areas-heading" className="font-display text-display-md md:text-display-lg text-ink-900 text-balance mb-8">
+          Hastings for the beach. Noosaville for the river. Sunshine for the surf.
         </h2>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {areas.map((a) => (
-            <Link
-              key={a.id}
-              href={`/areas/${a.id}`}
-              className="group relative block overflow-hidden rounded-xl aspect-[4/3] bg-ink-700"
-              data-track={`accomm_area_${a.id}`}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={a.id === "hastings" ? VERIFIED.cards.hastingsStreetWest.path : VERIFIED.cards.noosaRiver.path}
-                alt={a.id === "hastings" ? VERIFIED.cards.hastingsStreetWest.caption : VERIFIED.cards.noosaRiver.caption}
-                loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-              />
-              <div
-                className="absolute inset-0 bg-gradient-to-t from-ink-900/85 via-ink-900/30 to-transparent"
-                aria-hidden="true"
-              />
-              <div className="relative h-full w-full p-5 md:p-6 flex flex-col justify-end">
-                <h3 className="font-display text-display-sm text-paper-50 text-balance">
-                  {a.name}
-                </h3>
-                <p className="mt-1 text-body-sm text-paper-200 text-pretty">
-                  {a.bestFor}
-                </p>
-              </div>
-            </Link>
-          ))}
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {areas.map((a) => {
+            const photo = photoForArea(a.id);
+            return (
+              <Link
+                key={a.id}
+                href={`/areas/${a.id}`}
+                className="group relative block overflow-hidden rounded-xl aspect-[4/3] bg-ink-700"
+                data-track={`accomm_area_${a.id}`}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={photo.path}
+                  alt={photo.caption}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+                <div
+                  className="absolute inset-0 bg-gradient-to-t from-ink-900/85 via-ink-900/30 to-transparent"
+                  aria-hidden="true"
+                />
+                <div className="relative h-full w-full p-5 md:p-6 flex flex-col justify-end">
+                  <h3 className="font-display text-display-sm text-paper-50 text-balance">
+                    {a.name}
+                  </h3>
+                  <p className="mt-1 text-body-sm text-paper-200 text-pretty">
+                    {a.bestFor}
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
@@ -181,22 +199,14 @@ export default function AccommodationPage() {
       >
         <div className="container-page py-14 md:py-20">
           <h2 id="accomm-picks-heading" className="font-display text-display-md md:text-display-lg text-ink-900 text-balance">
-            The ten.
+            Three we can verify.
           </h2>
           <p className="mt-4 text-body-md text-ink-800 max-w-2xl text-pretty">
-            Each card opens the operator&apos;s booking engine. The
-            booking links below go to the property&apos;s own page
-            where one exists.
+            South Pacific on the Noosaville river. Netanya on Hastings Street. Sunshine Beach across from the patrolled sand.
           </p>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {CURATED_PROPERTIES.map((p) => {
-              const photoSrc = p.name === "Netanya Noosa"
-                ? VERIFIED.cards.netanyaApartments
-                : p.name === "South Pacific Resort & Spa Noosa"
-                  ? VERIFIED.cards.southPacificResort
-                  : p.name === "Sunshine Beach Resort"
-                    ? VERIFIED.cards.sunshineBeach
-                    : VERIFIED.cards.hastingsStreetEast;
+              const photoSrc = PHOTO_BY_PROPERTY[p.name] ?? VERIFIED.cards.hastingsStreetWest;
               return (
                 <a
                   key={p.name}
@@ -235,26 +245,26 @@ export default function AccommodationPage() {
         </div>
       </section>
 
-      {/* ─── 5. Practical info ─── */}
+      {/* ─── 5. Practical info (visitor-helpful content, no methodology) ─── */}
       <section
         className="container-page py-12 md:py-16"
         aria-labelledby="accomm-practical-heading"
       >
         <h2 id="accomm-practical-heading" className="font-display text-display-md text-ink-900 text-balance">
-          Practical.
+          A few things worth knowing.
         </h2>
         <ul className="mt-6 grid gap-4 sm:grid-cols-2 text-body-md text-ink-800">
           <li>
-            <strong className="text-ink-900">Booking engine:</strong> We do not take inventory. Each link opens the operator or a property-name search on Booking.com / Stayz.
+            <strong className="text-ink-900">School holidays:</strong> September, Easter, and Christmas book out by August. May and August are quieter and still warm enough to swim.
           </li>
           <li>
-            <strong className="text-ink-900">Disclosure:</strong> If a link earns a commission, it is marked Affiliate. See the footer for the full ACCC Schedule 2 statement.
+            <strong className="text-ink-900">Dogs:</strong> Most Noosa apartments don&apos;t allow pets. Sunshine Beach Resort has dog-friendly units on request — confirm with the operator before booking.
           </li>
           <li>
-            <strong className="text-ink-900">Dogs:</strong> Most Noosa apartments don&apos;t allow pets. The Sunshine Beach Resort has dog-friendly units on request — confirm with the operator before booking.
+            <strong className="text-ink-900">Parking:</strong> Hastings Street paid parking fills by 11 am in summer. Noosa Drive is the overflow. Netanya and South Pacific have on-site parking.
           </li>
           <li>
-            <strong className="text-ink-900">When:</strong> School holidays (September, Easter, Christmas) book out by August. Shoulder months (May, August) are quieter.
+            <strong className="text-ink-900">When to book:</strong> Easter, school holidays, and the Noosa Festival of Surfing (March) book out two-to-three months ahead. Shoulder months (May, August, early November) are easier.
           </li>
         </ul>
       </section>

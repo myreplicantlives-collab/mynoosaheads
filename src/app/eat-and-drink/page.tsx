@@ -160,7 +160,7 @@ export default function EatAndDrinkPage() {
       <section className="bg-paper-100 border-y border-paper-200">
         <div className="container-page py-14 md:py-20 space-y-12">
           <h2 className="font-display text-display-md md:text-display-lg text-ink-900 text-balance">
-            By precinct.
+            Hastings fine-dining, Noosaville river-edge, Sunshine counter, Peregian beer garden.
           </h2>
           {([
             { id: "hastings", label: "Hastings Street", tagline: "Fine-dining and morning coffee under the fig trees." },

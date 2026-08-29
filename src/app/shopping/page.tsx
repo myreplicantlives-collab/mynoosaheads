@@ -6,32 +6,34 @@ import { SHOPPING_CATEGORIES } from "@/data/shopping";
 import { VERIFIED } from "@/data/photos-msn2982";
 
 /**
- * /shopping — MSN-2982 chairman-mandated rework.
+ * /shopping — MSN-2985 V2 release correction pass.
  *
- * Word budget: 600 words. KUBE pattern: hero → atmospheric intro →
- * image-led category cards (image + label only) → 5 featured places
- * per category (image + label only) → practical info.
+ * Per chairman mandate 2026-08-29:
+ *   - Collapsed from 40 cards (8 categories × 5 places) to 3
+ *     verified featured retailers (NFM, Eumundi, NRG)
+ *   - Replaced directory-style heading "Eight categories · forty
+ *     places" eyebrow with "Three featured retailers"
+ *   - Replaced "Practical." H2 with "The market days."
  *
- * Per chairman mandate #9: card body copy is <18 words, one sentence.
- * Per chairman mandate #12: each card links to the operator/listing
- * URL directly (no generic Booking.com homepages).
+ * KUBE pattern: hero → atmospheric intro → 3 featured retailer
+ * cards (image + label + deep-page link) → market-day practical
+ * info.
  *
- * Photography: every category uses the MSN-2982 verified photo set.
+ * Photography: every card uses a verified Noosa photo (Flickr
+ * Openverse, no Wikimedia).
  */
 
 export const metadata: Metadata = {
-  title: "Shop Noosa · Boutiques, markets and makers",
+  title: "Shop Noosa · Markets, makers, and one gallery",
   description:
-    "Boutiques on Hastings Street, the Junction, Peregian, Sunshine Beach, Eumundi and the hinterland markets.",
+    "Three verified featured retailers: Noosa Farmers Market, The Original Eumundi Markets, Noosa Regional Gallery.",
   alternates: { canonical: "/shopping" },
 };
 
 function photoFor(slug: string): { path: string; caption: string } {
-  if (slug.includes("farmers") || slug.includes("market")) return { path: VERIFIED.cards.noosaFarmersMarket.path, caption: VERIFIED.cards.noosaFarmersMarket.caption };
+  if (slug.includes("farmers")) return { path: VERIFIED.cards.noosaFarmersMarket.path, caption: VERIFIED.cards.noosaFarmersMarket.caption };
+  if (slug.includes("eumundi")) return { path: VERIFIED.cards.noosaFarmersMarket.path, caption: VERIFIED.cards.noosaFarmersMarket.caption };
   if (slug.includes("gallery")) return { path: VERIFIED.cards.noosaRegionalGallery.path, caption: VERIFIED.cards.noosaRegionalGallery.caption };
-  if (slug.includes("hastings")) return { path: VERIFIED.cards.hastingsStreetEast.path, caption: VERIFIED.cards.hastingsStreetEast.caption };
-  if (slug.includes("everglades")) return { path: VERIFIED.cards.noosaEverglades.path, caption: VERIFIED.cards.noosaEverglades.caption };
-  if (slug.includes("peregian")) return { path: VERIFIED.cards.noosaRiver.path, caption: VERIFIED.cards.noosaRiver.caption };
   return { path: VERIFIED.cards.hastingsStreetEast.path, caption: VERIFIED.cards.hastingsStreetEast.caption };
 }
 
@@ -46,7 +48,7 @@ export default function ShoppingPage() {
             "@id": `${SITE.productionUrl}/shopping#destination`,
             name: "Shop Noosa",
             description:
-              "Boutiques on Hastings Street, the Junction, Peregian, Sunshine Beach, Eumundi and the hinterland markets.",
+              "Three featured retailers: Noosa Farmers Market, The Original Eumundi Markets, Noosa Regional Gallery.",
             url: `${SITE.productionUrl}/shopping`,
           },
         ]}
@@ -83,7 +85,7 @@ export default function ShoppingPage() {
               Shop Noosa.
             </h1>
             <p className="mt-4 lead text-paper-200 max-w-3xl text-pretty">
-              Boutiques, markets, makers — across five precincts.
+              Markets, makers, one gallery.
             </p>
           </div>
         </div>
@@ -95,7 +97,7 @@ export default function ShoppingPage() {
         aria-labelledby="shop-intro-heading"
       >
         <div className="container-page py-12 md:py-16">
-          <p className="eyebrow">Eight categories · forty places</p>
+          <p className="eyebrow">Three featured retailers</p>
           <h2
             id="shop-intro-heading"
             className="mt-3 font-display text-display-md md:text-display-lg text-ink-900 text-balance max-w-3xl"
@@ -103,107 +105,79 @@ export default function ShoppingPage() {
             From the Hastings Street strip to the hinterland markets.
           </h2>
           <p className="mt-5 lead max-w-2xl text-pretty">
-            Hastings Street for fashion. Junction for everyday. Peregian for the village. Eumundi on Wednesdays and Saturdays. Farmers every Sunday morning.
+            Noosa Farmers Market every Sunday morning. Eumundi on Wednesdays and Saturdays. Noosa Regional Gallery on the river at Tewantin, every day but Monday.
           </p>
         </div>
       </section>
 
-      {/* ─── 3. Category cards (image-led, label-only bodies) ─── */}
-      {SHOPPING_CATEGORIES.map((cat) => {
-        const heroPhoto = photoFor(cat.id);
-        return (
-          <section
-            key={cat.id}
-            id={cat.anchor}
-            className="border-b border-paper-200"
-            aria-labelledby={`cat-${cat.id}-heading`}
-          >
-            <div className="container-page py-10 md:py-14">
-              <div className="grid gap-6 lg:grid-cols-12 lg:items-center">
-                <div className="lg:col-span-5">
-                  <div className="relative overflow-hidden rounded-2xl aspect-[4/3] bg-paper-200">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={heroPhoto.path}
-                      alt={heroPhoto.caption}
-                      loading="lazy"
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                </div>
-                <div className="lg:col-span-7">
-                  <p className="eyebrow">{cat.eyebrow}</p>
-                  <h2 id={`cat-${cat.id}-heading`} className="mt-3 font-display text-display-md md:text-display-lg text-ink-900 text-balance">
+      {/* ─── 3. Featured retailer cards ─── */}
+      <section
+        className="container-page py-14 md:py-20"
+        aria-label="Featured retailers"
+      >
+        <div className="grid gap-6 md:grid-cols-3">
+          {SHOPPING_CATEGORIES.map((cat) => {
+            const photo = photoFor(cat.id);
+            const place = cat.places[0];
+            return (
+              <Link
+                key={cat.id}
+                href={place.linkToMore}
+                className="group relative block overflow-hidden rounded-2xl aspect-[4/5] bg-ink-700"
+                data-track={`shop_featured_${cat.id}`}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={photo.path}
+                  alt={photo.caption}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+                <div
+                  className="absolute inset-0 bg-gradient-to-t from-ink-900/85 via-ink-900/30 to-transparent"
+                  aria-hidden="true"
+                />
+                <div className="relative h-full w-full p-6 md:p-7 flex flex-col justify-end">
+                  <p className="text-caption uppercase tracking-wider text-paper-300">
+                    {cat.eyebrow}
+                  </p>
+                  <h3 className="mt-2 font-display text-display-md text-paper-50 text-balance">
                     {cat.name}
-                  </h2>
-                  <p className="mt-4 text-body-md text-ink-800 max-w-2xl text-pretty">
-                    {cat.hook.split(".").slice(0, 1).join(".") + "."}
+                  </h3>
+                  <p className="mt-2 text-body-sm text-paper-200 text-pretty">
+                    {place.where}
+                  </p>
+                  <p className="mt-4 text-body-sm uppercase tracking-wider text-paper-300">
+                    {place.linkLabel ?? "Plan your morning"} <span aria-hidden="true">→</span>
                   </p>
                 </div>
-              </div>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
 
-              {/* Five featured places (image + label only) */}
-              <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-                {cat.places.map((p) => {
-                  const photo = photoFor(p.slug);
-                  return (
-                    <a
-                      key={p.slug}
-                      href={p.linkToMore}
-                      target={p.linkToMore.startsWith("http") ? "_blank" : undefined}
-                      rel={p.linkToMore.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="group relative block overflow-hidden rounded-xl aspect-[4/5] bg-ink-700"
-                      data-track={`shop_${cat.id}_${p.slug}`}
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={photo.path}
-                        alt={photo.caption}
-                        loading="lazy"
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                      />
-                      <div
-                        className="absolute inset-0 bg-gradient-to-t from-ink-900/85 via-ink-900/30 to-transparent"
-                        aria-hidden="true"
-                      />
-                      <div className="relative h-full w-full p-4 md:p-5 flex flex-col justify-end">
-                        <p className="text-caption uppercase tracking-wider text-paper-300">
-                          {p.type}
-                        </p>
-                        <h3 className="mt-1 font-display text-headline-sm text-paper-50 text-balance">
-                          {p.name}
-                        </h3>
-                      </div>
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
-        );
-      })}
-
-      {/* ─── 4. Practical info ─── */}
+      {/* ─── 4. Market-day practical info ─── */}
       <section
         className="bg-paper-100 border-y border-paper-200"
         aria-labelledby="shop-practical-heading"
       >
         <div className="container-page py-12 md:py-16">
           <h2 id="shop-practical-heading" className="font-display text-display-md text-ink-900 text-balance">
-            Practical.
+            The market days.
           </h2>
           <ul className="mt-6 grid gap-4 sm:grid-cols-2 text-body-md text-ink-800">
             <li>
-              <strong className="text-ink-900">Sunday:</strong> Noosa Farmers Market, Noosaville showgrounds, 7am–midday.
+              <strong className="text-ink-900">Sunday:</strong> Noosa Farmers Market, Noosaville showgrounds, 7 am–midday. Over 100 stallholders, mostly primary producers from within an hour of Noosa.
             </li>
             <li>
-              <strong className="text-ink-900">Wednesday &amp; Saturday:</strong> Eumundi Markets, Memorial Drive, 7am–2pm.
+              <strong className="text-ink-900">Wednesday &amp; Saturday:</strong> The Original Eumundi Markets, Memorial Drive, 7:30 am–2 pm. The makers' market — ceramics, textiles, leatherwork, jewellery, body care.
             </li>
             <li>
-              <strong className="text-ink-900">Parking:</strong> Hastings Street paid parking fills by 11am. Park at Lions Park and walk.
+              <strong className="text-ink-900">Tuesday–Sunday:</strong> Noosa Regional Gallery, Riverside Drive, Tewantin. 10 am–4 pm weekdays, 10 am–3 pm weekends, closed Mondays. Free entry.
             </li>
             <li>
-              <strong className="text-ink-900">Dogs:</strong> On-leash on Hastings Street. On-leash at the farmers market.
+              <strong className="text-ink-900">Dogs:</strong> On-leash at all three locations. Noosa Farmers Market and Eumundi have food samples at stall height — keep dogs close.
             </li>
           </ul>
         </div>

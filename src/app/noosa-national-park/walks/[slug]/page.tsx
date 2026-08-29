@@ -88,6 +88,19 @@ export default function WalkPage({ params }: PageProps) {
             {w.headline}
           </h1>
           <p className="mt-3 lead max-w-3xl text-pretty">{w.name}</p>
+          {w.imageStatus === "pending" ? (
+            <aside
+              className="mt-8 inline-flex items-center gap-3 rounded-lg bg-paper-100 ring-1 ring-paper-200 px-4 py-3"
+              role="note"
+            >
+              <span aria-hidden="true" className="text-eucalyptus-700">↗</span>
+              <p className="text-body-sm text-ink-800">
+                <span className="font-semibold text-ink-900">Image pending —</span>{" "}
+                a verified Noosa photograph of the Palm Grove walk is required
+                before this card goes live with an image.
+              </p>
+            </aside>
+          ) : null}
         </div>
       </section>
 
@@ -125,6 +138,18 @@ export default function WalkPage({ params }: PageProps) {
               <dd className="mt-1 text-body-md text-ink-800">{w.elevation}</dd>
             </div>
           </dl>
+          <p className="mt-6 text-caption text-ink-600 text-pretty">
+            Distance, grade, and time per Queensland Parks and Wildlife Service —{" "}
+            <a
+              href="https://parks.qld.gov.au/parks/noosa/journeys/walking-tracks-summary"
+              className="link text-ocean-700"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Walking tracks summary
+            </a>
+            .
+          </p>
         </div>
       </section>
 

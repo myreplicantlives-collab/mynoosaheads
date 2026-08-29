@@ -1,10 +1,11 @@
 /**
- * Property data — MSN-2975 V2 build.
+ * Property data — MSN-2985 V2 release correction pass.
  *
- * Five anchor properties from Albert's D1 brief, given full
- * standalone atmospheric pages at /stay/[slug]. The remaining
- * five properties on /accommodation keep their curated-summary
- * treatment on the index page.
+ * Three anchor properties from Albert's D1 brief + the MSN-2985
+ * photo audit (chairman mandate 2026-08-29 — Sofitel & RACV removed
+ * for non-property-specific photos). Each remaining property has
+ * a verified Noosa photo + an atmospheric deep page at
+ * /stay/[slug].
  *
  * Each entry owns:
  *   - slug (URL slug)
@@ -24,8 +25,11 @@
  *
  * Per D6 monetisation scaffolding: no Featured/Sponsored badges
  * render until VERIFIED_AFFILIATES contains a programme ID. The
- * bookingUrl is a property-name search on Booking.com; the search
- * results show the property first when the name matches exactly.
+ * bookingUrl is an operator-direct URL where one exists; otherwise
+ * a property-name search on Booking.com — the chairman-mandated
+ * fallback.
+ *
+ * @see /Volumes/OpenClawLive/state/control/evidence/MSN-2985/REMOVE_LIST.md
  */
 
 import type { AreaId } from "./accommodation";
@@ -60,65 +64,6 @@ export type PropertyPage = {
 
 export const PROPERTIES: PropertyPage[] = [
   {
-    slug: "sofitel-noosa-pacific-resort",
-    name: "Sofitel Noosa Pacific Resort",
-    areaId: "hastings",
-    headline: "A Hastings Street icon since 1988.",
-    why:
-      "The only full-service hotel on Hastings Street with a true oceanfront pool deck — the lagoon wraps around the front of the building so you can step from a lounger straight onto Main Beach. The Sofitel sits at the southern end of the precinct, closest of any hotel to the headland coastal walk, which is why you'll see guests wandering up to the national park in the morning before breakfast opens downstairs.",
-    bestFor: "Luxury · couples · milestone stays",
-    rooms: [
-      "Lagoon-side rooms with private balconies over the pool deck",
-      "Junior suites on the upper floors with partial ocean views",
-      "Sofitel MyBed — the chain's signature bedding, dressed in linen",
-    ],
-    amenities: [
-      "Oceanfront heated lagoon pool and pool bar",
-      "Noosa Beach House restaurant — Peter Kuruvita's seasonal kitchen",
-      "24-hour room service, concierge, valet parking",
-      "Day spa with a single treatment room overlooking Main Beach",
-      "Direct beach access from the pool deck",
-    ],
-    address: "16 Hastings Street, Noosa Heads QLD 4567",
-    location:
-      "Southern end of Hastings Street. Twenty paces from the flags at Main Beach. Forty paces from the start of the Noosa Headland coastal walk. No need for a car once you're here — everything on Hastings is walkable.",
-    bookingUrl:
-      "https://www.booking.com/searchresults.html?ss=Sofitel+Noosa+Pacific+Resort+Queensland",
-    engine: "booking",
-    rating: "5-star · Booking.com ~8.6 (indicative)",
-    type: "Hotel",
-  },
-  {
-    slug: "racv-noosa-resort",
-    name: "RACV Noosa Resort",
-    areaId: "hastings",
-    headline: "Hastings with a kids' wing and an adults-only wing.",
-    why:
-      "The only resort on the Sunshine Coast that genuinely works for three generations under one roof. RACV has the largest family-suite inventory on Hastings, a heated lagoon pool with a toddlers' end, and a separate East Lodge wing restricted to adults — handy for grandparents who want a quiet drink while the kids run wild. It backs onto Noosa Drive, which means you have a real car park (not Hastings Street's tight underground maze) and the resort runs a regular shuttle to the beach during summer.",
-    bestFor: "Family · multi-gen · 5+ nights",
-    rooms: [
-      "One- and two-bedroom family suites with full kitchens",
-      "Three-bedroom interconnecting suites for groups",
-      "East Lodge studio rooms — adults only, no under-16s",
-      "Accessible rooms on every floor",
-    ],
-    amenities: [
-      "Two heated pools: the family lagoon and the East Lodge lap pool",
-      "Kids' club during school holidays (booked sessions, extra fee)",
-      "Day spa, gym, tennis court",
-      "On-site restaurant and casual poolside café",
-      "Free shuttle to Hastings Street and Main Beach",
-    ],
-    address: "94 Noosa Drive, Noosa Heads QLD 4567",
-    location:
-      "A two-minute drive back from Hastings Street, on the Noosa Drive side. Quieter than the Hastings strip, with real parking. The resort runs a shuttle bus to the beach precinct — typically every 30 minutes in peak season.",
-    bookingUrl:
-      "https://www.booking.com/searchresults.html?ss=RACV+Noosa+Resort",
-    engine: "booking",
-    rating: "5-star · Booking.com ~9.0 (indicative)",
-    type: "Resort",
-  },
-  {
     slug: "south-pacific-resort-spa-noosa",
     name: "South Pacific Resort & Spa Noosa",
     areaId: "noosaville",
@@ -142,8 +87,8 @@ export const PROPERTIES: PropertyPage[] = [
     location:
       "On Weyba Road, just back from Gympie Terrace. Walk to the Noosa Ferry Noosaville wharf in five minutes; the ferry runs to Hastings Street every 30 minutes during the day.",
     bookingUrl:
-      "https://www.booking.com/searchresults.html?ss=South+Pacific+Resort+Spa+Noosa",
-    engine: "booking",
+      "https://www.southpacificresort.com.au/",
+    engine: "direct",
     rating: "4-star · Booking.com ~8.5 (indicative)",
     type: "Apartment-hotel",
   },
@@ -198,8 +143,8 @@ export const PROPERTIES: PropertyPage[] = [
     address: "75 Hastings Street, Noosa Heads QLD 4567",
     location:
       "Mid-Hastings, on the beach side of the street. Main Beach at the door, the surf club a minute south, the headland coastal walk a minute north. No need for a car.",
-    bookingUrl: "https://www.booking.com/searchresults.html?ss=Netanya+Noosa",
-    engine: "booking",
+    bookingUrl: "https://www.netanyanoosa.com.au/",
+    engine: "direct",
     rating: "4-star · Booking.com ~8.4 (indicative)",
     type: "Holiday apartments",
   },

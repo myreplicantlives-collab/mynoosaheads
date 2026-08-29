@@ -188,19 +188,7 @@ const CREDITS: CreditRow[] = [
     licence: "CC BY-NC-ND",
     sourcePage: "https://live.staticflickr.com/289/20066708795_71c95dc51a_b.jpg",
   },
-  {
-    caption: "Castaways Resort & Spa, Mission Beach — fallback for the Sofitel card.",
-    author: "Flickr (Openverse)",
-    licence: "CC BY",
-    sourcePage: "https://live.staticflickr.com/7195/6804500540_84424cfb73_b.jpg",
-  },
-  {
-    caption: "Hamilton Island swimming pool — fallback for the RACV card.",
-    author: "Flickr (Openverse)",
-    licence: "CC BY",
-    sourcePage: "https://live.staticflickr.com/1421/705740732_3a50d37015.jpg",
-  },
-  {
+{
     caption: "Sunshine Beach, Noosa.",
     author: "Flickr (Openverse) — 'Sunshine Beach, Noosa'",
     licence: "CC BY",

@@ -1,8 +1,11 @@
 /**
- * Retailer data — MSN-2975 V2 build.
+ * Retailer data — MSN-2985 V2 release correction pass.
  *
- * Three anchor retailers from Albert's D3 brief, given full
- * standalone atmospheric pages at /shop/[slug].
+ * Three anchor retailers from Albert's D3 brief + the MSN-2985
+ * collapse strategy (chairman mandate 2026-08-29): keep the three
+ * with verified Noosa photos and direct operator URLs (NFM,
+ * Eumundi, NRG); remove the 5 deep-page entries whose pages were
+ * category headings, not standalone listings.
  *
  * Each entry owns:
  *   - slug
@@ -18,11 +21,12 @@
  *   - howToMakeAMorningOfIt (timeline of hours)
  *   - whatsNotHere (pre-empts the wrong visitor)
  *   - culturalNote (where applicable)
- *   - moreInfoUrl (official site — NOT tourismnoosa; use visitnoosa.com.au)
+ *   - moreInfoUrl (operator-direct URL — NEVER visitnoosa.com.au)
  *
- * Critical correction applied: Noosa Farmers Market day is
- * SUNDAY (verified at noosafarmersmarket.com.au). The V1 page
- * and /things-to-do copy said Saturday — V2 fixes both.
+ * Removed in MSN-2985: noosa-junction, hastings-street-boutiques,
+ * peregian-village-shops, sunshine-beach-village, tewantin-antiques.
+ *
+ * @see /Volumes/OpenClawLive/state/control/evidence/MSN-2985/REMOVE_LIST.md
  */
 
 export type RetailerPage = {
@@ -148,161 +152,6 @@ export const RETAILERS: RetailerPage[] = [
     culturalNote:
       "Noosa Regional Gallery stands on Kabi Kabi / Gubbi Gubbi country and acknowledges the Traditional Owners in their published materials.",
     moreInfoUrl: "https://www.noosaregionalgallery.com.au/",
-  },
-  {
-    slug: "noosa-junction",
-    name: "Noosa Junction Plaza",
-    category: "Hastings Street and the strip",
-    headline: "The local centre, just up the hill from Hastings.",
-    whyWorthVisiting:
-      "Noosa Junction sits 800 metres back from Hastings Street — a real local centre, not a tourist strip. There's a Coles and a Woolworths for ice and sunscreen, a couple of decent bottle shops, a half-decent bookshop, and the cheapest coffee in the postcode. The Junction is where Noosa people actually shop. Visit for the practical — ice, milk, beach supplies — not for the postcard.",
-    whatTheySell: [
-      "Coles and Woolworths for groceries, ice, sunscreen, beach supplies",
-      "Bottle shops with a serious Australian wine selection",
-      "Noosa's best independent bookshop",
-      "Chemist, post office, newsagent",
-      "Casual lunch options — sushi, banh mi, pub counter meals",
-    ],
-    whenAndWhere: {
-      when: "Daily, 7:00 am – 9:00 pm. Most shops open 9:00 am.",
-      address: "Sunshine Beach Road & Noosa Drive, Noosa Heads QLD 4567",
-    },
-    parking: "Free three-hour parking in the Coles carpark, accessed off Sunshine Beach Road.",
-    bestFor: "Practical errands · stocking up for self-caterers · the local Noosa",
-    howToMakeAMorningOfIt: [
-      { time: "8:30 am", action: "Coffee at the Junction — cheaper than Hastings, just as good" },
-      { time: "9:30 am", action: "Coles run for ice, sunscreen, breakfast supplies" },
-      { time: "10:30 am", action: "Bookshop browse" },
-      { time: "11:30 am", action: "Lunch — banh mi, sushi, or pub counter meal" },
-      { time: "12:30 pm", action: "Drive back to Hastings or the beach" },
-    ],
-    whatsNotHere:
-      "Not a tourist strip — for that, stay on Hastings Street. The Junction is the practical centre, and the prices are honest.",
-    moreInfoUrl: "https://www.noosajunction.com.au/",
-  },
-  {
-    slug: "hastings-street-boutiques",
-    name: "Hastings Street Boutiques",
-    category: "Hastings Street and the strip",
-    headline: "Eight hundred metres of designer beach-and-evening.",
-    whyWorthVisiting:
-      "Hastings Street runs 800 metres between Main Beach and the headland, and along the way you'll find the Noosa cluster of designer boutiques — beachwear, evening, homewares, jewellery, and a few Australian designers you won't see at the larger chains. The strip is small enough to walk end-to-end in 30 minutes; the prices are higher than the Junction, the curation is tighter, and the staff actually know the makers behind the labels.",
-    whatTheySell: [
-      "Australian designer beachwear — cover-ups, swim, linen",
-      "Evening wear for the Hastings restaurants",
-      "Hand-cut Australian jewellery",
-      "Homewares and small-batch ceramics",
-      "Sun hats, leather sandals, weekend bags",
-      "Children's beachwear and toys",
-    ],
-    whenAndWhere: {
-      when: "Daily, 9:00 am – 6:00 pm. Most shops open by 10:00 am. Verify hours before visiting.",
-      address: "Hastings Street, Noosa Heads QLD 4567",
-    },
-    parking: "Paid parking at the Noosa Heads SLSC carpark (Park Road) and at metered street bays along Hastings. Tight in summer.",
-    bestFor: "Slow shopping · couples · a present for the people back home",
-    howToMakeAMorningOfIt: [
-      { time: "10:00 am", action: "Walk-up from Main Beach, coffee first" },
-      { time: "10:30 am", action: "Browse the southern boutiques — beachwear and accessories" },
-      { time: "11:30 am", action: "Walk north — jewellery and homewares" },
-      { time: "12:30 pm", action: "Lunch on the strip — pick a restaurant, walk in" },
-      { time: "2:00 pm", action: "Coffee, then the few shops you missed" },
-    ],
-    whatsNotHere:
-      "Not the place for groceries or souvenirs. For groceries, go to Noosa Junction. For souvenirs, go to Eumundi on a Wednesday or Saturday.",
-    moreInfoUrl: "https://www.visitnoosa.com.au/",
-  },
-  {
-    slug: "peregian-village-shops",
-    name: "Peregian Village Shops",
-    category: "Villages and beachside",
-    headline: "A village-square cluster with a coffee-and-browse pace.",
-    whyWorthVisiting:
-      "The Peregian village cluster sits one block back from the beach — a quieter version of Hastings Street with a handful of boutiques, a couple of good cafés, the Peregian Beach Hotel, and the patrolled beach at the end of the street. The pace is what you're paying for: most of the Noosa action is fifteen minutes' drive north, and Peregian has stayed small.",
-    whatTheySell: [
-      "Boutique beachwear and accessories",
-      "Hand-made candles, soaps, and small-batch body care",
-      "Children's toys and books",
-      "Peregian Beach Hotel bottle shop",
-      "Cafés and casual lunch options on the village square",
-    ],
-    whenAndWhere: {
-      when: "Daily, 7:30 am – 5:00 pm. Most shops open by 9:00 am.",
-      address: "Kingfisher Drive, Peregian Beach QLD 4573",
-    },
-    parking: "Free street parking on Kingfisher Drive.",
-    bestFor: "Slow shopping · dog-friendly morning · visitors staying in Peregian",
-    howToMakeAMorningOfIt: [
-      { time: "8:30 am", action: "Coffee at one of the village cafés" },
-      { time: "9:30 am", action: "Browse the boutique cluster on the village square" },
-      { time: "10:30 am", action: "Walk to the patrolled beach for a swim" },
-      { time: "11:30 am", action: "Back to the village — counter meal at the Peregian Beach Hotel" },
-      { time: "12:30 pm", action: "Last browse, drive back north or to the beach" },
-    ],
-    whatsNotHere:
-      "Not Hastings Street. Peregian's retail cluster is small (less than twenty shops); if you want the volume of Hastings, drive fifteen minutes north.",
-    moreInfoUrl: "https://www.peregianbeachhotel.com.au/",
-  },
-  {
-    slug: "sunshine-beach-village",
-    name: "Sunshine Beach Village",
-    category: "Villages and beachside",
-    headline: "Duke Street, the surf club, and one coffee shop that knows your order.",
-    whyWorthVisiting:
-      "Sunshine Beach's village cluster runs along Duke Street — a couple of cafés, a takeaway, a small bottle shop, and the surf club at the beach end. It's the smallest of the four precincts and the most local. The pace is slower than Hastings and the prices are a notch down. Worth a morning if you're staying in Sunshine, otherwise a stop on the way to or from Peregian.",
-    whatTheySell: [
-      "Duke Street cafés — coffee, breakfast, lunch counter",
-      "Takeaway fish-and-chip shop",
-      "Surf shop — boards, wax, rashies",
-      "Bottle shop with a decent local-wine selection",
-      "Yoga studio and a small wellness clinic",
-    ],
-    whenAndWhere: {
-      when: "Daily, 7:00 am – 7:00 pm. Most shops open by 8:00 am.",
-      address: "Duke Street, Sunshine Beach QLD 4567",
-    },
-    parking: "Free street parking on Duke Street.",
-    bestFor: "Slow coffee · surf hire · visitors staying in Sunshine",
-    howToMakeAMorningOfIt: [
-      { time: "7:30 am", action: "Coffee at one of the Duke Street cafés" },
-      { time: "8:30 am", action: "Walk the patrolled beach" },
-      { time: "10:00 am", action: "Surf hire at the local shop if you want a board" },
-      { time: "11:30 am", action: "Lunch at the surf club balcony or a Duke Street café" },
-      { time: "12:30 pm", action: "Drive north to Hastings, or south to Peregian" },
-    ],
-    whatsNotHere:
-      "Sunshine's cluster is intentionally small — three cafés and a takeaway. If you want the volume of Hastings, drive north.",
-    moreInfoUrl: "https://www.sunshinebeachslsc.com.au/",
-  },
-  {
-    slug: "tewantin-antiques",
-    name: "Tewantin Antiques & Collectables Trail",
-    category: "Art, interiors and gifts",
-    headline: "Half a dozen antique shops, all within walking distance.",
-    whyWorthVisiting:
-      "Tewantin — the town on the Noosa River, ten minutes' drive west of Hastings Street — has a small antiques trail of half a dozen shops within walking distance of the main street. The pickings range from genuine 1920s Australian furniture to mid-century ceramics, vintage surfboards, and the occasional piece of Sunshine Coast memorabilia. It's not a treasure-hunt on every visit, but it's worth a morning if you're in Tewantin for the Noosa Marina or the Noosa Ferry.",
-    whatTheySell: [
-      "Australian 1920s–1950s furniture (mostly teak and blackwood)",
-      "Mid-century ceramics — kitchenalia, vases, serving ware",
-      "Vintage surfboards (1960s longboards occasionally)",
-      "Sunshine Coast memorabilia — postcards, signage, photographs",
-      "Books, maps, prints of the region from the last century",
-    ],
-    whenAndWhere: {
-      when: "Friday to Sunday, 10:00 am – 4:00 pm. Verify individual shop hours before visiting.",
-      address: "Poinciana Avenue & surrounds, Tewantin QLD 4565",
-    },
-    parking: "Free street parking on Poinciana Avenue.",
-    bestFor: "Antiques hunters · interior designers · slow browsers",
-    howToMakeAMorningOfIt: [
-      { time: "10:00 am", action: "Coffee at one of the Tewantin cafés on Poinciana Avenue" },
-      { time: "10:30 am", action: "First shop — start at the southern end of the trail" },
-      { time: "12:30 pm", action: "Lunch at the Noosa Marina, a five-minute drive south" },
-      { time: "2:00 pm", action: "Drive back to Hastings or the beach" },
-    ],
-    whatsNotHere:
-      "Not a busy retail cluster. Tewantin's antiques trail is a small weekend scene — if you want volume, drive to Eumundi (Wednesday/Saturday) instead.",
-    moreInfoUrl: "https://www.visitnoosa.com.au/",
   },
 ];
 
