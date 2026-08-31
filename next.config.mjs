@@ -75,6 +75,12 @@ const nextConfig = {
       { source: "/noosa-river-bar", destination: "/boats-and-watercraft", permanent: true },
       { source: "/safety-on-the-water", destination: "/boats-and-watercraft", permanent: true },
       { source: "/plan-your-trip", destination: "/things-to-do", permanent: true },
+      // MSN-3044 followup: redirect the bare area ids to the canonical
+      // -street / -beach slugs so internal-link href generators and
+      // search results converge on one URL.
+      { source: "/areas/hastings", destination: "/areas/hastings-street", permanent: true },
+      { source: "/areas/sunshine", destination: "/areas/sunshine-beach", permanent: true },
+      { source: "/areas/peregian", destination: "/areas/peregian-beach", permanent: true },
     ];
   },
 };

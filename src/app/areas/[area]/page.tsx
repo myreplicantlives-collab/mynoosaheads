@@ -38,11 +38,24 @@ export function generateStaticParams() {
 type PageProps = { params: { area: string } };
 
 // Slug → AREAS.id mapping (chairman-mandated route names).
+// Bidirectional lookup: a request can arrive at either the bare id
+// (e.g. /areas/hastings via the /accommodation area links) or the
+// full slug (e.g. /areas/hastings-street). Both must resolve.
 const SLUG_TO_AREA_ID: Record<string, string> = {
   "hastings-street": "hastings",
+  "hastings": "hastings",
   "noosaville": "noosaville",
   "sunshine-beach": "sunshine",
+  "sunshine": "sunshine",
   "peregian-beach": "peregian",
+  "peregian": "peregian",
+};
+
+const AREA_ID_TO_SLUG: Record<string, string> = {
+  hastings: "hastings-street",
+  noosaville: "noosaville",
+  sunshine: "sunshine-beach",
+  peregian: "peregian-beach",
 };
 
 const AREA_PHOTOS: Record<string, { url: string; caption: string; author: string; licence: string }> = {
@@ -130,8 +143,8 @@ export default function AreaPage({ params }: PageProps) {
   const a = AREAS.find((x) => x.id === areaId);
   if (!a) notFound();
 
-  const body = AREA_BODY[params.area];
-  const photo = AREA_PHOTOS[params.area];
+  const body = AREA_BODY[params.area] ?? AREA_BODY[AREA_ID_TO_SLUG[areaId]];
+  const photo = AREA_PHOTOS[params.area] ?? AREA_PHOTOS[AREA_ID_TO_SLUG[areaId]];
 
   // Properties in this area
   const propertiesInArea = Object.values(PROPERTIES_BY_SLUG).filter(
