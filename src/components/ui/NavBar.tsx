@@ -18,6 +18,8 @@ import { useEffect, useState, useId } from "react";
 import Link from "next/link";
 import { Logo } from "./Logo";
 import { Icons } from "./Icon";
+import { SearchDialog } from "./SearchDialog";
+import { SEARCHABLE_PAGES } from "@/data/site";
 
 export type NavItem = {
   label: string;
@@ -104,14 +106,10 @@ export function NavBar({
                 Live
               </span>
             ) : null}
-            <button
-              type="button"
-              className="btn-ghost btn-sm hidden sm:inline-flex"
-              aria-label="Search"
-            >
-              <Icons.Search size={16} />
-              <span className="sr-only">Search</span>
-            </button>
+            {/* MSN-3044 — Item 4 fix: the search button now opens a real
+             *  SearchDialog that filters across the curated route list
+             *  in SEARCHABLE_PAGES (src/data/site.ts). */}
+            <SearchDialog pages={[...SEARCHABLE_PAGES]} />
             <button
               type="button"
               className="btn-ghost btn-sm md:hidden"
@@ -152,13 +150,9 @@ export function NavBar({
               </li>
             ))}
             <li className="pt-3">
-              <button
-                type="button"
-                className="btn-outline btn-sm w-full"
-              >
-                <Icons.Search size={16} />
-                Search
-              </button>
+              {/* MSN-3044 — Item 4 fix: mobile-menu Search button now
+               *  opens the same SearchDialog (block variant). */}
+              <SearchDialog pages={[...SEARCHABLE_PAGES]} block />
             </li>
           </ul>
         </nav>

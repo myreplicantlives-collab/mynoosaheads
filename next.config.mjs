@@ -62,10 +62,19 @@ const nextConfig = {
   poweredByHeader: false,
   // MSN-2987 — chairman test-script slugs (shorter aliases) redirect
   // to the canonical slug.
+  // MSN-3044 — five historical 404 slugs (Item 3) now 301 to the
+  // closest real page. /plan-your-trip → /things-to-do (planning hub);
+  // /bar-crossing, /boating-and-bar-crossing, /noosa-river-bar,
+  // /safety-on-the-water → /boats-and-watercraft (bar + safety).
   async redirects() {
     return [
       { source: "/things-to-do/eat-along-hastings", destination: "/things-to-do/eat-your-way-along-hastings-street", permanent: true },
       { source: "/things-to-do/book-a-cruise", destination: "/things-to-do/book-a-cruise-tour-or-wellness-experience", permanent: true },
+      { source: "/bar-crossing", destination: "/boats-and-watercraft", permanent: true },
+      { source: "/boating-and-bar-crossing", destination: "/boats-and-watercraft", permanent: true },
+      { source: "/noosa-river-bar", destination: "/boats-and-watercraft", permanent: true },
+      { source: "/safety-on-the-water", destination: "/boats-and-watercraft", permanent: true },
+      { source: "/plan-your-trip", destination: "/things-to-do", permanent: true },
     ];
   },
 };

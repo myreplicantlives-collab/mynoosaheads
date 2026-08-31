@@ -60,6 +60,16 @@ export type Property = {
   rating: string;
   /** Area id — for grouping on the page. */
   areaId: AreaId;
+  /** MSN-3044 — Item 7.4 fix. "Why we chose it" — surfaced in the
+   *  /accommodation per-property accordion. Optional so older data
+   *  files (e.g. legacy CURATED_PROPERTIES seeds) don't break. */
+  whyChosen?: string;
+  /** MSN-3044 — Item 7.4 fix. Honest trade-off / limitation for the
+   *  property — keeps the page credible. */
+  tradeOff?: string;
+  /** MSN-3044 — Item 7.4 fix. ISO date the operator URL / engine
+   *  classification was last verified. Shown on each card. */
+  lastVerified?: string;
 };
 
 export type Area = {
@@ -219,6 +229,15 @@ export const CURATED_PROPERTIES: Property[] = [
     engine: "direct",
     rating: "4-star (verified on the operator's site)",
     areaId: "hastings",
+    // MSN-3044 — Item 7.4 fix: per-property "Why we chose it",
+    // "Trade-off" and "Last verified" fields. Surfaced in a compact
+    // accordion on /accommodation so the visitor sees the rationale,
+    // not just the photo + descriptor.
+    whyChosen:
+      "Operator-direct booking on Hastings Street, two minutes from Main Beach. Family-sized two- and three-bedroom apartments with full kitchens; the on-site manager runs a tight ship.",
+    tradeOff:
+      "Older-fit bathrooms than the new build across the road; Hastings Street paid parking fills by 11 am in summer (the operator sells a permit at reception).",
+    lastVerified: "2026-08-31",
   },
   {
     name: "South Pacific Resort & Spa Noosa",
@@ -231,6 +250,11 @@ export const CURATED_PROPERTIES: Property[] = [
     engine: "direct",
     rating: "4-star (verified on the operator's site)",
     areaId: "noosaville",
+    whyChosen:
+      "The biggest heated pool on Gympie Terrace and a five-minute walk to the Noosaville ferry wharf — easy day trips to Hastings Street without a car.",
+    tradeOff:
+      "Across the river from Main Beach (15-minute ferry or 20-minute drive); on-site restaurant closed for redevelopment until 2026 Q4 per the operator.",
+    lastVerified: "2026-08-31",
   },
   {
     name: "Sunshine Beach Resort",
@@ -243,6 +267,11 @@ export const CURATED_PROPERTIES: Property[] = [
     engine: "booking",
     rating: "4-star (verified on the operator's site)",
     areaId: "sunshine",
+    whyChosen:
+      "Directly across the road from the patrolled Sunshine Beach surf club. Bookable on Booking.com with a property-name search; dog-friendly units available on request.",
+    tradeOff:
+      "Not on Hastings Street — you'll drive or take the 30-minute coastal walk to reach the headland start. No on-site restaurant; village shops five minutes south.",
+    lastVerified: "2026-08-31",
   },
   {
     name: "Noosa-area holiday houses",
@@ -255,6 +284,11 @@ export const CURATED_PROPERTIES: Property[] = [
     engine: "stayz",
     rating: "Stayz aggregate · variable",
     areaId: "hastings", // cross-area pick — displays under "All areas"
+    whyChosen:
+      "Browse-only fallback for groups of four or more and for travellers bringing a dog. Stayz search filtered to Noosa Heads, pet-friendly, four-plus guests.",
+    tradeOff:
+      "Not a curated single-property pick — Stayz aggregate. Each house varies; check photos and reviews carefully before booking.",
+    lastVerified: "2026-08-31",
   },
 ];
 

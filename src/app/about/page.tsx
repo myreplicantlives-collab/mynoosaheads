@@ -11,12 +11,21 @@ import { ABOUT_BRAND_IMAGE } from "@/data/photos";
 import { SITE } from "@/data/site";
 
 /**
- * /about — MSN-2987 V2 chunk 1 (chairman mandate 2026-08-29).
+ * /about — MSN-2987 V2 chunk 1 (chairman mandate 2026-08-29) +
+ * MSN-3044 Item 5 cleanup.
  *
  * Visitor-facing page. Removed:
  *   - Hosting/architecture/stack language (Next.js, Cloudflare, Git).
  *   - Fictional coverage claims ("fishing, boats, travel, webcams"
  *     are not all full deep pages with verified content).
+ *   - "Per chairman directive" newsletter line (MSN-3044 Item 5.1).
+ *   - "Established 2026" from At a glance — replaced with "Editorial
+ *     scope" to avoid the audit's "unfalsifiable founding date" flag.
+ *   - "Bylines sit at the foot of every category page" — replaced
+ *     with "We do not currently publish bylines" per audit 5.2.
+ *   - "Every claim links to a public source" — replaced with a
+ *     narrower verifiable statement until the citations audit ships.
+ *
  * Kept:
  *   - Editorial voice (brand statement).
  *   - Mission (live data, primary sources).
@@ -115,7 +124,9 @@ export default function AboutPage() {
               swell.
             </p>
             <p className="mt-3 font-display not-italic text-display-sm md:text-display-md text-ink-800 leading-snug">
-              Every claim links to a public source.
+              Safety-critical claims link to the relevant government
+              or industry body — BOM, QPWS, MSQ, QLD Traffic, Noosa
+              Council, Beachsafe.
               <span
                 className="ml-2 inline-block h-2.5 w-2.5 rounded-full bg-amber-500 align-middle"
                 aria-hidden="true"
@@ -161,13 +172,13 @@ export default function AboutPage() {
               <h2 className="font-display text-display-sm text-ink-900">How we work</h2>
               <div className="prose-mdx mt-4">
                 <p>
-                  Every claim on this site links to a public source —
-                  usually a government page (BOM, QPWS, MSQ, QLD Traffic,
-                  Noosa Council), an industry body (Tourism Noosa, Visit
-                  Sunshine Coast), or a third-sector service (Beachsafe,
-                  SLSQ). Affiliate links are marked{" "}
+                  Safety-critical claims on this site link to the
+                  relevant government or industry body — BOM, QPWS,
+                  MSQ, QLD Traffic, Noosa Council, Beachsafe, SLSQ.
+                  Editorial copy is reviewed against current QPWS and
+                  council sources. Affiliate links are marked{" "}
                   <span className="chip-ocean">Affiliate</span>{" "}
-                  before you click, and the full statement lives at{" "}
+                  before you click, and the full statement lives at
                   the footer.
                 </p>
                 <p>
@@ -178,10 +189,8 @@ export default function AboutPage() {
                   guessing.
                 </p>
                 <p>
-                  Copy on every page is reviewed against current QPWS
-                  and council sources. All photography is sourced from
-                  Flickr (via Openverse) and the Unsplash CDN — the
-                  full attribution table lives at{" "}
+                  All photography is sourced from Flickr (via Openverse)
+                  and the Unsplash CDN — the full attribution table lives at{" "}
                   <Link href="/photo-credits" className="link text-ocean-700">
                     /photo-credits
                   </Link>
@@ -195,14 +204,14 @@ export default function AboutPage() {
               <div className="prose-mdx mt-4">
                 <p>
                   MyNoosaHeads is published by a small Sunshine Coast
-                  editorial team with day-to-day ties to the Noosa shire.
-                  Bylines sit at the foot of every category page. Errors
-                  are corrected promptly and the correction is noted in
-                  place — please{" "}
+                  editorial team with day-to-day ties to the Noosa
+                  shire. We do not currently publish bylines on
+                  category pages — a corrections log is on the
+                  roadmap. If you spot an error, please{" "}
                   <Link href="/contact" className="link text-ocean-700">
                     drop us a line
-                  </Link>{" "}
-                  if you spot one.
+                  </Link>
+                  .
                 </p>
               </div>
             </section>
@@ -222,12 +231,30 @@ export default function AboutPage() {
                     <dd>en-AU</dd>
                   </div>
                   <div>
-                    <dt className="text-eyebrow">Established</dt>
-                    <dd>2026</dd>
+                    <dt className="text-eyebrow">Editorial scope</dt>
+                    <dd>Coast, river, national park, accommodation, market mornings.</dd>
                   </div>
                   <div>
                     <dt className="text-eyebrow">Newsletter</dt>
-                    <dd>None. Per chairman directive.</dd>
+                    <dd>Not currently published.</dd>
+                  </div>
+                  <div>
+                    <dt className="text-eyebrow">Contact</dt>
+                    <dd>
+                      <a
+                        href={`mailto:${"hello@mynoosaheads.com"}`}
+                        className="link text-ocean-700"
+                      >
+                        hello@mynoosaheads.com
+                      </a>{" "}
+                      <span className="text-caption text-ink-600">
+                        (see{" "}
+                        <Link href="/contact" className="link text-ocean-700">
+                          /contact
+                        </Link>{" "}
+                        for current delivery status)
+                      </span>
+                    </dd>
                   </div>
                 </dl>
               </CardBody>

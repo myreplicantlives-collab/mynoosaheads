@@ -9,6 +9,7 @@
 // intentional-500 endpoint.
 
 export const dynamic = "force-dynamic";
+export const runtime = "edge";
 
 export function GET() {
   throw new Error(

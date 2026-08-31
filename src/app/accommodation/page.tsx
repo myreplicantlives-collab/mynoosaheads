@@ -4,6 +4,7 @@ import { JsonLd } from "@/components/ui";
 import { SITE } from "@/data/site";
 import { ACCOMMODATION_DATA, CURATED_PROPERTIES } from "@/data/accommodation";
 import { VERIFIED } from "@/data/photos-msn2982";
+import { AffiliateBadge } from "@/components/ui/AffiliateBadge";
 
 /**
  * /accommodation — MSN-2985 V2 release correction pass.
@@ -39,6 +40,21 @@ export const metadata: Metadata = {
 // Direct booking URLs where the operator has one. Where there is no
 // direct URL, we link to a property-name search on Booking.com (the
 // chairman-mandated fallback for #12 — never to a generic homepage).
+//
+// MSN-3044 — Item 6.5 fix: every entry is now explicitly marked as
+// paid (affiliate) or direct. Operator-direct URLs (Netanya, South
+// Pacific) carry NO affiliate disclosure because we have no commercial
+// relationship with the operator — they are direct links to the
+// operator's own booking page. Booking.com and Stayz search URLs are
+// flagged as affiliate and carry rel="sponsored noopener noreferrer"
+// per ACCC Schedule 2 + Google sponsored-link guidance.
+const BOOKING_PROGRAMME: Record<string, "operator-direct" | "affiliate"> = {
+  "Netanya Noosa": "operator-direct",
+  "South Pacific Resort & Spa Noosa": "operator-direct",
+  "Sunshine Beach Resort": "affiliate",
+  "Noosa-area holiday houses": "affiliate",
+};
+
 const DIRECT_BOOKING_URLS: Record<string, string> = {
   "Netanya Noosa": "https://www.netanyanoosa.com.au/",
   "South Pacific Resort & Spa Noosa": "https://www.southpacificresort.com.au/",
@@ -207,12 +223,21 @@ export default function AccommodationPage() {
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {CURATED_PROPERTIES.map((p) => {
               const photoSrc = PHOTO_BY_PROPERTY[p.name] ?? VERIFIED.cards.hastingsStreetWest;
+              const programme = BOOKING_PROGRAMME[p.name] ?? "operator-direct";
+              const isAffiliate = programme === "affiliate";
+              // MSN-3044 — Item 6.2 fix: paid links carry
+              // rel="sponsored noopener noreferrer" per ACCC Schedule 2
+              // and Google sponsored-link guidance. Operator-direct
+              // links keep rel="noopener noreferrer".
+              const rel = isAffiliate
+                ? "sponsored noopener noreferrer"
+                : "noopener noreferrer";
               return (
                 <a
                   key={p.name}
                   href={bookingHref(p.name)}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel={rel}
                   className="group relative block overflow-hidden rounded-xl aspect-[4/5] bg-ink-700"
                   data-track={`accomm_property_${p.name.toLowerCase().replace(/\s+/g, "_")}`}
                 >
@@ -234,14 +259,80 @@ export default function AccommodationPage() {
                     <p className="mt-1 text-body-sm text-paper-200 text-pretty">
                       {p.descriptor}
                     </p>
-                    <p className="mt-3 text-body-sm uppercase tracking-wider text-paper-300">
-                      Book direct <span aria-hidden="true">→</span>
-                    </p>
+                    <div className="mt-3 flex items-center gap-2 flex-wrap">
+                      <span className="text-body-sm uppercase tracking-wider text-paper-300">
+                        {isAffiliate ? "Check availability" : "Book direct"}
+                        <span aria-hidden="true">→</span>
+                      </span>
+                      {/* MSN-3044 — Item 6.1 fix: every paid link carries
+                       *  a visible Affiliate badge before the user
+                       *  clicks, per the on-page promise ("all are
+                       *  marked Affiliate before you click"). */}
+                      {isAffiliate ? (
+                        <AffiliateBadge
+                          programme={p.name.includes("Stayz") ? "Stayz" : "Booking.com"}
+                          mode="compact"
+                        />
+                      ) : null}
+                    </div>
                   </div>
                 </a>
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* ─── 4b. Per-property detail (Item 7.4 fix) — surfaced below the
+       *  curated picks so each entry gets a "Why we chose it",
+       *  "Trade-off" and "Last verified" block. The grid above stays
+       *  image-dominant per KUBE; the detail sits in a calmer text
+       *  register. ─── */}
+      <section
+        className="container-page py-12 md:py-16"
+        aria-labelledby="accomm-detail-heading"
+      >
+        <h2 id="accomm-detail-heading" className="font-display text-display-md text-ink-900 text-balance">
+          Why each one.
+        </h2>
+        <p className="mt-4 text-body-md text-ink-800 max-w-2xl text-pretty">
+          Brief rationale, an honest trade-off, and the date we last checked the operator or booking engine.
+        </p>
+        <div className="mt-8 grid gap-5 md:grid-cols-2">
+          {CURATED_PROPERTIES.map((p) => (
+            <div
+              key={p.name}
+              className="rounded-xl bg-paper-50 p-6 ring-1 ring-paper-200"
+            >
+              <h3 className="font-display text-headline-md text-ink-900">{p.name}</h3>
+              <dl className="mt-4 space-y-3 text-body-sm text-ink-800">
+                {p.whyChosen ? (
+                  <div>
+                    <dt className="eyebrow text-ink-600">Why we chose it</dt>
+                    <dd className="mt-1 text-pretty">{p.whyChosen}</dd>
+                  </div>
+                ) : null}
+                {p.tradeOff ? (
+                  <div>
+                    <dt className="eyebrow text-ink-600">Trade-off</dt>
+                    <dd className="mt-1 text-pretty">{p.tradeOff}</dd>
+                  </div>
+                ) : null}
+                {p.lastVerified ? (
+                  <div>
+                    <dt className="eyebrow text-ink-600">Last verified</dt>
+                    <dd className="mt-1 text-pretty">
+                      <time dateTime={p.lastVerified}>{p.lastVerified}</time>
+                      {" "}
+                      <span className="text-caption text-ink-600">
+                        against {p.engine === "direct" ? "operator site" : `${p.engine} listing`}
+                      </span>
+                    </dd>
+                  </div>
+                ) : null}
+              </dl>
+            </div>
+          ))}
         </div>
       </section>
 

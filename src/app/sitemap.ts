@@ -1,21 +1,30 @@
 // src/app/sitemap.ts
-// Auto-generated sitemap for mynoosaheads.com. Next.js 14 App Router
-// serves this at /sitemap.xml. See:
-//   https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap
+// Auto-generated sitemap for mynoosaheads.com.
 //
-// Sprint 1.4 (TSK-2957-04) — operational baseline. Lists every public
-// route that should be indexed. Edit this list when new pages ship.
+// Production (NEXT_PUBLIC_SITE_URL ends with mynoosaheads.com): emits
+// the public route list. Non-production: returns an empty sitemap so
+// crawlers can't pick up the preview URL set.
+//
+// The 2026-08-31 audit (MSN-3043) found /photo-credits, /shopping and
+// /styleguide missing from the sitemap. /styleguide is now excluded
+// (still noindex per layout robots); /photo-credits and /shopping are
+// included as real public routes.
 
 import type { MetadataRoute } from "next";
+import { SITE } from "@/data/site";
 
-// MSN-2964: SITE_URL now respects NEXT_PUBLIC_SITE_URL so we don't ship
-// stale references to the Vercel hostname. Default is the Cloudflare
-// Workers deployment that has been live since MSN-2962.
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  "https://mynoosaheads.twainent.workers.dev";
+const SITE_URL = SITE.productionUrl;
+const isProd = SITE.isProduction;
+
+// Cloudflare Pages / @cloudflare/next-on-pages requires every non-static
+// route to opt into the Edge runtime.
+export const runtime = "edge";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  if (!isProd) {
+    // Empty sitemap in dev — keeps search engines off the preview URL set.
+    return [];
+  }
   const now = new Date();
   const lastModified = now.toISOString();
 
@@ -36,5 +45,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/privacy`, lastModified, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE_URL}/terms`, lastModified, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE_URL}/contact`, lastModified, changeFrequency: "yearly", priority: 0.3 },
+    // MSN-3043 audit fix 8.3 — /photo-credits and /shopping were reachable
+    // 200 OK pages but missing from the sitemap. Now listed.
+    { url: `${SITE_URL}/photo-credits`, lastModified, changeFrequency: "monthly", priority: 0.4 },
+    { url: `${SITE_URL}/shopping`, lastModified, changeFrequency: "monthly", priority: 0.5 },
   ];
 }

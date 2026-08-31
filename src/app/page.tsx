@@ -36,6 +36,15 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
+  // MSN-3044 — Item 9.6: in non-production builds, emit a placeholder
+  // email so the Organization JSON-LD doesn't leak the production
+  // contact email to crawlers indexing the preview URL set. The audit
+  // (MSN-3043) flagged this as a structured-data leakage on the dev
+  // site. In production (NEXT_PUBLIC_SITE_URL ends with
+  // mynoosaheads.com), the real hello@mynoosaheads.com is restored.
+  const jsonLdEmail = SITE.isProduction
+    ? SITE.email
+    : "preview-redacted@mynoosaheads.invalid";
   const homeJsonLd = [
     {
       "@context": "https://schema.org",
@@ -46,7 +55,7 @@ export default async function HomePage() {
       logo: `${SITE.productionUrl}/brand/logo-2.svg`,
       description:
         "An independent guide to Noosa Heads, Queensland. Live surf and weather from BOM and Open-Meteo.",
-      email: SITE.email,
+      email: jsonLdEmail,
       foundingDate: String(SITE.established),
       areaServed: {
         "@type": "Place",

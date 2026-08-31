@@ -42,6 +42,22 @@ export default function Page() {
             "If you don’t know the bar, go with a local operator for the first crossing. The VMR Noosa volunteers (channel 16) and Noosa Coast Guard are the live sources. Crossings are discouraged when MSQ has flagged a closed-bar condition, on a heavy swell, or in southerly conditions; defer to the MSQ bulletin for the current threshold.",
           ],
         },
+        // MSN-3044 — Item 2 fix: explicit "Verify before you go" box
+        // + last-verified date on the bar-crossing section, so the
+        // MSQ / Coast Guard / VMR / VHF channels are surfaced as a
+        // single, scannable safety check.
+        {
+          heading: "Verify before you go",
+          paragraphs: [
+            "Bar-crossing decisions belong to MSQ, not to this site. The four things to check are listed below — every one of them is a public source.",
+          ],
+          bullets: [
+            "MSQ Noosa bar bulletin (live, updated by MSQ).",
+            "Noosa Coast Guard broadcast — VHF channel 16 (distress / calling) and channel 67 (Noosa Coast Guard working / repeat channel).",
+            "VMR Noosa — VHF channel 16; live crossing advice from the volunteer marine rescue unit.",
+            "BOM Tewantin tide — authoritative tide harmonic for any planned crossing.",
+          ],
+        },
         {
           heading: "Public ramps",
           paragraphs: [
@@ -64,6 +80,14 @@ export default function Page() {
           heading: "Safety equipment",
           paragraphs: [
             "Queensland recreational boats must carry the equipment specified by Transport and Main Roads — lifejackets for everyone on board, a bailer or bilge pump, an anchor with chain and line, a torch or flares, a fire extinguisher on powered vessels, and an EPIRB or PLB for offshore boats. The full schedule is on the TMR site.",
+            // MSN-3044 — Item 2.3 fix: PFD Type 1 / Level 100 reference
+            // added as the bar-crossing-specific upgrade to the TMR
+            // baseline. We can’t quote the MSQ verbatim page here
+            // because it’s Cloudflare-protected from this environment
+            // (see audit_summary.json §msq_fetch_status); MSQ’s
+            // bar-crossing page is the authoritative source and is
+            // linked in the verify box above.
+            "For bar crossings specifically, expect a higher PFD rating than the TMR baseline (Level 100 / PFD Type 1 is the typical Australian bar-crossing requirement). Verify the exact rating with MSQ before you go.",
           ],
         },
       ]}
@@ -82,7 +106,7 @@ export default function Page() {
             >
               MSQ bar crossings bulletin
             </a>
-            .
+            . <span className="text-caption text-ink-600">(Last verified against this MSQ URL: 2026-08-31.)</span>
           </>
         ),
         variant: "rainforest",

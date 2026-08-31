@@ -4,7 +4,8 @@ import { JsonLd } from "@/components/ui";
 import { SITE } from "@/data/site";
 
 /**
- * /surf-and-weather — MSN-2982 chairman-mandated rework.
+ * /surf-and-weather — MSN-2982 chairman-mandated rework + MSN-3044
+ * Item 1 (live tiles) + Item 2 (MSQ bar-crossing safety reconcile).
  *
  * Word budget: 250 words + live information panels.
  *
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
   description:
     "Live surf, wind, tide, and UV for Noosa Heads. BOM Southeast Coast + Open-Meteo. Bar crossings defer to MSQ.",
   alternates: { canonical: "/surf-and-weather" },
+  robots: { index: false, follow: false },
 };
 
 export const revalidate = 1800; // 30 minutes
@@ -130,7 +132,7 @@ export default async function SurfAndWeatherPage() {
         </div>
       </section>
 
-      {/* ─── 2. Live tile panel ─── */}
+      {/* ─── 2. Live tile panel + verify-before-you-go box ─── */}
       <section
         className="border-y border-paper-200 bg-paper-100"
         aria-labelledby="surf-tiles-heading"
@@ -162,6 +164,37 @@ export default async function SurfAndWeatherPage() {
               </div>
             ))}
           </div>
+          {/* MSN-3044 — Item 2 fix: explicit "verify before you go"
+           *  box sits directly under the live tile panel so the
+           *  safety-critical information is visible without scrolling
+           *  into the detail copy. Tide-direction language reconciled
+           *  to match /boats-and-watercraft (incoming tide is the
+           *  safer window per MSQ's general guidance; outgoing tide
+           *  against an incoming swell is the dangerous combination). */}
+          <aside className="mt-10 rounded-2xl bg-ink-900 text-paper-50 p-6 md:p-8 ring-1 ring-ink-900">
+            <p className="eyebrow text-amber-200">Bar crossings — verify before you go</p>
+            <h3 className="mt-2 font-display text-display-sm text-paper-50 text-balance">
+              MSQ + VMR Noosa + Noosa Coast Guard.
+            </h3>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2 text-body-sm text-paper-200">
+              <li>
+                <strong className="text-paper-50">MSQ Noosa bar bulletin</strong> — the live, MSQ-issued bar condition. Authoritative.
+              </li>
+              <li>
+                <strong className="text-paper-50">Noosa Coast Guard</strong> — VHF channel 16 (distress / calling) and channel 67 (Noosa Coast Guard working / repeat channel).
+              </li>
+              <li>
+                <strong className="text-paper-50">VMR Noosa</strong> — VHF channel 16; live crossing advice from the volunteer marine rescue unit.
+              </li>
+              <li>
+                <strong className="text-paper-50">BOM Tewantin tide</strong> — authoritative tide harmonic for any planned crossing.
+              </li>
+            </ul>
+            <p className="mt-5 text-caption text-paper-300">
+              <em>General guidance: cross on an incoming tide when conditions allow (MSQ).</em>{" "}
+              Last verified against MSQ / VMR / Noosa Coast Guard sources: 2026-08-31.
+            </p>
+          </aside>
         </div>
       </section>
 
@@ -178,8 +211,9 @@ export default async function SurfAndWeatherPage() {
           period over nine seconds and a wind from the same direction.
           When the wind turns north-west, the points go off. Begin at
           Main Beach — patrolled, sandy, gentle. Bar crossings defer to
-          MSQ: check the bulletin, listen to VMR Noosa on VHF channel
-          16, do not rely on this site for navigation.
+          MSQ: cross on an incoming tide when conditions allow, check
+          the bulletin, listen to VMR Noosa on VHF channel 16, do not
+          rely on this site for navigation.
         </p>
       </section>
 

@@ -75,8 +75,18 @@ export const metadata: Metadata = {
     description: "Noosa Heads — surf, weather, the national park, accommodation, fishing, boats, travel and webcams. Live data, primary sources.",
   },
   robots: {
-    index: true,
-    follow: true,
+    // MSN-3044 — Item 9 dev-site protection. Workers / Pages
+    // preview URLs (mynoosaheads.twainent.workers.dev, *.pages.dev)
+    // emit noindex,nofollow until the production DNS points at
+    // mynoosaheads.com. Override via NEXT_PUBLIC_SITE_URL.
+    index: SITE.isProduction,
+    follow: SITE.isProduction,
+    googleBot: {
+      index: SITE.isProduction,
+      follow: SITE.isProduction,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   alternates: {
     canonical: "/",

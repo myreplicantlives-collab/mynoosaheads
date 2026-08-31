@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/ui";
 import { SITE } from "@/data/site";
 import { ImageTile } from "@/components/ImageTile";
+import Link from "next/link";
 import { CATEGORY_CARD_PHOTOS } from "@/data/photos-msn2982";
 
 /**
@@ -249,6 +250,53 @@ export default function ThingsToDoPage() {
               hideAttribution
             />
           ))}
+        </div>
+      </section>
+
+      {/* ─── 3b. Itineraries anchor (Item 3 fix) — referenced 20+ times
+       *  from header, homepage CTAs, and footer. The section gives the
+       *  anchor a real destination: a concise first-day plan plus a
+       *  link into the full /things-to-do/first-day-itinerary page. ─── */}
+      <section
+        id="itineraries"
+        className="bg-paper-100 border-y border-paper-200"
+        aria-labelledby="ttd-itineraries-heading"
+      >
+        <div className="container-page py-12 md:py-16">
+          <p className="eyebrow">Plan your first day</p>
+          <h2
+            id="ttd-itineraries-heading"
+            className="mt-3 font-display text-display-md md:text-display-lg text-ink-900 text-balance max-w-3xl"
+          >
+            A first-day shape that works.
+          </h2>
+          <ol className="mt-8 grid gap-4 md:grid-cols-3">
+            <li className="rounded-xl bg-paper-50 p-5 ring-1 ring-paper-200">
+              <p className="eyebrow text-ink-600">Sunrise</p>
+              <p className="mt-2 font-display text-headline-sm text-ink-900">Headland walk</p>
+              <p className="mt-1 text-body-sm text-ink-700">5.3 km from the Surf Club to Alexandria Bay. Koalas overhead, dolphins offshore.</p>
+            </li>
+            <li className="rounded-xl bg-paper-50 p-5 ring-1 ring-paper-200">
+              <p className="eyebrow text-ink-600">Midday</p>
+              <p className="mt-2 font-display text-headline-sm text-ink-900">Main Beach</p>
+              <p className="mt-1 text-body-sm text-ink-700">Patrolled. Cafés for breakfast. The boardwalk for a slow loop.</p>
+            </li>
+            <li className="rounded-xl bg-paper-50 p-5 ring-1 ring-paper-200">
+              <p className="eyebrow text-ink-600">Sunset</p>
+              <p className="mt-2 font-display text-headline-sm text-ink-900">Noosa River</p>
+              <p className="mt-1 text-body-sm text-ink-700">Gympie Terrace. Calm water. The sea breeze dies down by six.</p>
+            </li>
+          </ol>
+          <div className="mt-8">
+            <Link
+              href="/things-to-do/first-day-itinerary"
+              className="btn-primary btn-md"
+              data-track="ttd_itinerary_first_day"
+            >
+              See the full first-day plan
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -29,6 +29,38 @@ export const SITE = {
   locale: "en-AU",
   region: "Queensland, Australia",
   established: 2026,
+  /**
+   * MSN-3044 — Item 9 dev-site protection.
+   * isProduction is false unless NEXT_PUBLIC_SITE_URL resolves to the
+   * real production hostname (mynoosaheads.com). Any Workers / Pages
+   * preview URL (.workers.dev, .pages.dev) is treated as non-production
+   * so the layout emits noindex + the X-Robots-Tag HTTP header + the
+   * robots.txt and sitemap behave accordingly.
+   *
+   * Override at deploy time by setting NEXT_PUBLIC_SITE_URL to the
+   * production hostname. The audit's findings 9.1-9.7 only apply to
+   * the non-production build path.
+   */
+  isProduction:
+    (() => {
+      const url = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+      return (
+        url.endsWith("mynoosaheads.com") &&
+        !url.includes("workers.dev") &&
+        !url.includes("pages.dev")
+      );
+    })(),
+  /**
+   * MSN-3044 — Item 9 followup (Victor flag): the production-domain
+   * email is exposed in JSON-LD on the homepage and on /contact,
+   * /privacy, /terms mailto: links. We keep it in the rendered HTML
+   * because the contact page legitimately needs it, but we document
+   * its status here: see MSN-3044/evidence/hello_mynoosaheads_dns.md
+   * for the DNS+MX check (no MX records, GoDaddy parking lander).
+   * The email is currently NOT a live inbox — chairman approval
+   * required to set up Google Workspace / Microsoft 365.
+   */
+  contactEmailStatus: "no-mx-records",
   /** AU Editor/Owner persona — used in editorial bylines. */
   editor: {
     name: "The MyNoosaHeads editors",
@@ -259,3 +291,34 @@ export const ACCC_DISCLOSURE = {
  * unless participation is verified."
  */
 export const VERIFIED_AFFILIATES: string[] = [];
+
+/**
+ * MSN-3044 — Item 4 fix. The header / mobile-menu Search buttons
+ * now wire to <SearchDialog /> which filters across this list. Every
+ * entry is a real, public route. Adding a new page = adding an entry
+ * here. The dialog auto-closes on selection so the visitor lands on
+ * the page they chose.
+ *
+ * Order is the order rendered in the search dialog default state
+ * (no query yet). Keep the most-visited pages near the top.
+ */
+export const SEARCHABLE_PAGES = [
+  { label: "Surf & weather", href: "/surf-and-weather", category: "Live", pitch: "BOM + Open-Meteo tiles, refreshed every 30 minutes." },
+  { label: "Noosa National Park", href: "/noosa-national-park", category: "Walk", pitch: "Coastal walk, Tanglewood track, QPWS alerts." },
+  { label: "Things to do", href: "/things-to-do", category: "Do", pitch: "Ten ways to spend your day in Noosa." },
+  { label: "Where to stay", href: "/accommodation", category: "Stay", pitch: "Three properties across four areas." },
+  { label: "Eat & drink", href: "/eat-and-drink", category: "Eat", pitch: "Three venues across four precincts." },
+  { label: "Boats & watercraft", href: "/boats-and-watercraft", category: "Do", pitch: "MSQ bar crossings + Noosa Council ramps." },
+  { label: "Fishing reports", href: "/fishing-reports", category: "Do", pitch: "QLD recreational fishing rules + BOM tide." },
+  { label: "Travel & transport", href: "/travel-and-transport", category: "Plan", pitch: "Drive, fly, ferry, bus to Noosa." },
+  { label: "Webcams", href: "/webcams", category: "Live", pitch: "Beach + headland + river cameras." },
+  { label: "First-day itinerary", href: "/things-to-do/first-day-itinerary", category: "Plan", pitch: "Sunrise headland, midday Main Beach, sunset river." },
+  { label: "Fairy Pools", href: "/things-to-do/fairy-pools", category: "Walk", pitch: "Coastal rock pools on the Noosa shoreline." },
+  { label: "Noosa with children", href: "/things-to-do/noosa-with-children", category: "Do", pitch: "Patrolled swimming, ferry rides, slow river days." },
+  { label: "Shopping", href: "/shopping", category: "Plan", pitch: "Markets, makers, boutiques." },
+  { label: "About", href: "/about", category: "Editorial", pitch: "Brand statement, editorial scope, contact." },
+  { label: "Contact", href: "/contact", category: "Editorial", pitch: "Get in touch with the editorial team." },
+  { label: "Privacy", href: "/privacy", category: "Legal", pitch: "Privacy policy." },
+  { label: "Terms", href: "/terms", category: "Legal", pitch: "Terms of use + affiliate disclosure." },
+  { label: "Photo credits", href: "/photo-credits", category: "Editorial", pitch: "Attribution for every image on the site." },
+] as const;
