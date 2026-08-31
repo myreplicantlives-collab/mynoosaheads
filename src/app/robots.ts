@@ -21,9 +21,15 @@ const isProd = SITE.isProduction;
 const SITE_URL = SITE.productionUrl;
 
 // Cloudflare Pages / @cloudflare/next-on-pages requires every non-static
-// route to opt into the Edge runtime.
-export const runtime = "edge";
-
+// route to opt into the Edge runtime. The deployment target is OpenNext
+// Cloudflare Workers (wrangler deploy), which BUNDLES edge-runtime code
+// into a separate file — co-locating the runtime export here breaks the
+// build with: "app/robots.txt/route cannot use the edge runtime.
+// OpenNext requires edge runtime function to be defined in a separate
+// function." The default nodejs runtime is fine for this route: it just
+// returns a serialisable object, no platform-specific APIs touched.
+// Removed in the MSN-3044 build leg — see
+// evidence/per_item/09_dev_site_protection/build_break_fix.md.
 export default function robots(): MetadataRoute.Robots {
   if (!isProd) {
     return {

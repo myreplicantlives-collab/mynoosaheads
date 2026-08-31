@@ -9,6 +9,7 @@ import {
 } from "@/data/photos-msn2982";
 import { HomeHero } from "@/components/HomeHero";
 import { ImageTile } from "@/components/ImageTile";
+import { fetchLive } from "@/lib/live";
 
 /**
  * MSN-2982 homepage — chairman-mandated full rework.
@@ -36,6 +37,22 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
+  // MSN-3044 — Item 1 (sub-item e): compact live strip on the homepage.
+  // Reads from the same Open-Meteo / BOM Tewantin endpoints as the
+  // surf-and-weather page via @/lib/live. If a feed fails the values
+  // fall back to the dash placeholder; we never fabricate.
+  const live = await fetchLive();
+  const homeLive = {
+    ...live,
+    // Compact timestamp for the strip — "12:34 BST" style.
+    updatedDisplay: new Date(live.updated).toLocaleTimeString("en-GB", {
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: "Europe/London",
+      timeZoneName: "short",
+    }),
+  };
+
   // MSN-3044 — Item 9.6: in non-production builds, emit a placeholder
   // email so the Organization JSON-LD doesn't leak the production
   // contact email to crawlers indexing the preview URL set. The audit
@@ -209,23 +226,44 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ─── 5. LIVE — atmospheric one-liner + CTA to /surf-and-weather ─── */}
+      {/* ─── 5. LIVE — compact live strip + CTA to /surf-and-weather ─── */}
       <section
         className="border-t border-paper-200 bg-paper-100"
         aria-labelledby="live-heading"
       >
-        <div className="container-page py-14 md:py-20 text-center">
-          <p className="eyebrow">LIVE</p>
+        <div className="container-page py-10 md:py-14">
+          <p className="eyebrow text-center">LIVE</p>
           <h2
             id="live-heading"
-            className="mt-3 font-display text-display-lg md:text-display-xl text-ink-900 text-balance max-w-4xl mx-auto"
+            className="mt-3 font-display text-display-md md:text-display-lg text-ink-900 text-balance max-w-3xl mx-auto text-center"
           >
             What the coast is doing right now.
           </h2>
-          <p className="mt-5 text-body-md text-ink-800 max-w-2xl mx-auto text-pretty">
-            Live surf, wind, tide and UV. Refreshed every 30 minutes from BOM and Open-Meteo.
+          {/*
+            MSN-3044 Item 1 (sub-item e) — compact live strip showing real
+            values + last-updated + source. Reads from the same Open-Meteo
+            feed as /surf-and-weather (via @/lib/live). If a feed fails, the
+            value is the dash placeholder; we never fabricate.
+          */}
+          <p
+            className="mt-5 mx-auto max-w-3xl rounded-xl bg-paper-50 ring-1 ring-paper-200 px-4 py-3 text-center text-body-sm text-ink-800"
+            aria-label="Live coast conditions strip"
+            data-track="home_live_strip"
+          >
+            <span className="font-medium text-ink-900">Surf {homeLive.swellM}</span>
+            <span className="mx-2 text-ink-400" aria-hidden="true">·</span>
+            <span className="font-medium text-ink-900">Wind {homeLive.windKmh}</span>
+            <span className="mx-2 text-ink-400" aria-hidden="true">·</span>
+            <span className="font-medium text-ink-900">Tide {homeLive.tideM}</span>
+            <span className="mx-2 text-ink-400" aria-hidden="true">·</span>
+            <span className="font-medium text-ink-900">UV {homeLive.uvIndex}</span>
+            <span className="mx-2 text-ink-400" aria-hidden="true">·</span>
+            <span className="font-medium text-ink-900">Now {homeLive.updatedDisplay}</span>
+            <span className="block mt-1 text-caption text-ink-500">
+              Source: BOM Tewantin tide + Open-Meteo Marine + Open-Meteo Forecast
+            </span>
           </p>
-          <div className="mt-7">
+          <div className="mt-7 text-center">
             <Link
               href="/surf-and-weather"
               className="btn-primary btn-md"

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/ui";
 import { SITE } from "@/data/site";
+import { fetchLive } from "@/lib/live";
 
 /**
  * /surf-and-weather — MSN-2982 chairman-mandated rework + MSN-3044
@@ -28,53 +29,8 @@ export const metadata: Metadata = {
 
 export const revalidate = 1800; // 30 minutes
 
-async function fetchLive(): Promise<{
-  windKmh: string;
-  windDir: string;
-  swellM: string;
-  swellPeriodS: string;
-  uvIndex: string;
-  tideM: string;
-  waterC: string;
-  airC: string;
-  updated: string;
-}> {
-  try {
-    const lat = -26.385;
-    const lon = 153.091;
-    const url = `https://marine-api.open-meteo.com/v1/marine?latitude=${lat}&longitude=${lon}&current=wave_height,wave_period,sea_surface_temperature&timezone=Australia%2FBrisbane`;
-    const url2 = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m,wind_direction_10m,uv_index&timezone=Australia%2FBrisbane`;
-    const [r1, r2] = await Promise.all([fetch(url, { next: { revalidate: 1800 } }), fetch(url2, { next: { revalidate: 1800 } })]);
-    if (!r1.ok || !r2.ok) throw new Error("upstream");
-    const a = await r1.json();
-    const b = await r2.json();
-    const cur1 = a.current ?? {};
-    const cur2 = b.current ?? {};
-    return {
-      windKmh: typeof cur2.wind_speed_10m === "number" ? `${Math.round(cur2.wind_speed_10m)} km/h` : "—",
-      windDir: typeof cur2.wind_direction_10m === "number" ? `${Math.round(cur2.wind_direction_10m)}°` : "—",
-      swellM: typeof cur1.wave_height === "number" ? `${cur1.wave_height.toFixed(1)} m` : "—",
-      swellPeriodS: typeof cur1.wave_period === "number" ? `${Math.round(cur1.wave_period)} s` : "—",
-      uvIndex: typeof cur2.uv_index === "number" ? `${cur2.uv_index.toFixed(1)}` : "—",
-      tideM: "See BOM Tewantin tide",
-      waterC: typeof cur1.sea_surface_temperature === "number" ? `${cur1.sea_surface_temperature.toFixed(1)}°C` : "—",
-      airC: typeof cur2.temperature_2m === "number" ? `${cur2.temperature_2m.toFixed(1)}°C` : "—",
-      updated: new Date().toISOString(),
-    };
-  } catch {
-    return {
-      windKmh: "—",
-      windDir: "—",
-      swellM: "—",
-      swellPeriodS: "—",
-      uvIndex: "—",
-      tideM: "See BOM Tewantin tide",
-      waterC: "—",
-      airC: "—",
-      updated: new Date().toISOString(),
-    };
-  }
-}
+// fetchLive is imported from @/lib/live (MSN-3044 build leg: shared between
+// the surf-and-weather page tile grid and the homepage compact strip).
 
 export default async function SurfAndWeatherPage() {
   const live = await fetchLive();
