@@ -5,6 +5,11 @@ import { SITE } from "@/data/site";
 import { ACCOMMODATION_DATA, CURATED_PROPERTIES } from "@/data/accommodation";
 import { VERIFIED } from "@/data/photos-msn2982";
 import { AffiliateBadge } from "@/components/ui/AffiliateBadge";
+import {
+  buildPartnerLink,
+  isAffiliateCommercial,
+  type ProgrammeId,
+} from "@/lib/affiliates";
 
 /**
  * /accommodation — MSN-2985 V2 release correction pass.
@@ -37,33 +42,90 @@ export const metadata: Metadata = {
   alternates: { canonical: "/accommodation" },
 };
 
-// Direct booking URLs where the operator has one. Where there is no
-// direct URL, we link to a property-name search on Booking.com (the
-// chairman-mandated fallback for #12 — never to a generic homepage).
+// MSN-3057 (Workstream 1): centralise booking-engine configuration.
+// Every outbound commercial link is now routed through
+// `buildPartnerLink()` in src/lib/affiliates.ts so the partner ID,
+// placement label and disclosure gate live in one place.
 //
-// MSN-3044 — Item 6.5 fix: every entry is now explicitly marked as
-// paid (affiliate) or direct. Operator-direct URLs (Netanya, South
-// Pacific) carry NO affiliate disclosure because we have no commercial
-// relationship with the operator — they are direct links to the
-// operator's own booking page. Booking.com and Stayz search URLs are
-// flagged as affiliate and carry rel="sponsored noopener noreferrer"
-// per ACCC Schedule 2 + Google sponsored-link guidance.
-const BOOKING_PROGRAMME: Record<string, "operator-direct" | "affiliate"> = {
-  "Netanya Noosa": "operator-direct",
-  "South Pacific Resort & Spa Noosa": "operator-direct",
-  "Sunshine Beach Resort": "affiliate",
-  "Noosa-area holiday houses": "affiliate",
+// Until a programme is `enabled && verified` in src/lib/affiliates.ts,
+// `buildPartnerLink` returns an untracked URL and `isAffiliateCommercial`
+// returns false — so the AffiliateBadge will NOT render, even on
+// routes that previously declared themselves as "affiliate". This is
+// per the MSN-2964 directive B: do not claim affiliate participation
+// until it is verified.
+//
+// `rel="sponsored"` is now gated on `isAffiliateCommercial(programme)`,
+// not on a hardcoded map. Operator-direct URLs keep `rel="noopener"`.
+//
+// MSN-3044 — Item 6.5 fix preserved: property-name searches (never
+// generic homepage links) when no operator-direct URL exists.
+type PropertyLink = {
+  url: string;
+  programme: ProgrammeId | "operator-direct";
+  label: string;
 };
 
-const DIRECT_BOOKING_URLS: Record<string, string> = {
-  "Netanya Noosa": "https://www.netanyanoosa.com.au/",
-  "South Pacific Resort & Spa Noosa": "https://www.southpacificresort.com.au/",
-  "Sunshine Beach Resort": "https://www.booking.com/searchresults.html?ss=Sunshine+Beach+Resort+Noosa",
-  "Noosa-area holiday houses": "https://www.stayz.com.au/holiday-rental-search?query=Noosa+Heads+holiday+house+pet+friendly",
+const PROPERTY_LINKS: Record<string, PropertyLink> = {
+  "Netanya Noosa": {
+    url: "https://www.netanyanoosa.com.au/",
+    programme: "operator-direct",
+    label: "Book direct with Netanya Noosa",
+  },
+  "South Pacific Resort & Spa Noosa": {
+    url: "https://www.southpacificresort.com.au/",
+    programme: "operator-direct",
+    label: "Book direct with South Pacific Resort & Spa Noosa",
+  },
+  "Sunshine Beach Resort": {
+    url: "https://www.booking.com/searchresults.html?ss=Sunshine+Beach+Resort+Noosa",
+    programme: "booking",
+    label: "Check availability on Booking.com",
+  },
+  "Noosa-area holiday houses": {
+    url: "https://www.stayz.com.au/holiday-rental-search?query=Noosa+Heads+holiday+house+pet+friendly",
+    programme: "stayz",
+    label: "Browse holiday houses on Stayz",
+  },
 };
 
-function bookingHref(name: string): string {
-  return DIRECT_BOOKING_URLS[name] ?? "https://www.booking.com/searchresults.html?ss=Noosa+Heads";
+function propertyHref(name: string): string {
+  const link = PROPERTY_LINKS[name];
+  if (!link) {
+    // Safe fallback — never produce a broken URL. Plain search, untracked.
+    return buildPartnerLink(
+      "booking",
+      "https://www.booking.com/searchresults.html?ss=Noosa+Heads",
+      `accommodation-${name.toLowerCase().replace(/\s+/g, "-")}`,
+    );
+  }
+  if (link.programme === "operator-direct") {
+    return link.url;
+  }
+  return buildPartnerLink(
+    link.programme,
+    link.url,
+    `accommodation-${name.toLowerCase().replace(/\s+/g, "-")}`,
+  );
+}
+
+/** ProgrammeId → display name for the AffiliateBadge label. */
+function programmeToDisplay(programme: ProgrammeId): string {
+  switch (programme) {
+    case "booking":
+      return "Booking.com";
+    case "stayz":
+      return "Stayz";
+    case "expedia":
+      return "Expedia";
+    case "airbnb":
+      return "Airbnb";
+    case "getyourguide":
+      return "GetYourGuide";
+    case "viator":
+      return "Viator";
+    case "klook":
+      return "Klook";
+  }
 }
 
 // Per-property card photos — only KEEP-listed verified photos
@@ -223,23 +285,30 @@ export default function AccommodationPage() {
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {CURATED_PROPERTIES.map((p) => {
               const photoSrc = PHOTO_BY_PROPERTY[p.name] ?? VERIFIED.cards.hastingsStreetWest;
-              const programme = BOOKING_PROGRAMME[p.name] ?? "operator-direct";
-              const isAffiliate = programme === "affiliate";
-              // MSN-3044 — Item 6.2 fix: paid links carry
-              // rel="sponsored noopener noreferrer" per ACCC Schedule 2
-              // and Google sponsored-link guidance. Operator-direct
-              // links keep rel="noopener noreferrer".
+              const link = PROPERTY_LINKS[p.name];
+              const programme =
+                link && link.programme !== "operator-direct"
+                  ? link.programme
+                  : null;
+              // MSN-2964 / MSN-3057: an Affiliate badge only renders when
+              // the programme is BOTH enabled AND verified in the
+              // central config. Until then the link is treated as a
+              // safe, ordinary outbound link.
+              const isAffiliate = programme ? isAffiliateCommercial(programme) : false;
               const rel = isAffiliate
                 ? "sponsored noopener noreferrer"
                 : "noopener noreferrer";
+              const cta = isAffiliate ? "Check availability" : link?.programme === "operator-direct" ? "Book direct" : "View listing";
+              const trackKey = p.name.toLowerCase().replace(/\s+/g, "-");
               return (
                 <a
                   key={p.name}
-                  href={bookingHref(p.name)}
+                  href={propertyHref(p.name)}
                   target="_blank"
                   rel={rel}
+                  aria-label={link?.label ?? `Open ${p.name} booking page`}
                   className="group relative block overflow-hidden rounded-xl aspect-[4/5] bg-ink-700"
-                  data-track={`accomm_property_${p.name.toLowerCase().replace(/\s+/g, "_")}`}
+                  data-track={`accomm_property_${trackKey}`}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -261,18 +330,11 @@ export default function AccommodationPage() {
                     </p>
                     <div className="mt-3 flex items-center gap-2 flex-wrap">
                       <span className="text-body-sm uppercase tracking-wider text-paper-300">
-                        {isAffiliate ? "Check availability" : "Book direct"}
+                        {cta}
                         <span aria-hidden="true">→</span>
                       </span>
-                      {/* MSN-3044 — Item 6.1 fix: every paid link carries
-                       *  a visible Affiliate badge before the user
-                       *  clicks, per the on-page promise ("all are
-                       *  marked Affiliate before you click"). */}
-                      {isAffiliate ? (
-                        <AffiliateBadge
-                          programme={p.name.includes("Stayz") ? "Stayz" : "Booking.com"}
-                          mode="compact"
-                        />
+                      {isAffiliate && programme ? (
+                        <AffiliateBadge programme={programmeToDisplay(programme)} mode="compact" />
                       ) : null}
                     </div>
                   </div>

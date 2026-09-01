@@ -50,9 +50,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/privacy`, lastModified, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE_URL}/terms`, lastModified, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE_URL}/contact`, lastModified, changeFrequency: "yearly", priority: 0.3 },
+    // MSN-3057 / Workstream 1 — affiliate disclosure page is visitor-facing
+    // and should be indexed in production.
+    { url: `${SITE_URL}/disclosure`, lastModified, changeFrequency: "monthly", priority: 0.4 },
     // MSN-3043 audit fix 8.3 — /photo-credits and /shopping were reachable
     // 200 OK pages but missing from the sitemap. Now listed.
     { url: `${SITE_URL}/photo-credits`, lastModified, changeFrequency: "monthly", priority: 0.4 },
     { url: `${SITE_URL}/shopping`, lastModified, changeFrequency: "monthly", priority: 0.5 },
+    // NOTE: /reporting is intentionally NOT listed. It is the internal
+    // reporting view (MSN-3057 / Workstream 1) and ships with a
+    // robots: { index: false, follow: false } metadata block — it must
+    // never be discoverable through the sitemap. To verify, filter the
+    // production sitemap.xml for "reporting" — should return zero hits.
   ];
 }

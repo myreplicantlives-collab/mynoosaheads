@@ -238,7 +238,7 @@ export const FOOTER_DISCLOSURE = {
       heading: "Legal",
       links: [
         { label: "Privacy", href: "/privacy", disclosure: "Privacy Act 1988 (Cth)" },
-        { label: "Affiliate disclosure", href: "/terms#affiliate-disclosure", disclosure: "ACCC Sch 2" },
+        { label: "Affiliate disclosure", href: "/disclosure", disclosure: "ACCC Sch 2" },
         { label: "Spam Act statement", href: "/privacy#spam-act-2003", disclosure: "Spam Act 2003" },
       ],
     },
@@ -289,6 +289,12 @@ export const ACCC_DISCLOSURE = {
  * on this list. Per ACCC Schedule 2 (Australian Consumer Law) and the
  * mission spec: "Do not claim participation in an affiliate programme
  * unless participation is verified."
+ *
+ * MSN-3057 (Workstream 1): this constant is the consumer-facing gate
+ * read by AffiliateBadge. The canonical source-of-truth list of enabled
+ * + verified programmes lives in src/lib/affiliates.ts
+ * (`VERIFIED_PROGRAMME_IDS`). Both must agree — when onboarding a new
+ * programme, flip both flags in lockstep.
  */
 export const VERIFIED_AFFILIATES: string[] = [];
 
@@ -320,5 +326,6 @@ export const SEARCHABLE_PAGES = [
   { label: "Contact", href: "/contact", category: "Editorial", pitch: "Get in touch with the editorial team." },
   { label: "Privacy", href: "/privacy", category: "Legal", pitch: "Privacy policy." },
   { label: "Terms", href: "/terms", category: "Legal", pitch: "Terms of use + affiliate disclosure." },
+  { label: "Disclosure", href: "/disclosure", category: "Legal", pitch: "Affiliate disclosure + ACCC Schedule 2 statement." },
   { label: "Photo credits", href: "/photo-credits", category: "Editorial", pitch: "Attribution for every image on the site." },
 ] as const;
