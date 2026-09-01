@@ -23,6 +23,15 @@ const isCloudflare =
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // MSN-3057 M6 perf polish — extract critical CSS at build time
+  // (Critters). Without this, both Tailwind + next/font @font-face CSS
+  // ship as 2 render-blocking <link rel="stylesheet"> tags (~660-760ms
+  // wasted on the 5 routes below Lighthouse 90). Critters inlines
+  // above-the-fold CSS into a <style> tag and preloads the rest
+  // non-blockingly. See lighthouse audits for the per-route waste.
+  experimental: {
+    optimizeCss: true,
+  },
   images: {
     // Sprint 1.5 (MSN-2958 / TSK-2958-02): photo wire-up via next/image.
     // Wikimedia Commons is the source of truth for category-page imagery

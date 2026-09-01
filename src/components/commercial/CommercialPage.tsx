@@ -219,15 +219,46 @@ export function CommercialPage({
           const heroSizes =
             (typeof heroAny.sizes === "string" && heroAny.sizes) ||
             "(min-width: 1024px) 1024px, 100vw";
+
+          // MSN-3057 M6 perf polish: emit a <link rel="preload" as="image">
+          // for the hero AVIF srcSet so the LCP image is fetched in parallel
+          // with the render-blocking CSS (saves ~300-500ms on commercial
+          // routes that previously had 700ms+ of CSS-blocking waste).
+          // The srcSet/sizes pair is what Lighthouse checks for the LCP
+          // preload signal — fetchpriority on the <img> alone doesn't
+          // start the fetch until the CSS is parsed. This <link> lives
+          // inside the <section> for SSR; Next.js hoists <link rel="preload">
+          // emitted from a Server Component into the document head.
+          const heroPreloadAvif = heroAvif ? (
+            <link
+              rel="preload"
+              as="image"
+              imageSrcSet={heroAvif}
+              imageSizes={heroSizes}
+              fetchPriority="high"
+            />
+          ) : heroWebp ? (
+            <link
+              rel="preload"
+              as="image"
+              imageSrcSet={heroWebp}
+              imageSizes={heroSizes}
+              fetchPriority="high"
+            />
+          ) : heroSrc ? (
+            <link rel="preload" as="image" href={heroSrc} fetchPriority="high" />
+          ) : null;
           return (
-            <picture className="absolute inset-0 block h-full w-full">
-              {heroAvif ? (
-                <source
-                  type="image/avif"
-                  srcSet={heroAvif}
-                  sizes={heroSizes}
-                />
-              ) : null}
+            <>
+              {heroPreloadAvif}
+              <picture className="absolute inset-0 block h-full w-full">
+                {heroAvif ? (
+                  <source
+                    type="image/avif"
+                    srcSet={heroAvif}
+                    sizes={heroSizes}
+                  />
+                ) : null}
               {heroWebp ? (
                 <source
                   type="image/webp"
@@ -244,6 +275,7 @@ export function CommercialPage({
                 className="absolute inset-0 h-full w-full object-cover object-center"
               />
             </picture>
+            </>
           );
         })()}
         <div

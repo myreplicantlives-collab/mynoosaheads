@@ -26,6 +26,7 @@
  */
 
 import type { Metadata } from "next";
+import { Caveat } from "next/font/google";
 import Image from "next/image";
 import {
   Button,
@@ -46,6 +47,19 @@ import {
   Icons,
   type IconName,
 } from "@/components/ui";
+
+/**
+ * Caveat is the handwritten "accent" font. Only used on /styleguide
+ * to showcase the type scale's accent-* tokens. Loaded locally on this
+ * page (MSN-3057 M6 perf polish) so the ~37 KB WOFF2 + preload cost
+ * stays off every visitor-facing route.
+ */
+const caveat = Caveat({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-accent",
+  weight: ["400", "500", "600"],
+});
 
 export const metadata: Metadata = {
   title: "Style guide",
@@ -168,6 +182,7 @@ export default function StyleGuidePage() {
         eyebrow="Typography"
         title="Type scale"
         subtitle="Fraunces (display), Inter (body), Caveat (accent). Fluid clamp between mobile and desktop."
+        contentClassName={caveat.className}
       >
         <div className="space-y-6">
           {TYPOGRAPHY_SAMPLES.map((t) => (
@@ -494,6 +509,7 @@ function Section({
   title,
   subtitle,
   background,
+  contentClassName,
   children,
 }: {
   id: string;
@@ -501,6 +517,9 @@ function Section({
   title: string;
   subtitle?: string;
   background?: "paper" | "surface";
+  /** Extra className for the inner content wrapper (used by /styleguide
+   *  typography section to scope the Caveat font to accent tokens). */
+  contentClassName?: string;
   children: React.ReactNode;
 }) {
   return (
@@ -523,7 +542,9 @@ function Section({
         {subtitle ? (
           <p className="mt-3 lead max-w-3xl text-pretty">{subtitle}</p>
         ) : null}
-        <div className="mt-8">{children}</div>
+        <div className={["mt-8", contentClassName].filter(Boolean).join(" ")}>
+          {children}
+        </div>
       </div>
     </section>
   );
