@@ -49,10 +49,7 @@ export default function FamiliesActivityPage() {
           .
         </>
       }
-      hero={{
-        src: VERIFIED.cards.sunshineBeach.path,
-        alt: VERIFIED.cards.sunshineBeach.caption,
-      }}
+      hero={VERIFIED.cards.sunshineBeach}
       sections={[
         {
           heading: "What to book.",

@@ -51,10 +51,7 @@ export default function NearTheBeachPage() {
           is a five-minute walk to the patrolled section.
         </>
       }
-      hero={{
-        src: VERIFIED.cards.hastingsStreetWest.path,
-        alt: VERIFIED.cards.hastingsStreetWest.caption,
-      }}
+      hero={VERIFIED.cards.hastingsStreetWest}
       sections={[
         {
           heading: "What 'near the beach' means here.",

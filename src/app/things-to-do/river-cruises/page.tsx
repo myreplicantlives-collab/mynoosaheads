@@ -47,10 +47,7 @@ export default function RiverCruisesPage() {
           evening.
         </>
       }
-      hero={{
-        src: VERIFIED.cards.morningRiver.path,
-        alt: VERIFIED.cards.morningRiver.caption,
-      }}
+      hero={VERIFIED.cards.morningRiver}
       sections={[
         {
           heading: "Three ways on the river.",

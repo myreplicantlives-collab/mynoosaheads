@@ -45,10 +45,7 @@ export default function SurfLessonsPage() {
           the lesson takes two hours including a beach briefing.
         </>
       }
-      hero={{
-        src: VERIFIED.cards.paddlingOut.path,
-        alt: VERIFIED.cards.paddlingOut.caption,
-      }}
+      hero={VERIFIED.cards.paddlingOut}
       sections={[
         {
           heading: "What to expect.",

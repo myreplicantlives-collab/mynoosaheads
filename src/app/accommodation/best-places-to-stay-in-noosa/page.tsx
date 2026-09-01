@@ -47,10 +47,7 @@ export default function BestPlacesToStayInNoosaPage() {
           guides to help you pick the right one for your trip.
         </>
       }
-      hero={{
-        src: VERIFIED.cards.hastingsStreetWest.path,
-        alt: VERIFIED.cards.hastingsStreetWest.caption,
-      }}
+      hero={VERIFIED.cards.hastingsStreetWest}
       sections={[
         {
           heading: "The shortlist.",

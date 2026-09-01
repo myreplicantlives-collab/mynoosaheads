@@ -50,10 +50,7 @@ export default function NoosavillePage() {
           wharf ready for Main Beach.
         </>
       }
-      hero={{
-        src: VERIFIED.cards.morningRiver.path,
-        alt: VERIFIED.cards.morningRiver.caption,
-      }}
+      hero={VERIFIED.cards.morningRiver}
       sections={[
         {
           heading: "Who it's for.",

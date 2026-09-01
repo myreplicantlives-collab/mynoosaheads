@@ -31,6 +31,14 @@ import { JsonLd } from "@/components/ui";
 import { SITE } from "@/data/site";
 import { type ProgrammeId } from "@/lib/affiliates";
 import {
+  pageBreadcrumb,
+  geoForSlugOrNoosa,
+  lodgingBusinessJsonLd,
+  touristAttractionJsonLd,
+  serviceJsonLd,
+} from "@/lib/schema";
+import type { LatLng } from "@/data/geo";
+import {
   AffiliateDisclosure,
   HowWeChoose,
   LastReviewedDate,
@@ -40,6 +48,39 @@ import {
   RelatedRecommendations,
   type RelatedRecommendation,
 } from "@/components/commercial";
+
+/**
+ * Per-category schema descriptor — MSN-3057 M5 (Defect D-02).
+ *
+ * The CommercialPage chassis used to emit only `WebPage` JSON-LD. M5
+ * wires the existing schema builders from `lib/schema.ts` (built in M4)
+ * through the page so each commercial route emits the schema.org type
+ * most appropriate to its content. No invented reviews / ratings
+ * anywhere; geo falls back to the area or Noosa centroid.
+ */
+export type CommercialSchemaType =
+  | "LodgingBusiness"
+  | "TouristAttraction"
+  | "Service"
+  | "Restaurant"
+  | "WebPage";
+
+/** Page-level fields used by the schema builders. Optional fields
+ *  collapse out of the rendered JSON-LD when not supplied. */
+export type CommercialSchemaData = {
+  /** cuisine / activity serviceType. Falls back to the page category. */
+  serviceType?: string;
+  /** Operator-provided address (accommodation / eat-and-drink). */
+  address?: string;
+  /** Geo fallback — page-level rather than per-card. */
+  geo?: LatLng | null;
+  /** Whether the activity / attraction is free to enter. */
+  isAccessibleForFree?: boolean;
+  /** Provider org name (for Service schemas). */
+  providerName?: string;
+  /** Description — falls back to page description if not supplied. */
+  description?: string;
+};
 
 export type CommercialPageProps = {
   /** Route slug — used in JSON-LD and breadcrumbs. */
@@ -55,11 +96,21 @@ export type CommercialPageProps = {
   h1: ReactNode;
   /** One-paragraph editorial introduction. */
   intro: ReactNode;
-  /** Hero image. */
+  /** Hero image. Accepts either a KubePhoto-style object (path +
+   *  caption + avifSrcSet + webpSrcSet, recommended — the M3 photo
+   *  registry exposes the srcSet fields directly) or the simpler
+   *  `{src, alt}` form. Internal normaliser picks the right fields.
+   *  Extra fields on the input are ignored at runtime. */
   hero: {
-    src: string;
-    alt: string;
+    path?: string;
+    caption?: string;
+    src?: string;
+    alt?: string;
+    avifSrcSet?: string;
+    webpSrcSet?: string;
+    sizes?: string;
     srcSet?: string;
+    [k: string]: unknown;
   };
   /** "Not ready for publication" banner reason. When set, the page
    *  renders with the banner at top + a subdued tone. */
@@ -90,7 +141,12 @@ export type CommercialPageProps = {
   methodology?: ReactNode;
   /** Related guides list. */
   related: RelatedRecommendation[];
-  /** JSON-LD — defaults to a WebPage schema; override for richer types. */
+  /** Per-category schema type. Defaults to WebPage if not supplied. */
+  schemaType?: CommercialSchemaType;
+  /** Per-page fields to feed the schema builder. Optional — every
+   *  field collapses out of the rendered JSON-LD when not provided. */
+  schemaData?: CommercialSchemaData;
+  /** JSON-LD — explicit override. Wins over `schemaType`. */
   jsonLd?: object;
 };
 
@@ -113,22 +169,23 @@ export function CommercialPage({
   lastReviewed,
   methodology,
   related,
+  schemaType,
+  schemaData,
   jsonLd,
 }: CommercialPageProps) {
   const canonical = `${SITE.productionUrl}/${slug.replace(/^\//, "")}`;
   const jsonLdPayload =
-    jsonLd ?? {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": canonical,
-      url: canonical,
-      name: title,
+    jsonLd ??
+    buildCommercialJsonLd({
+      slug,
+      title,
       description,
-      inLanguage: SITE.locale,
-      isPartOf: { "@id": `${SITE.productionUrl}#website` },
-      publisher: { "@id": `${SITE.productionUrl}#organization` },
-      dateModified: lastReviewed,
-    };
+      category,
+      schemaType,
+      schemaData,
+      canonical,
+      lastReviewed,
+    });
   return (
     <div className="bg-paper-50 pb-24 md:pb-0">
       <JsonLd data={jsonLdPayload} />
@@ -138,15 +195,57 @@ export function CommercialPage({
         aria-label={title}
         className="relative w-full overflow-hidden bg-ink-900 h-[55vh] min-h-[420px] max-h-[680px]"
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={hero.src}
-          srcSet={hero.srcSet}
-          alt={hero.alt}
-          decoding="async"
-          fetchPriority="high"
-          className="absolute inset-0 h-full w-full object-cover object-center"
-        />
+        {(() => {
+          // MSN-3057 M5 (D-03): normalise KubePhoto-style hero into the
+          // src/alt/avifSrcSet/webpSrcSet fields, then render AVIF →
+          // WebP → JPG fallback via <picture>. The srcSet strings are
+          // already in `… 640w, … 1080w, … 1920w, … 3840w` form, written
+          // by M3's photo registry.
+          const heroAny = hero as Record<string, unknown>;
+          const heroSrc: string =
+            (typeof heroAny.src === "string" && heroAny.src) ||
+            (typeof heroAny.path === "string" && heroAny.path) ||
+            "";
+          const heroAlt: string =
+            (typeof heroAny.alt === "string" && heroAny.alt) ||
+            (typeof heroAny.caption === "string" && heroAny.caption) ||
+            "";
+          const heroAvif =
+            (typeof heroAny.avifSrcSet === "string" && heroAny.avifSrcSet) ||
+            undefined;
+          const heroWebp =
+            (typeof heroAny.webpSrcSet === "string" && heroAny.webpSrcSet) ||
+            undefined;
+          const heroSizes =
+            (typeof heroAny.sizes === "string" && heroAny.sizes) ||
+            "(min-width: 1024px) 1024px, 100vw";
+          return (
+            <picture className="absolute inset-0 block h-full w-full">
+              {heroAvif ? (
+                <source
+                  type="image/avif"
+                  srcSet={heroAvif}
+                  sizes={heroSizes}
+                />
+              ) : null}
+              {heroWebp ? (
+                <source
+                  type="image/webp"
+                  srcSet={heroWebp}
+                  sizes={heroSizes}
+                />
+              ) : null}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={heroSrc}
+                alt={heroAlt}
+                decoding="async"
+                fetchPriority="high"
+                className="absolute inset-0 h-full w-full object-cover object-center"
+              />
+            </picture>
+          );
+        })()}
         <div
           className="absolute inset-0 bg-gradient-to-br from-ink-900/15 via-transparent to-ink-900/35"
           aria-hidden="true"
@@ -323,4 +422,162 @@ export function ParentHubLink({
       </Link>
     </p>
   );
+}
+
+/**
+ * Build the per-page JSON-LD payload — MSN-3057 M5 (Defect D-02).
+ *
+ * Returns an array of schema.org objects so the page can emit a
+ * primary type + a BreadcrumbList in one block. Every input is
+ * gracefully optional — the page keeps the WebPage fallback if no
+ * schemaType is supplied.
+ */
+function buildCommercialJsonLd(args: {
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+  schemaType?: CommercialSchemaType;
+  schemaData?: CommercialSchemaData;
+  canonical: string;
+  lastReviewed: string;
+}): object[] {
+  const {
+    slug,
+    title,
+    description,
+    category,
+    schemaType,
+    schemaData,
+    canonical,
+    lastReviewed,
+  } = args;
+
+  const breadcrumb = pageBreadcrumb(title, `/${slug.replace(/^\//, "")}`);
+
+  // MSN-3057 M5 (D-02): auto-derive a per-category schema type from the
+  // page's `category` so every existing commercial page gets the
+  // structured-data upgrade without needing per-page edits.
+  const derivedSchemaType: CommercialSchemaType =
+    schemaType ??
+    (() => {
+      switch (category) {
+        case "Where to stay":
+          return "LodgingBusiness";
+        case "Things to do":
+          return "TouristAttraction";
+        case "Travel & transport":
+          return "Service";
+        case "Eat & drink":
+          return "Restaurant";
+        default:
+          return "WebPage";
+      }
+    })();
+
+  if (!derivedSchemaType || derivedSchemaType === "WebPage") {
+    return [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": canonical,
+        url: canonical,
+        name: title,
+        description,
+        inLanguage: SITE.locale,
+        isPartOf: { "@id": `${SITE.productionUrl}#website` },
+        publisher: { "@id": `${SITE.productionUrl}#organization` },
+        dateModified: lastReviewed,
+      },
+      breadcrumb,
+    ];
+  }
+
+  // Derive a geo fallback from the URL slug segment — for accommodation
+  // pages the second segment is the area (hastings, noosaville, ...);
+  // for things-to-do and travel pages we fall back to the Noosa centroid.
+  const slugSegments = slug.replace(/^\//, "").split("/").filter(Boolean);
+  const areaSlug = slugSegments[slugSegments.length - 1] ?? slugSegments[0] ?? "";
+  const fallbackGeo = geoForSlugOrNoosa(areaSlug);
+  const geo = schemaData?.geo ?? fallbackGeo;
+  const descriptionText = schemaData?.description ?? description;
+
+  if (derivedSchemaType === "LodgingBusiness") {
+    return [
+      lodgingBusinessJsonLd({
+        name: title,
+        description: descriptionText,
+        url: canonical,
+        address:
+          schemaData?.address ??
+          "Noosa Heads, Queensland, Australia",
+        geo,
+        amenities: undefined,
+      }),
+      breadcrumb,
+    ];
+  }
+
+  if (derivedSchemaType === "TouristAttraction") {
+    return [
+      touristAttractionJsonLd({
+        name: title,
+        description: descriptionText,
+        url: canonical,
+        geo,
+        isAccessibleForFree: schemaData?.isAccessibleForFree,
+      }),
+      breadcrumb,
+    ];
+  }
+
+  if (derivedSchemaType === "Service") {
+    return [
+      serviceJsonLd({
+        name: title,
+        description: descriptionText,
+        url: canonical,
+        serviceType: schemaData?.serviceType ?? category,
+        providerName: schemaData?.providerName,
+        areaServed: "Noosa, Queensland",
+      }),
+      breadcrumb,
+    ];
+  }
+
+  if (derivedSchemaType === "Restaurant") {
+    // Restaurant schema requires cuisine + reservationUrl — these
+    // are emitted by the venue sub-page directly. The fallback
+    // below keeps the page emitting at least a WebPage + breadcrumb.
+    return [
+      {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        name: title,
+        description: descriptionText,
+        url: canonical,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: schemaData?.address ?? "Hastings Street",
+          addressLocality: "Noosa",
+          addressRegion: "QLD",
+          addressCountry: "AU",
+        },
+        servesCuisine: schemaData?.serviceType ?? "Modern Australian",
+        acceptsReservations: "True",
+        ...(geo
+          ? {
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: geo.latitude,
+                longitude: geo.longitude,
+              },
+            }
+          : {}),
+      },
+      breadcrumb,
+    ];
+  }
+
+  return [breadcrumb];
 }

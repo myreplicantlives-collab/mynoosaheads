@@ -1,0 +1,96 @@
+=== Visitor-facing placeholder/internal terminology grep ===
+--- grep -r 'generic commercial-OK' src/app/ src/data/ ---
+--- grep -r 'TODO\|FIXME' src/app/ ---
+--- grep -r 'placeholder\|to-be-replaced\|WIP' src/app/ ---
+src/app/eat-and-drink/page.tsx:16: * off-topic Unsplash placeholders.
+src/app/eat-and-drink/[slug]/page.tsx:86:    caption: "Hastings Street looking west from Main Beach — venue page placeholder pending build decision.",
+src/app/eat-and-drink/[slug]/page.tsx:92:    caption: "Boat at the Noosa River mouth — venue page placeholder pending build decision.",
+src/app/eat-and-drink/[slug]/page.tsx:98:    caption: "Hastings Street pedestrian precinct — venue page placeholder pending build decision.",
+src/app/styleguide/page.tsx:403:          <FormField label="Your name" required help="We don't store this — it's a placeholder.">
+
+=== src/components/commercial/ count ===
+      16
+
+=== commercial components ===
+AccommodationCard.tsx
+ActivityCard.tsx
+AffiliateDisclosure.tsx
+BestForBadge.tsx
+CheckAvailabilityCTA.tsx
+CommercialPage.tsx
+ComparisonTable.tsx
+HowWeChoose.tsx
+LastReviewedDate.tsx
+MobileStickyCTA.tsx
+NotReadyBanner.tsx
+PriceDisclaimer.tsx
+RelatedRecommendations.tsx
+ViewTourOptionsCTA.tsx
+WhyWeRecommend.tsx
+index.ts
+
+=== src/data/commercial.ts ===
+-rw-------  1 twain  staff   3163 Sep  1 17:53 src/data/commercial-related.ts
+-rw-------  1 twain  staff  17587 Sep  1 17:52 src/data/commercial.ts
+
+=== email-capture.ts ===
+/**
+ * email-capture — MSN-3057 M3 Workstream 5.
+ *
+ * Provider-agnostic email-capture framework for MyNoosaHeads.
+ *
+ * Constraints:
+ *   - Built but NOT activated on the dev URL. Provider activation is
+ *     gated on Tim's explicit approval (see privacy policy §"email
+ *     capture").
+ *   - Australian Privacy Principles + Spam Act 2003 compliance:
+ *     explicit opt-in consent checkbox, unsubscribe header on every
+ *     email, data-minimisation (email + submission page only).
+ *   - Provider swap = change the adapter here, not the forms on
+ *     every page. The form components below post to a single
+ *     function (`subscribe`) which routes through the active
+ *     adapter.
+ *   - No analytics calls to third parties on the form.
+ *   - Form events fire on Plausible via the existing
+ *     `window.plausible(...)` global (no-op when the tracker is
+ *     absent on the dev build).
+ */
+
+export type SubscribeInput = {
+  /** Subscriber email address. */
+  email: string;
+  /** The page the form was submitted from (analytics + consent record). */
+  source: string;
+  /** Lead magnet the subscriber opted in for. */
+  leadMagnet: LeadMagnetId;
+  /** Subscriber consent stamp — must be true to submit. */
+  consent: true;
+  /** UTC ISO timestamp captured at form-submit time. */
+  submittedAt: string;
+};
+
+export type LeadMagnetId =
+  | "first-day-noosa"
+  | "where-to-stay-noosa"
+  | "weekly-dispatch";
+
+/** Adapter contract — every provider implements this. */
+export type EmailProviderAdapter = {
+  /** Provider identifier (for logging + future multi-region). */
+  readonly id: "buttondown" | "convertkit" | "mailchimp" | "beehiiv" | "noop";
+  /** Subscribe — returns a result code, never throws to the caller. */
+  subscribe(input: SubscribeInput): Promise<SubscribeResult>;
+};
+
+export type SubscribeResult =
+  | { ok: true; provider: EmailProviderAdapter["id"]; leadMagnet: LeadMagnetId }
+  | { ok: false; reason: "consent-missing" | "invalid-email" | "duplicate" | "provider-error"; detail?: string };
+
+/**
+ * MSN-3057 M4 — conditional activation flag.
+ *
+ * The provider layer is plumbed end-to-end (forms render, validation
+ * runs, Plausible events fire), but the active provider is gated by an
+ * environment-controlled boolean. The default is `false` so the dev
+ * build is silent. Activation happens in three steps:
+ *

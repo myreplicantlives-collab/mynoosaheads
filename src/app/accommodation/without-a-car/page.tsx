@@ -52,10 +52,7 @@ export default function WithoutACarPage() {
           the two every 30 minutes in summer.
         </>
       }
-      hero={{
-        src: VERIFIED.cards.hastingsStreetWest.path,
-        alt: VERIFIED.cards.hastingsStreetWest.caption,
-      }}
+      hero={VERIFIED.cards.hastingsStreetWest}
       sections={[
         {
           heading: "What you give up.",

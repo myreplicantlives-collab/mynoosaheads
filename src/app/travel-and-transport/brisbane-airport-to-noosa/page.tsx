@@ -47,10 +47,7 @@ export default function BrisbaneAirportToNoosaPage() {
           (most convenient), self-drive hire car (most flexible).
         </>
       }
-      hero={{
-        src: VERIFIED.cards.noosaRainforest.path,
-        alt: VERIFIED.cards.noosaRainforest.caption,
-      }}
+      hero={VERIFIED.cards.noosaRainforest}
       sections={[
         {
           heading: "The three options at a glance.",

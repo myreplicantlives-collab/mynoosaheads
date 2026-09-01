@@ -45,10 +45,7 @@ export default function KayakAndPaddleboardHirePage() {
           tidal; perfect for first-timers and for kids on a tandem kayak.
         </>
       }
-      hero={{
-        src: VERIFIED.cards.morningRiver.path,
-        alt: VERIFIED.cards.morningRiver.caption,
-      }}
+      hero={VERIFIED.cards.morningRiver}
       sections={[
         {
           heading: "What to expect.",

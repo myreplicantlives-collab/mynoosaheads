@@ -45,10 +45,7 @@ export default function PeregianBeachPage() {
           15-minute drive north.
         </>
       }
-      hero={{
-        src: VERIFIED.cards.hastingsStreetEast.path,
-        alt: VERIFIED.cards.hastingsStreetEast.caption,
-      }}
+      hero={VERIFIED.cards.hastingsStreetEast}
       notReady={{
         reason:
           "We don't currently curate named properties at Peregian Beach — the verified-photo set is small and we don't want to list operators we can't photograph. The honest position is that Peregian is best booked on Stayz by house (4+ guests, pet-friendly).",

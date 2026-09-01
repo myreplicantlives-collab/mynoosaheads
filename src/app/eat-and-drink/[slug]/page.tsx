@@ -78,24 +78,26 @@ const HERO_PHOTOS: Record<string, { url: string; caption: string; author: string
     author: "Flickr (Openverse) — 'Hastings Street looking east (Noosa)'",
     licence: "CC BY (commercial OK with attribution)",
   },
-  // The next three venues are referenced but not yet built; reuse the same verified
-  // Noosa image rather than a generic Unsplash photo. Albert audit §6.0.1 covers the
-  // build-or-remove decision (deferred to M4 pending Tim's call).
+  // MSN-3057 M5 (Defect D-01): the previous captions included an internal
+  // "venue page placeholder pending build decision" note that leaked into
+  // visitor-facing alt text. The images themselves are all verified Noosa
+  // subjects per image_registry.md — captions now describe what each photo
+  // actually depicts. None of the venue names are claimed in the captions.
   "season-noosa": {
     url: "/img/cards/hastings-street-west.jpg",
-    caption: "Hastings Street looking west from Main Beach — venue page placeholder pending build decision.",
+    caption: "Hastings Street looking west from the Main Beach end — the gateway strip of Noosa Heads with beachfront cafés.",
     author: "Flickr (Openverse) — 'Hastings Street / Main Beach looking west (Noosa)'",
     licence: "CC BY (commercial OK with attribution)",
   },
   "noosa-boathouse": {
     url: "/img/cards/boat-river-mouth.jpg",
-    caption: "Boat at the Noosa River mouth — venue page placeholder pending build decision.",
+    caption: "A boat at the Noosa River mouth — the calm waterway and tree-lined banks that define the river's estuary.",
     author: "Flickr (Openverse) — 'Boat at river mouth'",
     licence: "CC BY (commercial OK with attribution)",
   },
   "sante-noosa": {
     url: "/img/cards/aroma-hastings.jpg",
-    caption: "Hastings Street pedestrian precinct — venue page placeholder pending build decision.",
+    caption: "A Hastings Street café with outdoor tables spilling onto the pedestrian strip — the precinct the venue sits in.",
     author: "Flickr (Openverse) — 'Aroma, Hastings Street, Noosa'",
     licence: "CC BY-NC (commercial OK with attribution)",
   },

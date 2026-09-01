@@ -45,10 +45,7 @@ export default function HinterlandDayTripsPage() {
           gateway; the smaller villages are the slow-traveller pick.
         </>
       }
-      hero={{
-        src: VERIFIED.cards.eumundiMarkets.path,
-        alt: VERIFIED.cards.eumundiMarkets.caption,
-      }}
+      hero={VERIFIED.cards.eumundiMarkets}
       notReady={{
         reason:
           "We don't currently curate a comprehensive hinterland operator list — the verified shortlist is small. We surface the one operator (Eumundi Markets) we can verify and link to the regional tourism bodies for the villages.",

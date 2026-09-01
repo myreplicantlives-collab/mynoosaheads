@@ -46,10 +46,7 @@ export default function CarHirePage() {
           depots are the practical options.
         </>
       }
-      hero={{
-        src: VERIFIED.cards.noosaRainforest.path,
-        alt: VERIFIED.cards.noosaRainforest.caption,
-      }}
+      hero={VERIFIED.cards.noosaRainforest}
       sections={[
         {
           heading: "When a hire car helps.",

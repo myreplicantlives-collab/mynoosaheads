@@ -45,10 +45,7 @@ export default function LuxuryPage() {
           Noosa shortlist.
         </>
       }
-      hero={{
-        src: VERIFIED.cards.hastingsStreetWest.path,
-        alt: VERIFIED.cards.hastingsStreetWest.caption,
-      }}
+      hero={VERIFIED.cards.hastingsStreetWest}
       notReady={{
         reason:
           "We do not currently list named luxury properties — verified guest-room photography is required and we do not yet have it for the local five-star stock.",

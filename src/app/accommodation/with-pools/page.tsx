@@ -48,10 +48,7 @@ export default function WithPoolsPage() {
           we can verify — all three curated picks qualify.
         </>
       }
-      hero={{
-        src: VERIFIED.cards.southPacificResort.path,
-        alt: VERIFIED.cards.southPacificResort.caption,
-      }}
+      hero={VERIFIED.cards.southPacificResort}
       sections={[
         {
           heading: "Pool types.",

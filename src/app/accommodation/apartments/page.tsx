@@ -48,10 +48,7 @@ export default function ApartmentsPage() {
           holiday-houses fallback is for groups of four-plus.
         </>
       }
-      hero={{
-        src: VERIFIED.cards.southPacificResort.path,
-        alt: VERIFIED.cards.southPacificResort.caption,
-      }}
+      hero={VERIFIED.cards.southPacificResort}
       sections={[
         {
           heading: "What an apartment gives you.",

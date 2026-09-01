@@ -46,10 +46,7 @@ export default function HastingsVsNoosavillePage() {
           the two every 30 minutes in summer.
         </>
       }
-      hero={{
-        src: VERIFIED.cards.morningRiver.path,
-        alt: VERIFIED.cards.morningRiver.caption,
-      }}
+      hero={VERIFIED.cards.morningRiver}
       sections={[
         {
           heading: "Quick verdict.",

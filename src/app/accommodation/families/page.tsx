@@ -50,10 +50,7 @@ export default function FamiliesPage() {
           beach matters more than any single amenity.
         </>
       }
-      hero={{
-        src: VERIFIED.cards.sunshineBeach.path,
-        alt: VERIFIED.cards.sunshineBeach.caption,
-      }}
+      hero={VERIFIED.cards.sunshineBeach}
       sections={[
         {
           heading: "What to look for.",

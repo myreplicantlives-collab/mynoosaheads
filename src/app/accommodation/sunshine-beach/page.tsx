@@ -49,10 +49,7 @@ export default function SunshineBeachPage() {
           stay without leaving the precinct, especially if you bring the dog.
         </>
       }
-      hero={{
-        src: VERIFIED.cards.sunshineBeach.path,
-        alt: VERIFIED.cards.sunshineBeach.caption,
-      }}
+      hero={VERIFIED.cards.sunshineBeach}
       sections={[
         {
           heading: "Who it's for.",

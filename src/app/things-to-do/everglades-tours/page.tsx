@@ -47,10 +47,7 @@ export default function EvergladesToursPage() {
           Cootharaba is the gateway operator if you want to camp.
         </>
       }
-      hero={{
-        src: VERIFIED.cards.noosaEverglades.path,
-        alt: VERIFIED.cards.noosaEverglades.caption,
-      }}
+      hero={VERIFIED.cards.noosaEverglades}
       sections={[
         {
           heading: "What to expect.",

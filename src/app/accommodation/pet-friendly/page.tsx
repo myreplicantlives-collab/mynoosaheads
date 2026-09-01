@@ -48,10 +48,7 @@ export default function PetFriendlyPage() {
           booking.
         </>
       }
-      hero={{
-        src: VERIFIED.cards.sunshineBeach.path,
-        alt: VERIFIED.cards.sunshineBeach.caption,
-      }}
+      hero={VERIFIED.cards.sunshineBeach}
       sections={[
         {
           heading: "Where dogs are allowed.",

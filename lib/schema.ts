@@ -279,6 +279,44 @@ export function touristAttractionJsonLd(d: TouristAttractionData) {
   return out;
 }
 
+/** Service JSON-LD — travel & transport pages (airport transfers, car hire, etc.).
+ *  The schema.org Service type captures a "service you can book" with a
+ *  serviceType and areaServed; for transport / transfers we lean on
+ *  `serviceType` to disambiguate from generic LodgingBusiness etc.
+ */
+export type ServiceData = {
+  name: string;
+  description: string;
+  url: string;
+  serviceType: string;
+  areaServed?: string;
+  providerName?: string;
+};
+
+export function serviceJsonLd(d: ServiceData) {
+  const out: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: d.name,
+    description: d.description,
+    url: d.url,
+    serviceType: d.serviceType,
+    provider: {
+      "@type": "Organization",
+      name: d.providerName ?? SITE.brand,
+      url: SITE.productionUrl,
+    },
+    isPartOf: { "@id": `${SITE.productionUrl}#website` },
+  };
+  if (d.areaServed) {
+    out.areaServed = {
+      "@type": "AdministrativeArea",
+      name: d.areaServed,
+    };
+  }
+  return out;
+}
+
 /** MediaObject JSON-LD — webcams. */
 export function mediaObjectJsonLd(d: {
   name: string;

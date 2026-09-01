@@ -49,10 +49,7 @@ export default function HastingsStreetPage() {
           of Surfing (March) — Hastings Street fills two-to-three months out.
         </>
       }
-      hero={{
-        src: VERIFIED.cards.hastingsStreetWest.path,
-        alt: VERIFIED.cards.hastingsStreetWest.caption,
-      }}
+      hero={VERIFIED.cards.hastingsStreetWest}
       sections={[
         {
           heading: "Who it's for.",
