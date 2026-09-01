@@ -4,6 +4,11 @@ import Link from "next/link";
 import { JsonLd, Card, CardBody, CardHeader } from "@/components/ui";
 import { SITE } from "@/data/site";
 import { WALKS, WALKS_BY_SLUG } from "@/data/walks";
+import {
+  touristAttractionJsonLd,
+  sectionBreadcrumb,
+  geoForSlugOrNoosa,
+} from "@/lib/schema";
 
 /**
  * /noosa-national-park/walks/[slug] — MSN-2975 V2 individual walk page.
@@ -53,27 +58,24 @@ export default function WalkPage({ params }: PageProps) {
   const w = WALKS_BY_SLUG[params.slug];
   if (!w) notFound();
 
+  // MSN-3057 M4 — `Article` swapped for `TouristAttraction` per Albert §4.2.
+  // Walks are bookable outdoor experiences, not editorial articles. The
+  // `geo` block uses the Noosa National Park centroid; precise per-walk
+  // coordinates can be added later from QPWS data.
   const jsonLd = [
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "@id": `${SITE.productionUrl}/noosa-national-park/walks/${w.slug}#article`,
-      url: `${SITE.productionUrl}/noosa-national-park/walks/${w.slug}`,
-      headline: w.name,
+    touristAttractionJsonLd({
+      name: w.name,
       description: w.headline,
-      inLanguage: SITE.locale,
-      isPartOf: { "@id": `${SITE.productionUrl}#website` },
-      publisher: { "@id": `${SITE.productionUrl}#organization` },
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: SITE.brand, item: SITE.productionUrl },
-        { "@type": "ListItem", position: 2, name: "Noosa National Park", item: `${SITE.productionUrl}/noosa-national-park` },
-        { "@type": "ListItem", position: 3, name: w.name, item: `${SITE.productionUrl}/noosa-national-park/walks/${w.slug}` },
-      ],
-    },
+      url: `${SITE.productionUrl}/noosa-national-park/walks/${w.slug}`,
+      geo: geoForSlugOrNoosa("noosa-national-park"),
+      isAccessibleForFree: true,
+    }),
+    sectionBreadcrumb(
+      "Noosa National Park",
+      "/noosa-national-park",
+      w.name,
+      `/noosa-national-park/walks/${w.slug}`,
+    ),
   ];
 
   return (

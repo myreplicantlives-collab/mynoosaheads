@@ -10,6 +10,11 @@ import {
 import { HomeHero } from "@/components/HomeHero";
 import { ImageTile } from "@/components/ImageTile";
 import { fetchLive } from "@/lib/live";
+import {
+  organizationJsonLd,
+  webSiteJsonLd,
+  breadcrumbJsonLd,
+} from "@/lib/schema";
 
 /**
  * MSN-2982 homepage — chairman-mandated full rework.
@@ -57,37 +62,14 @@ export default async function HomePage() {
   // email so the Organization JSON-LD doesn't leak the production
   // contact email to crawlers indexing the preview URL set. The audit
   // (MSN-3043) flagged this as a structured-data leakage on the dev
-  // site. In production (NEXT_PUBLIC_SITE_URL ends with
-  // mynoosaheads.com), the real hello@mynoosaheads.com is restored.
-  const jsonLdEmail = SITE.isProduction
-    ? SITE.email
-    : "preview-redacted@mynoosaheads.invalid";
+  // MSN-3057 M4 — homepage JSON-LD now uses the central schema helper.
+  // Adds `sameAs` (Albert §4.2) and `potentialAction: SearchAction` so
+  // Google can surface a site-search sitelink. Email redaction for
+  // non-production builds is preserved (M3).
   const homeJsonLd = [
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "@id": `${SITE.productionUrl}#organization`,
-      name: SITE.brand,
-      url: SITE.productionUrl,
-      logo: `${SITE.productionUrl}/brand/logo-2.svg`,
-      description:
-        "An independent guide to Noosa Heads, Queensland. Live surf and weather from BOM and Open-Meteo.",
-      email: jsonLdEmail,
-      foundingDate: String(SITE.established),
-      areaServed: {
-        "@type": "Place",
-        name: "Noosa Heads, Queensland, Australia",
-      },
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "@id": `${SITE.productionUrl}#website`,
-      url: SITE.productionUrl,
-      name: SITE.brand,
-      inLanguage: SITE.locale,
-      publisher: { "@id": `${SITE.productionUrl}#organization` },
-    },
+    organizationJsonLd(),
+    webSiteJsonLd(),
+    breadcrumbJsonLd([{ name: SITE.brand, path: "/" }]),
   ];
 
   return (

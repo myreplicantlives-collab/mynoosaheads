@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/ui";
 import { SITE } from "@/data/site";
+import {
+  liveBlogPostingJsonLd,
+  pageBreadcrumb,
+} from "@/lib/schema";
+import { fetchLive } from "@/lib/live";
 
 /**
  * /live — MSN-2987 chairman-mandated category page.
@@ -60,7 +65,27 @@ const CATEGORIES = [
   },
 ];
 
-export default function LivePage() {
+export default async function LivePage() {
+  // MSN-3057 M4 — /live now also emits a LiveBlogPosting schema block
+  // (Albert §4.2). Each `liveBlogUpdate` entry is one of the CATEGORIES,
+  // synthesised into a fake "blog post" headline with the URL of the
+  // category page. We use today's date so coverageStartTime/EndTime
+  // bracket the current refresh cycle.
+  const live = await fetchLive();
+  const todayIso = new Date(live.updated).toISOString();
+  const liveBlog = liveBlogPostingJsonLd({
+    headline: "Live conditions in Noosa",
+    description:
+      "Live surf, weather, tide and UV for Noosa Heads. Refreshed every 30 minutes from BOM and Open-Meteo.",
+    url: `${SITE.productionUrl}/live`,
+    liveBlogUpdate: CATEGORIES.map((c) => ({
+      headline: c.name,
+      datePublished: todayIso,
+      articleBody: c.tagline,
+      url: `${SITE.productionUrl}${c.href}`,
+    })),
+  });
+
   const jsonLd = [
     {
       "@context": "https.schema.org",
@@ -74,6 +99,8 @@ export default function LivePage() {
         url: `${SITE.productionUrl}${c.href}`,
       })),
     },
+    liveBlog,
+    pageBreadcrumb("Live", "/live"),
   ];
 
   return (

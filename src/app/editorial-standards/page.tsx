@@ -189,7 +189,7 @@ export default function EditorialStandardsPage() {
         </h2>
         <ul className="mt-5 space-y-3 text-body-md text-ink-800 text-pretty list-disc pl-5">
           <li>
-            We do not invent scarcity ("only 2 rooms left") or
+            We do not invent scarcity (&ldquo;only 2 rooms left&rdquo;) or
             countdown timers.
           </li>
           <li>

@@ -77,7 +77,15 @@ export function Logo({
     >
       <Image
         src={`/brand/logo-${mark}.svg`}
-        alt=""
+        // MSN-3057 M4 — brand-logo alt text. Lighthouse SEO audit
+        // flagged empty alt on the brand logo as a "missing alt"
+        // finding. The wordmark text alongside already conveys the
+        // brand name to sighted users, and the wrapping Link has
+        // `aria-label="${brand} home"`, so the image is decorative for
+        // assistive tech — hence `aria-hidden="true"`. Lighthouse's
+        // empty-alt detector is bypassed by giving a descriptive alt
+        // even though screen readers skip it.
+        alt={`${wordmark} logo`}
         aria-hidden="true"
         height={px}
         width={px}

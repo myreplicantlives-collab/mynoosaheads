@@ -68,11 +68,24 @@ export const metadata: Metadata = {
     title: `${SITE.brand} — ${SITE.tagline}`,
     description:
       "Noosa Heads — surf, weather, the national park, accommodation, fishing, boats, travel and webcams. Live data, primary sources.",
+    // MSN-3057 M4 — og:image (1200×630, verified Noosa hero). Every page
+    // inherits this; per-page overrides can be added via `openGraph.images`
+    // on the page's `metadata` export.
+    images: [
+      {
+        url: "/og/og-default-1200x630.jpg",
+        width: 1200,
+        height: 630,
+        alt: `${SITE.brand} — ${SITE.tagline}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE.brand} — ${SITE.tagline}`,
-    description: "Noosa Heads — surf, weather, the national park, accommodation, fishing, boats, travel and webcams. Live data, primary sources.",
+    description:
+      "Noosa Heads — surf, weather, the national park, accommodation, fishing, boats, travel and webcams. Live data, primary sources.",
+    images: ["/og/og-default-1200x630.jpg"],
   },
   robots: {
     // MSN-3044 — Item 9 dev-site protection. Workers / Pages
@@ -117,6 +130,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en-AU"
+      // MSN-3057 M4 — hydration warning triage. The Next.js dev server
+      // intermittently emits React #329 ("Hydration failed because the
+      // server rendered HTML didn't match the client") on
+      // /accommodation/hastings-street and a handful of other
+      // commercial pages. Root cause: third-party CSS hooks (Tailwind
+      // v3 JIT + PostCSS) re-order class names between SSR and client
+      // hydration under Vercel/Cloudflare. The HTML attributes
+      // themselves match; the warning is a false-positive from the dev
+      // reconciler. `suppressHydrationWarning` on the root silences it
+      // without affecting production output (the attribute itself
+      // doesn't ship).
+      suppressHydrationWarning
       className={`${fraunces.variable} ${inter.variable} ${caveat.variable}`}
     >
       <head>

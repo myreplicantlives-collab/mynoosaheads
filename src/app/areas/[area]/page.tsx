@@ -3,6 +3,11 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { JsonLd, Card, CardBody, CardHeader, Button } from "@/components/ui";
 import { SITE } from "@/data/site";
+import {
+  placeJsonLd,
+  sectionBreadcrumb,
+  geoForSlugOrNoosa,
+} from "@/lib/schema";
 import { AREAS, CURATED_PROPERTIES } from "@/data/accommodation";
 import { PROPERTIES_BY_SLUG } from "@/data/properties";
 import { VENUES_BY_AREA } from "@/data/venues";
@@ -154,28 +159,24 @@ export default function AreaPage({ params }: PageProps) {
   // Venues in this area
   const venuesInArea = VENUES_BY_AREA[areaId] ?? [];
 
+  // MSN-3057 M4 — Place schema now carries `geo` (Albert §4.2).
+  // The geo is the area centroid from src/data/geo.ts; precise per-area
+  // polygon centroids would require a GIS lookup, which is overkill for
+  // SEO structured data. No review/rating fields are invented.
   const jsonLd = [
-    {
-      "@context": "https://schema.org",
-      "@type": "Place",
-      "@id": `${SITE.productionUrl}/areas/${params.area}#place`,
+    placeJsonLd({
       name: a.name,
       description: a.pitch,
       url: `${SITE.productionUrl}/areas/${params.area}`,
-      containedInPlace: {
-        "@type": "AdministrativeArea",
-        name: "Noosa Shire",
-      },
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: SITE.brand, item: SITE.productionUrl },
-        { "@type": "ListItem", position: 2, name: "Areas", item: `${SITE.productionUrl}/accommodation#areas` },
-        { "@type": "ListItem", position: 3, name: a.name, item: `${SITE.productionUrl}/areas/${params.area}` },
-      ],
-    },
+      geo: geoForSlugOrNoosa(params.area),
+      containedIn: "Noosa Shire",
+    }),
+    sectionBreadcrumb(
+      "Areas",
+      "/accommodation#areas",
+      a.name,
+      `/areas/${params.area}`,
+    ),
   ];
 
   return (

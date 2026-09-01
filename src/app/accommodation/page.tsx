@@ -242,7 +242,7 @@ export default function AccommodationPage() {
             return (
               <Link
                 key={a.id}
-                href={`/areas/${a.id}`}
+                href={a.id === "hastings" ? "/areas/hastings-street" : a.id === "sunshine" ? "/areas/sunshine-beach" : a.id === "peregian" ? "/areas/peregian-beach" : `/areas/${a.id}`}
                 className="group relative block overflow-hidden rounded-xl aspect-[4/3] bg-ink-700"
                 data-track={`accomm_area_${a.id}`}
               >

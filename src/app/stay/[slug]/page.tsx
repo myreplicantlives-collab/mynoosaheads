@@ -5,6 +5,11 @@ import { JsonLd, Hero, Button, Card, CardBody, CardHeader } from "@/components/u
 import { SITE, VERIFIED_AFFILIATES } from "@/data/site";
 import { PROPERTIES, PROPERTIES_BY_SLUG } from "@/data/properties";
 import { ACCOMMODATION_DATA } from "@/data/accommodation";
+import {
+  lodgingBusinessJsonLd,
+  sectionBreadcrumb,
+  geoForSlugOrNoosa,
+} from "@/lib/schema";
 
 /**
  * /stay/[slug] — MSN-2975 V2 individual property page.
@@ -59,36 +64,26 @@ export default function PropertyPage({ params }: PageProps) {
 
   const area = ACCOMMODATION_DATA.areas.find((a) => a.id === property.areaId);
 
+  // MSN-3057 M4 — LodgingBusiness now carries `geo` (Albert §4.2). Per
+  // property `geo` falls back to the area centroid (precise per-property
+  // coords require operator data we don't have). No aggregateRating /
+  // review claims are invented; only the operator's own page can carry
+  // review data honestly.
   const jsonLd = [
-    {
-      "@context": "https://schema.org",
-      "@type": "LodgingBusiness",
-      "@id": `${SITE.productionUrl}/stay/${property.slug}#lodging`,
+    lodgingBusinessJsonLd({
       name: property.name,
       description: property.why,
       url: `${SITE.productionUrl}/stay/${property.slug}`,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: property.address.split(",")[0],
-        addressLocality: "Noosa Heads",
-        addressRegion: "QLD",
-        addressCountry: "AU",
-      },
-      amenityFeature: property.amenities.map((a) => ({
-        "@type": "LocationFeatureSpecification",
-        name: a,
-        value: true,
-      })),
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: SITE.brand, item: SITE.productionUrl },
-        { "@type": "ListItem", position: 2, name: "Stay", item: `${SITE.productionUrl}/accommodation` },
-        { "@type": "ListItem", position: 3, name: property.name, item: `${SITE.productionUrl}/stay/${property.slug}` },
-      ],
-    },
+      address: property.address,
+      geo: geoForSlugOrNoosa(property.areaId),
+      amenities: property.amenities,
+    }),
+    sectionBreadcrumb(
+      "Stay",
+      "/accommodation",
+      property.name,
+      `/stay/${property.slug}`,
+    ),
   ];
 
   return (

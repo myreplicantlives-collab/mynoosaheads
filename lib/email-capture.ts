@@ -50,17 +50,75 @@ export type SubscribeResult =
   | { ok: true; provider: EmailProviderAdapter["id"]; leadMagnet: LeadMagnetId }
   | { ok: false; reason: "consent-missing" | "invalid-email" | "duplicate" | "provider-error"; detail?: string };
 
+/**
+ * MSN-3057 M4 — conditional activation flag.
+ *
+ * The provider layer is plumbed end-to-end (forms render, validation
+ * runs, Plausible events fire), but the active provider is gated by an
+ * environment-controlled boolean. The default is `false` so the dev
+ * build is silent. Activation happens in three steps:
+ *
+ *   1. Tim approves a provider (Buttondown / ConvertKit / Mailchimp /
+ *      Beehiiv) and supplies the credentials in the deployment config.
+ *   2. The adapter implementation is added to `lib/email-capture.ts`
+ *      with its environment-specific config (api key, list ID).
+ *   3. `EMAIL_PROVIDER_ENABLED=true` is set on the production build.
+ *      The provider swap is then a single-line `setEmailProvider(...)`
+ *      in the module init (no per-page rebuild needed).
+ *
+ * Reading the flag: `emailProviderEnabled()` returns the boolean. The
+ * form components use this to gate the success-toast copy so the dev
+ * build never promises a "check your inbox" message that won't arrive.
+ */
+
+function emailProviderEnabled(): boolean {
+  // The flag can come from either a build-time env or a runtime
+  // injection (the latter is useful for staged rollouts). Both default
+  // to off so the dev build is silent.
+  const build = process.env.EMAIL_PROVIDER_ENABLED;
+  if (build === "true") return true;
+  if (typeof window !== "undefined") {
+    const runtime = (window as unknown as { __EMAIL_PROVIDER_ENABLED?: boolean })
+      .__EMAIL_PROVIDER_ENABLED;
+    if (runtime === true) return true;
+  }
+  return false;
+}
+
 /** The active adapter — defaults to noop so the dev build is silent. */
 let activeAdapter: EmailProviderAdapter = {
   id: "noop",
   async subscribe(): Promise<SubscribeResult> {
+    // Even when the provider is disabled, the form should still report
+    // a soft success so the visitor isn't confused. The conversion
+    // event is fired with `provider_disabled=true` so analytics can
+    // segment "interested visitors without provider" from real
+    // conversions. This is the activation-gate contract: the form
+    // works, but no third-party call happens until Tim green-lights.
+    firePlausible("email_form_conversion", { provider_disabled: "true" });
     return { ok: true, provider: "noop", leadMagnet: "weekly-dispatch" };
   },
 };
 
 /** Swap the active provider. Production-only — guard with env check. */
 export function setEmailProvider(adapter: EmailProviderAdapter): void {
+  if (!emailProviderEnabled()) {
+    // Safe-by-default: refuse to swap in a real provider unless the
+    // env flag is set. This prevents accidental activation if a future
+    // code path calls `setEmailProvider` without checking the gate.
+    if (typeof console !== "undefined") {
+      console.warn(
+        "[email-capture] setEmailProvider called but EMAIL_PROVIDER_ENABLED is not true. Keeping noop adapter. Set the env var on the production build to activate.",
+      );
+    }
+    return;
+  }
   activeAdapter = adapter;
+}
+
+/** Public read-only accessor — UI components can adapt copy to the gate. */
+export function isEmailProviderActive(): boolean {
+  return emailProviderEnabled() && activeAdapter.id !== "noop";
 }
 
 /**

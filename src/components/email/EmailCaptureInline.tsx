@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, type FormEvent } from "react";
-import { subscribe, isValidEmail, type LeadMagnetId } from "@/lib/email-capture";
+import { subscribe, isValidEmail, isEmailProviderActive, type LeadMagnetId } from "@/lib/email-capture";
 
 /**
  * EmailCaptureInline — compact, side-rail email capture for commercial
@@ -112,7 +112,9 @@ export function EmailCaptureInline({
 
         {status === "ok" && (
           <p role="status" className="text-caption text-ocean-800">
-            On its way — check your inbox.
+            {isEmailProviderActive()
+              ? "On its way — check your inbox."
+              : "Noted — we'll be in touch when our newsletter activates."}
           </p>
         )}
         {status === "error" && (

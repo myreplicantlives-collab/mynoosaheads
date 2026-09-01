@@ -5,6 +5,11 @@ import { JsonLd, Card, CardBody, CardHeader, Button } from "@/components/ui";
 import { SITE } from "@/data/site";
 import { VENUES, VENUES_BY_SLUG } from "@/data/venues";
 import { AREAS } from "@/data/accommodation";
+import {
+  restaurantJsonLd,
+  sectionBreadcrumb,
+  geoForSlugOrNoosa,
+} from "@/lib/schema";
 
 /**
  * /eat-and-drink/[slug] — MSN-2980 V2 individual venue page.
@@ -103,34 +108,26 @@ export default function VenuePage({ params }: PageProps) {
   const area = AREAS.find((a) => a.id === v.areaId);
   const photo = HERO_PHOTOS[v.slug];
 
+  // MSN-3057 M4 — Restaurant schema now carries `geo` (Albert §4.2).
+  // The geo is the area centroid; precise per-venue coords would
+  // require operator-supplied pins. No aggregateRating is invented.
   const jsonLd = [
-    {
-      "@context": "https://schema.org",
-      "@type": "Restaurant",
-      "@id": `${SITE.productionUrl}/eat-and-drink/${v.slug}#restaurant`,
+    restaurantJsonLd({
       name: v.name,
       description: v.whyWorthVisiting,
       servesCuisine: v.cuisine,
       url: `${SITE.productionUrl}/eat-and-drink/${v.slug}`,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: v.address.split(",")[0],
-        addressLocality: area?.name.split(",")[0] ?? "Noosa",
-        addressRegion: "QLD",
-        addressCountry: "AU",
-      },
-      acceptsReservations: "True",
-      hasMenu: v.reservationUrl,
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: SITE.brand, item: SITE.productionUrl },
-        { "@type": "ListItem", position: 2, name: "Eat & drink", item: `${SITE.productionUrl}/eat-and-drink` },
-        { "@type": "ListItem", position: 3, name: v.name, item: `${SITE.productionUrl}/eat-and-drink/${v.slug}` },
-      ],
-    },
+      address: v.address,
+      areaName: area?.name.split(",")[0],
+      reservationUrl: v.reservationUrl,
+      geo: geoForSlugOrNoosa(v.areaId),
+    }),
+    sectionBreadcrumb(
+      "Eat & drink",
+      "/eat-and-drink",
+      v.name,
+      `/eat-and-drink/${v.slug}`,
+    ),
   ];
 
   return (

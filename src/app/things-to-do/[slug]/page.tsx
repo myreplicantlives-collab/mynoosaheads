@@ -4,6 +4,11 @@ import Link from "next/link";
 import { JsonLd, Card, CardBody, CardHeader } from "@/components/ui";
 import { SITE } from "@/data/site";
 import { EXPERIENCES, EXPERIENCES_BY_SLUG } from "@/data/experiences";
+import {
+  touristAttractionJsonLd,
+  sectionBreadcrumb,
+  geoForSlugOrNoosa,
+} from "@/lib/schema";
 
 /**
  * /things-to-do/[slug] — MSN-2975 V2 individual experience page.
@@ -48,27 +53,24 @@ export default function ExperiencePage({ params }: PageProps) {
   const exp = EXPERIENCES_BY_SLUG[params.slug];
   if (!exp) notFound();
 
+  // MSN-3057 M4 — `Article` swapped for `TouristAttraction` per Albert §4.2.
+  // Activities are bookable experiences, not editorial articles.
+  // `geo` added using the Noosa-headland centroid (precise per-activity
+  // coords are not yet curated; the area centroid is correct for SEO).
+  const geo = geoForSlugOrNoosa("noosa-headland");
   const jsonLd = [
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "@id": `${SITE.productionUrl}/things-to-do/${exp.slug}#article`,
-      url: `${SITE.productionUrl}/things-to-do/${exp.slug}`,
-      headline: exp.title,
+    touristAttractionJsonLd({
+      name: exp.title,
       description: exp.hook,
-      inLanguage: SITE.locale,
-      isPartOf: { "@id": `${SITE.productionUrl}#website` },
-      publisher: { "@id": `${SITE.productionUrl}#organization` },
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: SITE.brand, item: SITE.productionUrl },
-        { "@type": "ListItem", position: 2, name: "Things to do", item: `${SITE.productionUrl}/things-to-do` },
-        { "@type": "ListItem", position: 3, name: exp.title, item: `${SITE.productionUrl}/things-to-do/${exp.slug}` },
-      ],
-    },
+      url: `${SITE.productionUrl}/things-to-do/${exp.slug}`,
+      geo,
+    }),
+    sectionBreadcrumb(
+      "Things to do",
+      "/things-to-do",
+      exp.title,
+      `/things-to-do/${exp.slug}`,
+    ),
   ];
 
   return (

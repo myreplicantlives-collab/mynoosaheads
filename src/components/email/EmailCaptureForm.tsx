@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { LEAD_MAGNETS, subscribe, type LeadMagnetId, type SubscribeResult } from "@/lib/email-capture";
+import { LEAD_MAGNETS, subscribe, isEmailProviderActive, type LeadMagnetId, type SubscribeResult } from "@/lib/email-capture";
 
 /**
  * EmailCaptureForm — provider-agnostic inline email form.
@@ -145,7 +145,9 @@ export function EmailCaptureForm({
         )}
         {result && result.ok && (
           <p role="status" className="text-body-sm text-ocean-800">
-            Subscribed — check your inbox for the first message.
+            {isEmailProviderActive()
+              ? "Subscribed — check your inbox for the first message."
+              : "Noted — we'll be in touch when our newsletter activates."}
           </p>
         )}
       </form>

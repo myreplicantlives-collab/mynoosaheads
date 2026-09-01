@@ -9,8 +9,11 @@ import {
   CardHeader,
   Button,
   Icons,
+  JsonLd,
 } from "@/components/ui";
 import { CATEGORY_PHOTOS } from "@/data/photos";
+import { SITE } from "@/data/site";
+import { mediaObjectJsonLd, sectionBreadcrumb } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Webcams",
@@ -87,8 +90,27 @@ export default function WebcamsPage() {
   // on main-journey pages. Full attribution lives at /photo-credits.
   const heroCredit = "";
 
+  // MSN-3057 M4 — MediaObject JSON-LD per webcam tile (Albert §4.2).
+  // contentUrl is the operator's public feed page (we never proxy or
+  // re-host the feed — see attribution note below).
+  const webcamJsonLd = CAMS.map((cam, i) =>
+    mediaObjectJsonLd({
+      name: cam.name,
+      contentUrl: cam.href,
+      description: cam.description,
+      uploadDate: new Date().toISOString(),
+    }),
+  );
+  const breadcrumb = sectionBreadcrumb(
+    "Live",
+    "/live",
+    "Webcams",
+    "/webcams",
+  );
+
   return (
     <div className="bg-paper-50">
+      <JsonLd data={[...webcamJsonLd, breadcrumb]} />
       {photos?.hero ? (
         <HeroPhoto
           src={photos.hero.url}
