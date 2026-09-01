@@ -137,7 +137,7 @@ export default function RiverCruisesPage() {
           <p>
             The ferry connects the two; you don&apos;t need a car to use
             either end. See{" "}
-            <a href="/accommodation/without-a-car" className="link text-ocean-700">
+            <a href="/accommodation/without-a-car" className="link text-ocean-800">
               Where to stay without a car
             </a>
             .

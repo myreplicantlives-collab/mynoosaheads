@@ -60,7 +60,7 @@ export function RelatedRecommendations({
                 <p className="mt-1 text-body-sm text-ink-700 text-pretty">
                   {item.pitch}
                 </p>
-                <p className="mt-2 text-caption text-ocean-700">
+                <p className="mt-2 text-caption text-ocean-800">
                   Read more <span aria-hidden="true">→</span>
                 </p>
               </Link>

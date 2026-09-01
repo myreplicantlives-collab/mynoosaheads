@@ -135,7 +135,7 @@ export default function AboutPage() {
           </blockquote>
           <p className="mt-4 text-caption text-ink-600">
             Full attribution for every image on the site lives at{" "}
-            <Link href="/photo-credits" className="link text-ocean-700">
+            <Link href="/photo-credits" className="link text-ocean-800">
               /photo-credits
             </Link>
             .
@@ -191,7 +191,7 @@ export default function AboutPage() {
                 <p>
                   All photography is sourced from Flickr (via Openverse)
                   and the Unsplash CDN — the full attribution table lives at{" "}
-                  <Link href="/photo-credits" className="link text-ocean-700">
+                  <Link href="/photo-credits" className="link text-ocean-800">
                     /photo-credits
                   </Link>
                   .
@@ -208,8 +208,22 @@ export default function AboutPage() {
                   shire. We do not currently publish bylines on
                   category pages — a corrections log is on the
                   roadmap. If you spot an error, please{" "}
-                  <Link href="/contact" className="link text-ocean-700">
+                  <Link href="/contact" className="link text-ocean-800">
                     drop us a line
+                  </Link>
+                  .
+                </p>
+                <p className="mt-4">
+                  The full methodology — how pages are researched,
+                  reviewed, and signed off, plus the affiliate
+                  firewall — is published at{" "}
+                  <Link href="/editorial-standards" className="link text-ocean-800">
+                    /editorial-standards
+                  </Link>
+                  . The corrections policy and the running log of
+                  corrections we have made lives at{" "}
+                  <Link href="/corrections" className="link text-ocean-800">
+                    /corrections
                   </Link>
                   .
                 </p>
@@ -243,13 +257,13 @@ export default function AboutPage() {
                     <dd>
                       <a
                         href={`mailto:${"hello@mynoosaheads.com"}`}
-                        className="link text-ocean-700"
+                        className="link text-ocean-800"
                       >
                         hello@mynoosaheads.com
                       </a>{" "}
                       <span className="text-caption text-ink-600">
                         (see{" "}
-                        <Link href="/contact" className="link text-ocean-700">
+                        <Link href="/contact" className="link text-ocean-800">
                           /contact
                         </Link>{" "}
                         for current delivery status)
@@ -264,10 +278,19 @@ export default function AboutPage() {
               <CardBody>
                 <ul className="text-body-sm space-y-2">
                   <li>
-                    <Link href="/privacy" className="link text-ocean-700">Privacy policy</Link>
+                    <Link href="/privacy" className="link text-ocean-800">Privacy policy</Link>
                   </li>
                   <li>
-                    <Link href="/terms" className="link text-ocean-700">Terms of use</Link>
+                    <Link href="/terms" className="link text-ocean-800">Terms of use</Link>
+                  </li>
+                  <li>
+                    <Link href="/editorial-standards" className="link text-ocean-800">Editorial standards</Link>
+                  </li>
+                  <li>
+                    <Link href="/corrections" className="link text-ocean-800">Corrections policy</Link>
+                  </li>
+                  <li>
+                    <Link href="/disclosure" className="link text-ocean-800">Affiliate disclosure</Link>
                   </li>
                 </ul>
               </CardBody>

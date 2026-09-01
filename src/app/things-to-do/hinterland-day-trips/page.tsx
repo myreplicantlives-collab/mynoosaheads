@@ -116,7 +116,7 @@ export default function HinterlandDayTripsPage() {
                 Kin is 40 minutes. There&apos;s no scheduled public transport
                 to the smaller villages — a hire car is the practical
                 option. See{" "}
-                <a href="/travel-and-transport/car-hire" className="link text-ocean-700">
+                <a href="/travel-and-transport/car-hire" className="link text-ocean-800">
                   Noosa car hire
                 </a>
                 .

@@ -20,7 +20,7 @@ export const mdxComponents: MDXComponents = {
       return (
         <Link
           href={href as string}
-          className="underline decoration-ocean-300 underline-offset-4 hover:decoration-ocean-600 text-ocean-700"
+          className="underline decoration-ocean-300 underline-offset-4 hover:decoration-ocean-600 text-ocean-800"
           {...rest}
         />
       );
@@ -30,7 +30,7 @@ export const mdxComponents: MDXComponents = {
         href={href}
         rel="noopener noreferrer"
         target="_blank"
-        className="underline decoration-ocean-300 underline-offset-4 hover:decoration-ocean-600 text-ocean-700 inline-flex items-center gap-1"
+        className="underline decoration-ocean-300 underline-offset-4 hover:decoration-ocean-600 text-ocean-800 inline-flex items-center gap-1"
         {...rest}
       >
         {rest.children}

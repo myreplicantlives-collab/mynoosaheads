@@ -82,7 +82,7 @@ export default function Page() {
             and is the source of truth.{" "}
             <a
               href="https://qldtraffic.qld.gov.au/"
-              className="link text-ocean-700"
+              className="link text-ocean-800"
               rel="noopener noreferrer"
               target="_blank"
             >

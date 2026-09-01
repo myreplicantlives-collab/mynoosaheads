@@ -241,7 +241,7 @@ export default function FairyPoolsPage() {
         <ul className="mt-6 grid gap-3 sm:grid-cols-2 text-body-md text-ink-800">
           <li>
             <a
-              className="link text-ocean-700"
+              className="link text-ocean-800"
               href="https://parks.qld.gov.au/find-a-park/national-parks/noosa-national-park"
               rel="noopener noreferrer"
               target="_blank"
@@ -252,7 +252,7 @@ export default function FairyPoolsPage() {
           </li>
           <li>
             <a
-              className="link text-ocean-700"
+              className="link text-ocean-800"
               href="https://parks.qld.gov.au/park-alerts"
               rel="noopener noreferrer"
               target="_blank"
@@ -263,7 +263,7 @@ export default function FairyPoolsPage() {
           </li>
           <li>
             <a
-              className="link text-ocean-700"
+              className="link text-ocean-800"
               href="https://parks.qld.gov.au/parks/noosa/journeys/coastal-walk"
               rel="noopener noreferrer"
               target="_blank"
@@ -274,7 +274,7 @@ export default function FairyPoolsPage() {
           </li>
           <li>
             <a
-              className="link text-ocean-700"
+              className="link text-ocean-800"
               href="https://www.bom.gov.au/coastal-location/australia"
               rel="noopener noreferrer"
               target="_blank"

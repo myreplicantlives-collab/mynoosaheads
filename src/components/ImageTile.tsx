@@ -118,7 +118,7 @@ export function ImageTile({
               href={image.sourcePage}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline decoration-paper-300 underline-offset-2 hover:text-ocean-700"
+              className="underline decoration-paper-300 underline-offset-2 hover:text-ocean-800"
               onClick={(e) => e.stopPropagation()}
             >
               {image.author}

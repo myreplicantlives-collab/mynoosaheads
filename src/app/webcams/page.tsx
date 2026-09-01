@@ -186,7 +186,7 @@ export default function WebcamsPage() {
             Sunshine Coast Council, Surf Life Saving Queensland, Beachsafe,
             or the Bureau of Meteorology. We don’t scrape or re-host. If
             you operate a public coastal webcam that should be listed here,{" "}
-            <Link href="/contact" className="link text-ocean-700">
+            <Link href="/contact" className="link text-ocean-800">
               drop us a line
             </Link>
             .

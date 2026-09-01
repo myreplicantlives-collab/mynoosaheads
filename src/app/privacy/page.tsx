@@ -37,7 +37,7 @@ export default function PrivacyPage() {
             newsletter, does not operate a login, and does not have a
             contact form that stores submissions. If you email us directly
             at the address on the{" "}
-            <a href="/contact" className="link text-ocean-700">contact page</a>,
+            <a href="/contact" className="link text-ocean-800">contact page</a>,
             we hold your email for as long as it takes to reply and then
             archive it with the correspondence.
           </p>
@@ -50,7 +50,7 @@ export default function PrivacyPage() {
             privacy policy; you can read it at{" "}
             <a
               href="https://www.cloudflare.com/privacypolicy/"
-              className="link text-ocean-700"
+              className="link text-ocean-800"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -76,7 +76,7 @@ export default function PrivacyPage() {
             any data they collect under their own privacy policy. We link
             to operators that publish a clear policy; if you spot one that
             doesn’t,{" "}
-            <a href="/contact" className="link text-ocean-700">
+            <a href="/contact" className="link text-ocean-800">
               please tell us
             </a>
             .
@@ -101,10 +101,24 @@ export default function PrivacyPage() {
 
           <h2 id="spam-act-2003">Spam Act 2003</h2>
           <p>
-            We do not send commercial electronic messages. There is no
-            newsletter, no marketing SMS, no push notifications. The Spam
-            Act 2003 (Cth) does not apply to the publication because we do
-            not solicit contact with you.
+            MyNoosaHeads may offer an opt-in email update for readers
+            who want a weekly editorial dispatch on Noosa conditions
+            and operator updates. The opt-in is a positive action —
+            ticking a consent checkbox before the form will accept a
+            submission — and every email we send carries a working
+            unsubscribe link that removes you from the list within
+            one business day. We never buy, sell, or share the email
+            list with a third party. The provider that stores the
+            list is named in the{" "}
+            <a href="#email-capture" className="link text-ocean-800">
+              email-capture
+            </a>{" "}
+            section below.
+          </p>
+          <p className="mt-3">
+            We do not send marketing SMS, push notifications, or any
+            other class of commercial electronic message outside the
+            opt-in channel above.
           </p>
 
           <h2>Access and correction</h2>
@@ -116,7 +130,7 @@ export default function PrivacyPage() {
             email{" "}
             <a
               href="mailto:hello@mynoosaheads.com"
-              className="link text-ocean-700"
+              className="link text-ocean-800"
             >
               hello@mynoosaheads.com
             </a>{" "}
@@ -128,7 +142,7 @@ export default function PrivacyPage() {
             If you have a privacy complaint, please email{" "}
             <a
               href="mailto:hello@mynoosaheads.com"
-              className="link text-ocean-700"
+              className="link text-ocean-800"
             >
               hello@mynoosaheads.com
             </a>{" "}
@@ -137,7 +151,7 @@ export default function PrivacyPage() {
             Commissioner (OAIC) at{" "}
             <a
               href="https://www.oaic.gov.au/"
-              className="link text-ocean-700"
+              className="link text-ocean-800"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -146,11 +160,56 @@ export default function PrivacyPage() {
             .
           </p>
 
+          <h2 id="email-capture">Email capture (when enabled)</h2>
+          <p>
+            The site’s email-capture framework is built but not active
+            on the development build. When the framework is activated
+            for production (after Tim’s explicit approval, with a
+            named provider) the following rules apply:
+          </p>
+          <ul>
+            <li>
+              <strong>Consent is explicit.</strong> No pre-checked
+              boxes. The submit button is disabled until the consent
+              checkbox is ticked, and the consent text names the
+              purpose (weekly Noosa dispatch), the sender (MyNoosaHeads),
+              and how to unsubscribe.
+            </li>
+            <li>
+              <strong>Unsubscribe works.</strong> Every email carries
+              a one-click unsubscribe link. Removal is processed
+              within one business day.
+            </li>
+            <li>
+              <strong>Data minimisation.</strong> We collect the email
+              address and the page the form was submitted from. We do
+              not collect name, location, or any other identifier.
+            </li>
+            <li>
+              <strong>No resale.</strong> The subscriber list is never
+              sold, shared, or used for any purpose other than the
+              dispatch the reader opted in to.
+            </li>
+            <li>
+              <strong>Provider change is cheap.</strong> The form posts
+              to a single internal endpoint; swapping providers means
+              swapping the adapter at that endpoint, not rebuilding
+              the form on every page.
+            </li>
+            <li>
+              <strong>Australian Privacy Principles + Spam Act
+              2003.</strong> The framework is designed to be
+              compliant with both. The provider, retention period,
+              and data-residency region will be added here before
+              the framework is activated.
+            </li>
+          </ul>
+
           <h2>Changes to this policy</h2>
           <p>
             We will update this policy if our practices change. The current
             version is dated{" "}
-            <time dateTime="2026-08-27">27 August 2026</time>. Material
+            <time dateTime="2026-09-01">1 September 2026</time>. Material
             changes will be noted at the top of this page for at least 30
             days.
           </p>

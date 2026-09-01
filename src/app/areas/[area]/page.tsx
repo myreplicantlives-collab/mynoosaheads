@@ -60,16 +60,16 @@ const AREA_ID_TO_SLUG: Record<string, string> = {
 
 const AREA_PHOTOS: Record<string, { url: string; caption: string; author: string; licence: string }> = {
   "hastings-street": {
-    url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=2400&q=80",
-    caption: "Hastings Street atmosphere — boutique-accommodation strip commercial-OK Unsplash substitute.",
-    author: "Unsplash (commercial OK, no attribution required)",
-    licence: "Unsplash License",
+    url: "/img/heroes/hastings-street-west-1920w.jpg",
+    caption: "Hastings Street looking west from Main Beach — the boutique-accommodation precinct.",
+    author: "Flickr (Openverse) — 'Hastings Street / Main Beach looking west (Noosa)'",
+    licence: "CC BY (commercial OK with attribution)",
   },
   "noosaville": {
-    url: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=2400&q=80",
-    caption: "Noosa River at Noosaville — harbour/ferry atmospheric commercial-OK Unsplash substitute.",
-    author: "Unsplash (commercial OK, no attribution required)",
-    licence: "Unsplash License",
+    url: "/img/heroes/noosa-river-1920w.jpg",
+    caption: "Boat at the Noosa River mouth — Noosaville ferry and river-mouth country.",
+    author: "Flickr (Openverse) — 'Boat at river mouth'",
+    licence: "CC BY (commercial OK with attribution)",
   },
   "sunshine-beach": {
     url: "https://live.staticflickr.com/1408/705933988_e7ab226bb2.jpg?w=1920&q=85",
@@ -78,10 +78,10 @@ const AREA_PHOTOS: Record<string, { url: string; caption: string; author: string
     licence: "CC BY (commercial OK, attribution required)",
   },
   "peregian-beach": {
-    url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=2400&q=80",
-    caption: "Peregian Beach atmosphere — wide-sand-beach commercial-OK Unsplash substitute.",
-    author: "Unsplash (commercial OK, no attribution required)",
-    licence: "Unsplash License",
+    url: "/img/heroes/hastings-street-east-1920w.jpg",
+    caption: "Sunshine Beach, Noosa — wide-sand patrolled beach south of the headland.",
+    author: "Flickr (Openverse) — 'Sunshine Beach, Noosa'",
+    licence: "CC BY (commercial OK with attribution)",
   },
 };
 

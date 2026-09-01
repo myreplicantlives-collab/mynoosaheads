@@ -3,6 +3,7 @@ import Link from "next/link";
 import { JsonLd } from "@/components/ui";
 import { SITE } from "@/data/site";
 import { fetchLive } from "@/lib/live";
+import { EmailCaptureForm } from "@/components/email/EmailCaptureForm";
 
 /**
  * /surf-and-weather — MSN-2982 chairman-mandated rework + MSN-3044
@@ -184,32 +185,32 @@ export default async function SurfAndWeatherPage() {
           </h2>
           <ul className="mt-6 grid gap-3 sm:grid-cols-2 text-body-md text-ink-800">
             <li>
-              <a className="link text-ocean-700" href="https://www.bom.gov.au/coastal-location/australia" rel="noopener noreferrer" target="_blank">
+              <a className="link text-ocean-800" href="https://www.bom.gov.au/coastal-location/australia" rel="noopener noreferrer" target="_blank">
                 BOM — Southeast Coast coastal forecast
               </a>
             </li>
             <li>
-              <a className="link text-ocean-700" href="https://www.msq.qld.gov.au/Safety/Bar-crossings-and-coastal-conditions" rel="noopener noreferrer" target="_blank">
+              <a className="link text-ocean-800" href="https://www.msq.qld.gov.au/Safety/Bar-crossings-and-coastal-conditions" rel="noopener noreferrer" target="_blank">
                 MSQ — bar crossings bulletin
               </a>
             </li>
             <li>
-              <a className="link text-ocean-700" href="https://www.bom.gov.au/australia/tides/#!/qld-tewantin" rel="noopener noreferrer" target="_blank">
+              <a className="link text-ocean-800" href="https://www.bom.gov.au/australia/tides/#!/qld-tewantin" rel="noopener noreferrer" target="_blank">
                 BOM — Tewantin tide
               </a>
             </li>
             <li>
-              <a className="link text-ocean-700" href="https://open-meteo.com/en/docs/marine-weather-api" rel="noopener noreferrer" target="_blank">
+              <a className="link text-ocean-800" href="https://open-meteo.com/en/docs/marine-weather-api" rel="noopener noreferrer" target="_blank">
                 Open-Meteo Marine Weather API
               </a>
             </li>
             <li>
-              <a className="link text-ocean-700" href="https://www.sunsmart.com.au/" rel="noopener noreferrer" target="_blank">
+              <a className="link text-ocean-800" href="https://www.sunsmart.com.au/" rel="noopener noreferrer" target="_blank">
                 Cancer Council SunSmart (UV)
               </a>
             </li>
             <li>
-              <a className="link text-ocean-700" href="https://beachsafe.org.au/" rel="noopener noreferrer" target="_blank">
+              <a className="link text-ocean-800" href="https://beachsafe.org.au/" rel="noopener noreferrer" target="_blank">
                 Beachsafe — patrol flags
               </a>
             </li>
@@ -217,7 +218,16 @@ export default async function SurfAndWeatherPage() {
         </div>
       </section>
 
-      {/* ─── 5. Clear action ─── */}
+      {/* ─── 5. Email capture (Workstream 5) — surf readers are the highest-intent cohort ─── */}
+      <section className="container-narrow py-12 md:py-16 border-t border-paper-200">
+        <EmailCaptureForm
+          source="surf-and-weather"
+          leadMagnet="first-day-noosa"
+          variant="panel"
+        />
+      </section>
+
+      {/* ─── 6. Clear action ─── */}
       <section className="container-page py-12 md:py-16 text-center">
         <h2 className="font-display text-display-md text-ink-900 text-balance">
           Plan the morning.

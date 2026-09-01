@@ -5,6 +5,7 @@ import { SITE } from "@/data/site";
 import { ACCOMMODATION_DATA, CURATED_PROPERTIES } from "@/data/accommodation";
 import { VERIFIED } from "@/data/photos-msn2982";
 import { AffiliateBadge } from "@/components/ui/AffiliateBadge";
+import { EmailCaptureInline } from "@/components/email/EmailCaptureInline";
 import {
   buildPartnerLink,
   isAffiliateCommercial,
@@ -403,9 +404,11 @@ export default function AccommodationPage() {
         className="container-page py-12 md:py-16"
         aria-labelledby="accomm-practical-heading"
       >
-        <h2 id="accomm-practical-heading" className="font-display text-display-md text-ink-900 text-balance">
-          A few things worth knowing.
-        </h2>
+        <div className="grid gap-10 lg:grid-cols-3">
+          <div className="lg:col-span-2">
+            <h2 id="accomm-practical-heading" className="font-display text-display-md text-ink-900 text-balance">
+              A few things worth knowing.
+            </h2>
         <ul className="mt-6 grid gap-4 sm:grid-cols-2 text-body-md text-ink-800">
           <li>
             <strong className="text-ink-900">School holidays:</strong> September, Easter, and Christmas book out by August. May and August are quieter and still warm enough to swim.
@@ -420,6 +423,18 @@ export default function AccommodationPage() {
             <strong className="text-ink-900">When to book:</strong> Easter, school holidays, and the Noosa Festival of Surfing (March) book out two-to-three months ahead. Shoulder months (May, August, early November) are easier.
           </li>
         </ul>
+          </div>
+          <aside className="lg:col-start-3">
+            {/* MSN-3057 M3 Workstream 5 — inline lead-magnet form on the
+                accommodation hub. Sits in the right rail beside the
+                practical-info section. */}
+            <EmailCaptureInline
+              source="accommodation-hub"
+              leadMagnet="where-to-stay-noosa"
+              title="Get the area-comparison PDF."
+            />
+          </aside>
+        </div>
       </section>
     </div>
   );

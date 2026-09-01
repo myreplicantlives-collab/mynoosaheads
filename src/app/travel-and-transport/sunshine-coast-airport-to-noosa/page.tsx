@@ -124,7 +124,7 @@ export default function SunshineCoastAirportToNoosaPage() {
                 International visitors from Europe typically fly into BNE
                 and connect to MCY via a domestic flight, or drive the M1.
                 See{" "}
-                <a href="/travel-and-transport/brisbane-airport-to-noosa" className="link text-ocean-700">
+                <a href="/travel-and-transport/brisbane-airport-to-noosa" className="link text-ocean-800">
                   BNE → Noosa
                 </a>
                 .

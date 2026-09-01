@@ -38,8 +38,8 @@ const DATA_SOURCES = [
     name: "BOM coastal forecast",
     tagline: "Southeast Coast — official Australian source.",
     href: "https://www.bom.gov.au/coastal-location/australia",
-    image: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1600&q=80",
-    imageAlt: "Sky and sea at golden hour — commercial-OK Unsplash atmospheric substitute.",
+    image: "/img/cards/main-beach-storm.jpg",
+    imageAlt: "Sky and sea at golden hour.",
     accent: "Wind, swell, tide. The only source that\u2019s current on the morning.",
   },
   {
@@ -47,8 +47,8 @@ const DATA_SOURCES = [
     name: "Open-Meteo",
     tagline: "Open-source weather model — global coverage.",
     href: "https://open-meteo.com/",
-    image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1600&q=80",
-    imageAlt: "Coastal mountain atmosphere — commercial-OK Unsplash atmospheric.",
+    image: "/img/heroes/granite-bay-1920w.jpg",
+    imageAlt: "Coastal mountain atmosphere.",
     accent: "Hourly UV, temperature, precipitation. Free public API.",
   },
   {
@@ -66,7 +66,7 @@ const DATA_SOURCES = [
     tagline: "Noosa bar status — official Queensland source.",
     href: "https://www.msq.qld.gov.au/Safety/Bar-crossings-and-coastal-conditions",
     image: "https://live.staticflickr.com/65535/9572462197_6879fe750b_b.jpg?w=1600",
-    imageAlt: "Noosa River at Noosaville — commercial-OK CC0 atmospheric.",
+    imageAlt: "Noosa River at Noosaville.",
     accent: "Bar status from Maritime Safety Queensland. Closed when conditions exceed limits.",
   },
 ];
@@ -98,8 +98,8 @@ export default function LiveConditionsPage() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=2400&q=80"
-          alt="Sky and sea at golden hour — commercial-OK Unsplash atmospheric substitute."
+          src="/img/heroes/main-beach-storm-1920w.jpg"
+          alt="Sky and sea at golden hour."
           decoding="async"
           fetchPriority="high"
           className="absolute inset-0 h-full w-full object-cover object-[center_30%]"

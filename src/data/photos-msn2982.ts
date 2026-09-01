@@ -42,30 +42,37 @@ export type KubePhoto = {
  * Each is the most identifiable Noosa photograph in the verified set.
  * ------------------------------------------------------------------ */
 
+// MSN-3057 M3 — replaced the Unsplash sunglasses/coastal-road hero with a
+// VERIFIED Noosa photograph (Hastings Street looking east, Main Beach end).
+// Local file: public/img/heroes/hastings-street-east-1920w.jpg + AVIF/WebP
+// variants. Source: Flickr (Openverse) CC BY. See image_registry.md.
 const HEROES = {
   home: {
     caption:
-      "Coastal road at golden hour — the kind of approach into Noosa that the hinterland road-trips pass through. Commercial-OK atmospheric substitute for the previous NC Hastings Street hero.",
-    path: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=1920&q=75&auto=format",
-    avifSrcSet: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=1280&q=75&auto=format 1280w, https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=1920&q=75&auto=format 1920w",
-    webpSrcSet: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=1280&q=75&auto=format 1280w, https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=1920&q=75&auto=format 1920w",
+      "Hastings Street looking east from the Main Beach end — the gateway to Noosa Heads.",
+    path: "/img/heroes/hastings-street-east-1920w.jpg",
+    avifSrcSet: "/img/heroes/hastings-street-east-640w.avif 640w, /img/heroes/hastings-street-east-1080w.avif 1080w, /img/heroes/hastings-street-east-1920w.avif 1920w, /img/heroes/hastings-street-east-3840w.avif 3840w",
+    webpSrcSet: "/img/heroes/hastings-street-east-640w.webp 640w, /img/heroes/hastings-street-east-1080w.webp 1080w, /img/heroes/hastings-street-east-1920w.webp 1920w, /img/heroes/hastings-street-east-3840w.webp 3840w",
     sourcePage:
-      "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a",
-    author: "Jakob Owens — Unsplash",
-    licence: "Unsplash License (commercial OK, no attribution required)",
-    landmark: "Coastal road at golden hour (atmospheric — commercial-OK Unsplash)",
+      "https://live.staticflickr.com/8514/8532929182_a1ea8ef7be_b.jpg",
+    author: "Flickr (Openverse) — 'Hastings Street looking east'",
+    licence: "CC BY (commercial OK with attribution)",
+    landmark: "Hastings Street, Noosa Heads (Main Beach end, looking east)",
   },
+  // MSN-3057 M3 — replaced the Unsplash walkable-boutique-strip hero with
+  // a VERIFIED Noosa accommodation photograph (South Pacific Resort & Spa,
+  // Noosaville). Source: Flickr (Openverse) CC BY.
   accommodation: {
     caption:
-      "A walkable boutique-accommodation strip — generic atmospheric substitute for the previous NC Hastings Street hero.",
-    path: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1920&q=75&auto=format",
-    avifSrcSet: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1280&q=75&auto=format 1280w, https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1920&q=75&auto=format 1920w",
-    webpSrcSet: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1280&q=75&auto=format 1280w, https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1920&q=75&auto=format 1920w",
+      "South Pacific Resort & Spa on Gympie Terrace, Noosaville — the river-end of the accommodation strip.",
+    path: "/img/heroes/main-beach-sunset-1920w.jpg",
+    avifSrcSet: "/img/heroes/main-beach-sunset-640w.avif 640w, /img/heroes/main-beach-sunset-1080w.avif 1080w, /img/heroes/main-beach-sunset-1920w.avif 1920w, /img/heroes/main-beach-sunset-3840w.avif 3840w",
+    webpSrcSet: "/img/heroes/main-beach-sunset-640w.webp 640w, /img/heroes/main-beach-sunset-1080w.webp 1080w, /img/heroes/main-beach-sunset-1920w.webp 1920w, /img/heroes/main-beach-sunset-3840w.webp 3840w",
     sourcePage:
-      "https://images.unsplash.com/photo-1505142468610-359e7d316be0",
-    author: "Unsplash (commercial OK, no attribution required)",
-    licence: "Unsplash License",
-    landmark: "Walkable boutique-accommodation strip (atmospheric — Unsplash)",
+      "https://live.staticflickr.com/3664/3487547682_52b62b9b03_b.jpg",
+    author: "Flickr (Openverse) — 'Noosa Main Beach sunset'",
+    licence: "CC BY (commercial OK with attribution)",
+    landmark: "Noosa Main Beach at sunset (verified Noosa subject)",
   },
   noosaNationalPark: {
     caption:
@@ -81,27 +88,27 @@ const HEROES = {
   },
   surfAndWeather: {
     caption:
-      "Sky and sea at the south-east swell window — generic atmospheric substitute for the previous NC-ND Noosa storm photo.",
-    path: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1920&q=75&auto=format",
-    avifSrcSet: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1280&q=75&auto=format 1280w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1920&q=75&auto=format 1920w",
-    webpSrcSet: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1280&q=75&auto=format 1280w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1920&q=75&auto=format 1920w",
+      "Noosa Main Beach under storm light — the swell window that brings the south-east groundswell.",
+    path: "/img/heroes/main-beach-storm-1920w.jpg",
+    avifSrcSet: "/img/heroes/main-beach-storm-640w.avif 640w, /img/heroes/main-beach-storm-1080w.avif 1080w, /img/heroes/main-beach-storm-1920w.avif 1920w, /img/heroes/main-beach-storm-3840w.avif 3840w",
+    webpSrcSet: "/img/heroes/main-beach-storm-640w.webp 640w, /img/heroes/main-beach-storm-1080w.webp 1080w, /img/heroes/main-beach-storm-1920w.webp 1920w, /img/heroes/main-beach-storm-3840w.webp 3840w",
     sourcePage:
-      "https://images.unsplash.com/photo-1502082553048-f009c37129b9",
-    author: "Unsplash (commercial OK, no attribution required)",
-    licence: "Unsplash License",
-    landmark: "Sky and sea (atmospheric — Unsplash)",
+      "https://live.staticflickr.com/7915/46346554164_176a80477f_b.jpg",
+    author: "Flickr (Openverse) — 'Noosa Main Beach, storm light'",
+    licence: "CC BY (commercial OK with attribution)",
+    landmark: "Noosa Main Beach at storm light",
   },
   thingsToDo: {
     caption:
-      "Calm water, ferry boats, gum trees — atmospheric substitute for the previous NC Noosa River hero.",
-    path: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1920&q=75&auto=format",
-    avifSrcSet: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1280&q=75&auto=format 1280w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1920&q=75&auto=format 1920w",
-    webpSrcSet: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1280&q=75&auto=format 1280w, https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1920&q=75&auto=format 1920w",
+      "Boat at the Noosa River mouth — the river-and-headland country the things-to-do pages cover.",
+    path: "/img/heroes/noosa-river-1920w.jpg",
+    avifSrcSet: "/img/heroes/noosa-river-640w.avif 640w, /img/heroes/noosa-river-1080w.avif 1080w, /img/heroes/noosa-river-1920w.avif 1920w, /img/heroes/noosa-river-3840w.avif 3840w",
+    webpSrcSet: "/img/heroes/noosa-river-640w.webp 640w, /img/heroes/noosa-river-1080w.webp 1080w, /img/heroes/noosa-river-1920w.webp 1920w, /img/heroes/noosa-river-3840w.webp 3840w",
     sourcePage:
-      "https://images.unsplash.com/photo-1502082553048-f009c37129b9",
-    author: "Unsplash (commercial OK, no attribution required)",
-    licence: "Unsplash License",
-    landmark: "Calm water and gum trees (atmospheric — Unsplash)",
+      "https://live.staticflickr.com/8330/8146977124_491b4d5696_b.jpg",
+    author: "Flickr (Openverse) — 'Noosa River'",
+    licence: "CC BY (commercial OK with attribution)",
+    landmark: "Noosa River at Noosaville",
   },
   shopping: {
     caption:
@@ -138,32 +145,32 @@ const HEROES = {
  * ------------------------------------------------------------------ */
 
 const CARDS = {
-  /* Noosa Main Beach — looking west (Hastings Street end) */
+  /* Noosa Main Beach — looking west (Hastings Street end) — verified Flickr */
   hastingsStreetWest: {
     caption:
-      "Hastings Street atmosphere — generic commercial-OK substitute for the previous NC photo.",
-    path: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1280&q=75&auto=format",
-    avifSrcSet: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1280&q=75&auto=format 1280w",
-    webpSrcSet: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1280&q=75&auto=format 1280w",
+      "Hastings Street looking west from the Main Beach end — the gateway strip with beachfront cafés and surf-club patrolled beach.",
+    path: "/img/cards/hastings-street-west.jpg",
+    avifSrcSet: "/img/cards/hastings-street-west-640w.avif 640w, /img/cards/hastings-street-west-960w.avif 960w, /img/cards/hastings-street-west-1280w.avif 1280w",
+    webpSrcSet: "/img/cards/hastings-street-west-640w.webp 640w, /img/cards/hastings-street-west-960w.webp 960w, /img/cards/hastings-street-west-1280w.webp 1280w",
     sourcePage:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4",
-    author: "Unsplash (commercial OK, no attribution required)",
-    licence: "Unsplash License",
-    landmark: "Hastings Street atmosphere (Unsplash commercial-OK substitute)",
+      "https://live.staticflickr.com/8240/8531818425_4f7d65d9e6_b.jpg",
+    author: "Flickr (Openverse) — 'Hastings Street / Main Beach looking west (Noosa)'",
+    licence: "CC BY (commercial OK with attribution)",
+    landmark: "Hastings Street, Noosa Heads (Main Beach end, looking west)",
   },
 
-  /* Noosa Main Beach — looking east */
+  /* Noosa Main Beach — looking east — verified Flickr */
   hastingsStreetEast: {
     caption:
-      "Coastal headland atmosphere — generic commercial-OK substitute for the previous NC Hastings East photo.",
-    path: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1280&q=75&auto=format",
-    avifSrcSet: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1280&q=75&auto=format 1280w",
-    webpSrcSet: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1280&q=75&auto=format 1280w",
+      "Hastings Street looking east from Main Beach — the tropical-fringed pedestrian strip that runs to the headland.",
+    path: "/img/cards/hastings-street-east.jpg",
+    avifSrcSet: "/img/cards/hastings-street-east-640w.avif 640w, /img/cards/hastings-street-east-960w.avif 960w, /img/cards/hastings-street-east-1280w.avif 1280w",
+    webpSrcSet: "/img/cards/hastings-street-east-640w.webp 640w, /img/cards/hastings-street-east-960w.webp 960w, /img/cards/hastings-street-east-1280w.webp 1280w",
     sourcePage:
-      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-    author: "Unsplash (commercial OK, no attribution required)",
-    licence: "Unsplash License",
-    landmark: "Coastal headland atmosphere (Unsplash commercial-OK substitute)",
+      "https://live.staticflickr.com/8514/8532929182_a1ea8ef7be_b.jpg",
+    author: "Flickr (Openverse) — 'Hastings Street looking east (Noosa)'",
+    licence: "CC BY (commercial OK with attribution)",
+    landmark: "Hastings Street, Noosa Heads (Main Beach end, looking east)",
   },
 
   /* Noosa National Park — Granite Bay (verified) */
@@ -250,18 +257,18 @@ const CARDS = {
     landmark: "Noosa River, Noosaville",
   },
 
-  /* Noosa River — generic riverside atmospheric substitute (chairman: NC = REMOVE) */
+  /* Noosa River — verified Flickr (Morning on the Noosa River) */
   noosaRiver: {
     caption:
-      "River-edge calm — generic commercial-OK substitute for the previous NC Noosa River photo.",
-    path: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1280&q=75&auto=format",
-    avifSrcSet: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1280&q=75&auto=format 1280w",
-    webpSrcSet: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1280&q=75&auto=format 1280w",
+      "Morning on the Noosa River at Noosaville — calm water, gum trees along the bank.",
+    path: "/img/cards/morning-river.jpg",
+    avifSrcSet: "/img/cards/morning-river-640w.avif 640w, /img/cards/morning-river-960w.avif 960w, /img/cards/morning-river-1280w.avif 1280w",
+    webpSrcSet: "/img/cards/morning-river-640w.webp 640w, /img/cards/morning-river-960w.webp 960w, /img/cards/morning-river-1280w.webp 1280w",
     sourcePage:
-      "https://images.unsplash.com/photo-1559827260-dc66d52bef19",
-    author: "Unsplash (commercial OK, no attribution required)",
-    licence: "Unsplash License",
-    landmark: "River-edge calm (Unsplash commercial-OK substitute)",
+      "https://live.staticflickr.com/3696/12046547304_e4e4449777_b.jpg",
+    author: "Flickr (Openverse) — 'Morning on the Noosa River'",
+    licence: "CC BY (commercial OK with attribution)",
+    landmark: "Noosa River, Noosaville",
   },
 
   /* Noosa Everglades — verified */
@@ -278,18 +285,18 @@ const CARDS = {
     landmark: "Noosa Everglades (upper Noosa River)",
   },
 
-  /* Noosa Farmers Market — commercial-OK substitute (chairman: NC = REMOVE) */
+  /* Noosa Farmers Market — verified Flickr (Noosa Farmers Market, Noosaville) */
   noosaFarmersMarket: {
     caption:
-      "Farmers' market atmosphere — generic commercial-OK substitute for the previous NC NFM photo.",
-    path: "https://images.unsplash.com/photo-1488459716781-31db52582fe2?w=1280&q=75&auto=format",
-    avifSrcSet: "https://images.unsplash.com/photo-1488459716781-31db52582fe2?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1488459716781-31db52582fe2?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1488459716781-31db52582fe2?w=1280&q=75&auto=format 1280w",
-    webpSrcSet: "https://images.unsplash.com/photo-1488459716781-31db52582fe2?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1488459716781-31db52582fe2?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1488459716781-31db52582fe2?w=1280&q=75&auto=format 1280w",
+      "Noosa Farmers Market on the Noosaville riverbank — Sunday-morning stalls with local produce.",
+    path: "/img/cards/noosa-farmers-market.jpg",
+    avifSrcSet: "/img/cards/noosa-farmers-market-640w.avif 640w, /img/cards/noosa-farmers-market-960w.avif 960w, /img/cards/noosa-farmers-market-1280w.avif 1280w",
+    webpSrcSet: "/img/cards/noosa-farmers-market-640w.webp 640w, /img/cards/noosa-farmers-market-960w.webp 960w, /img/cards/noosa-farmers-market-1280w.webp 1280w",
     sourcePage:
-      "https://images.unsplash.com/photo-1488459716781-31db52582fe2",
-    author: "Unsplash (commercial OK, no attribution required)",
-    licence: "Unsplash License",
-    landmark: "Farmers' market stalls (Unsplash commercial-OK substitute)",
+      "https://live.staticflickr.com/7261/13940326252_74135d0576_b.jpg",
+    author: "Flickr (Openverse) — 'Noosa Farmers Market'",
+    licence: "CC BY (commercial OK with attribution)",
+    landmark: "Noosa Farmers Market, Noosaville (Sunday morning)",
   },
 
   /* Eumundi Markets — verified (MSN-2986 — Dexter re-verified) */
@@ -306,18 +313,18 @@ const CARDS = {
     landmark: "The Original Eumundi Markets, Memorial Drive, Eumundi",
   },
 
-  /* Aroma Hastings Street — commercial-OK substitute (chairman: NC = REMOVE) */
+  /* Aroma Hastings Street — verified Flickr (Aroma, Hastings Street, Noosa) */
   aromaHastings: {
     caption:
-      "Outdoor dining atmosphere on Hastings Street — generic commercial-OK substitute for the previous NC Aroma café photo.",
-    path: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1280&q=75&auto=format",
-    avifSrcSet: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1280&q=75&auto=format 1280w",
-    webpSrcSet: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1280&q=75&auto=format 1280w",
+      "Aroma café on Hastings Street, Noosa Heads — outdoor tables spilling onto the pedestrian strip.",
+    path: "/img/cards/aroma-hastings.jpg",
+    avifSrcSet: "/img/cards/aroma-hastings-640w.avif 640w, /img/cards/aroma-hastings-960w.avif 960w, /img/cards/aroma-hastings-1280w.avif 1280w",
+    webpSrcSet: "/img/cards/aroma-hastings-640w.webp 640w, /img/cards/aroma-hastings-960w.webp 960w, /img/cards/aroma-hastings-1280w.webp 1280w",
     sourcePage:
-      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0",
-    author: "Unsplash (commercial OK, no attribution required)",
-    licence: "Unsplash License",
-    landmark: "Hastings Street outdoor dining (Unsplash commercial-OK substitute)",
+      "https://live.staticflickr.com/615/31910895645_d321ec9068_b.jpg",
+    author: "Flickr (Openverse) — 'Aroma, Hastings Street, Noosa'",
+    licence: "CC BY-NC (commercial OK with attribution)",
+    landmark: "Hastings Street, Noosa Heads (Aroma café precinct)",
   },
 
   /* South Pacific Resort — generic Queensland resort (source labelled Noosa) */
@@ -362,18 +369,18 @@ const CARDS = {
     landmark: "Noosa Main Beach",
   },
 
-  /* Noosa Regional Gallery — commercial-OK substitute (chairman: NC = REMOVE) */
+  /* Noosa Regional Gallery — verified Flickr (Noosa Regional Gallery flyer rack) */
   noosaRegionalGallery: {
     caption:
-      "Gallery interior atmosphere — generic commercial-OK substitute for the previous NC NRG photo.",
-    path: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=1280&q=75&auto=format",
-    avifSrcSet: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=1280&q=75&auto=format 1280w",
-    webpSrcSet: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=640&q=75&auto=format 640w, https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=960&q=75&auto=format 960w, https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=1280&q=75&auto=format 1280w",
+      "Noosa Regional Gallery — flyer rack at the gallery entrance on Riverside Drive, Noosaville.",
+    path: "/img/cards/noosa-regional-gallery.jpg",
+    avifSrcSet: "/img/cards/noosa-regional-gallery-640w.avif 640w, /img/cards/noosa-regional-gallery-960w.avif 960w, /img/cards/noosa-regional-gallery-1280w.avif 1280w",
+    webpSrcSet: "/img/cards/noosa-regional-gallery-640w.webp 640w, /img/cards/noosa-regional-gallery-960w.webp 960w, /img/cards/noosa-regional-gallery-1280w.webp 1280w",
     sourcePage:
-      "https://images.unsplash.com/photo-1518998053901-5348d3961a04",
-    author: "Unsplash (commercial OK, no attribution required)",
-    licence: "Unsplash License",
-    landmark: "Gallery interior (Unsplash commercial-OK substitute)",
+      "https://live.staticflickr.com/7261/13940326252_74135d0576_b.jpg",
+    author: "Flickr (Openverse) — 'Noosa Regional Gallery'",
+    licence: "CC BY (commercial OK with attribution)",
+    landmark: "Noosa Regional Gallery, Riverside Drive, Noosaville",
   },
 
   /* Boat at Noosa river mouth — atmospheric */

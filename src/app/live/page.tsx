@@ -36,8 +36,8 @@ const CATEGORIES = [
     name: "Surf and weather",
     tagline: "Live surf height, wind, tide, UV.",
     href: "/surf-and-weather",
-    image: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1600&q=80",
-    imageAlt: "Sky and sea — commercial-OK Unsplash atmospheric substitute.",
+    image: "/img/cards/main-beach-storm.jpg",
+    imageAlt: "Sky and sea.",
     accent: "Refreshed every 30 minutes from BOM and Open-Meteo. Noosa Main Beach webcams live.",
   },
   {
@@ -46,7 +46,7 @@ const CATEGORIES = [
     tagline: "River, estuary, offshore — what's biting.",
     href: "/fishing-reports",
     image: "https://live.staticflickr.com/65535/9572462197_6879fe750b_b.jpg?w=1600",
-    imageAlt: "Noosa River at Noosaville — commercial-OK CC0 atmospheric.",
+    imageAlt: "Noosa River at Noosaville.",
     accent: "Estuary and offshore reports from local operators. Bar crossing status from MSQ.",
   },
   {
@@ -54,8 +54,8 @@ const CATEGORIES = [
     name: "Webcams",
     tagline: "Main Beach, Noosa Woods, Sunshine — live.",
     href: "/webcams",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80",
-    imageAlt: "Coastal headland atmosphere — commercial-OK Unsplash.",
+    image: "/img/cards/hastings-street-west.jpg",
+    imageAlt: "Coastal headland atmosphere.",
     accent: "Beach and headland webcams from Sunshine Coast Council and local operators.",
   },
 ];
@@ -87,8 +87,8 @@ export default function LivePage() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=2400&q=80"
-          alt="Sky and sea at golden hour — commercial-OK Unsplash atmospheric substitute."
+          src="/img/heroes/main-beach-storm-1920w.jpg"
+          alt="Sky and sea at golden hour."
           decoding="async"
           fetchPriority="high"
           className="absolute inset-0 h-full w-full object-cover object-[center_30%]"

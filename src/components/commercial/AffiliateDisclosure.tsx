@@ -76,7 +76,7 @@ export function AffiliateDisclosure({
         data-track="affiliate_disclosure_inline"
       >
         {inline}{" "}
-        <a href="/disclosure" className="link text-ocean-700 not-italic">
+        <a href="/disclosure" className="link text-ocean-800 not-italic">
           Full disclosure
         </a>
         .
@@ -99,11 +99,11 @@ export function AffiliateDisclosure({
       <p className="text-body-sm text-ink-800 text-pretty">
         <strong className="text-ink-900">Affiliate disclosure.</strong>{" "}
         {inline}{" "}
-        <a href="/disclosure" className="link text-ocean-700">
+        <a href="/disclosure" className="link text-ocean-800">
           Full disclosure
         </a>{" "}
         and the{" "}
-        <a href="/terms" className="link text-ocean-700">
+        <a href="/terms" className="link text-ocean-800">
           terms of use
         </a>{" "}
         set out the editorial firewall and the programme statuses.

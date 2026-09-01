@@ -33,8 +33,8 @@ const AREAS = [
     name: "Hastings Street",
     tagline: "The walkable one.",
     href: "/areas/hastings",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80",
-    imageAlt: "Hastings Street atmosphere — boutique-accommodation strip commercial-OK Unsplash.",
+    image: "/img/cards/hastings-street-west.jpg",
+    imageAlt: "Hastings Street atmosphere.",
     accent: "Walk to the beach, the headland, and every restaurant.",
   },
   {
@@ -42,8 +42,8 @@ const AREAS = [
     name: "Noosaville",
     tagline: "Across the river.",
     href: "/areas/noosaville",
-    image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1600&q=80",
-    imageAlt: "Noosa River at Noosaville — harbour/ferry atmospheric commercial-OK Unsplash.",
+    image: "/img/cards/morning-river.jpg",
+    imageAlt: "Noosa River at Noosaville.",
     accent: "Apartments, river-edge, the Sunday farmers market.",
   },
   {
@@ -60,8 +60,8 @@ const AREAS = [
     name: "Peregian Beach",
     tagline: "Ten minutes south.",
     href: "/areas/peregian",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80",
-    imageAlt: "Peregian Beach atmosphere — wide-sand-beach commercial-OK Unsplash.",
+    image: "/img/cards/hastings-street-east.jpg",
+    imageAlt: "Peregian Beach atmosphere.",
     accent: "Village square, beer garden, holiday-house pace.",
   },
 ];

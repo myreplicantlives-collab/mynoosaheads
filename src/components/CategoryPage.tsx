@@ -265,7 +265,7 @@ export async function CategoryPage({
                       </span>
                       <Link
                         href={s.href}
-                        className="link text-ocean-700"
+                        className="link text-ocean-800"
                         rel="noopener noreferrer"
                         target="_blank"
                         // MSN-2964 — outbound source link; fire a
@@ -284,7 +284,7 @@ export async function CategoryPage({
                 </ul>
                 <p className="mt-4 text-caption text-ink-600">
                   All sources are public. If a link breaks, please{" "}
-                  <Link href="/contact" className="link text-ocean-700">
+                  <Link href="/contact" className="link text-ocean-800">
                     let us know
                   </Link>
                   .
@@ -298,7 +298,7 @@ export async function CategoryPage({
                   <ul className="space-y-3 text-body-sm">
                     {relatedLinks.map((r) => (
                       <li key={r.href}>
-                        <Link href={r.href} className="link text-ocean-700 font-medium">
+                        <Link href={r.href} className="link text-ocean-800 font-medium">
                           {r.label}
                         </Link>
                         <p className="text-caption text-ink-700 mt-0.5">{r.description}</p>

@@ -142,14 +142,14 @@ export default function PeregianBeachPage() {
           <p>
             <strong>From Sunshine Coast Airport (MCY):</strong> ~25 minutes.
             See{" "}
-            <a href="/travel-and-transport/sunshine-coast-airport-to-noosa" className="link text-ocean-700">
+            <a href="/travel-and-transport/sunshine-coast-airport-to-noosa" className="link text-ocean-800">
               MCY → Noosa transfers
             </a>
             .
           </p>
           <p>
             <strong>From Brisbane Airport (BNE):</strong> ~2 hours. See{" "}
-            <a href="/travel-and-transport/brisbane-airport-to-noosa" className="link text-ocean-700">
+            <a href="/travel-and-transport/brisbane-airport-to-noosa" className="link text-ocean-800">
               BNE → Noosa transfers
             </a>
             .

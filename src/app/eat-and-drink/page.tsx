@@ -28,10 +28,7 @@ export const metadata: Metadata = {
 function photoFor(slug: string): { path: string; caption: string } {
   if (slug.includes("aroma")) return { path: VERIFIED.cards.aromaHastings.path, caption: VERIFIED.cards.aromaHastings.caption };
   if (slug.includes("riverdeck")) return { path: VERIFIED.cards.morningRiver.path, caption: VERIFIED.cards.morningRiver.caption };
-  if (slug.includes("peregian")) return { path: "https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=1600&q=80", caption: "A village-square beer garden at twilight — commercial-OK Unsplash substitute for the previous location-mismatched Sunshine Beach photo." };
-  if (slug.includes("season")) return { path: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&q=80", caption: "Fine-dining presentation — commercial-OK Unsplash substitute." };
-  if (slug.includes("boathouse")) return { path: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=80", caption: "River-edge dining — boats at the dock — commercial-OK Unsplash substitute." };
-  if (slug.includes("sante")) return { path: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1600&q=80", caption: "Counter-side brunch prep — commercial-OK Unsplash substitute." };
+  if (slug.includes("peregian")) return { path: VERIFIED.cards.hastingsStreetEast.path, caption: VERIFIED.cards.hastingsStreetEast.caption };
   return { path: VERIFIED.cards.hastingsStreetEast.path, caption: VERIFIED.cards.hastingsStreetEast.caption };
 }
 
@@ -58,15 +55,15 @@ export default function EatAndDrinkPage() {
         ]}
       />
 
-      {/* ─── 1. Hero — Outdoor dining atmosphere (commercial-OK Unsplash) ─── */}
+      {/* ─── 1. Hero — Aroma, Hastings Street (verified Noosa photograph) ─── */}
       <section
         aria-label="Eat and drink in Noosa"
         className="relative w-full overflow-hidden bg-ink-900 h-[80vh] min-h-[560px] max-h-[1000px]"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=2400&q=80"
-          alt="Outdoor dining at golden hour — commercial-OK Unsplash atmospheric substitute for the previous NC Aroma café hero."
+          src={VERIFIED.cards.aromaHastings.path}
+          alt={VERIFIED.cards.aromaHastings.caption}
           decoding="async"
           fetchPriority="high"
           className="absolute inset-0 h-full w-full object-cover object-[center_30%]"
@@ -196,7 +193,7 @@ export default function EatAndDrinkPage() {
                             {v.cuisine} · {v.bestFor}
                           </span>
                         </span>
-                        <span aria-hidden="true" className="text-ink-700 group-hover:text-ocean-700 transition">
+                        <span aria-hidden="true" className="text-ink-700 group-hover:text-ocean-800 transition">
                           →
                         </span>
                       </Link>

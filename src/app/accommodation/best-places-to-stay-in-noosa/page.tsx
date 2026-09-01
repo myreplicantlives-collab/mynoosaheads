@@ -62,7 +62,7 @@ export default function BestPlacesToStayInNoosaPage() {
                 operators we cannot photograph — the five-star Noosa stock
                 (Sofitel, RACV, The Sebel, Peppers) sits outside our curated
                 shortlist until verified guest-room photography is in place.
-                See <a href="/accommodation/luxury" className="link text-ocean-700">Luxury Noosa</a> for the honest position on the higher-end stock.
+                See <a href="/accommodation/luxury" className="link text-ocean-800">Luxury Noosa</a> for the honest position on the higher-end stock.
               </p>
               <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {COMMERCIAL_PROPERTIES.map((p) => (
@@ -95,40 +95,40 @@ export default function BestPlacesToStayInNoosaPage() {
           body: (
             <ul className="list-disc pl-5 space-y-2">
               <li>
-                <a href="/accommodation/hastings-street" className="link text-ocean-700" data-track="cluster_link_hastings">Hastings Street accommodation</a> — walk to Main Beach.
+                <a href="/accommodation/hastings-street" className="link text-ocean-800" data-track="cluster_link_hastings">Hastings Street accommodation</a> — walk to Main Beach.
               </li>
               <li>
-                <a href="/accommodation/noosaville" className="link text-ocean-700" data-track="cluster_link_noosaville">Noosaville accommodation</a> — Gympie Terrace and the ferry.
+                <a href="/accommodation/noosaville" className="link text-ocean-800" data-track="cluster_link_noosaville">Noosaville accommodation</a> — Gympie Terrace and the ferry.
               </li>
               <li>
-                <a href="/accommodation/sunshine-beach" className="link text-ocean-700" data-track="cluster_link_sunshine">Sunshine Beach accommodation</a> — patrolled surf south of the headland.
+                <a href="/accommodation/sunshine-beach" className="link text-ocean-800" data-track="cluster_link_sunshine">Sunshine Beach accommodation</a> — patrolled surf south of the headland.
               </li>
               <li>
-                <a href="/accommodation/peregian-beach" className="link text-ocean-700" data-track="cluster_link_peregian">Peregian Beach accommodation</a> — village-square, holiday houses.
+                <a href="/accommodation/peregian-beach" className="link text-ocean-800" data-track="cluster_link_peregian">Peregian Beach accommodation</a> — village-square, holiday houses.
               </li>
               <li>
-                <a href="/accommodation/luxury" className="link text-ocean-700" data-track="cluster_link_luxury">Luxury Noosa</a> — the higher-end stock, honest gap.
+                <a href="/accommodation/luxury" className="link text-ocean-800" data-track="cluster_link_luxury">Luxury Noosa</a> — the higher-end stock, honest gap.
               </li>
               <li>
-                <a href="/accommodation/families" className="link text-ocean-700" data-track="cluster_link_families">Family-friendly</a> — apartments with kitchens, pools, walkable beaches.
+                <a href="/accommodation/families" className="link text-ocean-800" data-track="cluster_link_families">Family-friendly</a> — apartments with kitchens, pools, walkable beaches.
               </li>
               <li>
-                <a href="/accommodation/apartments" className="link text-ocean-700" data-track="cluster_link_apartments">Apartments</a> — self-catering across the four precincts.
+                <a href="/accommodation/apartments" className="link text-ocean-800" data-track="cluster_link_apartments">Apartments</a> — self-catering across the four precincts.
               </li>
               <li>
-                <a href="/accommodation/near-the-beach" className="link text-ocean-700" data-track="cluster_link_near-beach">Near the beach</a> — under-five-minute walks to the sand.
+                <a href="/accommodation/near-the-beach" className="link text-ocean-800" data-track="cluster_link_near-beach">Near the beach</a> — under-five-minute walks to the sand.
               </li>
               <li>
-                <a href="/accommodation/with-pools" className="link text-ocean-700" data-track="cluster_link_pools">With pools</a> — heated + lagoon + outdoor pools.
+                <a href="/accommodation/with-pools" className="link text-ocean-800" data-track="cluster_link_pools">With pools</a> — heated + lagoon + outdoor pools.
               </li>
               <li>
-                <a href="/accommodation/pet-friendly" className="link text-ocean-700" data-track="cluster_link_pet">Pet-friendly</a> — apartments that accept dogs.
+                <a href="/accommodation/pet-friendly" className="link text-ocean-800" data-track="cluster_link_pet">Pet-friendly</a> — apartments that accept dogs.
               </li>
               <li>
-                <a href="/accommodation/without-a-car" className="link text-ocean-700" data-track="cluster_link_carfree">Without a car</a> — walkable + ferry-served.
+                <a href="/accommodation/without-a-car" className="link text-ocean-800" data-track="cluster_link_carfree">Without a car</a> — walkable + ferry-served.
               </li>
               <li>
-                <a href="/accommodation/hastings-vs-noosaville" className="link text-ocean-700" data-track="cluster_link_compare">Hastings vs Noosaville</a> — side-by-side decision aid.
+                <a href="/accommodation/hastings-vs-noosaville" className="link text-ocean-800" data-track="cluster_link_compare">Hastings vs Noosaville</a> — side-by-side decision aid.
               </li>
             </ul>
           ),

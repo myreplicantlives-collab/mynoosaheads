@@ -107,7 +107,7 @@ export default function HastingsStreetPage() {
           <p>
             <strong>From Brisbane Airport (BNE):</strong> ~2 hours via the
             Bruce Highway (M1) and the Eumundi–Noosa Road. See{" "}
-            <a href="/travel-and-transport/brisbane-airport-to-noosa" className="link text-ocean-700">
+            <a href="/travel-and-transport/brisbane-airport-to-noosa" className="link text-ocean-800">
               BNE → Noosa transfers
             </a>
             .
@@ -115,7 +115,7 @@ export default function HastingsStreetPage() {
           <p>
             <strong>From Sunshine Coast Airport (MCY):</strong> ~30 minutes via
             the Sunshine Motorway. See{" "}
-            <a href="/travel-and-transport/sunshine-coast-airport-to-noosa" className="link text-ocean-700">
+            <a href="/travel-and-transport/sunshine-coast-airport-to-noosa" className="link text-ocean-800">
               MCY → Noosa transfers
             </a>
             .
@@ -176,7 +176,7 @@ function PicksGrid() {
     return (
       <p>
         No Hastings Street properties currently meet the editorial bar. See{" "}
-        <a href="/accommodation" className="link text-ocean-700">
+        <a href="/accommodation" className="link text-ocean-800">
           all areas
         </a>{" "}
         for the full shortlist.

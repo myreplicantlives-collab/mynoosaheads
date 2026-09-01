@@ -50,7 +50,7 @@ export function ContactForm() {
         <strong>Privacy note.</strong> This form does not store any data.
         When you submit, your email client opens with the message
         pre-filled; you decide whether to send it. If you prefer, email{" "}
-        <a href="mailto:hello@mynoosaheads.com" className="link text-ocean-700">
+        <a href="mailto:hello@mynoosaheads.com" className="link text-ocean-800">
           hello@mynoosaheads.com
         </a>{" "}
         directly.

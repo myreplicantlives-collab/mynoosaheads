@@ -180,7 +180,7 @@ export function SearchDialog({
               </span>
               <button
                 type="button"
-                className="text-caption text-ocean-700 hover:underline"
+                className="text-caption text-ocean-800 hover:underline"
                 onClick={() => setOpen(false)}
               >
                 Close

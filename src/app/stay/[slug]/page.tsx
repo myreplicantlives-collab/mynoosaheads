@@ -195,17 +195,17 @@ export default function PropertyPage({ params }: PageProps) {
               <CardBody>
                 <ul className="space-y-2 text-body-sm">
                   <li>
-                    <Link href="/accommodation" className="link text-ocean-700">
+                    <Link href="/accommodation" className="link text-ocean-800">
                       All accommodation
                     </Link>
                   </li>
                   <li>
-                    <Link href="/surf-and-weather" className="link text-ocean-700">
+                    <Link href="/surf-and-weather" className="link text-ocean-800">
                       Today&rsquo;s surf and weather
                     </Link>
                   </li>
                   <li>
-                    <Link href="/noosa-national-park" className="link text-ocean-700">
+                    <Link href="/noosa-national-park" className="link text-ocean-800">
                       Noosa National Park walks
                     </Link>
                   </li>

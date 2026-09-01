@@ -131,7 +131,7 @@ export default function ExperiencePage({ params }: PageProps) {
                     <li key={o.href} className="text-body-md text-ink-800">
                       <a
                         href={o.href}
-                        className="link text-ocean-700 font-semibold"
+                        className="link text-ocean-800 font-semibold"
                         rel="noopener noreferrer"
                         target="_blank"
                         data-track={`ttd_${exp.slug}_${o.label.toLowerCase().replace(/[^a-z0-9]+/g, "_").slice(0, 30)}`}
@@ -171,7 +171,7 @@ export default function ExperiencePage({ params }: PageProps) {
                       <span className="text-eucalyptus-700 mt-1 shrink-0" aria-hidden="true">↗</span>
                       <a
                         href={s.href}
-                        className="link text-ocean-700"
+                        className="link text-ocean-800"
                         rel="noopener noreferrer"
                         target="_blank"
                       >
@@ -188,17 +188,17 @@ export default function ExperiencePage({ params }: PageProps) {
               <CardBody>
                 <ul className="space-y-2 text-body-sm">
                   <li>
-                    <Link href="/surf-and-weather" className="link text-ocean-700">
+                    <Link href="/surf-and-weather" className="link text-ocean-800">
                       Today&rsquo;s surf and weather
                     </Link>
                   </li>
                   <li>
-                    <Link href="/noosa-national-park" className="link text-ocean-700">
+                    <Link href="/noosa-national-park" className="link text-ocean-800">
                       Noosa National Park walks
                     </Link>
                   </li>
                   <li>
-                    <Link href="/accommodation" className="link text-ocean-700">
+                    <Link href="/accommodation" className="link text-ocean-800">
                       Where to stay
                     </Link>
                   </li>

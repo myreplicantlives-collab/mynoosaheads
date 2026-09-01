@@ -51,7 +51,7 @@ export const metadata: Metadata = {
 const STATUS_LABEL: Record<string, { label: string; tone: string }> = {
   live: {
     label: "Active programme",
-    tone: "text-ocean-700",
+    tone: "text-ocean-800",
   },
   pending: {
     label: "Application pending",
@@ -167,7 +167,7 @@ export default function DisclosurePage() {
                         href={p.programmePage}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="link text-ocean-700"
+                        className="link text-ocean-800"
                       >
                         Network terms ↗
                       </a>
@@ -214,7 +214,7 @@ export default function DisclosurePage() {
             Each editorial page carries a <em>last-reviewed</em> date
             and the editor&apos;s notes are kept under version control.
             Corrections are published on the{" "}
-            <Link href="/corrections" className="link text-ocean-700">
+            <Link href="/corrections" className="link text-ocean-800">
               corrections page
             </Link>
             .
@@ -293,12 +293,12 @@ export default function DisclosurePage() {
           <p>
             For the Australian Privacy Principles and the Spam Act 2003
             statements, see the{" "}
-            <Link href="/privacy" className="link text-ocean-700">
+            <Link href="/privacy" className="link text-ocean-800">
               privacy policy
             </Link>
             . To report an error in this disclosure or to ask a
             question about a specific link, please{" "}
-            <Link href="/contact" className="link text-ocean-700">
+            <Link href="/contact" className="link text-ocean-800">
               get in touch
             </Link>
             .
@@ -309,7 +309,7 @@ export default function DisclosurePage() {
           Disclosure page contactable at{" "}
           <a
             href={`mailto:${SITE.email}`}
-            className="link text-ocean-700"
+            className="link text-ocean-800"
           >
             {SITE.email}
           </a>

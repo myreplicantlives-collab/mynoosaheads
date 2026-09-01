@@ -43,7 +43,7 @@ export function FormField({
       <label htmlFor={fieldId} className="block text-body-sm font-medium text-ink-800">
         {label}
         {required ? (
-          <span className="text-ocean-700 ml-0.5" aria-hidden="true">
+          <span className="text-ocean-800 ml-0.5" aria-hidden="true">
             *
           </span>
         ) : null}
@@ -55,7 +55,7 @@ export function FormField({
         </p>
       ) : null}
       {error ? (
-        <p id={errorId} role="alert" className="text-caption text-ocean-700">
+        <p id={errorId} role="alert" className="text-caption text-ocean-800">
           {error}
         </p>
       ) : null}

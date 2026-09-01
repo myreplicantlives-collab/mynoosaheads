@@ -105,7 +105,7 @@ export default function SunshineBeachPage() {
           <p>
             <strong>From Sunshine Coast Airport (MCY):</strong> ~25 minutes
             via the Sunshine Motorway. See{" "}
-            <a href="/travel-and-transport/sunshine-coast-airport-to-noosa" className="link text-ocean-700">
+            <a href="/travel-and-transport/sunshine-coast-airport-to-noosa" className="link text-ocean-800">
               MCY → Noosa transfers
             </a>
             .
@@ -114,7 +114,7 @@ export default function SunshineBeachPage() {
             <strong>From Brisbane Airport (BNE):</strong> ~2 hours. Sunshine
             Beach is a reasonable base if you want surf + quiet over Hastings
             Street restaurants. See{" "}
-            <a href="/travel-and-transport/brisbane-airport-to-noosa" className="link text-ocean-700">
+            <a href="/travel-and-transport/brisbane-airport-to-noosa" className="link text-ocean-800">
               BNE → Noosa transfers
             </a>
             .

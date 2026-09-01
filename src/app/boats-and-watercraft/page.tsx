@@ -100,7 +100,7 @@ export default function Page() {
             is over 1.5 m, defer.{" "}
             <a
               href="https://www.msq.qld.gov.au/Safety/Bar-crossings-and-coastal-conditions"
-              className="link text-ocean-700"
+              className="link text-ocean-800"
               rel="noopener noreferrer"
               target="_blank"
             >

@@ -191,7 +191,7 @@ export default function NationalParkPage() {
           Distance, grade, and time per Queensland Parks and Wildlife Service —{" "}
           <a
             href="https://parks.qld.gov.au/parks/noosa/journeys/walking-tracks-summary"
-            className="link text-ocean-700"
+            className="link text-ocean-800"
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -256,7 +256,7 @@ export default function NationalParkPage() {
           <li>
             <a
               href="https://parks.qld.gov.au/find-a-park/national-parks/noosa-national-park"
-              className="link text-ocean-700"
+              className="link text-ocean-800"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -267,7 +267,7 @@ export default function NationalParkPage() {
           <li>
             <a
               href="https://parks.qld.gov.au/park-alerts"
-              className="link text-ocean-700"
+              className="link text-ocean-800"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -278,7 +278,7 @@ export default function NationalParkPage() {
           <li>
             <a
               href="https://parks.qld.gov.au/koala"
-              className="link text-ocean-700"
+              className="link text-ocean-800"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -289,7 +289,7 @@ export default function NationalParkPage() {
           <li>
             <a
               href="https://parks.qld.gov.au/find-a-park/national-parks/noosa-national-park/day-use-areas"
-              className="link text-ocean-700"
+              className="link text-ocean-800"
               rel="noopener noreferrer"
               target="_blank"
             >

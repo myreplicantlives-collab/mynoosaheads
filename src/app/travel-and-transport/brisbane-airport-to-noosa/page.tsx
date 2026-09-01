@@ -133,7 +133,7 @@ export default function BrisbaneAirportToNoosaPage() {
                   href="https://qldtraffic.qld.gov.au/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="link text-ocean-700"
+                  className="link text-ocean-800"
                 >
                   qldtraffic.qld.gov.au
                 </a>

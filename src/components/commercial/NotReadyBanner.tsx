@@ -51,7 +51,7 @@ export function NotReadyBanner({
       role="status"
       aria-label="Page status: not ready for publication"
     >
-      <p className="eyebrow text-ocean-700">
+      <p className="eyebrow text-ocean-800">
         Page status · not ready for publication
       </p>
       <p className="mt-2 text-body-md text-ink-900 text-pretty">
@@ -63,7 +63,7 @@ export function NotReadyBanner({
       {targetDate ? (
         <p className="mt-2 text-caption italic text-ink-600">
           Target publication: <time dateTime={targetDate}>{targetDate}</time>.
-          See the <a href="/contact" className="link text-ocean-700">contact page</a>{" "}
+          See the <a href="/contact" className="link text-ocean-800">contact page</a>{" "}
           if you want to be notified when this guide goes live.
         </p>
       ) : null}

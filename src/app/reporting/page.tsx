@@ -603,22 +603,22 @@ export default function ReportingPage() {
         <div className="rounded-xl bg-paper-100 ring-1 ring-paper-200 p-6">
           <p className="text-body-sm text-ink-700">
             Cross-references:{" "}
-            <Link href="/disclosure" className="link text-ocean-700">
+            <Link href="/disclosure" className="link text-ocean-800">
               full affiliate disclosure
             </Link>
             ,{" "}
-            <Link href="/privacy" className="link text-ocean-700">
+            <Link href="/privacy" className="link text-ocean-800">
               privacy policy
             </Link>
             , and the Plausible event taxonomy above. To report a
             missing event or a tracking bug, please{" "}
-            <Link href="/contact" className="link text-ocean-700">
+            <Link href="/contact" className="link text-ocean-800">
               contact the editorial team
             </Link>
             . Page contact:{" "}
             <a
               href={`mailto:${SITE.email}`}
-              className="link text-ocean-700"
+              className="link text-ocean-800"
             >
               {SITE.email}
             </a>

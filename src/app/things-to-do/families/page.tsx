@@ -43,7 +43,7 @@ export default function FamiliesActivityPage() {
           kayak tours, ferry day passes, and the operators that publish
           family-friendly rates. For the editorial hub on Noosa with kids
           (patrolled swimming, ferry rides, slow river days) see{" "}
-          <a href="/things-to-do/noosa-with-children" className="link text-ocean-700">
+          <a href="/things-to-do/noosa-with-children" className="link text-ocean-800">
             Noosa with children
           </a>
           .

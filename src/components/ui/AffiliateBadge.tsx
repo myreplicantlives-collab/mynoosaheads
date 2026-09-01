@@ -57,7 +57,7 @@ export function AffiliateBadge({
     return (
       <span
         className={
-          "ml-2 inline-flex items-center gap-1 rounded-pill border border-ocean-200 bg-ocean-50 px-2 py-0.5 text-[10px] uppercase tracking-[0.12em] font-semibold text-ocean-700 " +
+          "ml-2 inline-flex items-center gap-1 rounded-pill border border-ocean-200 bg-ocean-50 px-2 py-0.5 text-[10px] uppercase tracking-[0.12em] font-semibold text-ocean-800 " +
           (className ?? "")
         }
         title={tooltip}
@@ -71,7 +71,7 @@ export function AffiliateBadge({
   return (
     <span
       className={
-        "ml-1.5 inline-flex items-baseline gap-1 align-middle text-caption italic text-ocean-700 " +
+        "ml-1.5 inline-flex items-baseline gap-1 align-middle text-caption italic text-ocean-800 " +
         (className ?? "")
       }
       title={tooltip}

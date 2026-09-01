@@ -135,7 +135,7 @@ export const AREAS: Area[] = [
       "The walkable one. Beach at the bottom, headland walk at the top, restaurants in between.",
     bestFor: "Visitors who would rather walk than drive once they arrive.",
     photo: {
-      caption: "Hastings Street atmosphere — boutique-accommodation strip commercial-OK Unsplash substitute.",
+      caption: "Hastings Street atmosphere.",
       url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80",
       author: "Unsplash (commercial OK, no attribution required)",
       licence: "Unsplash License",
@@ -197,7 +197,7 @@ export const AREAS: Area[] = [
       "Ten minutes south of Sunshine. Village-square feel, holiday houses, pet-friendly options.",
     bestFor: "Extended stays, dog-friendly accommodation (verify each operator), surfers.",
     photo: {
-      caption: "Peregian Beach atmosphere — wide-sand-beach commercial-OK Unsplash substitute.",
+      caption: "Peregian Beach atmosphere.",
       url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80",
       author: "Unsplash (commercial OK, no attribution required)",
       licence: "Unsplash License",

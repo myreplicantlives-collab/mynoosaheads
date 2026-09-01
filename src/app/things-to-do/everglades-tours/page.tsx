@@ -134,7 +134,7 @@ export default function EvergladesToursPage() {
           <p>
             <strong>From BNE:</strong> ~2 hours via the Bruce Highway and the
             Eumundi–Noosa Road. See{" "}
-            <a href="/travel-and-transport/brisbane-airport-to-noosa" className="link text-ocean-700">
+            <a href="/travel-and-transport/brisbane-airport-to-noosa" className="link text-ocean-800">
               BNE → Noosa transfers
             </a>
             .

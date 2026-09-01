@@ -90,7 +90,7 @@ export default function LuxuryPage() {
                     href="https://sofitel-noosa-pacific.all.accor.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="link text-ocean-700"
+                    className="link text-ocean-800"
                     data-track="luxury-sofitel-direct"
                   >
                     Sofitel Noosa Pacific (operator-direct)
@@ -101,7 +101,7 @@ export default function LuxuryPage() {
                     href="https://www.racv.com.au/club-resorts/noosa-resort.html"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="link text-ocean-700"
+                    className="link text-ocean-800"
                     data-track="luxury-racv-direct"
                   >
                     RACV Noosa Resort (operator-direct)
@@ -112,7 +112,7 @@ export default function LuxuryPage() {
                     href="https://www.theSebelNoosa.com.au/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="link text-ocean-700"
+                    className="link text-ocean-800"
                     data-track="luxury-sebel-direct"
                   >
                     The Sebel Noosa (operator-direct)
@@ -155,7 +155,7 @@ export default function LuxuryPage() {
               </p>
               <p>
                 In the meantime, the three curated picks on the main{" "}
-                <a href="/accommodation" className="link text-ocean-700">
+                <a href="/accommodation" className="link text-ocean-800">
                   /accommodation
                 </a>{" "}
                 page are the strongest properties we can verify.
@@ -173,11 +173,11 @@ export default function LuxuryPage() {
           </p>
           <p>
             From the airports,{" "}
-            <a href="/travel-and-transport/sunshine-coast-airport-to-noosa" className="link text-ocean-700">
+            <a href="/travel-and-transport/sunshine-coast-airport-to-noosa" className="link text-ocean-800">
               MCY → Noosa
             </a>{" "}
             is 30 minutes;{" "}
-            <a href="/travel-and-transport/brisbane-airport-to-noosa" className="link text-ocean-700">
+            <a href="/travel-and-transport/brisbane-airport-to-noosa" className="link text-ocean-800">
               BNE → Noosa
             </a>{" "}
             is 2 hours.

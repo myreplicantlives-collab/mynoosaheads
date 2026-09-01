@@ -86,7 +86,7 @@ export default function ApartmentsPage() {
             South Pacific (Noosaville) is the river-facing apartment pick
             with the heated lagoon pool. Sunshine Beach Resort is the
             patrolled-beach apartment pick south of the headland. Peregian is
-            holiday houses (see <a href="/accommodation/peregian-beach" className="link text-ocean-700">Peregian Beach</a>).
+            holiday houses (see <a href="/accommodation/peregian-beach" className="link text-ocean-800">Peregian Beach</a>).
           </p>
         </>
       }

@@ -1,0 +1,123 @@
+/**
+ * email-capture — MSN-3057 M3 Workstream 5.
+ *
+ * Provider-agnostic email-capture framework for MyNoosaHeads.
+ *
+ * Constraints:
+ *   - Built but NOT activated on the dev URL. Provider activation is
+ *     gated on Tim's explicit approval (see privacy policy §"email
+ *     capture").
+ *   - Australian Privacy Principles + Spam Act 2003 compliance:
+ *     explicit opt-in consent checkbox, unsubscribe header on every
+ *     email, data-minimisation (email + submission page only).
+ *   - Provider swap = change the adapter here, not the forms on
+ *     every page. The form components below post to a single
+ *     function (`subscribe`) which routes through the active
+ *     adapter.
+ *   - No analytics calls to third parties on the form.
+ *   - Form events fire on Plausible via the existing
+ *     `window.plausible(...)` global (no-op when the tracker is
+ *     absent on the dev build).
+ */
+
+export type SubscribeInput = {
+  /** Subscriber email address. */
+  email: string;
+  /** The page the form was submitted from (analytics + consent record). */
+  source: string;
+  /** Lead magnet the subscriber opted in for. */
+  leadMagnet: LeadMagnetId;
+  /** Subscriber consent stamp — must be true to submit. */
+  consent: true;
+  /** UTC ISO timestamp captured at form-submit time. */
+  submittedAt: string;
+};
+
+export type LeadMagnetId =
+  | "first-day-noosa"
+  | "where-to-stay-noosa"
+  | "weekly-dispatch";
+
+/** Adapter contract — every provider implements this. */
+export type EmailProviderAdapter = {
+  /** Provider identifier (for logging + future multi-region). */
+  readonly id: "buttondown" | "convertkit" | "mailchimp" | "beehiiv" | "noop";
+  /** Subscribe — returns a result code, never throws to the caller. */
+  subscribe(input: SubscribeInput): Promise<SubscribeResult>;
+};
+
+export type SubscribeResult =
+  | { ok: true; provider: EmailProviderAdapter["id"]; leadMagnet: LeadMagnetId }
+  | { ok: false; reason: "consent-missing" | "invalid-email" | "duplicate" | "provider-error"; detail?: string };
+
+/** The active adapter — defaults to noop so the dev build is silent. */
+let activeAdapter: EmailProviderAdapter = {
+  id: "noop",
+  async subscribe(): Promise<SubscribeResult> {
+    return { ok: true, provider: "noop", leadMagnet: "weekly-dispatch" };
+  },
+};
+
+/** Swap the active provider. Production-only — guard with env check. */
+export function setEmailProvider(adapter: EmailProviderAdapter): void {
+  activeAdapter = adapter;
+}
+
+/**
+ * Public subscribe entry point — called by every EmailForm on every page.
+ * Performs validation, fires Plausible events, and routes to the active
+ * adapter. Returns a stable result shape for the form to render against.
+ */
+export async function subscribe(input: SubscribeInput): Promise<SubscribeResult> {
+  if (input.consent !== true) {
+    return { ok: false, reason: "consent-missing" };
+  }
+  if (!isValidEmail(input.email)) {
+    return { ok: false, reason: "invalid-email" };
+  }
+  firePlausible("email_form_submit", { lead_magnet: input.leadMagnet, source: input.source });
+  try {
+    const result = await activeAdapter.subscribe(input);
+    if (result.ok) {
+      firePlausible("email_form_conversion", { lead_magnet: input.leadMagnet });
+    }
+    return result;
+  } catch (err) {
+    return { ok: false, reason: "provider-error", detail: String(err) };
+  }
+}
+
+/** Light client-side tracker — no-op when Plausible is absent. */
+function firePlausible(event: string, props: Record<string, string>): void {
+  if (typeof window === "undefined") return;
+  const w = window as unknown as { plausible?: (e: string, o?: { props: Record<string, string> }) => void };
+  if (typeof w.plausible === "function") {
+    w.plausible(event, { props });
+  }
+}
+
+/** RFC-5322-lite email validation — sufficient for client-side gating. */
+export function isValidEmail(email: string): boolean {
+  if (!email || email.length > 254) return false;
+  // Reject whitespace, require local-part + "@" + domain with a dot.
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+/** Lead-magnet copy — referenced by the form and the welcome sequence. */
+export const LEAD_MAGNETS: Record<LeadMagnetId, { title: string; blurb: string }> = {
+  "first-day-noosa": {
+    title: "Your first day in Noosa",
+    blurb:
+      "A 5-page PDF on how to spend your first 24 hours in Noosa Heads — surf window timing, Hastings Street walk, lunch and a sunset plan.",
+  },
+  "where-to-stay-noosa": {
+    title: "Where to stay in Noosa",
+    blurb:
+      "A 5-page PDF that compares Hastings Street, Noosaville, and Sunshine Beach on walkability, value, and family fit.",
+  },
+  "weekly-dispatch": {
+    title: "The weekly Noosa dispatch",
+    blurb:
+      "Every Wednesday. Conditions, the things to book, and one local story from the shire. Unsubscribe in one click.",
+  },
+};

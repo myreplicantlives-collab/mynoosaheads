@@ -126,7 +126,7 @@ export default function RetailerPage({ params }: PageProps) {
                 <ol className="mt-3 space-y-3 text-body-md text-ink-800">
                   {r.howToMakeAMorningOfIt.map((step) => (
                     <li key={step.time} className="flex items-start gap-3">
-                      <span className="font-display text-headline-sm text-ocean-700 min-w-[5rem]">
+                      <span className="font-display text-headline-sm text-ocean-800 min-w-[5rem]">
                         {step.time}
                       </span>
                       <span>{step.action}</span>
@@ -178,12 +178,12 @@ export default function RetailerPage({ params }: PageProps) {
               <CardBody>
                 <ul className="space-y-2 text-body-sm">
                   <li>
-                    <Link href="/shopping" className="link text-ocean-700">
+                    <Link href="/shopping" className="link text-ocean-800">
                       All shopping categories
                     </Link>
                   </li>
                   <li>
-                    <Link href="/things-to-do" className="link text-ocean-700">
+                    <Link href="/things-to-do" className="link text-ocean-800">
                       Things to do
                     </Link>
                   </li>

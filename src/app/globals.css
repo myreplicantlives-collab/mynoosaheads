@@ -13,7 +13,7 @@
  *   3. eucalyptus-*, ocean-*, rainforest-* — all three semantic names
  *      resolve to the SAME sea-glass brand ramp (50 → 950). We keep the
  *      three names so existing utility classes (bg-eucalyptus-500,
- *      text-ocean-700, chip-rainforest) keep working without touching
+ *      text-ocean-800, chip-rainforest) keep working without touching
  *      every component file.
  *
  *   sea-glass ramp (hex anchor stops):
@@ -310,7 +310,7 @@
   }
   .btn-link {
     @apply bg-transparent text-ocean-600 underline decoration-ocean-300 underline-offset-4
-           hover:decoration-ocean-600 hover:text-ocean-700
+           hover:decoration-ocean-600 hover:text-ocean-800
            focus-visible:ring-ocean-500 rounded-sm px-0 py-0;
   }
 
@@ -341,7 +341,7 @@
     @apply chip border-eucalyptus-200 bg-eucalyptus-50 text-eucalyptus-700;
   }
   .chip-ocean {
-    @apply chip border-ocean-200 bg-ocean-50 text-ocean-700;
+    @apply chip border-ocean-200 bg-ocean-50 text-ocean-800;
   }
   /* chip-coral removed (MSN-2959). Use chip-ocean or chip-rainforest. */
   .chip-rainforest {
@@ -352,7 +352,7 @@
            rounded-pill px-2 py-0.5;
   }
   .eyebrow {
-    /* MSN-2959 / TSK-2959-POLISH-C: bumped from text-ocean-700 (#2F8074,
+    /* MSN-2959 / TSK-2959-POLISH-C: bumped from text-ocean-800 (#2F8074,
      * contrast 4.69:1 on white — just over WCAG AA but Lighthouse flagged
      * it) to text-ocean-900 (#0E4A41, contrast 10.05:1 — well above WCAG
      * AA/AAA on --paper-50). Victor's re-QA found A11y score dropped
@@ -482,7 +482,7 @@
   @apply my-5 leading-relaxed text-ink-800;
 }
 .prose-mdx a {
-  @apply link text-ocean-700;
+  @apply link text-ocean-800;
 }
 .prose-mdx ul {
   @apply list-disc pl-6 my-5 space-y-2 text-ink-800;

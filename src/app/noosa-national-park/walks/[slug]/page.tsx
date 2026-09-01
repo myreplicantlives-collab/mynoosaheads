@@ -129,7 +129,7 @@ export default function WalkPage({ params }: PageProps) {
             Distance, grade, and time per Queensland Parks and Wildlife Service —{" "}
             <a
               href="https://parks.qld.gov.au/parks/noosa/journeys/walking-tracks-summary"
-              className="link text-ocean-700"
+              className="link text-ocean-800"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -249,7 +249,7 @@ export default function WalkPage({ params }: PageProps) {
                       <span className="text-eucalyptus-700 mt-1 shrink-0" aria-hidden="true">↗</span>
                       <a
                         href={s.href}
-                        className="link text-ocean-700"
+                        className="link text-ocean-800"
                         rel="noopener noreferrer"
                         target="_blank"
                       >
@@ -266,12 +266,12 @@ export default function WalkPage({ params }: PageProps) {
               <CardBody>
                 <ul className="space-y-2 text-body-sm">
                   <li>
-                    <Link href="/noosa-national-park" className="link text-ocean-700">
+                    <Link href="/noosa-national-park" className="link text-ocean-800">
                       Noosa National Park overview
                     </Link>
                   </li>
                   <li>
-                    <Link href="/surf-and-weather" className="link text-ocean-700">
+                    <Link href="/surf-and-weather" className="link text-ocean-800">
                       Today&rsquo;s surf and weather
                     </Link>
                   </li>

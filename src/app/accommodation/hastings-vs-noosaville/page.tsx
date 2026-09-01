@@ -143,11 +143,11 @@ export default function HastingsVsNoosavillePage() {
           </p>
           <p>
             From the airports,{" "}
-            <a href="/travel-and-transport/sunshine-coast-airport-to-noosa" className="link text-ocean-700">
+            <a href="/travel-and-transport/sunshine-coast-airport-to-noosa" className="link text-ocean-800">
               MCY → Noosa
             </a>{" "}
             is 30 minutes;{" "}
-            <a href="/travel-and-transport/brisbane-airport-to-noosa" className="link text-ocean-700">
+            <a href="/travel-and-transport/brisbane-airport-to-noosa" className="link text-ocean-800">
               BNE → Noosa
             </a>{" "}
             is 2 hours.

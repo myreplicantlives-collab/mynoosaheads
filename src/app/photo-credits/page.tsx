@@ -425,7 +425,7 @@ export default function PhotoCreditsPage() {
                       href={row.sourcePage}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="link text-ocean-700 break-all"
+                      className="link text-ocean-800 break-all"
                     >
                       Source ↗
                     </a>
@@ -442,7 +442,7 @@ export default function PhotoCreditsPage() {
             href="https://creativecommons.org/licenses/by/4.0/"
             target="_blank"
             rel="noopener noreferrer"
-            className="link text-ocean-700"
+            className="link text-ocean-800"
           >
             CC BY 4.0
           </a>
@@ -451,7 +451,7 @@ export default function PhotoCreditsPage() {
             href="https://creativecommons.org/licenses/by-sa/4.0/"
             target="_blank"
             rel="noopener noreferrer"
-            className="link text-ocean-700"
+            className="link text-ocean-800"
           >
             CC BY-SA 4.0
           </a>
@@ -461,7 +461,7 @@ export default function PhotoCreditsPage() {
             href="https://unsplash.com/license"
             target="_blank"
             rel="noopener noreferrer"
-            className="link text-ocean-700"
+            className="link text-ocean-800"
           >
             Unsplash Licence
           </a>
@@ -470,11 +470,11 @@ export default function PhotoCreditsPage() {
 
         <p className="mt-6 text-body-sm text-ink-700 max-w-3xl">
           See also the{" "}
-          <Link href="/terms" className="link text-ocean-700">
+          <Link href="/terms" className="link text-ocean-800">
             terms of use
           </Link>{" "}
           for reuse guidance, or{" "}
-          <Link href="/contact" className="link text-ocean-700">
+          <Link href="/contact" className="link text-ocean-800">
             report an attribution error
           </Link>
           .

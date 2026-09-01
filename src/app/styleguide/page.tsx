@@ -176,7 +176,7 @@ export default function StyleGuidePage() {
               className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 border-b border-paper-200 pb-5"
             >
               <div className="md:w-48 shrink-0">
-                <p className="font-mono text-caption text-ocean-700">{t.token}</p>
+                <p className="font-mono text-caption text-ocean-800">{t.token}</p>
                 <p className="text-caption text-ink-600">{t.desc}</p>
               </div>
               <p
@@ -531,7 +531,7 @@ function Section({
 
 function SubHeading({ children }: { children: React.ReactNode }) {
   return (
-    // MSN-2959 / TSK-2959-POLISH-C: dropped `text-ocean-700` override so the
+    // MSN-2959 / TSK-2959-POLISH-C: dropped `text-ocean-800` override so the
     // eyebrow register now uses text-ocean-900 (#0E4A41) for WCAG AA on
     // white surfaces — see .eyebrow in src/app/globals.css.
     <h3 className="mt-6 mb-3 text-eyebrow first:mt-0">{children}</h3>

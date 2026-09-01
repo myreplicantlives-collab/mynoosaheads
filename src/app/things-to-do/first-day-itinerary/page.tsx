@@ -3,6 +3,7 @@ import Link from "next/link";
 import { JsonLd } from "@/components/ui";
 import { SITE } from "@/data/site";
 import { VERIFIED } from "@/data/photos-msn2982";
+import { EmailCaptureInline } from "@/components/email/EmailCaptureInline";
 
 /**
  * /things-to-do/first-day-itinerary — MSN-2987 V2 chunk 1 structural stub.
@@ -179,7 +180,7 @@ export default function FirstDayItineraryPage() {
                 </p>
                 <Link
                   href={step.href}
-                  className="mt-4 inline-block link text-ocean-700 text-body-sm font-semibold"
+                  className="mt-4 inline-block link text-ocean-800 text-body-sm font-semibold"
                   data-track={`fdi_step_${i + 1}`}
                 >
                   More on this <span aria-hidden="true">→</span>
@@ -250,6 +251,15 @@ export default function FirstDayItineraryPage() {
             </Link>
           </div>
         </div>
+      </section>
+
+      {/* ─── 7. Email capture (Workstream 5) — first-day readers convert ─── */}
+      <section className="container-narrow py-12 md:py-16 border-t border-paper-200">
+        <EmailCaptureInline
+          source="first-day-itinerary"
+          leadMagnet="first-day-noosa"
+          title="Take the first-day plan offline."
+        />
       </section>
     </div>
   );

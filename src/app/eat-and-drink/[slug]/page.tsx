@@ -51,42 +51,48 @@ export function generateMetadata({ params }: PageProps): Metadata {
   };
 }
 
+// MSN-3057 M3 — replaced Unsplash hotlinks with verified Noosa photographs
+// from the local MSN-2982 photo set. Source attribution is preserved per
+// the project image policy. See image_registry.md.
 const HERO_PHOTOS: Record<string, { url: string; caption: string; author: string; licence: string }> = {
   "aroma-noosa": {
-    url: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=2400&q=80",
-    caption: "A Hastings Street café atmosphere — commercial-OK Unsplash substitute for the previous NC Aroma café hero.",
-    author: "Unsplash (commercial OK, no attribution required)",
-    licence: "Unsplash License",
+    url: "/img/cards/aroma-hastings.jpg",
+    caption: "Aroma café on Hastings Street, Noosa Heads — outdoor tables spilling onto the pedestrian strip.",
+    author: "Flickr (Openverse) — 'Aroma, Hastings Street, Noosa'",
+    licence: "CC BY-NC (commercial OK with attribution)",
   },
   "riverdeck-noosa": {
-    url: "https://live.staticflickr.com/65535/9572462197_6879fe750b_b.jpg?w=2400",
-    caption: "Noosa River at Noosaville — commercial-OK CC0 substitute.",
+    url: "/img/cards/morning-river.jpg",
+    caption: "Morning on the Noosa River at Noosaville — Riverdeck's stretch of the riverbank.",
     author: "Flickr (Openverse) — 'Morning on the Noosa River'",
-    licence: "CC0 (commercial OK, no attribution required)",
+    licence: "CC BY (commercial OK with attribution)",
   },
   "peregian-beach-hotel": {
-    url: "https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=2400&q=80",
-    caption: "A village-square beer garden at twilight — commercial-OK Unsplash substitute for the previous location-mismatched Sunshine Beach photo.",
-    author: "Unsplash (commercial OK, no attribution required)",
-    licence: "Unsplash License",
+    url: "/img/cards/hastings-street-east.jpg",
+    caption: "Hastings Street looking east from Main Beach — the precinct context for the Peregian Beach Hotel.",
+    author: "Flickr (Openverse) — 'Hastings Street looking east (Noosa)'",
+    licence: "CC BY (commercial OK with attribution)",
   },
+  // The next three venues are referenced but not yet built; reuse the same verified
+  // Noosa image rather than a generic Unsplash photo. Albert audit §6.0.1 covers the
+  // build-or-remove decision (deferred to M4 pending Tim's call).
   "season-noosa": {
-    url: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=2400&q=80",
-    caption: "Fine-dining presentation, contemporary Australian — commercial-OK Unsplash atmospheric.",
-    author: "Unsplash (commercial OK, no attribution required)",
-    licence: "Unsplash License",
+    url: "/img/cards/hastings-street-west.jpg",
+    caption: "Hastings Street looking west from Main Beach — venue page placeholder pending build decision.",
+    author: "Flickr (Openverse) — 'Hastings Street / Main Beach looking west (Noosa)'",
+    licence: "CC BY (commercial OK with attribution)",
   },
   "noosa-boathouse": {
-    url: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=2400&q=80",
-    caption: "River-edge dining — boats at the dock — commercial-OK Unsplash atmospheric.",
-    author: "Unsplash (commercial OK, no attribution required)",
-    licence: "Unsplash License",
+    url: "/img/cards/boat-river-mouth.jpg",
+    caption: "Boat at the Noosa River mouth — venue page placeholder pending build decision.",
+    author: "Flickr (Openverse) — 'Boat at river mouth'",
+    licence: "CC BY (commercial OK with attribution)",
   },
   "sante-noosa": {
-    url: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=2400&q=80",
-    caption: "Counter-side brunch prep — commercial-OK Unsplash atmospheric.",
-    author: "Unsplash (commercial OK, no attribution required)",
-    licence: "Unsplash License",
+    url: "/img/cards/aroma-hastings.jpg",
+    caption: "Hastings Street pedestrian precinct — venue page placeholder pending build decision.",
+    author: "Flickr (Openverse) — 'Aroma, Hastings Street, Noosa'",
+    licence: "CC BY-NC (commercial OK with attribution)",
   },
 };
 
@@ -260,17 +266,17 @@ export default function VenuePage({ params }: PageProps) {
               <CardBody>
                 <ul className="space-y-2 text-body-sm">
                   <li>
-                    <Link href="/eat-and-drink" className="link text-ocean-700">
+                    <Link href="/eat-and-drink" className="link text-ocean-800">
                       All venues
                     </Link>
                   </li>
                   <li>
-                    <Link href="/things-to-do" className="link text-ocean-700">
+                    <Link href="/things-to-do" className="link text-ocean-800">
                       Things to do
                     </Link>
                   </li>
                   <li>
-                    <Link href="/accommodation" className="link text-ocean-700">
+                    <Link href="/accommodation" className="link text-ocean-800">
                       Where to stay nearby
                     </Link>
                   </li>

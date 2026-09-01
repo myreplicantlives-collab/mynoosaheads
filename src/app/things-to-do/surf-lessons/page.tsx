@@ -130,7 +130,7 @@ export default function SurfLessonsPage() {
             <>
               <p>
                 Before booking, check the live{" "}
-                <a href="/surf-and-weather" className="link text-ocean-700">
+                <a href="/surf-and-weather" className="link text-ocean-800">
                   surf and weather
                 </a>{" "}
                 tile. If the wind is onshore (east to south-east) and the

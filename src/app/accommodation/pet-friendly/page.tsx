@@ -71,7 +71,7 @@ export default function PetFriendlyPage() {
                 second-best bet — Stayz aggregates the pet-friendly houses
                 with a filter, but the curated pick list is small because we
                 don&apos;t have verified house-by-house photography. See{" "}
-                <a href="/accommodation/peregian-beach" className="link text-ocean-700">
+                <a href="/accommodation/peregian-beach" className="link text-ocean-800">
                   Peregian Beach
                 </a>{" "}
                 for the honest position.
@@ -81,7 +81,7 @@ export default function PetFriendlyPage() {
                 accept pets. <strong>Noosaville apartments</strong> (South
                 Pacific) do not accept pets. These are the two largest
                 curated picks on the main{" "}
-                <a href="/accommodation" className="link text-ocean-700">
+                <a href="/accommodation" className="link text-ocean-800">
                   /accommodation
                 </a>{" "}
                 page, and neither accepts dogs.
@@ -108,7 +108,7 @@ export default function PetFriendlyPage() {
                     href="https://www.stayz.com.au/holiday-rental-search?query=Peregian+Beach+pet+friendly"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="link text-ocean-700"
+                    className="link text-ocean-800"
                     data-track="pet-friendly-stayz-peregian"
                   >
                     Peregian Beach holiday houses (Stayz, pet-friendly filter)
@@ -119,7 +119,7 @@ export default function PetFriendlyPage() {
                     href="https://www.stayz.com.au/holiday-rental-search?query=Noosa+Heads+pet+friendly+house"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="link text-ocean-700"
+                    className="link text-ocean-800"
                     data-track="pet-friendly-stayz-noosa"
                   >
                     Noosa-area holiday houses (Stayz, pet-friendly filter)

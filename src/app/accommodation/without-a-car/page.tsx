@@ -75,11 +75,11 @@ export default function WithoutACarPage() {
               </p>
               <p>
                 Airport transfers are the principal external journey. See{" "}
-                <a href="/travel-and-transport/sunshine-coast-airport-to-noosa" className="link text-ocean-700">
+                <a href="/travel-and-transport/sunshine-coast-airport-to-noosa" className="link text-ocean-800">
                   MCY → Noosa
                 </a>{" "}
                 and{" "}
-                <a href="/travel-and-transport/brisbane-airport-to-noosa" className="link text-ocean-700">
+                <a href="/travel-and-transport/brisbane-airport-to-noosa" className="link text-ocean-800">
                   BNE → Noosa
                 </a>{" "}
                 for the options.
@@ -101,7 +101,7 @@ export default function WithoutACarPage() {
                   href="https://www.noosaferry.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="link text-ocean-700"
+                  className="link text-ocean-800"
                   data-track="noosa-ferry-direct"
                 >
                   Noosa Ferry
@@ -129,7 +129,7 @@ export default function WithoutACarPage() {
             coach to Noosaville and Hastings Street. From Brisbane Airport
             (BNE), the Con-x-ion coach is the cheapest option (~2 hours).
             See{" "}
-            <a href="/travel-and-transport/brisbane-airport-to-noosa" className="link text-ocean-700">
+            <a href="/travel-and-transport/brisbane-airport-to-noosa" className="link text-ocean-800">
               BNE → Noosa transfers
             </a>
             .

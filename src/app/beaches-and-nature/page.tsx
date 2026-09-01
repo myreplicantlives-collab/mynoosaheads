@@ -36,8 +36,8 @@ const CATEGORIES = [
     name: "Noosa Main Beach",
     tagline: "The patrolled one — flags, surf club, the headland at the south end.",
     href: "/noosa-national-park",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80",
-    imageAlt: "Wide sand beach at golden hour — commercial-OK Unsplash atmospheric substitute.",
+    image: "/img/cards/hastings-street-east.jpg",
+    imageAlt: "Wide sand beach at golden hour.",
     accent: "Patrolled year-round; the headland coastal walk starts at the south end of the beach.",
   },
   {
@@ -63,8 +63,8 @@ const CATEGORIES = [
     name: "Peregian Beach",
     tagline: "Ten minutes south of Sunshine — village square, holiday houses.",
     href: "/areas/peregian",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80",
-    imageAlt: "Peregian Beach atmosphere — wide-sand-beach commercial-OK Unsplash.",
+    image: "/img/cards/hastings-street-east.jpg",
+    imageAlt: "Peregian Beach atmosphere.",
     accent: "Patrolled frontage; village-square cafés and the Peregian Beach Hotel on the square.",
   },
 ];
@@ -96,8 +96,8 @@ export default function BeachesAndNaturePage() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=2400&q=80"
-          alt="Wide sand beach at golden hour — commercial-OK Unsplash atmospheric substitute."
+          src="/img/heroes/hastings-street-east-1920w.jpg"
+          alt="Wide sand beach at golden hour."
           decoding="async"
           fetchPriority="high"
           className="absolute inset-0 h-full w-full object-cover object-[center_30%]"

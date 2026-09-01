@@ -318,7 +318,7 @@ export function ParentHubLink({
   return (
     <p className="text-body-sm text-ink-700">
       ←{" "}
-      <Link href={href} className="link text-ocean-700" data-track={`parent_hub_${href}`}>
+      <Link href={href} className="link text-ocean-800" data-track={`parent_hub_${href}`}>
         Back to {label}
       </Link>
     </p>

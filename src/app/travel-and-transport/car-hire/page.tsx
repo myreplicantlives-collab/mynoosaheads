@@ -82,7 +82,7 @@ export default function CarHirePage() {
                 If you&apos;re staying in Hastings Street or Noosaville for
                 five nights and don&apos;t plan to leave the precinct, skip
                 the hire car. See{" "}
-                <a href="/accommodation/without-a-car" className="link text-ocean-700">
+                <a href="/accommodation/without-a-car" className="link text-ocean-800">
                   Where to stay without a car
                 </a>
                 .
@@ -151,7 +151,7 @@ export default function CarHirePage() {
             From BNE: 2 hours via the M1 and the Eumundi–Noosa Road.
             Hire car desks at BNE are in each terminal&apos;s arrivals hall.
             See{" "}
-            <a href="/travel-and-transport/brisbane-airport-to-noosa" className="link text-ocean-700">
+            <a href="/travel-and-transport/brisbane-airport-to-noosa" className="link text-ocean-800">
               BNE → Noosa
             </a>
             .

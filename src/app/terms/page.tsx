@@ -52,7 +52,7 @@ export default function TermsPage() {
             For bar crossings, defer to the{" "}
             <a
               href="https://www.msq.qld.gov.au/Safety/Bar-crossings-and-coastal-conditions"
-              className="link text-ocean-700"
+              className="link text-ocean-800"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -61,7 +61,7 @@ export default function TermsPage() {
             . For coastal conditions, defer to the{" "}
             <a
               href="https://www.bom.gov.au/coastal-location/australia"
-              className="link text-ocean-700"
+              className="link text-ocean-800"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -70,7 +70,7 @@ export default function TermsPage() {
             . For park closures, defer to{" "}
             <a
               href="https://parks.qld.gov.au/park-alerts"
-              className="link text-ocean-700"
+              className="link text-ocean-800"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -116,7 +116,7 @@ export default function TermsPage() {
             International (CC BY 4.0). You may reuse the copy with
             attribution. Brand marks, logos, and photography from third
             parties are the property of their respective owners; see{" "}
-            <a href="/contact" className="link text-ocean-700">
+            <a href="/contact" className="link text-ocean-800">
               the contact page
             </a>{" "}
             for image-credit corrections.
@@ -126,7 +126,7 @@ export default function TermsPage() {
           <p>
             We correct errors promptly when they’re reported. Please
             email{" "}
-            <a href="mailto:hello@mynoosaheads.com" className="link text-ocean-700">
+            <a href="mailto:hello@mynoosaheads.com" className="link text-ocean-800">
               hello@mynoosaheads.com
             </a>{" "}
             with the page URL, the issue, and (ideally) a citation to a
@@ -143,7 +143,7 @@ export default function TermsPage() {
           <h2>9. Contact</h2>
           <p>
             Questions about these terms:{" "}
-            <a href="mailto:hello@mynoosaheads.com" className="link text-ocean-700">
+            <a href="mailto:hello@mynoosaheads.com" className="link text-ocean-800">
               hello@mynoosaheads.com
             </a>
             .

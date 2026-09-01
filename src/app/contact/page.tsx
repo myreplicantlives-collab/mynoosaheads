@@ -119,17 +119,34 @@ export default function ContactPage() {
                   authority —{" "}
                   <Link
                     href="https://www.lifesaving.com.au/"
-                    className="link text-ocean-700"
+                    className="link text-ocean-800"
                     rel="noopener noreferrer"
                     target="_blank"
                   >
                     Surf Life Saving QLD
                   </Link>{" "}
                   for beach incidents, or{" "}
-                  <a href="tel:000" className="link text-ocean-700">
+                  <a href="tel:000" className="link text-ocean-800">
                     000
                   </a>{" "}
                   for emergencies.
+                </p>
+              </CardBody>
+            </Card>
+            <Card variant="surface">
+              <CardHeader eyebrow="About this site" title="" />
+              <CardBody>
+                <p className="text-body-sm text-ink-800">
+                  Who runs the guide and the methodology behind the
+                  reviews — see{" "}
+                  <Link href="/about" className="link text-ocean-800">
+                    /about
+                  </Link>{" "}
+                  and{" "}
+                  <Link href="/editorial-standards" className="link text-ocean-800">
+                    /editorial-standards
+                  </Link>
+                  .
                 </p>
               </CardBody>
             </Card>
