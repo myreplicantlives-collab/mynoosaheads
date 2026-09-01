@@ -306,6 +306,9 @@ const STAMPERS: Record<ProgrammeId, (url: string, opts: BuildLinkOptions) => str
  * buildPartnerLink — produce the final outbound URL for a given programme.
  *
  * Behaviour:
+ *   - If the programme is `"operator-direct"`, returns `baseUrl` untouched
+ *     (the caller has already chosen the operator's own URL; there is no
+ *     affiliate relationship).
  *   - If the programme is disabled or unverified, returns the baseUrl
  *     untouched (a safe, ordinary outbound link).
  *   - If the programme is enabled and verified, appends the network's
@@ -313,10 +316,13 @@ const STAMPERS: Record<ProgrammeId, (url: string, opts: BuildLinkOptions) => str
  *   - Always returns a valid URL string; never throws.
  */
 export function buildPartnerLink(
-  programme: ProgrammeId,
+  programme: ProgrammeId | "operator-direct",
   baseUrl: string,
   placementOrOpts: string | BuildLinkOptions,
 ): string {
+  if (programme === "operator-direct") {
+    return baseUrl;
+  }
   const opts: BuildLinkOptions =
     typeof placementOrOpts === "string"
       ? { placement: placementOrOpts, baseUrl }

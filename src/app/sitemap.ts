@@ -57,6 +57,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // 200 OK pages but missing from the sitemap. Now listed.
     { url: `${SITE_URL}/photo-credits`, lastModified, changeFrequency: "monthly", priority: 0.4 },
     { url: `${SITE_URL}/shopping`, lastModified, changeFrequency: "monthly", priority: 0.5 },
+    // MSN-3057 / Workstream 2 — accommodation commercial cluster (13 pages).
+    { url: `${SITE_URL}/accommodation/best-places-to-stay-in-noosa`, lastModified, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE_URL}/accommodation/hastings-street`, lastModified, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE_URL}/accommodation/noosaville`, lastModified, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE_URL}/accommodation/sunshine-beach`, lastModified, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE_URL}/accommodation/peregian-beach`, lastModified, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE_URL}/accommodation/luxury`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/accommodation/families`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/accommodation/apartments`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/accommodation/near-the-beach`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/accommodation/with-pools`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/accommodation/pet-friendly`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/accommodation/without-a-car`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/accommodation/hastings-vs-noosaville`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    // MSN-3057 / Workstream 2 — activity commercial cluster (9 pages).
+    { url: `${SITE_URL}/things-to-do/surf-lessons`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/things-to-do/everglades-tours`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/things-to-do/river-cruises`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/things-to-do/kayak-and-paddleboard-hire`, lastModified, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${SITE_URL}/things-to-do/families`, lastModified, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${SITE_URL}/things-to-do/hinterland-day-trips`, lastModified, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${SITE_URL}/travel-and-transport/brisbane-airport-to-noosa`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/travel-and-transport/sunshine-coast-airport-to-noosa`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/travel-and-transport/car-hire`, lastModified, changeFrequency: "monthly", priority: 0.7 },
     // NOTE: /reporting is intentionally NOT listed. It is the internal
     // reporting view (MSN-3057 / Workstream 1) and ships with a
     // robots: { index: false, follow: false } metadata block — it must
